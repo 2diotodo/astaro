@@ -17,7 +17,7 @@ function init() {
   }
 
   var estrela = "";
-  var qtdeEstrelas = 500;
+  var qtdeEstrelas = window.innerWidth * 2;
   var noite = document.querySelector(".constelacao");
   var widthWindow = window.innerWidth;
   var heightWindow = window.innerHeight;
@@ -33,9 +33,9 @@ function init() {
       "' style='animation-delay: ." +
       getRandomArbitrary(0, 9) +
       "s; left: " +
-      getRandomArbitrary(0, widthWindow) +
+      getRandomArbitrary(-widthWindow, 2 * widthWindow) +
       "px; top: " +
-      getRandomArbitrary(0, heightWindow) +
+      getRandomArbitrary(-heightWindow, 2 * heightWindow) +
       "px;'></span>";
   }
 
