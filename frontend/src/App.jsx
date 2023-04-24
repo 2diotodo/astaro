@@ -6,6 +6,7 @@ import { WhiteholeTest } from "@page/WhiteholeTest";
 import ChatGpt from "@page/ChatGpt";
 import MemberLogin from "@page/member/MemberLogin";
 import MemberSignup from "@page/member/MemberSignup";
+import MemberMypage from "@page/member/MemberMypage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/chatgpt" element={<ChatGpt />} />
           <Route path="/member/memberlogin" element={<MemberLogin />} />
           <Route path="/member/membersignup" element={<MemberSignup />} />
+          <Route path="/member/membermypage" element={<MemberMypage />} />
         </Routes>
       </Router>
     </div>
