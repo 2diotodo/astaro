@@ -3,6 +3,7 @@ package com.a604.boardservice.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message {
@@ -48,6 +50,4 @@ public class Message {
     @Column(columnDefinition = "boolean default false", nullable = false)
     @Comment("삭제 여부")
     private Boolean isDeleted;
-
-
 }
