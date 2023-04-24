@@ -1,4 +1,10 @@
 package com.a604.boardservice.repository;
 
-public interface MessageRepository {
+import com.a604.boardservice.entity.Message;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MessageRepository extends JpaRepository<Message, Long> {
+    /**
+     * 메시지 룸에 해당하는 메시지 조회
+     */
 }
