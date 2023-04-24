@@ -27,9 +27,9 @@ public class CardInfo {
     private String name;
 
     @ColumnDefault("0")
-    private boolean isPos;
+    private boolean orient;
 
-    @Size(max=50)
+    @Size(max=100)
     private String keyword;
 
     private String meaning;
