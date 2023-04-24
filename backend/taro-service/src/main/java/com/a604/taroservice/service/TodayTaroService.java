@@ -20,15 +20,11 @@ public class TodayTaroService {
     public static final short MIN_CARD_SEQ = 1;
     public static final short MAX_CARD_SEQ = 22;
     public TodayTaroDto todayTaro(){
-        short randomCardSeq = (short) (MIN_CARD_SEQ + (short)(Math.random() * (MAX_CARD_SEQ - MIN_CARD_SEQ)));
-        System.out.println(randomCardSeq);
+        short randomCardSeq = (short) (MIN_CARD_SEQ + (short)(Math.random() * (MAX_CARD_SEQ - MIN_CARD_SEQ) + MIN_CARD_SEQ));
         CardInfo cardInfo = cardInfoRepository.findCardInfoBySeq(randomCardSeq);
-        System.out.println(cardInfo);
-        short cardSeq = cardInfo.getSeq();
-        List<TaroContent> taroContents = taroContentRepository.findTaroContentsByCardSeq(cardSeq);
-        short randomContentSeq = (short) (MIN_CARD_SEQ + (short)(Math.random() * taroContents.size()));
+        List<TaroContent> taroContents = taroContentRepository.findTaroContentsByCardSeq(cardInfo.getSeq());
+        short randomContentSeq = (short) (MIN_CARD_SEQ + (short)(Math.random() * taroContents.size()-1));
         TaroContent taroContent = taroContents.get(randomContentSeq);
-        TodayTaroDto todayTaroDto = new TodayTaroDto(cardInfo.getName(), taroContent.getContent(), cardInfo.getImageUrl(), cardInfo.getGood(), cardInfo.getBad());
-        return todayTaroDto;
+        return new TodayTaroDto(cardInfo.getName(), taroContent.getContent(), cardInfo.getImageUrl(), cardInfo.getGood(), cardInfo.getBad());
     }
 }
