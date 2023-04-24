@@ -1,6 +1,7 @@
 package com.a604.taroservice.data;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +25,9 @@ public class CardInfo {
     @Size(max=20)
     @Column(nullable = false)
     private String name;
+
+    @ColumnDefault("0")
+    private boolean isPos;
 
     @Size(max=50)
     private String keyword;
