@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Song Myung', serif;
 }
 
 .App-logo {
