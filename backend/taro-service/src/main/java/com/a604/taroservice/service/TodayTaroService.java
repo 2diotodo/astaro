@@ -25,6 +25,8 @@ public class TodayTaroService {
         List<TaroContent> taroContents = taroContentRepository.findTaroContentsByCardSeq(cardInfo.getSeq());
         short randomContentSeq = (short) (MIN_CARD_SEQ + (short)(Math.random() * taroContents.size()-1));
         TaroContent taroContent = taroContents.get(randomContentSeq);
-        return new TodayTaroDto(cardInfo.getName(), taroContent.getContent(), cardInfo.getImageUrl(), cardInfo.getGood(), cardInfo.getBad());
+        CardInfo goodCardInfo = cardInfoRepository.findCardInfoBySeq(cardInfo.getGood());
+        CardInfo badCardInfo = cardInfoRepository.findCardInfoBySeq(cardInfo.getBad());
+        return new TodayTaroDto(cardInfo.getName(), taroContent.getContent(), cardInfo.getImageUrl(), goodCardInfo.getImageUrl(), badCardInfo.getImageUrl(), goodCardInfo.getName(), badCardInfo.getName());
     }
 }

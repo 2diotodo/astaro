@@ -11,8 +11,10 @@ import lombok.*;
 public class TodayTaroDto {
     private String cardName;
     private String content;
-    private String imageUrl;
-    private short good;
-    private short bad;
+    private String mainImageUrl;
+    private String goodImageUrl;
+    private String badImageUrl;
+    private String goodCardName;
+    private String badCardName;
 
 }
