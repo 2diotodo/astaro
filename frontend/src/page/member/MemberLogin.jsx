@@ -1,7 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { signin } from "@features/memberSlice";
 
 function MemberLogin() {
+  const dispatch = useDispatch();
+
   const [logins, setLogins] = useState({
     id: "",
     password: "",
@@ -50,8 +54,8 @@ function MemberLogin() {
     if (Object.values(errors).some((v) => v)) {
       return;
     }
-
-    alert(JSON.stringify(logins, null, 2));
+    console.log(e.target.value);
+    dispatch(signin(logins));
   };
 
   // 필드값을 검증한다.

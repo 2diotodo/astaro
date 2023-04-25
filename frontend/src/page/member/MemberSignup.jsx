@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signup } from "@features/memberSlice";
 
 function MemberSignup() {
   const [values, setValues] = useState({
-    id: "",
+    memberId: "",
     password: "",
     nickname: "",
     email: "",
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setValues({
@@ -16,7 +20,8 @@ function MemberSignup() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("signup");
+    console.log(values);
+    dispatch(signup(values));
   };
   return (
     <>
@@ -25,8 +30,8 @@ function MemberSignup() {
         <form className="signup-form" onSubmit={handleSubmit}>
           <input
             type="text"
-            name="id"
-            value={values.id}
+            name="memberId"
+            value={values.memberId}
             onChange={handleChange}
             placeholder="ID"
           />
@@ -37,13 +42,13 @@ function MemberSignup() {
             onChange={handleChange}
             placeholder="Password"
           />
-          <input
+          {/* <input
             type="password"
             name="password"
             value={values.password}
             onChange={handleChange}
             placeholder="Password"
-          />
+          /> */}
           <input
             type="text"
             name="nickname"
