@@ -6,14 +6,21 @@ const Input = styled.input.attrs((props) => ({
   name: props.name || "",
 }))`
   width: ${(props) => props.width || "490px"};
-  height: ${(props) => props.height || "58px"};
-  text-indent: ${(props) => (props.centerPlaceholder ? "0" : "20px")};
-  border: ${(props) => props.border || "1px solid #cccccc"};
+  height: ${(props) => props.height || "50px"};
+  color: ${(props) => props.color || "white"};
+  text-indent: ${(props) => (props.textIndent ? "0" : "20px")};
+  border: ${(props) => props.border || "none"};
+  border-bottom: ${(props) => props.borderBottom || "1px solid white"};
+  padding-left: ${(props) => props.paddingLeft || "10px"};
+  background: ${(props) => props.background || "none"};
   border-radius: ${(props) => props.borderRadius || "0"};
-  border-color: ${(props) => props.borderColor || "black"};
   text-align: ${(props) => (props.centerPlaceholder ? "center" : "inherit")};
   text-justify: ${(props) => (props.justify ? props.justify : "inherit")};
 
+  &:focus {
+    outline: ${(props) => props.outline || "none"};
+  }
+  
   &::placeholder {
     color: ${(props) =>
       props.placeholderColor ? props.placeholderColor : "#9E9E9E"};
