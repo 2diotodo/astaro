@@ -1,0 +1,32 @@
+# User-Server Port 지정
+server:
+  port: 8081
+
+# Spring Server Settings
+spring:
+  application:
+    name: member-service
+
+  # Database Connection
+  datasource:
+    url: jdbc:mysql://localhost:3306/wedding101_db?characterEncoding=UTF-8&amp&serverTimezone=UTC
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ssafy
+
+  # JPA Settings
+  jpa:
+    database: mysql
+    hibernate:
+      ddlAuto: update
+      useNewIdGeneratorMappings: true
+    generateDdl: true
+    databasePlatform: org.hibernate.dialect.MySQL8Dialect
+
+# Eureka Client Settings
+#eureka:
+#  instance:
+#    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:8761/eureka
