@@ -9,7 +9,7 @@ spring:
 
   # Database Connection
   datasource:
-    url: jdbc:mysql://localhost:3306/wedding101_db?characterEncoding=UTF-8&amp&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/astaro_db?characterEncoding=UTF-8&amp&serverTimezone=UTC
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: ssafy
