@@ -1,9 +1,7 @@
 package com.a604.boardservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.a604.boardservice.dto.MessageResponseDto;
+import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -15,24 +13,25 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("쪽지 Seq")
-    private int messageSeq;
+    private int seq;
 
     // 연결된 entity 추후 수정 필요
     @Column(nullable = false)
     @Comment("message list Seq")
-    private int messageListSeq;
+    private long messageListSeq;
 
     @Column(nullable = false)
     @Comment("sender Seq")
-    private int senderSeq;
+    private long senderSeq;
 
     @Column(nullable = false)
     @Comment("receiver Seq")
-    private int receiverSeq;
+    private long receiverSeq;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     @Comment("원본 Content")
@@ -50,4 +49,14 @@ public class Message {
     @Column(columnDefinition = "boolean default false", nullable = false)
     @Comment("삭제 여부")
     private Boolean isDeleted;
+
+    public MessageResponseDto toDto() {
+        MessageResponseDto messageResponseDto = MessageResponseDto.builder()
+                .senderSeq(this.senderSeq)
+                .receiverSeq(this.receiverSeq)
+                .originalContent(this.originalContent)
+                .filteredContent(this.filteredContent)
+                .build();
+        return messageResponseDto;
+    }
 }

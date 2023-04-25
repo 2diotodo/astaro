@@ -14,7 +14,7 @@ public interface MessageService {
      * @param messageListSeq
      * @return
      */
-    List<Message> getMessagesByMessageListSeq(int messageListSeq);
+    List<Message> getMessagesByMessageListSeq(long messageListSeq);
 
     Message sendMessage(MessageRequestDto messageRequestDto);
 }
