@@ -1,24 +1,24 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { baseURL } from "@features/port";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { baseURL } from '@features/port';
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 
 const initialState = {
-  id: "",
-  password: "",
-  nickname: "",
-  email: "",
+  memberId: '',
+  password: '',
+  nickname: '',
+  email: '',
 };
 // 로그인
-export const signin = createAsyncThunk("memberSlice/signin", async (logins) => {
+export const signin = createAsyncThunk('memberSlice/signin', async (logins) => {
   const request = {
-    id: logins.id,
+    memberId: logins.memberId,
     password: logins.password,
   };
   const url = `${baseURL}member/signin`;
   const response = await axios({
-    method: "POST",
+    method: 'POST',
     url: url,
     data: request,
   });
@@ -26,7 +26,7 @@ export const signin = createAsyncThunk("memberSlice/signin", async (logins) => {
 });
 
 // 회원가입
-export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
+export const signup = createAsyncThunk('memberSlice/signup', async (values) => {
   const request = {
     memberId: values.memberId,
     password: values.password,
@@ -35,7 +35,7 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
   };
   const url = `${baseURL}member/signup`;
   const response = await axios({
-    method: "POST",
+    method: 'POST',
     url: url,
     data: request,
   });
@@ -43,30 +43,30 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
 });
 
 const memberSlice = createSlice({
-  name: "memberCheck",
+  name: 'memberCheck',
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     // 로그인
     builder.addCase(signin.pending, (state, action) => {
-      console.log("로그인중", state.result);
+      console.log('로그인중', state.result);
     });
     builder.addCase(signin.fulfilled, (state, action) => {
-      console.log("로그인성공", state.result);
+      console.log('로그인성공', state.result);
     });
     builder.addCase(signin.rejected, (state, action) => {
-      console.log("로그인실패", action.error);
+      console.log('로그인실패', action.error);
     });
 
     // 회원가입
     builder.addCase(signup.pending, (state, action) => {
-      console.log("회원가입중", action.payload);
+      console.log('회원가입중', action.payload);
     });
     builder.addCase(signup.fulfilled, (state, action) => {
-      console.log("회원가입성공", state.result);
+      console.log('회원가입성공', state.result);
     });
     builder.addCase(signup.rejected, (state, action) => {
-      console.log("회원가입실패", action.error);
+      console.log('회원가입실패', action.error);
     });
   },
 });
