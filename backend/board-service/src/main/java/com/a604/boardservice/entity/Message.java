@@ -18,7 +18,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("쪽지 Seq")
-    private int seq;
+    private long seq;
 
     // 연결된 entity 추후 수정 필요
     @Column(nullable = false)

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/message")
+@CrossOrigin(origins = "*")
 public class MessageController {
     @Autowired
     private MessageService messageService;
