@@ -3,12 +3,14 @@ import { configureStore } from "@reduxjs/toolkit";
 // import logger from 'redux-logger';
 import navSlice from "../features/commonSlice/navSlice";
 import loginSlice from "../features/commonSlice/loginSlice";
+import chatSlice from "../features/shootingStarSlice/chatSlice";
 
 export const store = configureStore({
   reducer: {
     // slice 삽입. slice의 name을 key값으로 사용
     navBars: navSlice,
     loginCheck: loginSlice,
+    chat: chatSlice,
   },
   // saga 쓰면 여기에 추가
   // middleware: new MiddlewareArray().concat(additionalMiddleware, logger),
