@@ -94,7 +94,7 @@ function Test() {
             opacity: "0.7",
           }}
         >
-          당신은 운명을 믿습니까?
+          오늘도 빛나는 당신에게
         </div>
         <ColContainer>
           {cards.map((card, index) => (
