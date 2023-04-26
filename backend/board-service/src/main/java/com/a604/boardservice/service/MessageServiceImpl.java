@@ -47,11 +47,11 @@ public class MessageServiceImpl implements MessageService{
                 messageList.setResultSeq(messageRequestDto.getResultSeq());
                 messageList.setLastMessage(filteredContent);
                 messageList.setLastMessageTime(LocalDateTime.now());
-                messageList.setIsDeleted(false);
-                messageList.setIsLeaveReceiver(false);
-                messageList.setIsLeaveSender(false);
-                messageList.setIsReadSender(true);
-                messageList.setIsReadReceiver(false);
+//                messageList.setIsDeleted(false);
+//                messageList.setIsLeaveReceiver(false);
+//                messageList.setIsLeaveSender(false);
+//                messageList.setIsReadSender(true);
+//                messageList.setIsReadReceiver(false);
                 messageList = messageListRepository.save(messageList);
                 message.setMessageListSeq(messageList.getSeq());
             } else {
