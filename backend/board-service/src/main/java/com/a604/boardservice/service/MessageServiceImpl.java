@@ -32,8 +32,10 @@ public class MessageServiceImpl implements MessageService{
 
         MessageList messageList;
 
+        // 스토리에서 메시지를 보낸 경우
         if (messageRequestDto.getMessageListSeq() == 0) {
             messageList = messageListRepository.findMessageListByResultSeqAndSenderSeq(messageRequestDto.getResultSeq(), messageRequestDto.getSenderSeq());
+            // 첫 메시지인 경우
             if (messageList == null) {
                 messageList = new MessageList();
                 messageList.setSenderSeq(messageRequestDto.getSenderSeq());
@@ -50,6 +52,7 @@ public class MessageServiceImpl implements MessageService{
         } else {
             messageList = messageListRepository.findById(messageRequestDto.getMessageListSeq()).orElse(null);
 
+            // 최신 메시지와 시간만 초기화
             messageList.setLastMessage(filteredContent);
             messageList.setLastMessageTime(LocalDateTime.now());
             messageListRepository.save(messageList);
