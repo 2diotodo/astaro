@@ -5,10 +5,12 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Getter
 @Setter
@@ -47,7 +49,8 @@ public class Message {
     @Comment("메세지 생성 시각")
     private LocalDateTime createdAt;
 
-    @Column(columnDefinition = "boolean default false", nullable = false)
+    @Column(columnDefinition = "BIT", length = 1, nullable = false)
+    @ColumnDefault("0")
     @Comment("삭제 여부")
     private Boolean isDeleted;
 
@@ -60,4 +63,5 @@ public class Message {
                 .build();
         return messageResponseDto;
     }
+
 }

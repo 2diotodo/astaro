@@ -9,8 +9,8 @@ public interface MessageListService {
 	public void addMessageList(MessageListDto messageListDto) throws Exception;
 
 	// 채팅방 불러오기
-	public List<MessageListDto> findMessageListByMemberSeq(int memberSeq) throws Exception;
+	public List<MessageListDto> findMessageListByMemberSeq(long memberSeq) throws Exception;
 
 	// 채팅방 업데이트
-	public void modifyMessageList(int messageSeq, MessageListDto messageListDto) throws Exception;
+	public void modifyMessageList(long messageListSeq, MessageListDto messageListDto) throws Exception;
 }

@@ -47,26 +47,26 @@ public class MessageList {
 	@Column(nullable = false)
 	private long receiverSeq;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "BIT", length = 1, nullable = false)
 	@ColumnDefault("1")
-	private byte isReadSender;
+	private Boolean isReadSender;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "BIT", length = 1, nullable = false)
 	@ColumnDefault("0")
-	private byte isReadReceiver;
+	private Boolean isReadReceiver;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "BIT", length = 1, nullable = false)
 	@ColumnDefault("0")
-	private byte isLeaveSender;
+	private Boolean isLeaveSender;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "BIT", length = 1, nullable = false)
 	@ColumnDefault("0")
-	private byte isLeaveReceiver;
+	private Boolean isLeaveReceiver;
 
 	@Column(nullable = false)
 	private LocalDateTime lastMessageTime;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String lastMessage;
 
 	@CreatedDate
@@ -77,9 +77,9 @@ public class MessageList {
 	@Column(nullable = false)
 	private LocalDateTime updatedAt;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "BIT", length = 1, nullable = false)
 	@ColumnDefault("0")
-	private byte isDeleted;
+	private Boolean isDeleted;
 
 	public MessageListDto toDto(){
 		MessageListDto messageListDto = MessageListDto.builder()
