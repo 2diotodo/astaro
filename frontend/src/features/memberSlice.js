@@ -11,12 +11,12 @@ const initialState = {
   email: "",
 };
 // 로그인
-export const signin = createAsyncThunk("memberSlice/signin", async (logins) => {
+export const login = createAsyncThunk("memberSlice/login", async (logins) => {
   const request = {
     memberId: logins.memberId,
     password: logins.password,
   };
-  const url = `${baseURL}member/signin`;
+  const url = `${baseURL}member/login`;
   const response = await axios({
     method: "POST",
     url: url,
@@ -61,13 +61,13 @@ const memberSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // 로그인
-    builder.addCase(signin.pending, (state, action) => {
+    builder.addCase(login.pending, (state, action) => {
       console.log("로그인중", state.result);
     });
-    builder.addCase(signin.fulfilled, (state, action) => {
+    builder.addCase(login.fulfilled, (state, action) => {
       console.log("로그인성공", state.result);
     });
-    builder.addCase(signin.rejected, (state, action) => {
+    builder.addCase(login.rejected, (state, action) => {
       console.log("로그인실패", action.error);
     });
 
