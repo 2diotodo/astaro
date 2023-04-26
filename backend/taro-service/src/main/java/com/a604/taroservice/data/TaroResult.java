@@ -28,7 +28,7 @@ public class TaroResult {
     @Size(max = 200)
     private String contentInput;
 
-    private String seqList;
+    private String cardSeqList;
 
     private String contentList;
 
@@ -41,8 +41,6 @@ public class TaroResult {
     private boolean isDeleted;
 
     private LocalDate createdAt;
-
-    private LocalDate updatedAt;
 
     @ColumnDefault("0")
     private boolean isPublic;

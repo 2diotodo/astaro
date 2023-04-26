@@ -9,6 +9,7 @@ import Taro_back from "@assets/img/Taro_back.png";
 import Taro_front1 from "@assets/img/Taro_front1.png";
 import Taro_front2 from "@assets/img/Taro_front2.png";
 import Taro_front3 from "@assets/img/Taro_front3.png";
+import {json} from "react-router-dom";
 
 const Wrapper = styled.div`
       height:80%;
@@ -20,6 +21,7 @@ const Wrapper = styled.div`
 function ChatGpt() {
   const [message, setMessage] = useState("");
   const [category, setCategory] = useState("연애");
+  const [taroResult, setTaroResult] = useState([]);
   const [story, setStory] = useState("");
   // const [selectedCards, setSelectedCards] = useState([]);
 
@@ -27,6 +29,7 @@ function ChatGpt() {
 
     },[story])
   const sendToGpt = (inputMessage) => {
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -34,23 +37,77 @@ function ChatGpt() {
       },
     };
 
-    function constructMessage(category, msg) {
-      return "유저의 고민을 기반으로 타로카드를 봐주는 시스템입니다.  타로카드의 내용을 동화 스토리를 만들고 싶어요. \n유저의 고민은 다음과 같습니다.\n"+category+"에 고민이 있습니다."+msg+"\n유저가 1. The fool, 2. The tower, 3. The moon, 4. The sun, 5. The magician 타로카드를 뽑았습니다. \n카드의 명을 직접적으로 언급하지 말아주세요!! 각 문단을 200자로  3문단의 동화 스토리와 요약을  아래의 예시에 맞게 만들어주세요. \n스토리 1문단 - 한때 마법사였던 나무꾼은 숲에서 일하며 살았습니다. 하지만 그는 자신이 어릴 적부터 꿈꾸던 대로 모험가가 되고 싶었습니다. 그러던 어느 날, 그는 바깥 세상으로 나아가는 길을 발견하게 되었습니다. 그리고 그는 신나게 뛰어나갔지만, 그의 모험은 온갖 어려움에 부딪치며 점점 어려워졌습니다. \n스토리 2문단 - 한참을 헤매던 그는 결국에는 도시의 높은 탑 앞에 서게 되었습니다. 그는 자신이 이렇게까지 어려운 상황에 처한 이유를 알아내지 못했습니다. 하지만 그는 탑을 오르고 내려오는 것을 결심했습니다. 이제는 망설이지 않기로 마음먹은 그는 탑을 오르기 시작합니다. \n스토리 3문단 - 하지만 탑 안에서는 끝없는 어둠과 불안감이 넘쳤습니다. 그리고 탑에 대한 진실을 알게 된 그는 다시 한번 도전하기로 결심합니다. 그의 마음속에는 새로운 시작에 대한 두려움이 있었습니다. 하지만 탑을 정복한 그는 태양이 비추는 아름다운 세상으로 나아갔습니다. 그리고 그가 가진 모든 열정과 능력을 활용해 적성에 맞는 일을 찾았습니다. 그는 자신의 꿈을 이룬 것입니다. \n요약 : 당신은 마침내 자신의 적성에 맞는 일을 찾아낸 것 같습니다. 그는 마치 마술사처럼, 자신의 열정과 능력을 이용해 세상을 더욱 아름답 게 만들어 나갈 것입니다. 그의 앞날은 밝고, 그대가 가진 재능을 발휘할 기회가 많을 것입니다."
+    function constructRequestMessage(category, msg) {
+      category = "연애";
+      return "- Format : JSON \n\n " +
+          "- Answer me in [한국어] \n\n" +
+          "당신은 타로 전문가입니다. 아래의 순서로 진행합니다. \n\n " +
+          `1. 다음 질문을 이해합니다. [질문] 저는 ${category}에 대해 고민이 있습니다. ${msg} ` +
+          "2. 저는 3개의 타로카드 The Empress, The Tower, Death을 뽑았습니다. " +
+          "3. [질문]을 바탕으로 고른 카드를 해석한 뒤, 종합적으로 해석한 내용을 깊이있고 친절하게 작성합니다. [output.] " +
+          "4. 마지막으로, 앞의 해석을 바탕으로, 500자 이내의 [동화]를 만들어주세요. 타로 내용을 직접적으로 언급하지 않고 은유적으로 작성해야합니다. [output.] " +
+          "Please use the format template. Do not repeat answers. \n\n " +
+          "---BEGIN FORMAT TEMPLATE--- \n\n " +
+          // eslint-disable-next-line no-template-curly-in-string
+          "{\"해석\": [${첫번째 카드 해석},  ${두번째 카드 해석},  ${세번째 카드 해석}, ${종합 해석}], \"동화\": ${동화}} \n\n" +
+          "---END FORMAT TEMPLATE---";
     }
-    const data = {
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "user",
-          content: constructMessage(category, inputMessage.message),
-        },
-      ],
-      temperature: 0.7,
-    };
-    console.log( constructMessage(category, inputMessage.message));
-    axios
-      .post("https://api.openai.com/v1/chat/completions", data, config)
-      .then((res) => setStory(res.data.choices[0].message.content));
+
+    function constructSummaryRequestMessage(msg){
+        return "Extract keywords from this text: " + msg;
+    }
+    async function receiveTaroResultAndPicture(){
+      const data = {
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            content: constructRequestMessage(category, inputMessage.message),
+          },
+        ],
+        temperature: 0.7,
+      };
+      let jsonRes;
+      await axios
+          .post("https://api.openai.com/v1/chat/completions", data, config)
+          .then((res) => {
+            jsonRes = JSON.parse(res.data.choices[0].message.content);
+            console.log(jsonRes);
+            setTaroResult(jsonRes.해석);
+            setStory(jsonRes.동화.trim());
+            console.log(jsonRes.동화);
+            console.log(jsonRes.해석);
+          });
+
+      const reqSummaryData = {
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            content: constructSummaryRequestMessage(jsonRes.동화),
+          },
+        ],
+        temperature: 0.7,
+      };
+      let reqPicturePrompt = "";
+      await axios
+          .post("https://api.openai.com/v1/chat/completions", reqSummaryData, config)
+          .then((res) => {
+            reqPicturePrompt = res.data.choices[0].message.content;
+            console.log(reqPicturePrompt);
+          });
+      const reqPictureData = {
+        "prompt": reqPicturePrompt,
+        "n": 1,
+        "size": "512x512"
+      }
+      await axios
+          .post("https://api.openai.com/v1/images/generations", reqPictureData, config)
+          .then((res) => console.log(res));
+    }
+
+    receiveTaroResultAndPicture()
+
   };
 
   const handleMessageChange = (event) => {
