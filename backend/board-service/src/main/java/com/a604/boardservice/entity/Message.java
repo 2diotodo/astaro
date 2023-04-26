@@ -2,6 +2,7 @@ package com.a604.boardservice.entity;
 
 import com.a604.boardservice.dto.MessageResponseDto;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -18,7 +19,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("쪽지 Seq")
-    private int seq;
+    private long seq;
 
     // 연결된 entity 추후 수정 필요
     @Column(nullable = false)

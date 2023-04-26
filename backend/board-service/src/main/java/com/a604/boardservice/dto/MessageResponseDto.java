@@ -14,6 +14,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class MessageResponseDto {
     /**
+     * message sequence
+     */
+    private long seq;
+    /**
      * 발신자 seq
      */
     private long senderSeq;
@@ -39,6 +43,7 @@ public class MessageResponseDto {
     private LocalDateTime createdAt;
 
     public MessageResponseDto(Message message) {
+        this.seq = message.getSeq();
         this.senderSeq = message.getSenderSeq();
         this.receiverSeq = message.getReceiverSeq();
         this.originalContent = message.getOriginalContent();
