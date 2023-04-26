@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import "../css/default.css";
-import "../css/noite.css";
+import "@css/default.css";
+import "@css/noite.css";
 
 export function Background() {
   function handleStar() {

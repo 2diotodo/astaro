@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import {Background} from "@page/Background";
+import {Background} from "@component/Background";
 import WelcomeCard from "../component/WelcomeCard";
 import ColContainer from "@component/layout/ColContainer";
 import Taro_front1 from "@assets/img/Taro_front1.png";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Input from "../component/Input";
 import ColContainer from "../component/layout/ColContainer";
-import {Background} from "@page/Background";
+import {Background} from "@component/Background";
 import "@css/tarocard.css"
 import Taro_back from "@assets/img/Taro_back.png";
 import Taro_front1 from "@assets/img/Taro_front1.png";
@@ -74,50 +74,50 @@ function ChatGpt() {
       />
       <button onClick={() => sendToGpt(message)}>Send</button>
       <ColContainer>
-        <div style={{color:"white"}}>GPT의 이야기</div>
+        <div style={{color:"white"}}>당신의 이야기</div>
         <div style={{color:"white"}}>{story}</div>
       </ColContainer>
         <ColContainer>
 
         <div className="container">
           <div
-              className="card"
+              className="taro-card"
               style={{backgroundImage: `url(${Taro_back})`, backgroundSize: "cover"}}
           ></div>
           <div
-              className="card"
+              className="taro-card"
               style={{backgroundImage: `url(${Taro_back})`, backgroundSize: "cover"}}
           ></div>
           <div
-              className="card"
+              className="taro-card"
               style={{backgroundImage: `url(${Taro_front1})`, backgroundSize: "cover"}}
           ></div>
         </div>
         <div className="container1">
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
 
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
 
-          <div className="tarocard"></div>
-          <div className="tarocard"></div>
+          <div className="selected-tarocard"></div>
+          <div className="selected-tarocard"></div>
         </div>
         </ColContainer>
       </Wrapper>
