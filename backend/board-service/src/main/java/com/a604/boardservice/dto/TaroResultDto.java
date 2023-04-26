@@ -39,4 +39,18 @@ public class TaroResultDto {
                 .build();
         return taroResult;
     }
+
+    public TaroResultDto(TaroResult taroResult) {
+        this.seq = taroResult.getSeq();
+        this.memberSeq = taroResult.getMemberSeq();
+        this.category = taroResult.getCategory();
+        this.input = taroResult.getInput();
+        this.cardSeqList = taroResult.getCardSeqList();
+        this.contentList = taroResult.getContentList();
+        this.imgList = taroResult.getImgList();
+        this.isDangerous = taroResult.getIsDangerous();
+        this.isPublic = taroResult.getIsPublic();
+        this.createdAt = taroResult.getCreatedAt();
+        this.isDeleted = taroResult.getIsDeleted();
+    }
 }
