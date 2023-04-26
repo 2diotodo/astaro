@@ -22,16 +22,16 @@ public class MessageListDto {
 	private long resultSeq;
 	private long senderSeq;
 	private long receiverSeq;
-	private byte isReadSender;
-	private byte isReadReceiver;
-	private byte isLeaveSender;
-	private byte isLeaveReceiver;
+	private Boolean isReadSender;
+	private Boolean isReadReceiver;
+	private Boolean isLeaveSender;
+	private Boolean isLeaveReceiver;
 	private String lastMessage;
 	private LocalDateTime lastMessageTime;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-	private byte isDeleted;
-	private byte isRead;
+	private Boolean isDeleted;
+	private Boolean isRead;
 	private String nickname;
 	private int notReadCnt;
 

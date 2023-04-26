@@ -30,6 +30,10 @@ public class MessageServiceImpl implements MessageService{
         List<String> fwords = FwordFilter.loadFwordList("classpath:fword_list.txt");
         String filteredContent = FwordFilter.filterFwords(messageRequestDto.getOriginalContent(), fwords);
 
+        Message message = messageRequestDto.toEntity();
+        message.setFilteredContent(filteredContent);
+        message.setIsDeleted(false);
+
         MessageList messageList;
 
         // 스토리에서 메시지를 보낸 경우
@@ -43,10 +47,16 @@ public class MessageServiceImpl implements MessageService{
                 messageList.setResultSeq(messageRequestDto.getResultSeq());
                 messageList.setLastMessage(filteredContent);
                 messageList.setLastMessageTime(LocalDateTime.now());
-                messageListRepository.save(messageList);
+                messageList.setIsDeleted(false);
+                messageList.setIsLeaveReceiver(false);
+                messageList.setIsLeaveSender(false);
+                messageList.setIsReadSender(true);
+                messageList.setIsReadReceiver(false);
+                messageList = messageListRepository.save(messageList);
+                message.setMessageListSeq(messageList.getSeq());
             } else {
                 messageList.setLastMessage(filteredContent);
-                messageList.setLastMessageTime(LocalDateTime.now());
+                message.setMessageListSeq(messageList.getSeq());
                 messageListRepository.save(messageList);
             }
         } else {
@@ -57,17 +67,6 @@ public class MessageServiceImpl implements MessageService{
             messageList.setLastMessageTime(LocalDateTime.now());
             messageListRepository.save(messageList);
         }
-
-        Message message = new Message();
-        message.setMessageListSeq(messageList.getSeq());
-        message.setSenderSeq(messageRequestDto.getSenderSeq());
-        message.setReceiverSeq(messageRequestDto.getReceiverSeq());
-        message.setOriginalContent(messageRequestDto.getOriginalContent());
-
-        message.setFilteredContent(filteredContent);
-
-        message.setCreatedAt(LocalDateTime.now());
-        message.setIsDeleted(false);
 
         return messageRepository.save(message);
     };

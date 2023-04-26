@@ -19,24 +19,26 @@ public class MessageListServiceImpl implements MessageListService{
 
 	@Override
 	public void addMessageList(MessageListDto messageListDto) throws Exception {
-		messageListRepository.save(messageListDto.toEntity());
+		MessageList messageList = messageListDto.toEntity();
+		messageList.setIsDeleted(false);
+		messageListRepository.save(messageList);
 	}
 
 	@Override
-	public List<MessageListDto> findMessageListByMemberSeq(int memberSeq) throws Exception {
+	public List<MessageListDto> findMessageListByMemberSeq(long memberSeq) throws Exception {
 		List<MessageList> messageListList = messageListRepository.findMessageListsByMemberSeq(memberSeq);
 		List<MessageListDto> messageListDtoList = new ArrayList<>();
 		for(int i=0; i<messageListList.size(); i++){
 			MessageListDto messageListDto = messageListList.get(i).toDto();
 			if(Duration.between(messageListDto.getLastMessageTime(), LocalDateTime.now()).toHours() >= 24){
-				messageListList.get(i).setIsDeleted((byte)1);
+				messageListList.get(i).setIsDeleted(true);
 				messageListRepository.save(messageListList.get(i));
 			}else{
-				if(messageListDto.getSenderSeq() == memberSeq & messageListDto.getIsReadSender() == 0){
-					messageListDto.setIsRead((byte)1);
+				if(messageListDto.getSenderSeq() == memberSeq & !messageListDto.getIsReadSender()){
+					messageListDto.setIsRead(true);
 				}
-				if(messageListDto.getReceiverSeq() == memberSeq & messageListDto.getIsReadReceiver() == 0){
-					messageListDto.setIsRead((byte)1);
+				if(messageListDto.getReceiverSeq() == memberSeq & !messageListDto.getIsReadReceiver()){
+					messageListDto.setIsRead(true);
 				}
 				messageListDtoList.add(messageListDto);
 			}
@@ -45,7 +47,9 @@ public class MessageListServiceImpl implements MessageListService{
 	}
 
 	@Override
-	public void modifyMessageList(int messageSeq, MessageListDto messageListDto) throws Exception {
-		messageListRepository.save(messageListDto.toEntity());
+	public void modifyMessageList(long messageListSeq, MessageListDto messageListDto) throws Exception {
+		MessageList messageList = messageListDto.toEntity();
+		messageList.setIsDeleted(false);
+		messageListRepository.save(messageList);
 	}
 }

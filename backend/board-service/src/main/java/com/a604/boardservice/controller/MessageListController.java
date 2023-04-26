@@ -23,7 +23,7 @@ public class MessageListController {
 
 	// 채팅방 불러오기
 	@GetMapping("/{member_seq}")
-	public ResponseEntity<List<MessageListDto>> messageListByMemberSeq(@PathVariable("member_seq") int memberSeq){
+	public ResponseEntity<List<MessageListDto>> messageListByMemberSeq(@PathVariable("member_seq") long memberSeq){
 		List<MessageListDto> messageListDtoList = new ArrayList<>();
 		try{
 			messageListDtoList = messageListService.findMessageListByMemberSeq(memberSeq);
@@ -36,7 +36,7 @@ public class MessageListController {
 
 	// 채팅방 업데이트
 	@PatchMapping("{member_list_seq}")
-	public ResponseEntity<String> messageListModify(@PathVariable("member_list_seq") int memberListSeq, @RequestBody MessageListDto messageListDto){
+	public ResponseEntity<String> messageListModify(@PathVariable("member_list_seq") long memberListSeq, @RequestBody MessageListDto messageListDto){
 		try{
 			messageListService.modifyMessageList(memberListSeq, messageListDto);
 			return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
