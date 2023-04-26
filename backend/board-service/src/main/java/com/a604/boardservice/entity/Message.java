@@ -2,6 +2,7 @@ package com.a604.boardservice.entity;
 
 import com.a604.boardservice.dto.MessageResponseDto;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 
