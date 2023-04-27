@@ -5,11 +5,27 @@
   margin-bottom: 10px;
 }
 .mypage-area {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 10%;
+  .update-form {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10%;
+    margin: auto;
+  }
 }
 
 .mypage-modal-selectbox {
   display: flex;
   justify-content: space-around;
+}
+.modal-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.modal-img {
+  text-align: center;
+  margin: 0 5% 0 5%;
+}
+img {
+  width: 90px;
 }

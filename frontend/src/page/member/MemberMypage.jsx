@@ -4,7 +4,11 @@ import { useNavigate } from "react-router";
 import wisdoms from "@constants/wisdom.json";
 import { GoPencil } from "react-icons/go";
 import moon from "@assets/img/moon.png";
+import mars from "@assets/img/mars.png";
+import venus from "@assets/img/venus.png";
+import uranus from "@assets/img/uranus.png";
 import { Background } from "@component/Background";
+import { Modal, Box, Typography } from "@mui/material";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -27,9 +31,9 @@ const Subtitle = styled.div`
   margin: 5% 5% 5% 5%;
 `;
 const Input = styled.input`
-  width: 60%;
+  width: 70%;
   height: 30px;
-  margin: 2%;
+  margin: 5%;
   background-color: rgba(0, 0, 0, 0);
   border-bottom: 1px solid white;
   color: white;
@@ -43,7 +47,7 @@ const Input = styled.input`
   }
 `;
 const Button = styled.button`
-  width: 20%;
+  width: 30px;
   position: relative;
   padding: 5px 20px;
   margin: 2%;
@@ -51,8 +55,22 @@ const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
   color: white;
   font-size: 15px;
-  justify-contend: end;
+  float: right;
+  right: 10%;
 `;
+
+// modal style
+const boxStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 250,
+  bgcolor: "background.paper",
+  border: "none",
+  boxShadow: "none",
+  p: 4,
+};
 
 function MemberMypage() {
   const [values, setValues] = useState({
@@ -152,6 +170,7 @@ function MemberMypage() {
 
   const changeProfileHandler = () => {
     console.log("profile Change");
+    handleOpen();
   };
 
   // 수정하기 누르면 수정UI+수정완료버튼으로 바꾸기
@@ -164,6 +183,12 @@ function MemberMypage() {
     console.log("탈퇴?");
     // navigate("/member/membersignup");
   };
+
+  // modal 관리
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <Background style={{ position: "relative", zIndex: -10000000 }} />
@@ -255,16 +280,53 @@ function MemberMypage() {
             type="button"
             onClick={resignHandler}
             style={{
+              width: "40px",
               fontSize: "10px",
               border: "none",
               color: "gray",
               position: "relative",
+              float: "left",
+              left: "10px",
             }}
           >
             <div className="resign-button">탈퇴하기</div>
           </Button>
         </div>
       </Wrapper>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={boxStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography
+            className="modal-body"
+            id="modal-modal-description"
+            sx={{ mt: 2 }}
+          >
+            <div className="modal-img">
+              <img src={moon} alt="moon" />
+              <div>10lux</div>
+            </div>
+            <div className="modal-img">
+              <img src={mars} alt="mars" />
+              <div>20lux</div>
+            </div>
+            <div className="modal-img">
+              <img src={venus} alt="venus" />
+              <div>100lux</div>
+            </div>
+            <div className="modal-img">
+              <img src={uranus} alt="uranus" />
+              <div>1000lux</div>
+            </div>
+          </Typography>
+        </Box>
+      </Modal>
     </>
   );
 }
