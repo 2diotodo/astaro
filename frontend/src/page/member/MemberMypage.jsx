@@ -1,6 +1,58 @@
 import { useState, useCallback, useEffect } from "react";
+import styled from "styled-components";
 import { useNavigate } from "react-router";
+import wisdoms from "@constants/wisdom.json";
 import { GoPencil } from "react-icons/go";
+import moon from "@assets/img/moon.png";
+import { Background } from "@component/Background";
+
+const Wrapper = styled.div`
+  height: 80%;
+  width: 100%;
+  position: absolute;
+`;
+
+const Title = styled.div`
+  color: white;
+  position: relative;
+  font-size: 40px;
+  font-family: "Nanum Myeongjo", monospace;
+  margin-top: 20%;
+`;
+const Subtitle = styled.div`
+  position: relative;
+  color: white;
+  font-size: 15px;
+  font-family: "Nanum Myeongjo", monospace;
+  margin: 5% 5% 5% 5%;
+`;
+const Input = styled.input`
+  width: 60%;
+  height: 30px;
+  margin: 2%;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 20px;
+
+  ::placeholder {
+    color: white;
+  }
+  :disabled {
+    color: gray;
+  }
+`;
+const Button = styled.button`
+  width: 20%;
+  position: relative;
+  padding: 5px 20px;
+  margin: 2%;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 15px;
+  justify-contend: end;
+`;
 
 function MemberMypage() {
   const [values, setValues] = useState({
@@ -12,6 +64,13 @@ function MemberMypage() {
   const [errors, setErrors] = useState({
     nickname: "",
     password: "",
+  });
+
+  // 명언 json파일관리
+  const [selectWisdom, setSelectWisdom] = useState({
+    number: 0,
+    wisdom: "",
+    writer: "",
   });
 
   // 수정버튼 보임 관리
@@ -75,6 +134,17 @@ function MemberMypage() {
     return errors;
   }, [values]);
 
+  useEffect(() => {
+    // 1-101 난수생성
+    const min = 1;
+    const max = 101;
+    let randNumber = Math.floor(Math.random() * (max - min)) + min;
+    console.log(randNumber);
+    console.log(wisdoms[randNumber].wisdom);
+    console.log(wisdoms[randNumber].writer);
+    setSelectWisdom(wisdoms[randNumber]);
+  }, []);
+
   // 입력값이 변경될때 마다 검증한다.
   useEffect(() => {
     validate();
@@ -91,95 +161,110 @@ function MemberMypage() {
 
   // 회원탈퇴버튼
   const resignHandler = () => {
-    navigate("/member/membersignup");
+    console.log("탈퇴?");
+    // navigate("/member/membersignup");
   };
   return (
     <>
-      <div className="mypage">
-        <div className="mypage-text">username님 안녕하세요</div>
-        <div className="mypage-wisdom">겨울이 오면 봄이 멀지 않으리 - 셸리</div>
-        <div className="mypage-profile">
-          <img src="#" alt="profile-image" />
-          <GoPencil onClick={changeProfileHandler} />
-        </div>
+      <Background style={{ position: "relative", zIndex: -10000000 }} />
+      <Wrapper>
+        <div className="mypage">
+          <Title className="mypage-text">
+            username<span style={{ fontSize: "15px" }}>님 안녕하세요</span>
+          </Title>
 
-        <div className="mypage-area"></div>
-        <form className="update-form" onSubmit={updateSubmitHandler}>
-          <div>
-            <div>아이디</div>
-            <input
-              type="text"
-              name="memberId"
-              value={values.memberId}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder={values.memberId}
-              disabled
-            />
+          <Subtitle className="mypage-wisdom">
+            {selectWisdom.wisdom} -{selectWisdom.writer}
+          </Subtitle>
+          <div className="mypage-profile">
+            <img src={moon} alt="profile" style={{ width: "90px" }} />
+            <GoPencil onClick={changeProfileHandler} color="white" />
           </div>
-          <div>
-            <div>닉네임</div>
-            <input
-              type="text"
-              name="nickname"
-              value={values.nickname}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder={values.nickname}
-            />
-            {/* 비밀번호 오류메시지를 출력한다 */}
-            {touched.nickname && errors.nickname && (
-              <span>{errors.nickname}</span>
+
+          <div className="mypage-area">
+            <form className="update-form" onSubmit={updateSubmitHandler}>
+              <div>
+                <Input
+                  type="text"
+                  name="memberId"
+                  value={values.memberId}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder={values.memberId}
+                  disabled
+                />
+              </div>
+              <div>
+                <Input
+                  type="text"
+                  name="nickname"
+                  value={values.nickname}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder={values.nickname}
+                />
+                {/* 닉네임 오류메시지를 출력한다 */}
+                {touched.nickname && errors.nickname && (
+                  <span>{errors.nickname}</span>
+                )}
+              </div>
+              <div>
+                <Input
+                  type="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder={values.email}
+                  disabled
+                />
+              </div>
+              <div>
+                <Input
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Password"
+                />
+                {/* 비밀번호 오류메시지를 출력한다 */}
+                {touched.password && errors.password && (
+                  <span>{errors.password}</span>
+                )}
+              </div>
+              <div>
+                <Input
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Password"
+                />
+              </div>
+              {isUpdated && <Button type="submit">저장</Button>}
+            </form>
+            {!isUpdated && (
+              <Button type="button" onClick={toggleButtonHandler}>
+                수정
+              </Button>
             )}
           </div>
-          <div>
-            <div>이메일</div>
-            <input
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder={values.email}
-              disabled
-            />
-          </div>
-          <div>
-            <div>비밀번호</div>
-            <input
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Password"
-            />
-            {/* 비밀번호 오류메시지를 출력한다 */}
-            {touched.password && errors.password && (
-              <span>{errors.password}</span>
-            )}
-          </div>
-          <div>
-            <input
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Password"
-            />
-          </div>
-          {isUpdated && <button type="submit">수정완료</button>}
-        </form>
-        {!isUpdated && (
-          <button type="button" onClick={toggleButtonHandler}>
-            수정하기
-          </button>
-        )}
-        <button type="button" onClick={resignHandler}>
-          <div className="resign-button">탈퇴하기</div>
-        </button>
-      </div>
+          <Button
+            type="button"
+            onClick={resignHandler}
+            style={{
+              fontSize: "10px",
+              border: "none",
+              color: "gray",
+              position: "relative",
+            }}
+          >
+            <div className="resign-button">탈퇴하기</div>
+          </Button>
+        </div>
+      </Wrapper>
     </>
   );
 }
