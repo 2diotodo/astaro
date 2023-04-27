@@ -14,17 +14,19 @@ const Input = styled.input.attrs((props) => ({
   padding-left: ${(props) => props.paddingLeft || "10px"};
   background: ${(props) => props.background || "none"};
   border-radius: ${(props) => props.borderRadius || "0"};
-  text-align: ${(props) => (props.centerPlaceholder ? "center" : "inherit")};
-  text-justify: ${(props) => (props.justify ? props.justify : "inherit")};
+  text-align: ${(props) => (props.textAlign ? props.textAlign : "inherit")};
+  text-justify: ${(props) => (props.textJustify ? props.textAlign : "inherit")};
+  font-family: ${(props) => props.fontFamily || "TAEBAEKmilkyway"};
 
   &:focus {
     outline: ${(props) => props.outline || "none"};
   }
-  
+
   &::placeholder {
     color: ${(props) =>
       props.placeholderColor ? props.placeholderColor : "#9E9E9E"};
-    text-align: ${(props) => (props.centerPlaceholder ? "center" : "inherit")};
+    text-align: ${(props) => (props.textAlign ? props.textAlign : "inherit")};
+    font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "bold")};
   }
 `;
 
