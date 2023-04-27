@@ -22,7 +22,7 @@ public class MessageServiceImpl implements MessageService{
 
     @Override
     public List<Message> getMessagesByMessageListSeq(long messageListSeq) {
-        return messageRepository.findByMessageListSeqAndIsDeletedFalseOrderByCreatedAtAsc(messageListSeq);
+        return messageRepository.findByMessageListSeqAndIsDeletedFalseOrderByCreatedAtDesc(messageListSeq);
     }
 
     @Override
@@ -55,6 +55,7 @@ public class MessageServiceImpl implements MessageService{
                 messageList = messageListRepository.save(messageList);
                 message.setMessageListSeq(messageList.getSeq());
             } else {
+                messageList.setIsReadSender(false);
                 messageList.setLastMessage(filteredContent);
                 message.setMessageListSeq(messageList.getSeq());
                 messageListRepository.save(messageList);

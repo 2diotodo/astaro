@@ -7,6 +7,8 @@ import ChatGpt from "@page/ChatGpt";
 import MemberLogin from "@page/member/MemberLogin";
 import MemberSignup from "@page/member/MemberSignup";
 import MemberMypage from "@page/member/MemberMypage";
+import ChatPage from "./page/shootingStar/ChatPage";
+import StarPage from"./page/shootingStar/StarPage";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/member/memberlogin" element={<MemberLogin />} />
           <Route path="/member/membersignup" element={<MemberSignup />} />
           <Route path="/member/membermypage" element={<MemberMypage />} />
+          <Route path="/star/chat/:id" element={<ChatPage />}></Route>
+          <Route path="/star" element={<StarPage />}></Route>
         </Routes>
       </Router>
     </div>

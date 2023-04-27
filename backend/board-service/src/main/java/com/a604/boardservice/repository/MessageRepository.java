@@ -11,5 +11,5 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
      * @param messageListSeq
      * @return List<Message>
      */
-    List<Message> findByMessageListSeqAndIsDeletedFalseOrderByCreatedAtAsc(long messageListSeq);
+    List<Message> findByMessageListSeqAndIsDeletedFalseOrderByCreatedAtDesc(long messageListSeq);
 }
