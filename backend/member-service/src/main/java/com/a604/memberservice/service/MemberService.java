@@ -1,7 +1,10 @@
 package com.a604.memberservice.service;
 
 import com.a604.memberservice.dto.request.SignUpMemberDto;
+import com.a604.memberservice.dto.response.GetMemberDto;
 import com.a604.memberservice.entity.Member;
+
+import java.util.Optional;
 
 public interface MemberService {
 
@@ -27,6 +30,9 @@ public interface MemberService {
     // 암호화
 
 
+    // 로그인
+    public Optional<GetMemberDto> getMember(String memberId);
+
     // SignUpMemberDto to Entity
     default Member toEntity(SignUpMemberDto signUpMemberDto) {
         return Member.builder()
@@ -37,4 +43,16 @@ public interface MemberService {
                 .email(signUpMemberDto.getEmail())
                 .build();
     }
+
+    default GetMemberDto toDto(Member member){
+        return GetMemberDto.builder()
+                .memberSeq(member.getMemberSeq())
+                .memberId(member.getMemberId())
+                .password(member.getPassword())
+                .nickname(member.getNickname())
+                .email(member.getEmail())
+                .build();
+
+    }
+
 }
