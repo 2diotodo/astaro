@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { signup } from "@features/memberSlice";
+import { signup, duplicateId } from "@features/memberSlice";
 
 function MemberSignup() {
   const [values, setValues] = useState({
@@ -29,6 +29,12 @@ function MemberSignup() {
     dispatch(signup(values));
   };
 
+  // 중복확인
+  const checkDuplicateId = () => {
+    console.log("아이디중복확인");
+    dispatch(duplicateId(values.memberId));
+  };
+  // 필드 정규표현식체크
   const checkId = () => {
     let check = /[~!@#$%^&*()_+|<>?:{}.,/;='"ㄱ-ㅎ | ㅏ-ㅣ |가-힣]$/;
     return check.test(values.id);
@@ -44,7 +50,7 @@ function MemberSignup() {
     }
     return check;
   };
-  const checkName = () => {
+  const checkNickname = () => {
     let check = /^[ㄱ-ㅎ | ㅏ-ㅣ |가-힣]{2,10}$/; // 글자 2-10자리
     return !check.test(values.name);
   };
@@ -81,6 +87,12 @@ function MemberSignup() {
             onChange={handleChange}
             placeholder="ID"
           />
+          {errors.memberId && checkId() && (
+            <span>한글과 특수문자는 사용하실 수 없어요</span>
+          )}
+          <button type="button" onClick={checkDuplicateId}>
+            중복확인
+          </button>
           <input
             type="password"
             name="password"
@@ -88,6 +100,9 @@ function MemberSignup() {
             onChange={handleChange}
             placeholder="Password"
           />
+          {errors.password && checkPassword() && (
+            <span>비밀번호는 8-12자로 입력해주세요</span>
+          )}
           <input
             type="password"
             name="passwordConfirm"
@@ -95,6 +110,9 @@ function MemberSignup() {
             onChange={handleChange}
             placeholder="Password"
           />
+          {errors.passwordConfirm && checkPasswordConfim() && (
+            <span>비밀번호가 일치하지 않아요</span>
+          )}
           <input
             type="text"
             name="nickname"
@@ -102,6 +120,9 @@ function MemberSignup() {
             onChange={handleChange}
             placeholder="Nickname"
           />
+          {errors.nickname && checkNickname() && (
+            <span>닉네임을 입력하세요</span>
+          )}
           <input
             type="email"
             name="email"
@@ -109,6 +130,9 @@ function MemberSignup() {
             onChange={handleChange}
             placeholder="Eamil"
           />
+          {errors.email && checkEmail() && (
+            <span>유효하지 않은 이메일이에요</span>
+          )}
           <button type="submit">회원가입</button>
         </form>
       </div>

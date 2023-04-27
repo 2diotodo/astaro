@@ -1,12 +1,15 @@
 package com.a604.memberservice.service.impl;
 
 import com.a604.memberservice.dto.request.SignUpMemberDto;
+import com.a604.memberservice.dto.response.GetMemberDto;
+import com.a604.memberservice.entity.Member;
 import com.a604.memberservice.repository.MemberRepository;
 import com.a604.memberservice.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -35,5 +38,13 @@ public class MemberServiceImpl implements MemberService {
     public void writeMember(SignUpMemberDto signUpMemberDto) {
         memberRepository.save(toEntity(signUpMemberDto));
     }
+
+    @Override
+    public Optional<GetMemberDto> getMember(String memberId) {
+        return Optional.ofNullable(toDto(memberRepository.findByMemberId(memberId).orElseThrow()));
+    }
+
+
+
 
 }

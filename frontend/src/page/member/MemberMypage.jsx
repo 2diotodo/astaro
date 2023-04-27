@@ -14,6 +14,8 @@ function MemberMypage() {
     password: "",
   });
 
+  // 수정버튼 보임 관리
+  const [isUpdated, setIsUpdated] = useState(false);
   // 필드 방문 상태를 관리한다
   const [touched, setTouched] = useState({
     nickname: false,
@@ -54,6 +56,7 @@ function MemberMypage() {
       return;
     }
     console.log("update-memberinfo");
+    setIsUpdated(false);
   };
 
   // 필드값을 검증한다.
@@ -80,6 +83,13 @@ function MemberMypage() {
   const changeProfileHandler = () => {
     console.log("profile Change");
   };
+
+  // 수정하기 누르면 수정UI+수정완료버튼으로 바꾸기
+  const toggleButtonHandler = () => {
+    setIsUpdated(true);
+  };
+
+  // 회원탈퇴버튼
   const resignHandler = () => {
     navigate("/member/membersignup");
   };
@@ -159,8 +169,13 @@ function MemberMypage() {
               placeholder="Password"
             />
           </div>
-          <button type="submit">수정하기</button>
+          {isUpdated && <button type="submit">수정완료</button>}
         </form>
+        {!isUpdated && (
+          <button type="button" onClick={toggleButtonHandler}>
+            수정하기
+          </button>
+        )}
         <button type="button" onClick={resignHandler}>
           <div className="resign-button">탈퇴하기</div>
         </button>

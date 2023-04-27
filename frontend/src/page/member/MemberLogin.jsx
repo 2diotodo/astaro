@@ -1,20 +1,20 @@
-import { useState, useCallback, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { signin } from '@features/memberSlice';
+import { useState, useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { login } from "@features/memberSlice";
 
 function MemberLogin() {
   const dispatch = useDispatch();
 
   const [logins, setLogins] = useState({
-    memberId: '',
-    password: '',
+    memberId: "",
+    password: "",
   });
 
   // 오류메세지 담기
   const [errors, setErrors] = useState({
-    memberId: '',
-    password: '',
+    memberId: "",
+    password: "",
   });
 
   // 필드 방문 상태를 관리한다
@@ -34,7 +34,7 @@ function MemberLogin() {
 
   // blur 이벤트가 발생하면 touched 상태를 true로 바꾼다
   const handleBlur = (e) => {
-    console.log('blur');
+    console.log("blur");
     setTouched({
       ...touched,
       [e.target.name]: true,
@@ -51,7 +51,7 @@ function MemberLogin() {
 
     // 필드 검사 후 잘못된 값이면 제출 처리를 중단한다.
     const errors = validate();
-    console.log('errors', errors);
+    console.log("errors", errors);
     // 오류 메세지 상태를 갱신한다
     setErrors(errors);
     // 잘못된 값이면 제출 처리를 중단한다.
@@ -59,21 +59,22 @@ function MemberLogin() {
       return;
     }
     // console.log(logins);
-    dispatch(signin(logins));
+    dispatch(login(logins));
+    navigate("/");
   };
 
   // 필드값을 검증한다.
   const validate = useCallback(() => {
     const errors = {
-      memberId: '',
-      password: '',
+      memberId: "",
+      password: "",
     };
 
     if (!logins.memberId) {
-      errors.memberId = '아이디를 입력하세요';
+      errors.memberId = "아이디를 입력하세요";
     }
     if (!logins.password) {
-      errors.password = '비밀번호를 입력하세요';
+      errors.password = "비밀번호를 입력하세요";
     }
     return errors;
   }, [logins]);
@@ -84,37 +85,41 @@ function MemberLogin() {
   }, [validate]);
 
   const signupHandler = () => {
-    navigate('/member/membersignup');
+    navigate("/member/membersignup");
   };
   return (
     <>
-      <div className='login'>
-        <div className='login-text'>로그인</div>
-        <form className='login-form' onSubmit={loginSubmitHandler}>
+      <div className="login">
+        <div className="login-text">로그인</div>
+        <form className="login-form" onSubmit={loginSubmitHandler}>
           <input
-            type='text'
-            name='memberId'
+            type="text"
+            name="memberId"
             value={logins.memberId}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder='ID'
+            placeholder="ID"
           />
           {/* 아이디 오류메시지를 출력한다 */}
-          {touched.memberId && errors.memberId && <span>{errors.memberId}</span>}
+          {touched.memberId && errors.memberId && (
+            <span>{errors.memberId}</span>
+          )}
           <input
-            type='password'
-            name='password'
+            type="password"
+            name="password"
             value={logins.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder='Password'
+            placeholder="Password"
           />
           {/* 비밀번호 오류메시지를 출력한다 */}
-          {touched.password && errors.password && <span>{errors.password}</span>}
-          <button type='submit'>로그인</button>
+          {touched.password && errors.password && (
+            <span>{errors.password}</span>
+          )}
+          <button type="submit">로그인</button>
         </form>
-        <button type='button' onClick={signupHandler}>
-          <div className='signup-button'>회원가입</div>
+        <button type="button" onClick={signupHandler}>
+          <div className="signup-button">회원가입</div>
         </button>
       </div>
     </>
