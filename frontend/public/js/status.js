@@ -17,26 +17,15 @@ function init() {
   }
 
   var estrela = "";
-  var qtdeEstrelas = window.innerWidth * 2;
+  var qtdeEstrelas = 300;
   var noite = document.querySelector(".constelacao");
   var widthWindow = window.innerWidth;
   var heightWindow = window.innerHeight;
 
   for (var i = 0; i < qtdeEstrelas; i++) {
-    estrela +=
-      "<span class='estrela " +
-      style[getRandomArbitrary(0, 4)] +
-      " " +
-      opacity[getRandomArbitrary(0, 6)] +
-      " " +
-      tam[getRandomArbitrary(0, 5)] +
-      "' style='animation-delay: ." +
-      getRandomArbitrary(0, 9) +
-      "s; left: " +
-      getRandomArbitrary(-widthWindow, 2 * widthWindow) +
-      "px; top: " +
-      getRandomArbitrary(-heightWindow, 2 * heightWindow) +
-      "px;'></span>";
+    estrela += "<span class='estrela " + style[getRandomArbitrary(0, 4)] + " " + opacity[getRandomArbitrary(0, 6)] + " "
+        + tam[getRandomArbitrary(0, 5)] + "' style='animation-delay: ." +getRandomArbitrary(0, 9)+ "s; left: "
+        + getRandomArbitrary(-widthWindow, widthWindow) + "px; top: " + getRandomArbitrary(0, heightWindow) + "px;'></span>";
   }
 
   noite.innerHTML = estrela;
