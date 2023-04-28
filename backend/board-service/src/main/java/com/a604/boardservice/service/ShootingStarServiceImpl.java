@@ -19,6 +19,9 @@ public class ShootingStarServiceImpl implements ShootingStarService{
     @Override
     public TaroResultDto getTaroResult(long memberSeq) {
         TaroResult randomTaroResult = shootingStarRepository.findRandomTaroResult(memberSeq);
+        String[] imgList = randomTaroResult.getImgList().split(",");
+        String firstImage = imgList[0];
+        System.out.println("#123 First image: " + firstImage);
         // 해당하는 타로 결과가 없는 경우
         if (randomTaroResult == null) {
             return new TaroResultDto();

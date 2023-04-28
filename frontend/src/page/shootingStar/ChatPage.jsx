@@ -7,6 +7,13 @@ import { setSelectedChatRoom, setMessages, addMessage } from "../../features/sho
 import {Background} from "@component/Background";
 import MessageInput from "../../component/shootingStar/MessageInput"
 
+const MessageSeparator = styled.hr`
+  margin: 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%; // 구분선의 너비를 100%로 설정
+`;
+
 const Wrapper = styled.div`
       height:100%;
       width:100%;
@@ -24,20 +31,22 @@ const Message = styled.li`
   padding: 10px;
   align-items: center;
   max-width: 100%;
+  min-height: 4rem;
   word-wrap: break-word;
-  height: 4rem; // 쪽지의 높이를 동일하게 맞추기 위해 높이를 지정합니다.
-  overflow: hidden; // 높이를 넘어가는 텍스트를 숨깁니다.
+  display: inline-block; // 인라인 블록 요소로 변경
+  white-space: pre-wrap; // 줄바꿈 처리
 `;
 
 const MessageLeft = styled(Message)`
   text-align: left;
   background-color: rgba(255, 255, 255, 0);
+  align-self: flex-start; // 왼쪽 정렬을 위한 스타일 추가
 `;
 
 const MessageRight = styled(Message)`
   text-align: left;
   background-color: rgba(255, 255, 255, 0);
-  // margin-left: auto;
+  align-self: flex-start; // 오른쪽 정렬을 위한 스타일 추가
 `;
 
 const MessageList = styled.ul`
@@ -45,8 +54,9 @@ const MessageList = styled.ul`
   padding: 0;
   margin: 0;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column; // 메시지 목록을 위한 새로운 스타일 추가
 `;
-
 const ChatWindow = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
   // border-radius: 10px;
@@ -122,21 +132,21 @@ const ChatPage = () => {
         <Title>{selectedChatRoom ? `${selectedChatRoom}번 님과의 쪽지함` : '채팅방을 불러오는 중...'}</Title>
         <ChatWindow>
           <MessageList>
-            {messages.map((message) => {
-              const MessageComponent =
-                message.senderSeq === loggedInMemberSeq ? MessageRight : MessageLeft;
-              const messageLabel =
-                message.senderSeq === loggedInMemberSeq ? "보낸 쪽지" : `받은 쪽지`
-                return (
-                  <React.Fragment key={message.seq}>
-                    <MessageComponent>
-                      <MessageLabel>{messageLabel}</MessageLabel>
-                      {message.filteredContent}
-                    </MessageComponent>
-                    <hr></hr>
-                  </React.Fragment>
-                );
-            })}
+          {messages.map((message) => {
+            const MessageComponent =
+              message.senderSeq === loggedInMemberSeq ? MessageRight : MessageLeft;
+            const messageLabel =
+              message.senderSeq === loggedInMemberSeq ? "보낸 쪽지" : `받은 쪽지`;
+            return (
+              <React.Fragment key={message.seq}>
+                <MessageComponent>
+                  <MessageLabel>{messageLabel}</MessageLabel>
+                  {message.filteredContent}
+                </MessageComponent>
+                  <MessageSeparator /> {/* 구분선 추가 */}
+              </React.Fragment>
+            );
+          })}
           </MessageList>
         </ChatWindow>
         <MessageInput onSubmit={handleSendMessage} MessageInput/>

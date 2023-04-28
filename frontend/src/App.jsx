@@ -9,6 +9,7 @@ import MemberSignup from "@page/member/MemberSignup";
 import MemberMypage from "@page/member/MemberMypage";
 import ChatPage from "./page/shootingStar/ChatPage";
 import StarPage from"./page/shootingStar/StarPage";
+import TaroResultPage from "./page/shootingStar/TaroResultPage";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
           <Route path="/member/memberlogin" element={<MemberLogin />} />
           <Route path="/member/membersignup" element={<MemberSignup />} />
           <Route path="/member/membermypage" element={<MemberMypage />} />
-          <Route path="/star/chat/:id" element={<ChatPage />}></Route>
-          <Route path="/star" element={<StarPage />}></Route>
+          <Route path="/star/chat/:id" element={<ChatPage />} />
+          <Route path="/star" element={<StarPage />} />
+          <Route path="/star/taro-result" element={<TaroResultPage />} />
         </Routes>
       </Router>
     </div>
