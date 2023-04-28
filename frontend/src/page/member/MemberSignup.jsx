@@ -1,6 +1,57 @@
 import { useState, useCallback } from "react";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { signup, duplicateId } from "@features/memberSlice";
+import { Background } from "@/component/Background";
+
+const Wrapper = styled.div`
+  height: 80%;
+  width: 100%;
+  position: absolute;
+`;
+const Title = styled.div`
+  color: white;
+  position: relative;
+  font-size: 40px;
+  font-family: "Nanum Myeongjo", monospace;
+  margin: 25% 0 5% 0;
+`;
+const Input = styled.input`
+  width: 66%;
+  height: 30px;
+  margin: 5%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 14px;
+
+  ::placeholder {
+    color: white;
+  }
+`;
+const ErrorMessage = styled.div`
+  color: white;
+`;
+const Button = styled.button`
+  width: 50%;
+  position: relative;
+  padding: 5px 20px;
+  margin: 10%;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 20px;
+`;
+const DuplicateButteon = styled.button`
+  width: 13;
+  position: relative;
+  padding: 5px;
+  margin: 5%;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 12px;
+`;
 
 function MemberSignup() {
   const [values, setValues] = useState({
@@ -25,7 +76,10 @@ function MemberSignup() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    validate();
     console.log(values);
+    console.log(errors.memberId);
+    console.log(checkId());
     dispatch(signup(values));
   };
 
@@ -37,7 +91,7 @@ function MemberSignup() {
   // 필드 정규표현식체크
   const checkId = () => {
     let check = /[~!@#$%^&*()_+|<>?:{}.,/;='"ㄱ-ㅎ | ㅏ-ㅣ |가-힣]$/;
-    return check.test(values.id);
+    return check.test(values.memberId);
   };
   const checkPassword = () => {
     let check = /^[A-Za-z0-9]{8,12}$/; // 단순 8~12자리
@@ -64,6 +118,9 @@ function MemberSignup() {
     const errors = {
       memberId: "",
       password: "",
+      passwordConfirm: "",
+      nickname: "",
+      email: "",
     };
 
     if (!values.memberId) {
@@ -77,65 +134,69 @@ function MemberSignup() {
 
   return (
     <>
-      <div className="signup">
-        <div className="signup-text">회원가입</div>
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="memberId"
-            value={values.memberId}
-            onChange={handleChange}
-            placeholder="ID"
-          />
-          {errors.memberId && checkId() && (
-            <span>한글과 특수문자는 사용하실 수 없어요</span>
-          )}
-          <button type="button" onClick={checkDuplicateId}>
-            중복확인
-          </button>
-          <input
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            placeholder="Password"
-          />
-          {errors.password && checkPassword() && (
-            <span>비밀번호는 8-12자로 입력해주세요</span>
-          )}
-          <input
-            type="password"
-            name="passwordConfirm"
-            value={values.passwordConfirm}
-            onChange={handleChange}
-            placeholder="Password"
-          />
-          {errors.passwordConfirm && checkPasswordConfim() && (
-            <span>비밀번호가 일치하지 않아요</span>
-          )}
-          <input
-            type="text"
-            name="nickname"
-            value={values.nickname}
-            onChange={handleChange}
-            placeholder="Nickname"
-          />
-          {errors.nickname && checkNickname() && (
-            <span>닉네임을 입력하세요</span>
-          )}
-          <input
-            type="email"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            placeholder="Eamil"
-          />
-          {errors.email && checkEmail() && (
-            <span>유효하지 않은 이메일이에요</span>
-          )}
-          <button type="submit">회원가입</button>
-        </form>
-      </div>
+      <Background style={{ position: "relative", zIndex: -10000000 }} />
+      <Wrapper>
+        <div className="signup">
+          <Title className="signup-text">회원가입</Title>
+          <form className="signup-form" onSubmit={handleSubmit}>
+            <Input
+              type="text"
+              name="memberId"
+              value={values.memberId}
+              onChange={handleChange}
+              placeholder="별이름"
+              style={{ width: "40%" }}
+            />
+            <DuplicateButteon type="button" onClick={checkDuplicateId}>
+              중복확인
+            </DuplicateButteon>
+            {checkId() && (
+              <ErrorMessage>한글과 특수문자는 사용할 수 없어요</ErrorMessage>
+            )}
+            <Input
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              placeholder="암호"
+            />
+            {errors.password && checkPassword() && (
+              <ErrorMessage>비밀번호는 8-12자로 입력해주세요</ErrorMessage>
+            )}
+            <Input
+              type="password"
+              name="passwordConfirm"
+              value={values.passwordConfirm}
+              onChange={handleChange}
+              placeholder="암호재입력"
+            />
+            {errors.passwordConfirm && checkPasswordConfim() && (
+              <ErrorMessage>비밀번호가 일치하지 않아요</ErrorMessage>
+            )}
+            <Input
+              type="text"
+              name="nickname"
+              value={values.nickname}
+              onChange={handleChange}
+              placeholder="별명"
+            />
+            {errors.nickname && checkNickname() && (
+              <ErrorMessage>닉네임을 입력하세요</ErrorMessage>
+            )}
+            <Input
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              placeholder="이메일"
+            />
+            {errors.email && checkEmail() && (
+              <ErrorMessage>유효하지 않은 이메일이에요</ErrorMessage>
+            )}
+            <Button type="submit">회원가입</Button>
+          </form>
+        </div>
+      </Wrapper>
     </>
   );
 }
