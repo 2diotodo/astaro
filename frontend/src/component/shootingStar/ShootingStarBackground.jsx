@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const shootingTime = '30000ms';
+const shootingTime = '7000ms';
 
 const ShootingStarsContainer = styled.div`
   position: absolute;
@@ -17,7 +17,7 @@ const ShootingStarsContainer = styled.div`
     // top: 20%;
     height: 1px;
     background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
-    border-radius: 999px;
+    // border-radius: 1000px;
     filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
     animation: tail ${shootingTime} ease-in-out infinite, shooting ${shootingTime} ease-in-out infinite;
   }
@@ -26,7 +26,6 @@ const ShootingStarsContainer = styled.div`
   .shooting_star::after {
     content: '';
     position: absolute;
-    // top: calc(50% - 1px);
     right: 0;
     height: 2px;
     background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
@@ -53,13 +52,13 @@ const ShootingStarsContainer = styled.div`
 
   @keyframes shining {
     0% {
-      width: 0px;
-    }
-    50% {
       width: 20px;
     }
+    50% {
+      width: 50px;
+    }
     100% {
-      width: 0px;
+      width: 20px;
     }
   }
 
@@ -110,7 +109,8 @@ const ShootingStars = () => {
     const delay = Math.floor(Math.random() * 10000);
 
     return (
-      <div 
+      <div
+        onClick={handleStarClick}
         key={i}
         className="shooting_star"
         style={{
@@ -122,7 +122,7 @@ const ShootingStars = () => {
     );
   });
 
-  return <ShootingStarsContainer onClick={handleStarClick}>{stars}</ShootingStarsContainer>;
+  return <ShootingStarsContainer>{stars}</ShootingStarsContainer>;
 };
 
 export default ShootingStars;
