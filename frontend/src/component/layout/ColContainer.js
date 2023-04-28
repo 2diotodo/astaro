@@ -10,6 +10,7 @@ const ColContainer = styled.div`
   background-color: ${(props) => props.background || "transparent"};
   position: ${(props) => props.position || "static"};
   gap: ${(props) => props.gap || "0"};
+  margin: ${(props) => props.margin || "0"};
   border: ${(props) => props.border || "none"};
   border-radius: ${(props) => props.borderRadius || "0"};
   border-color: ${(props) => props.borderColor || "transparent"};
