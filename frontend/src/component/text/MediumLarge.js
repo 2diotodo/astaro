@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const Medium = styled.div`
+const MediumLarge = styled.div`
   font-size: ${(props) => {
     if (props.fontsize) {
       return props.fontsize;
     }
-    return "28px";
+    return "34px";
   }};
   font-family: ${(props) => {
     if (props.font) {
@@ -19,4 +19,4 @@ const Medium = styled.div`
   color: ${(props) => (props.color ? props.color : "#fff")};
 `;
 
-export default Medium;
+export default MediumLarge;

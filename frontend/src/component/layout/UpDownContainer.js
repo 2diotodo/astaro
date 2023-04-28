@@ -3,8 +3,8 @@ import styled from "styled-components";
 const UpDownContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => props.align || "auto"};
-  justify-content: ${(props) => props.justify || "auto"};
+  align-items: ${(props) => props.align || "center"};
+  justify-content: ${(props) => props.justify || "center"};
   min-height: ${(props) => props.minHeight || "100vh"};
   height: ${(props) => props.height || "auto"};
   width: ${(props) => props.width || "auto"};
