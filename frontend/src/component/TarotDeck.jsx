@@ -6,36 +6,41 @@ import RowContainer from "@component/layout/RowContainer";
 import "@css/tarocard.css";
 import GapH from "@component/layout/GapH";
 import Subtitle from "@component/text/Subtitle";
+import { useDispatch, useSelector } from "react-redux";
+import { setCards } from "@features/tarotSlice";
 
 const TarotDeck = () => {
+  const dispatch = useDispatch();
   const [cardIndex, setCardIndex] = useState(0);
   const coordinates = [175, 50, -75];
   const [selectedCards, setSelectedCards] = useState([]);
-
-  const cards = [
-    { id: 1, name: "Card 1", image: TaroBack },
-    { id: 2, name: "Card 2", image: TaroBack },
-    { id: 3, name: "Card 3", image: TaroBack },
-    { id: 4, name: "Card 1", image: TaroBack },
-    { id: 5, name: "Card 2", image: TaroBack },
-    { id: 6, name: "Card 3", image: TaroBack },
-    { id: 7, name: "Card 1", image: TaroBack },
-    { id: 8, name: "Card 2", image: TaroBack },
-    { id: 9, name: "Card 3", image: TaroBack },
-    { id: 10, name: "Card 1", image: TaroBack },
-    { id: 11, name: "Card 2", image: TaroBack },
-    { id: 12, name: "Card 3", image: TaroBack },
-    { id: 13, name: "Card 1", image: TaroBack },
-    { id: 14, name: "Card 2", image: TaroBack },
-    { id: 15, name: "Card 3", image: TaroBack },
-    { id: 16, name: "Card 1", image: TaroBack },
-    { id: 17, name: "Card 2", image: TaroBack },
-    { id: 18, name: "Card 3", image: TaroBack },
-    { id: 19, name: "Card 1", image: TaroBack },
-    { id: 20, name: "Card 2", image: TaroBack },
-    { id: 21, name: "Card 3", image: TaroBack },
-    { id: 22, name: "Card 1", image: TaroBack },
+  let cards = [
+    { id: 1, name: "The Fool", image: TaroBack },
+    { id: 2, name: "The Magician", image: TaroBack },
+    { id: 3, name: "The High Priestess", image: TaroBack },
+    { id: 4, name: "The Empress", image: TaroBack },
+    { id: 5, name: "The Emperor", image: TaroBack },
+    { id: 6, name: "The Hierophant", image: TaroBack },
+    { id: 7, name: "The Lovers", image: TaroBack },
+    { id: 8, name: "The Chariot", image: TaroBack },
+    { id: 9, name: "Strength", image: TaroBack },
+    { id: 10, name: "The Hermit", image: TaroBack },
+    { id: 11, name: "Wheel of Fortune", image: TaroBack },
+    { id: 12, name: "Justice", image: TaroBack },
+    { id: 13, name: "The Hanged Man", image: TaroBack },
+    { id: 14, name: "Death", image: TaroBack },
+    { id: 15, name: "Temperance", image: TaroBack },
+    { id: 16, name: "The Devil", image: TaroBack },
+    { id: 17, name: "The Tower", image: TaroBack },
+    { id: 18, name: "The Star", image: TaroBack },
+    { id: 19, name: "The Moon", image: TaroBack },
+    { id: 20, name: "The Sun", image: TaroBack },
+    { id: 21, name: "Judgement", image: TaroBack },
+    { id: 22, name: "The World", image: TaroBack },
   ];
+  useEffect(() => {
+    cards.sort(() => Math.random() - 0.5);
+  }, []);
 
   const handleCardClick = (card) => {
     if (cardIndex > 2) {
@@ -57,12 +62,11 @@ const TarotDeck = () => {
       .querySelector("#card" + card.id)
       .setAttribute("style", `transform: translate(${toMove}px, -215px); `);
     // Create a new array of selected cards with the clicked card on top
-    let newSelectedCards = [...selectedCards];
-    newSelectedCards.push(card);
-    setSelectedCards(newSelectedCards);
+    // let newSelectedCards = [...selectedCards];
+    let newSelectedCards = selectedCards;
+    newSelectedCards.push(card.name);
+    setCards(newSelectedCards);
   };
-
-  useEffect(() => {}, []);
 
   return (
     <ColContainer height="470px" margin="5vh">
