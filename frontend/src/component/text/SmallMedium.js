@@ -5,7 +5,7 @@ const SmallMedium = styled.div`
     if (props.fontsize) {
       return props.fontsize;
     }
-    return "24px";
+    return "18px";
   }};
   font-family: ${(props) => {
     if (props.font) {
@@ -14,9 +14,9 @@ const SmallMedium = styled.div`
     if (props.theme && props.theme.font) {
       return props.theme.font;
     }
-    return "NanumSquareR";
+    return "TAEBAEKmilkyway";
   }};
-  color: ${(props) => (props.color ? props.color : "black")};
+  color: ${(props) => (props.color ? props.color : "white")};
 `;
 
 export default SmallMedium;

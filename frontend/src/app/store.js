@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import navSlice from "@features/commonSlice/navSlice";
 import loginSlice from "@features/commonSlice/loginSlice";
 import memberSlice from "@features/memberSlice";
+import tarotSlice from "@features/tarotSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     loginCheck: loginSlice,
     navBars: navSlice,
     memberCheck: memberSlice,
+    tarot: tarotSlice,
   },
   // saga 쓰면 여기에 추가
   // middleware: new MiddlewareArray().concat(additionalMiddleware, logger),
