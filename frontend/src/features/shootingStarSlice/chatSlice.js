@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     chatRoom: [],   // 채팅방 목록
-    selectedChatRoom: null, // 선택된 채팅방
+    selectedChatRoom: '', // 선택된 채팅방
     messages: [],   // 선택된 채팅방의 메시지 목록
 };
 
