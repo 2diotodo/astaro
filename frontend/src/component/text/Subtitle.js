@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const Medium = styled.div`
+const Subtitle = styled.div`
   font-size: ${(props) => {
     if (props.fontsize) {
       return props.fontsize;
     }
-    return "28px";
+    return "32px";
   }};
   font-family: ${(props) => {
     if (props.font) {
@@ -16,7 +16,7 @@ const Medium = styled.div`
     }
     return "TAEBAEKmilkyway";
   }};
-  color: ${(props) => (props.color ? props.color : "#fff")};
+  color: ${(props) => (props.color ? props.color : "white")};
 `;
 
-export default Medium;
+export default Subtitle;

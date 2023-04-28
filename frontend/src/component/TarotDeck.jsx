@@ -4,6 +4,8 @@ import TaroBack from "@assets/img/Taro_back.png";
 import ColContainer from "@component/layout/ColContainer";
 import RowContainer from "@component/layout/RowContainer";
 import "@css/tarocard.css";
+import GapH from "@component/layout/GapH";
+import Subtitle from "@component/text/Subtitle";
 
 const TarotDeck = () => {
   const [cardIndex, setCardIndex] = useState(0);
@@ -63,25 +65,25 @@ const TarotDeck = () => {
   useEffect(() => {}, []);
 
   return (
-    <TarotDeckContainer>
-      <ColContainer>
-        <RowContainer style={{ position: "relative" }}>
-          {cards.map((card) => (
-            <TarotCard
-              className="tarot-card"
-              id={"card" + card.id}
-              key={card.id}
-              selected={selectedCards.includes(card)}
-              onClick={() => {
-                handleCardClick(card);
-              }}
-            >
-              <TarotCardImage src={card.image} alt={card.name} />
-            </TarotCard>
-          ))}
-        </RowContainer>
-      </ColContainer>
-    </TarotDeckContainer>
+    <ColContainer height="470px" margin="5vh">
+      <Subtitle>3장의 카드를 뽑아주세요.</Subtitle>
+      <GapH height="260px" />
+      <RowContainer style={{ position: "relative" }}>
+        {cards.map((card) => (
+          <TarotCard
+            className="tarot-card"
+            id={"card" + card.id}
+            key={card.id}
+            selected={selectedCards.includes(card)}
+            onClick={() => {
+              handleCardClick(card);
+            }}
+          >
+            <TarotCardImage src={card.image} alt={card.name} />
+          </TarotCard>
+        ))}
+      </RowContainer>
+    </ColContainer>
   );
 };
 
