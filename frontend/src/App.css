@@ -1,8 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Song+Myung&display=swap');
+@font-face {
+  font-family: 'TAEBAEKmilkyway';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 .App {
+  font-family: 'TAEBAEKmilkyway';
   text-align: center;
-  font-family: 'Song Myung', serif;
 }
 
 .App-logo {
