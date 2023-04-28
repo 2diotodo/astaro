@@ -1,0 +1,54 @@
+.mypage-head {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mypage-area {
+  margin: 2% 0 1% 0;
+  .update-form {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5%;
+    margin: auto;
+    padding-bottom: 5%;
+    vertical-align: middle;
+    .input-box{
+      margin:0 10% 0 0;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      .input-name{
+       color:white;
+       margin-right: 5%;
+      }
+    }
+  }
+}
+
+.mypage-modal-selectbox {
+  display: flex;
+  justify-content: space-around;
+}
+.modal-box{
+  background-color: rgba(255, 255, 255, 0.9);
+  .modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .modal-img {
+    text-align: center;
+    margin: 5% 5% 0 5%;
+    opacity: .3;
+    &.selected{
+    text-align: center;
+    margin: 5% 5% 0 5%;
+    opacity: 1;
+  }
+  }
+
+}
+img {
+  height: 90px;
+}
