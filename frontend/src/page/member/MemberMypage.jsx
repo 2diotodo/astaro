@@ -2,12 +2,11 @@ import { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import wisdoms from "@constants/wisdom.json";
+import profiles from "@constants/profile.json";
 import { GoPencil } from "react-icons/go";
 import moon from "@assets/img/moon.png";
-import mars from "@assets/img/mars.png";
-import venus from "@assets/img/venus.png";
-import uranus from "@assets/img/uranus.png";
 import { Background } from "@component/Background";
+import Input from "@component/Input";
 import { Modal, Box, Typography } from "@mui/material";
 
 const Wrapper = styled.div`
@@ -30,7 +29,7 @@ const Subtitle = styled.div`
   font-family: "Nanum Myeongjo", monospace;
   margin: 5% 5% 5% 5%;
 `;
-const Input = styled.input`
+const Inputs = styled.input`
   width: 70%;
   height: 30px;
   margin: 5%;
@@ -59,23 +58,29 @@ const Button = styled.button`
   right: 10%;
 `;
 
-// modal style
+// modal style - mui
 const boxStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
+  overflow: "scroll",
   transform: "translate(-50%, -50%)",
   width: 250,
-  bgcolor: "background.paper",
+  height: 260,
+  bgcolor: "rgba(255, 255, 255, 0.8)",
   border: "none",
+  borderRadius: 2,
   boxShadow: "none",
   p: 4,
 };
+
+
 
 function MemberMypage() {
   const [values, setValues] = useState({
     memberId: "john doe",
     password: "ee",
+    passwordConfirm: 'ee',
     nickname: "nick",
     email: "dora@naver.com",
   });
@@ -99,6 +104,20 @@ function MemberMypage() {
     password: false,
   });
 
+  // modal profile 행성목록
+  const [stars, setStars] = useState(profiles);
+  // modal profile icon list 선택관리
+  const [profileSelected, setProfileSelected] = useState(
+    Array(stars.length).fill(false)
+  );
+
+  const profileSelectHandler = (idx) =>{
+    const selectedCheck = profileSelected.map((el, index) => {
+      return index === idx -1;
+    });
+    console.log("len",profileSelected);
+    setProfileSelected(selectedCheck);
+  }
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -169,7 +188,6 @@ function MemberMypage() {
   }, [validate]);
 
   const changeProfileHandler = () => {
-    console.log("profile Change");
     handleOpen();
   };
 
@@ -187,8 +205,10 @@ function MemberMypage() {
   // modal 관리
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  const handleClose = () => {
+    setOpen(false);
+    // setProfileSelected(false);
+  }
   return (
     <>
       <Background style={{ position: "relative", zIndex: -10000000 }} />
@@ -208,7 +228,8 @@ function MemberMypage() {
 
           <div className="mypage-area">
             <form className="update-form" onSubmit={updateSubmitHandler}>
-              <div>
+            <div className="input-box">
+            <div className="input-name">아이디</div>
                 <Input
                   type="text"
                   name="memberId"
@@ -216,10 +237,14 @@ function MemberMypage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder={values.memberId}
+                  width={"60%"}
+                  textIndent={"0px"}
+                  style={{fontSize:"15px"}}
                   disabled
                 />
               </div>
-              <div>
+              <div className="input-box">
+              <div className="input-name">별명</div>
                 <Input
                   type="text"
                   name="nickname"
@@ -227,13 +252,17 @@ function MemberMypage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder={values.nickname}
+                  width={"60%"}
+                  textIndent={"0px"}
+                  style={{fontSize:"15px"}}
                 />
                 {/* 닉네임 오류메시지를 출력한다 */}
                 {touched.nickname && errors.nickname && (
                   <span>{errors.nickname}</span>
                 )}
               </div>
-              <div>
+              <div className="input-box">
+                <div className="input-name">이메일</div>
                 <Input
                   type="email"
                   name="email"
@@ -241,10 +270,14 @@ function MemberMypage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder={values.email}
+                  width={"60%"}
+                  textIndent={"0px"}
+                  style={{fontSize:"15px"}}
                   disabled
                 />
               </div>
-              <div>
+              <div className="input-box">
+              <div className="input-name">비밀번호</div>
                 <Input
                   type="password"
                   name="password"
@@ -252,23 +285,29 @@ function MemberMypage() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="Password"
+                  width={"60%"}
+                  textIndent={"0px"}
+                  style={{fontSize:"15px"}}
                 />
                 {/* 비밀번호 오류메시지를 출력한다 */}
                 {touched.password && errors.password && (
                   <span>{errors.password}</span>
                 )}
               </div>
-              <div>
+              <div className="input-box">
                 <Input
                   type="password"
-                  name="password"
-                  value={values.password}
+                  name="passwordConfirm"
+                  value={values.passwordConfirm}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="Password"
+                  width={"60%"}
+                  textIndent={"0px"}
+                  style={{fontSize:"15px"}}
                 />
               </div>
-              {isUpdated && <Button type="submit">저장</Button>}
+              {isUpdated && <Button type="submit" style={{marginTop:"9%", marginRight:"-8%"}}>저장</Button>}
             </form>
             {!isUpdated && (
               <Button type="button" onClick={toggleButtonHandler}>
@@ -296,39 +335,33 @@ function MemberMypage() {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={boxStyle}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
+        <Box className="modal-box" sx={boxStyle}>
+
           <Typography
             className="modal-body"
             id="modal-modal-description"
-            sx={{ mt: 2 }}
           >
-            <div className="modal-img">
-              <img src={moon} alt="moon" />
-              <div>10lux</div>
-            </div>
-            <div className="modal-img">
-              <img src={mars} alt="mars" />
-              <div>20lux</div>
-            </div>
-            <div className="modal-img">
-              <img src={venus} alt="venus" />
-              <div>100lux</div>
-            </div>
-            <div className="modal-img">
-              <img src={uranus} alt="uranus" />
-              <div>1000lux</div>
-            </div>
+            {stars.map((star) =>
+              <Star className={profileSelected? "modal-img selected" : "modal-img"}
+              onClick={() => profileSelectHandler(star.starId)}
+              key={star.starId}
+              id={star.starId}
+              value={star.starName}>
+                
+                <img src={star.starImageUrl} alt={star.starName} />
+                <div>{star.starlux} lux</div>
+              </Star>
+              )}
           </Typography>
         </Box>
       </Modal>
     </>
   );
 }
+const Star = styled.div`
+`
+// opacity: ${({profileSelected, id}) => (profileSelected[id - 1] ? 1:.3)}
 
 export default MemberMypage;
