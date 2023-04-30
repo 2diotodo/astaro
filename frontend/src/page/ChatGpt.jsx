@@ -26,7 +26,6 @@ function ChatGpt() {
 
   useEffect(() => {}, [story]);
   const sendToGpt = (event, inputMessage) => {
-    console.log(stateCards);
     if (event.key === "Enter") {
       slideFromTarotToLoading();
       const config = {
@@ -162,6 +161,13 @@ function ChatGpt() {
       .classList.remove("right-hidden");
     document.querySelector("#slide-from-loading").classList.add("left-hidden");
   };
+
+  const slideFromResultToStory = () => {
+    document
+      .querySelector("#slide-from-story")
+      .classList.remove("right-hidden");
+    document.querySelector("#slide-from-result").classList.add("left-hidden");
+  };
   return (
     <>
       <Background />
@@ -236,18 +242,32 @@ function ChatGpt() {
           style={{ position: "absolute" }}
           className="slide-in right-hidden"
         >
-          <GapH height="3vh" />
+          <GapH height="10vh" />
           <Medium>- 운세 결과 -</Medium>
           <ColContainer width="80vw">
             {tarotResult.map((tarot) => (
               <>
-                <Small>{tarot}</Small>
+                <Small lineHeight="2em">{tarot}</Small>
+                <br />
                 <br />
               </>
             ))}
-            {/*<img alt="img" src={dalleImgUrl} width="80%" />*/}
-            <GapH height="30px" />
-            <Small>{story}</Small>
+            <GapH height="20px" />
+            <Button margin="50px 0" onClick={slideFromResultToStory}>
+              이야기보기
+            </Button>
+          </ColContainer>
+        </ColContainer>
+        <ColContainer
+          id="slide-from-story"
+          style={{ position: "absolute" }}
+          className="slide-in right-hidden"
+        >
+          <GapH height="10vh" />
+          <Medium>- 당신의 이야기 -</Medium>
+          <ColContainer width="80vw" gap="35px">
+            <img alt="img" src={dalleImgUrl} width="256px" height="256px" />
+            <Small lineHeight="2em">{story}</Small>
           </ColContainer>
         </ColContainer>
       </UpDownContainer>

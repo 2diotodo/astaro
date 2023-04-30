@@ -19,9 +19,21 @@ const Button = styled.button.attrs((props) => ({}))`
     cursor: default;
   }
 
-  &:visited {
-  }
+  &:visited,
+  &:focus,
   &:hover {
+    background: ${(props) => (props.background ? props.background : "#fff")};
+    color: ${(props) => (props.color ? props.color : "black")};
+    animation: changeColor 500ms;
+  }
+
+  @keyframes changeColor {
+    from {
+      background-color: transparent;
+    }
+    to {
+      background-color: #fff;
+    }
   }
 `;
 
