@@ -14,6 +14,7 @@ import TarotLoading from "@component/TarotLoading";
 import Small from "@component/text/Small";
 import SmallMedium from "@component/text/SmallMedium";
 import { useSelector } from "react-redux";
+import Medium from "@component/text/Medium";
 
 function ChatGpt() {
   const [message, setMessage] = useState("");
@@ -23,9 +24,8 @@ function ChatGpt() {
   const category = useSelector((state) => state.tarot.category);
   const stateCards = useSelector((state) => state.tarot.cards);
 
-  useEffect(() => {}, [, story]);
+  useEffect(() => {}, [story]);
   const sendToGpt = (event, inputMessage) => {
-    console.log(stateCards);
     if (event.key === "Enter") {
       slideFromTarotToLoading();
       const config = {
@@ -122,7 +122,8 @@ function ChatGpt() {
             config
           )
           .then((res) => {
-            setDalleImgUrl(res.data[0].url);
+            console.log(res);
+            setDalleImgUrl(res.data.data[0].url);
             console.log(res);
           });
       }
@@ -155,7 +156,17 @@ function ChatGpt() {
   };
 
   const slideFromLoadingToResult = () => {
+    document
+      .querySelector("#slide-from-result")
+      .classList.remove("right-hidden");
     document.querySelector("#slide-from-loading").classList.add("left-hidden");
+  };
+
+  const slideFromResultToStory = () => {
+    document
+      .querySelector("#slide-from-story")
+      .classList.remove("right-hidden");
+    document.querySelector("#slide-from-result").classList.add("left-hidden");
   };
   return (
     <>
@@ -190,9 +201,9 @@ function ChatGpt() {
               sendToGpt(e, message);
             }}
           />
-          {/*<Button width="120px" margin="30px" onClick={slideFromTarotToLoading}>*/}
-          {/*  전송하기*/}
-          {/*</Button>*/}
+          <Button width="120px" margin="30px" onClick={slideFromTarotToLoading}>
+            전송하기
+          </Button>
         </ColContainer>
         <ColContainer
           id="slide-from-loading"
@@ -231,11 +242,33 @@ function ChatGpt() {
           style={{ position: "absolute" }}
           className="slide-in right-hidden"
         >
-          {tarotResult.map((tarot) => (
-            <small>tarot</small>
-          ))}
-          <img alt="img" src={dalleImgUrl} />
-          {story}
+          <GapH height="10vh" />
+          <Medium>- 운세 결과 -</Medium>
+          <ColContainer width="80vw">
+            {tarotResult.map((tarot) => (
+              <>
+                <Small lineHeight="2em">{tarot}</Small>
+                <br />
+                <br />
+              </>
+            ))}
+            <GapH height="20px" />
+            <Button margin="50px 0" onClick={slideFromResultToStory}>
+              이야기보기
+            </Button>
+          </ColContainer>
+        </ColContainer>
+        <ColContainer
+          id="slide-from-story"
+          style={{ position: "absolute" }}
+          className="slide-in right-hidden"
+        >
+          <GapH height="10vh" />
+          <Medium>- 당신의 이야기 -</Medium>
+          <ColContainer width="80vw" gap="35px">
+            <img alt="img" src={dalleImgUrl} width="256px" height="256px" />
+            <Small lineHeight="2em">{story}</Small>
+          </ColContainer>
         </ColContainer>
       </UpDownContainer>
     </>

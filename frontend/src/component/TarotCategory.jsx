@@ -10,6 +10,7 @@ function TarotCategory() {
   const handleCategory = (event) => {
     dispatch(setCategory(event.target.innerText));
   };
+
   return (
     <>
       <div
