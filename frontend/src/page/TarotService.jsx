@@ -16,7 +16,7 @@ import SmallMedium from "@component/text/SmallMedium";
 import { useSelector } from "react-redux";
 import Medium from "@component/text/Medium";
 
-function ChatGpt() {
+function TarotService() {
   const [message, setMessage] = useState("");
   const [tarotResult, setTarotResult] = useState([]);
   const [dalleImgUrl, setDalleImgUrl] = useState("");
@@ -275,4 +275,4 @@ function ChatGpt() {
   );
 }
 
-export default ChatGpt;
+export default TarotService;

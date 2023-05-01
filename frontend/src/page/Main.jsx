@@ -112,6 +112,7 @@ export function Main() {
         >
           넘어가기
         </button>
+        <button>타로보러가기</button>
       </Wrapper>
     </>
   );

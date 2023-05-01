@@ -4,7 +4,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { WhiteholeTest } from "@page/WhiteholeTest";
 import { Main } from "@page/Main";
-import ChatGpt from "@page/ChatGpt";
+import TarotService from "@page/TarotService";
 import TodayTaro from "@page/TodayTaro";
 import MemberLogin from "@page/member/MemberLogin";
 import MemberSignup from "@page/member/MemberSignup";
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/prompt" element={<WhiteholeTest />} />
-          <Route path="/chatgpt" element={<ChatGpt />} />
+          <Route path="/tarot" element={<TarotService />} />
           <Route path="/todaytaro" element={<TodayTaro />} />
           <Route path="/member/memberlogin" element={<MemberLogin />} />
           <Route path="/member/membersignup" element={<MemberSignup />} />
