@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { signup, duplicateId } from "@features/memberSlice";
 import { Background } from "@/component/Background";
+import Input from "@component/Input";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -16,19 +17,7 @@ const Title = styled.div`
   font-family: "Nanum Myeongjo", monospace;
   margin: 25% 0 5% 0;
 `;
-const Input = styled.input`
-  width: 66%;
-  height: 30px;
-  margin: 5%;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid white;
-  color: white;
-  font-size: 14px;
 
-  ::placeholder {
-    color: white;
-  }
-`;
 const ErrorMessage = styled.div`
   color: white;
 `;
@@ -145,7 +134,8 @@ function MemberSignup() {
               value={values.memberId}
               onChange={handleChange}
               placeholder="별이름"
-              style={{ width: "40%" }}
+              width={"34%"}
+              textIndent={"0px"}
             />
             <DuplicateButteon type="button" onClick={checkDuplicateId}>
               중복확인
@@ -158,6 +148,8 @@ function MemberSignup() {
               name="password"
               value={values.password}
               onChange={handleChange}
+              width={"60%"}
+              textIndent={"0px"}
               placeholder="암호"
             />
             {errors.password && checkPassword() && (
@@ -168,6 +160,8 @@ function MemberSignup() {
               name="passwordConfirm"
               value={values.passwordConfirm}
               onChange={handleChange}
+              width={"60%"}
+              textIndent={"0px"}
               placeholder="암호재입력"
             />
             {errors.passwordConfirm && checkPasswordConfim() && (
@@ -178,6 +172,8 @@ function MemberSignup() {
               name="nickname"
               value={values.nickname}
               onChange={handleChange}
+              width={"60%"}
+              textIndent={"0px"}
               placeholder="별명"
             />
             {errors.nickname && checkNickname() && (
@@ -188,6 +184,8 @@ function MemberSignup() {
               name="email"
               value={values.email}
               onChange={handleChange}
+              width={"60%"}
+              textIndent={"0px"}
               placeholder="이메일"
             />
             {errors.email && checkEmail() && (
