@@ -4,23 +4,94 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.mypage-area {
-  margin: 2% 0 1% 0;
-  .update-form {
-    width: 80%;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 5%;
-    margin: auto;
-    padding-bottom: 5%;
-    vertical-align: middle;
-    .input-box{
-      margin:0 10% 0 0;
+.mypage-profile {
+  ::after,
+  ::before {
+    position: absolute;
+    content: "";
+    top: -5%;
+    left: -5%;
+    height: 110%;
+    width: 110%;
+    border-radius: 50%;
+    opacity: 0.5;
+    filter: blur(60px);
+  }
+  ::after {
+    animation: backglow1 15s ease infinite;
+  }
+  ::before {
+    animation: backglow1 15s ease infinite;
+  }
+}
+.mypage-update {
+  background-color: transparent;
+  width: 320px;
+  height: 200px;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 5%;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  pointer-events: auto;
+  .mypage-update-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: all 0.8s;
+    transform-style: preserve-3d;
+    .mypage-update :hover .mypage-update-inner,
+    .mypage-update.active .mypage-update-inner {
+      transform: rotateY(-180deg);
+    }
+    .mypage-front,
+    .mypage-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* Safari */
+      backface-visibility: hidden;
+    }
+    .mypage-front {
       display: flex;
-      justify-content: end;
-      align-items: center;
-      .input-name{
-       color:white;
-       margin-right: 5%;
+      .mypage-board {
+        width: 80%;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 5%;
+        margin: auto;
+        padding: 3% 0 3% 0;
+        vertical-align: middle;
+        .board-box {
+          margin: 2% 0 2% 0;
+          display: flex;
+          justify-content: end;
+          align-items: center;
+          .board-name,
+          .board-value {
+            color: white;
+          }
+        }
+      }
+    }
+    .mypage-back {
+      transform: rotateY(-180deg);
+      .mypage-area {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 5%;
+        width: 80%;
+        margin: auto;
+        padding-bottom: 5%;
+        vertical-align: middle;
+        .update-form {
+          .input-box {
+            display: flex;
+            justify-content: end;
+            .input-name {
+              color: white;
+              margin-right: 5%;
+            }
+          }
+        }
       }
     }
   }
@@ -30,8 +101,12 @@
   display: flex;
   justify-content: space-around;
 }
-.modal-box{
+.modal-box {
   background-color: rgba(255, 255, 255, 0.9);
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+  }
   .modal-body {
     display: flex;
     flex-wrap: wrap;
@@ -40,12 +115,14 @@
   .modal-img {
     text-align: center;
     margin: 5% 5% 0 5%;
-    opacity: .3;
-    &.selected{
-    text-align: center;
-    margin: 5% 5% 0 5%;
-    opacity: 1;
-  }
+    opacity: 0.3;
+    img {
+      height: 90px;
+    }
+    &.selected {
+      text-align: center;
+      margin: 5% 5% 0 5%;
+      opacity: 1;
+    }
   }
 }
-
