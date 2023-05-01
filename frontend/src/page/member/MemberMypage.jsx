@@ -247,7 +247,7 @@ function MemberMypage() {
             <GoPencil onClick={changeProfileHandler} color="white" />
           </div>
           <div
-            className={`mypage-update${flipped ? "active" : ""}`}
+            className={`mypage-update ${flipped ? "active" : ""}`}
             onClick={flipHandler}
           >
             <div className="mypage-update-inner">
@@ -343,6 +343,7 @@ function MemberMypage() {
                       )}
                     </div>
                     <div className="input-box">
+                      <div className="input-name"></div>
                       <Input
                         type="password"
                         name="passwordConfirm"
@@ -365,7 +366,11 @@ function MemberMypage() {
                     )}
                   </form>
                   {!isUpdated && (
-                    <Button type="button" onClick={toggleButtonHandler}>
+                    <Button
+                      type="button"
+                      onClick={toggleButtonHandler}
+                      style={{ marginTop: "9%", marginRight: "-8%" }}
+                    >
                       수정
                     </Button>
                   )}
