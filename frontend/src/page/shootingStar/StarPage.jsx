@@ -55,7 +55,7 @@ const StarPage = () => {
 
   return (
     <div>
-      <Background />
+      {/* <Background /> */}
       <PaginationWrapper>
           <div className="swiper-pagination" />
       </PaginationWrapper>
