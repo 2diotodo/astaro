@@ -55,14 +55,6 @@ function TarotService() {
         return "Extract keywords from this text: " + msg;
       }
 
-      console.log(
-        constructRequestMessage(
-          category,
-          stateCards.toString(),
-          inputMessage.message
-        )
-      );
-
       async function receiveTaroResultAndPicture() {
         const data = {
           model: "gpt-3.5-turbo",
@@ -82,10 +74,10 @@ function TarotService() {
         await axios
           .post("https://api.openai.com/v1/chat/completions", data, config)
           .then((res) => {
-            console.log(res);
             jsonRes = JSON.parse(res.data.choices[0].message.content);
             setTarotResult(jsonRes.해석);
             setStory(jsonRes.동화.trim());
+            console.log(jsonRes);
           });
 
         const reqSummaryData = {
@@ -121,10 +113,11 @@ function TarotService() {
             config
           )
           .then((res) => {
-            console.log(res);
             setDalleImgUrl(res.data.data[0].url);
-            console.log(res);
           });
+
+        // await axios
+        //     .post(`${process.env.REACT_APP_BACKEND_URL}`)
       }
 
       receiveTaroResultAndPicture();
