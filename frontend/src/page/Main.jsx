@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { Background } from "@component/Background";
 import WelcomeCard from "../component/WelcomeCard";
-import ColContainer from "@component/layout/ColContainer";
 import Taro_front1 from "@assets/img/Taro_front1.png";
 import Taro_front2 from "@assets/img/Taro_front2.png";
 import Taro_front3 from "@assets/img/Taro_front3.png";
@@ -60,6 +58,10 @@ export function Main() {
     );
   };
 
+  const navigateToTarot = () => {
+    navigate("/tarot");
+  };
+
   const cards = [
     {
       src: Taro_front1,
@@ -74,7 +76,6 @@ export function Main() {
 
   return (
     <>
-      <Background style={{ position: "relative", zIndex: -10000000 }} />
       <Wrapper>
         <Subtitle>당신의 생각이 운명의 설계자이다.</Subtitle>
         <Title>ASTARO</Title>
@@ -112,6 +113,7 @@ export function Main() {
         >
           넘어가기
         </button>
+        <button onClick={() => navigateToTarot()}>타로보러가기</button>
       </Wrapper>
     </>
   );

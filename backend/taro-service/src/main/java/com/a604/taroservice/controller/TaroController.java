@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/todaytaro")
+@RequestMapping("/tarot")
 public class TaroController {
 
     private final TodayTaroService todayTaroService;
     private final TaroResultService taroResultService;
-    @GetMapping
+    @GetMapping("/today")
     public ResponseEntity<?> TodayTaro(){
         return new ResponseEntity<>(todayTaroService.todayTaro(), HttpStatus.OK);
     }
@@ -28,6 +28,6 @@ public class TaroController {
     @PostMapping
     public ResponseEntity<?> SaveTaroResult(TaroResultDto taroResultDto){
 
-        return new ResponseEntity<>(new )
+        return null;
     }
 }
