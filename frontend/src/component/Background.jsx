@@ -23,8 +23,12 @@ function init() {
   var estrela = "";
   var qtdeEstrelas = 300;
   var noite = document.querySelector(".constelacao");
-  var widthWindow = window.innerWidth;
-  var heightWindow = window.innerHeight;
+  // var widthWindow = window.innerWidth;
+  // var heightWindow = window.innerHeight;
+  // eslint-disable-next-line no-restricted-globals
+  var widthWindow = screen.width;
+  // eslint-disable-next-line no-restricted-globals
+  var heightWindow = screen.height;
 
   for (var i = 0; i < qtdeEstrelas; i++) {
     estrela +=
