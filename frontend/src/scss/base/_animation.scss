@@ -68,3 +68,30 @@
     opacity: 1;
   }
 }
+
+@keyframes backglow1 {
+  0% {
+    transform: translate(10%, 10%) scale(1);
+    opacity: 0.5;
+  }
+
+  25% {
+    transform: translate(-10%, 10%) scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate(-10%, -10%) scale(1.2);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: translate(10%, -10%) scale(1.1);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translate(10%, 10%) scale(1);
+    opacity: 0.5;
+  }
+}

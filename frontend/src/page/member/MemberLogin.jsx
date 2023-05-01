@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { login } from "@features/memberSlice";
+import Input from "@component/Input";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -19,19 +20,6 @@ const Title = styled.div`
   margin: 30% 0 10% 0;
 `;
 
-const Input = styled.input`
-  width: 60%;
-  height: 30px;
-  margin: 8%;
-  background-color: rgba(0, 0, 0, 0);
-  border-bottom: 1px solid white;
-  color: white;
-  font-size: 20px;
-
-  ::placeholder {
-    color: white;
-  }
-`;
 const Button = styled.button`
   width: 50%;
   position: relative;
@@ -100,6 +88,9 @@ function MemberLogin() {
     }
     // console.log(logins);
     dispatch(login(logins));
+    // local storage에 memberSeq, Access Token 저장
+    localStorage.setItem("memberSeq");
+    localStorage.setItem("access-token");
     navigate("/");
   };
 
@@ -139,6 +130,8 @@ function MemberLogin() {
               value={logins.memberId}
               onChange={handleChange}
               onBlur={handleBlur}
+              width={"60%"}
+              textIndent={"0px"}
               placeholder="별명을 말해줘"
             />
             {/* 아이디 오류메시지를 출력한다 */}
@@ -151,6 +144,8 @@ function MemberLogin() {
               value={logins.password}
               onChange={handleChange}
               onBlur={handleBlur}
+              width={"60%"}
+              textIndent={"0px"}
               placeholder="비밀번호를 말해줘"
             />
             {/* 비밀번호 오류메시지를 출력한다 */}
