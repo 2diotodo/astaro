@@ -3,7 +3,6 @@ import Button from "../component/Button";
 import axios from "axios";
 import Input from "../component/Input";
 import ColContainer from "../component/layout/ColContainer";
-import { Background } from "@component/Background";
 import "@css/tarocard.css";
 import "@css/tarotpageslide.css";
 import TarotDeck from "@component/TarotDeck";
@@ -170,7 +169,6 @@ function TarotService() {
   };
   return (
     <>
-      <Background />
       <UpDownContainer
         style={{
           position: "relative",

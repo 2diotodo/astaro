@@ -5,7 +5,6 @@ import wisdoms from "@constants/wisdom.json";
 import profiles from "@constants/profile.json";
 import { GoPencil } from "react-icons/go";
 import moon from "@assets/img/moon.png";
-import { Background } from "@component/Background";
 import Input from "@component/Input";
 import { Modal, Box, Typography } from "@mui/material";
 
@@ -74,13 +73,11 @@ const boxStyle = {
   p: 4,
 };
 
-
-
 function MemberMypage() {
   const [values, setValues] = useState({
     memberId: "john doe",
     password: "ee",
-    passwordConfirm: 'ee',
+    passwordConfirm: "ee",
     nickname: "nick",
     email: "dora@naver.com",
   });
@@ -111,13 +108,13 @@ function MemberMypage() {
     Array(stars.length).fill(false)
   );
 
-  const profileSelectHandler = (idx) =>{
+  const profileSelectHandler = (idx) => {
     const selectedCheck = profileSelected.map((el, index) => {
-      return index === idx -1;
+      return index === idx - 1;
     });
-    console.log("len",profileSelected);
+    console.log("len", profileSelected);
     setProfileSelected(selectedCheck);
-  }
+  };
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -208,10 +205,9 @@ function MemberMypage() {
   const handleClose = () => {
     setOpen(false);
     // setProfileSelected(false);
-  }
+  };
   return (
     <>
-      <Background style={{ position: "relative", zIndex: -10000000 }} />
       <Wrapper>
         <div className="mypage">
           <Title className="mypage-text">
@@ -228,8 +224,8 @@ function MemberMypage() {
 
           <div className="mypage-area">
             <form className="update-form" onSubmit={updateSubmitHandler}>
-            <div className="input-box">
-            <div className="input-name">아이디</div>
+              <div className="input-box">
+                <div className="input-name">아이디</div>
                 <Input
                   type="text"
                   name="memberId"
@@ -239,12 +235,12 @@ function MemberMypage() {
                   placeholder={values.memberId}
                   width={"60%"}
                   textIndent={"0px"}
-                  style={{fontSize:"15px"}}
+                  style={{ fontSize: "15px" }}
                   disabled
                 />
               </div>
               <div className="input-box">
-              <div className="input-name">별명</div>
+                <div className="input-name">별명</div>
                 <Input
                   type="text"
                   name="nickname"
@@ -254,7 +250,7 @@ function MemberMypage() {
                   placeholder={values.nickname}
                   width={"60%"}
                   textIndent={"0px"}
-                  style={{fontSize:"15px"}}
+                  style={{ fontSize: "15px" }}
                 />
                 {/* 닉네임 오류메시지를 출력한다 */}
                 {touched.nickname && errors.nickname && (
@@ -272,12 +268,12 @@ function MemberMypage() {
                   placeholder={values.email}
                   width={"60%"}
                   textIndent={"0px"}
-                  style={{fontSize:"15px"}}
+                  style={{ fontSize: "15px" }}
                   disabled
                 />
               </div>
               <div className="input-box">
-              <div className="input-name">비밀번호</div>
+                <div className="input-name">비밀번호</div>
                 <Input
                   type="password"
                   name="password"
@@ -287,7 +283,7 @@ function MemberMypage() {
                   placeholder="Password"
                   width={"60%"}
                   textIndent={"0px"}
-                  style={{fontSize:"15px"}}
+                  style={{ fontSize: "15px" }}
                 />
                 {/* 비밀번호 오류메시지를 출력한다 */}
                 {touched.password && errors.password && (
@@ -304,10 +300,17 @@ function MemberMypage() {
                   placeholder="Password"
                   width={"60%"}
                   textIndent={"0px"}
-                  style={{fontSize:"15px"}}
+                  style={{ fontSize: "15px" }}
                 />
               </div>
-              {isUpdated && <Button type="submit" style={{marginTop:"9%", marginRight:"-8%"}}>저장</Button>}
+              {isUpdated && (
+                <Button
+                  type="submit"
+                  style={{ marginTop: "9%", marginRight: "-8%" }}
+                >
+                  저장
+                </Button>
+              )}
             </form>
             {!isUpdated && (
               <Button type="button" onClick={toggleButtonHandler}>
@@ -338,30 +341,26 @@ function MemberMypage() {
         aria-describedby="modal-modal-description"
       >
         <Box className="modal-box" sx={boxStyle}>
-
-          <Typography
-            className="modal-body"
-            id="modal-modal-description"
-          >
-            {stars.map((star) =>
-              <Star className={profileSelected? "modal-img selected" : "modal-img"}
-              onClick={() => profileSelectHandler(star.starId)}
-              key={star.starId}
-              id={star.starId}
-              value={star.starName}>
-                
+          <Typography className="modal-body" id="modal-modal-description">
+            {stars.map((star) => (
+              <Star
+                className={profileSelected ? "modal-img selected" : "modal-img"}
+                onClick={() => profileSelectHandler(star.starId)}
+                key={star.starId}
+                id={star.starId}
+                value={star.starName}
+              >
                 <img src={star.starImageUrl} alt={star.starName} />
                 <div>{star.starlux} lux</div>
               </Star>
-              )}
+            ))}
           </Typography>
         </Box>
       </Modal>
     </>
   );
 }
-const Star = styled.div`
-`
+const Star = styled.div``;
 // opacity: ${({profileSelected, id}) => (profileSelected[id - 1] ? 1:.3)}
 
 export default MemberMypage;

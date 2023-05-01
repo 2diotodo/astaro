@@ -9,10 +9,12 @@ import TodayTaro from "@page/TodayTaro";
 import MemberLogin from "@page/member/MemberLogin";
 import MemberSignup from "@page/member/MemberSignup";
 import MemberMypage from "@page/member/MemberMypage";
+import { Background } from "@component/Background";
 
 function App() {
   return (
     <div className="App">
+      <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
         <Routes>
           <Route path="/" element={<Main />} />
