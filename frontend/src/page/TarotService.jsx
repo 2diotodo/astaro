@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "../component/Button";
 import axios from "axios";
+import axiosInstance from "@utils/axiosInstance";
 import Input from "../component/Input";
 import ColContainer from "../component/layout/ColContainer";
 import "@css/tarocard.css";
@@ -11,7 +12,6 @@ import TarotCategory from "@component/TarotCategory";
 import UpDownContainer from "@component/layout/UpDownContainer";
 import TarotLoading from "@component/TarotLoading";
 import Small from "@component/text/Small";
-import SmallMedium from "@component/text/SmallMedium";
 import { useSelector } from "react-redux";
 import Medium from "@component/text/Medium";
 
@@ -22,8 +22,7 @@ function TarotService() {
   const [story, setStory] = useState("");
   const category = useSelector((state) => state.tarot.category);
   const stateCards = useSelector((state) => state.tarot.cards);
-
-  useEffect(() => {}, [story]);
+  const cardSeqList = useSelector((state) => state.tarot.cardsSeq);
   const sendToGpt = (event, inputMessage) => {
     if (event.key === "Enter") {
       slideFromTarotToLoading();
@@ -106,6 +105,8 @@ function TarotService() {
           n: 1,
           size: "512x512",
         };
+
+        let imgUrl;
         await axios
           .post(
             "https://api.openai.com/v1/images/generations",
@@ -114,10 +115,22 @@ function TarotService() {
           )
           .then((res) => {
             setDalleImgUrl(res.data.data[0].url);
+            imgUrl = res.data.data[0].url;
           });
 
-        // await axios
-        //     .post(`${process.env.REACT_APP_BACKEND_URL}`)
+        const tarotResultDto = {
+          memberSeq: localStorage.getItem("user"),
+          category: category,
+          contentInput: message,
+          cardSeqList: cardSeqList,
+          contentList: jsonRes.해석,
+          imgList: [imgUrl],
+        };
+
+        await axiosInstance.post(
+          `${process.env.REACT_APP_BACKEND_URL}`,
+          tarotResultDto
+        );
       }
 
       receiveTaroResultAndPicture();
@@ -138,6 +151,12 @@ function TarotService() {
       .querySelector("#slide-from-tarot")
       .classList.remove("right-hidden");
     document.querySelector("#slide-from-category").classList.add("left-hidden");
+    Array.prototype.slice
+      .call(document.getElementsByClassName("tarot-card"))
+      .map((elem) => {
+        elem.classList.add("shuffle-card");
+      });
+    document.querySelector(".tarot-card").classList.add("shuffle-card");
   };
 
   const slideFromTarotToLoading = () => {
@@ -192,22 +211,12 @@ function TarotService() {
               sendToGpt(e, message);
             }}
           />
-          <Button width="120px" margin="30px" onClick={slideFromTarotToLoading}>
-            전송하기
-          </Button>
         </ColContainer>
         <ColContainer
           id="slide-from-loading"
           style={{ position: "absolute" }}
           className="slide-in right-hidden"
         >
-          <SmallMedium>점괘를 해석중입니다.</SmallMedium>
-          <br />
-          <SmallMedium>잠시 기다려주시기 바랍니다.</SmallMedium>
-          <br />
-          <br />
-          <Small>점괘 해석은 1분 정도 소요될 수 있습니다.</Small>
-          <GapH height="90px" />
           <TarotLoading />
           <p></p>
           {tarotResult[0] ? (
@@ -243,7 +252,6 @@ function TarotService() {
                 <br />
               </>
             ))}
-            <GapH height="20px" />
             <Button margin="50px 0" onClick={slideFromResultToStory}>
               이야기보기
             </Button>

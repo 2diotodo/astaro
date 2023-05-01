@@ -12,7 +12,7 @@ public class TaroResultDto {
     private Long memberSeq;
     private String category;
     private String contentInput;
-    private String seqList;
+    private String cardSeqList;
     private String contentList;
     private String imgList;
 }

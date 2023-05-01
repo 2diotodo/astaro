@@ -27,7 +27,7 @@ public class TaroResultService {
                 .memberSeq(dto.getMemberSeq())
                 .category(dto.getCategory())
                 .contentInput(dto.getContentInput())
-                .cardSeqList(dto.getSeqList())
+                .cardSeqList(dto.getCardSeqList())
                 .contentList(dto.getContentList())
                 .imgList(dto.getImgList())
                 .isDangerous(dangerous)
