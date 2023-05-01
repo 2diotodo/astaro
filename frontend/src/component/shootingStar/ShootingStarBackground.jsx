@@ -1,26 +1,32 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 
-const shootingTime = '7000ms';
+const shootingTime = '1000ms';
+
+const getRandomDuration = () => {
+  const minDuration = 3000; // 최소 지속 시간(ms)
+  const maxDuration = 20000; // 최대 지속 시간(ms)
+  return Math.floor(Math.random() * (maxDuration - minDuration + 1) + minDuration);
+};
 
 const ShootingStarsContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
 	// shooting star 각도
-  transform: rotateZ(40deg);
+  transform: rotateZ(30deg);
 
   .shooting_star {
     position: absolute;
     left: 10%;
-    // top: 20%;
     height: 1px;
     background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
-    // border-radius: 1000px;
     filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
-    animation: tail ${shootingTime} ease-in-out infinite, shooting ${shootingTime} ease-in-out infinite;
+    animation: tail linear infinite, shooting linear infinite; // 여기서 'shootingTime' 변수를 제거했습니다.
   }
+  
 
   .shooting_star::before,
   .shooting_star::after {
@@ -52,13 +58,13 @@ const ShootingStarsContainer = styled.div`
 
   @keyframes shining {
     0% {
-      width: 20px;
+      width: 30px;
     }
     50% {
-      width: 50px;
+      width: 30px;
     }
     100% {
-      width: 20px;
+      width: 30px;
     }
   }
 
@@ -71,16 +77,61 @@ const ShootingStarsContainer = styled.div`
     }
   }
 `;
+const updateStar = (star) => {
+  const top = Math.floor(Math.random() * 100);
+  const left = Math.floor(Math.random() * 100);
+  const delay = Math.floor(Math.random() * 10000);
+  const duration = getRandomDuration();
 
+  return React.cloneElement(star, {
+    style: {
+      ...star.props.style,
+      top: `${top}%`,
+      left: `${left}%`,
+      animationDelay: `${delay}ms`,
+      animationDuration: `${duration}ms`,
+    },
+  });
+};
 
 const ShootingStars = () => {
-  // const navigate = useNavigate();
-
-  // const navigateToChat = () => {
-  //   navigate("/star/chat/1");
-  // }
-
   const navigate = useNavigate();
+  
+  const [stars, setStars] = useState([]);
+
+  useEffect(() => {
+    const createStars = () => {
+      return Array.from({ length: 20 }, (_, i) => {
+        const top = Math.floor(Math.random() * 100);
+        const left = Math.floor(Math.random() * 100);
+        const delay = Math.floor(Math.random() * 10000);
+        const duration = getRandomDuration();
+        
+        return (
+          <div
+            onClick={handleStarClick}
+            key={i}
+            className="shooting_star"
+            style={{
+              top: `${top}%`,
+              left: `${left}%`,
+              animationDelay: `${delay}ms`,
+              animationDuration: `${duration}ms`,
+            }}
+          />
+        );
+      });
+    };
+
+    setStars(createStars());
+    const interval = setInterval(() => {
+      setStars(createStars());
+    }, 15000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   // API 요청 함수
   const fetchTaroResult = async (memberSeq) => {
@@ -101,26 +152,7 @@ const ShootingStars = () => {
     } catch (error) {
       console.error('Error fetching taro result:', error);
     }
-  };  
-
-  const stars = Array.from({ length: 30 }, (_, i) => {
-    const top = Math.floor(Math.random() * 100);
-    const left = Math.floor(Math.random() * 100);
-    const delay = Math.floor(Math.random() * 10000);
-
-    return (
-      <div
-        onClick={handleStarClick}
-        key={i}
-        className="shooting_star"
-        style={{
-          top: `${top}%`,
-          left: `${left}%`,
-          animationDelay: `${delay}ms`,
-        }}
-      />
-    );
-  });
+  };    
 
   return <ShootingStarsContainer>{stars}</ShootingStarsContainer>;
 };
