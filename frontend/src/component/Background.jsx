@@ -68,7 +68,10 @@ function init() {
 }
 
 export function Background() {
-  window.onload = init;
+  useEffect(() => {
+    init();
+  }, []);
+  // window.onload = init;
 
   return (
     <>
