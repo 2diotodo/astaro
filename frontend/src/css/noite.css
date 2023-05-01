@@ -119,7 +119,7 @@
 
 @keyframes estrela {
   0% {
-    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.05);
     border-radius: 1px;
   }
   50% {
@@ -127,7 +127,7 @@
     border-radius: 1px;
   }
   100% {
-    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.05);
     border-radius: 1px;
   }
 }
