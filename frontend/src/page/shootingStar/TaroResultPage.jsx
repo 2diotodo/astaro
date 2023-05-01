@@ -2,6 +2,9 @@ import { Background } from "@/component/Background";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 const ResultContainer = styled.div`
   display: flex;
@@ -58,17 +61,24 @@ const TaroResultPage = () => {
       </ResultContainer>
     );
   }
-  console.log("taroResult :", taroResult)
   const imgList = taroResult.imgList;
   const content = taroResult.input;
-  console.log(content)
-  const [firstImage] = imgList.split(",");
+
+  const renderCarouselImages = () => {
+    return imgList.split(",").map((imgSrc, index) => (
+      <div key={index}>
+        <img src={imgSrc} alt={`타로 카드 이미지 ${index}`} />
+      </div>
+    ));
+  };
 
   return (
     <>
-      <Background/>
-      <ResultContainer style={{position:"relative"}}>
-        <Image src={firstImage} alt="타로 카드 이미지" />
+      <Background />
+      <ResultContainer style={{ position: "relative" }}>
+        <Carousel showThumbs={false} showStatus={false}>
+          {renderCarouselImages()}
+        </Carousel>
         <Description>{content}</Description>
         <BackButton onClick={handleBackButtonClick}>돌아가기</BackButton>
       </ResultContainer>

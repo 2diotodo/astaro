@@ -1,0 +1,70 @@
+[
+    {
+        "starId": 1,
+        "starName": "moon",
+        "starImageUrl": "./img/moon.png",
+        "starlux": 1
+    },
+    {
+        "starId": 2,
+        "starName": "mercury",
+        "starImageUrl": "./img/mercury.png",
+        "starlux": 10
+    },
+    {
+        "starId": 3,
+        "starName": "venus",
+        "starImageUrl": "./img/venus.png",
+        "starlux": 20
+    },
+    {
+        "starId": 4,
+        "starName": "earth",
+        "starImageUrl": "./img/earth.png",
+        "starlux": 100
+
+    },
+    {
+        "starId": 5,
+        "starName": "mars",
+        "starImageUrl": "./img/mars.png",
+        "starlux": 50
+    },
+    {
+        "starId": 6,
+        "starName": "jupiter",
+        "starImageUrl": "./img/jupiter.png",
+        "starlux": 500
+
+    },
+    {
+        "starId": 7,
+        "starName": "saturn",
+        "starImageUrl": "./img/saturn.png",
+        "starlux": 1000
+    },
+    {
+        "starId": 8,
+        "starName": "uranus",
+        "starImageUrl": "./img/uranus.png",
+        "starlux": 600
+    },
+    {
+        "starId": 9,
+        "starName": "neptune",
+        "starImageUrl": "./img/neptune.png",
+        "starlux": 800
+    },
+    {
+        "starId": 10,
+        "starName": "sun",
+        "starImageUrl": "./img/sun.png",
+        "starlux": 10000
+    },
+    {
+        "starId": 11,
+        "starName": "comet",
+        "starImageUrl": "./img/comet.png",
+        "starlux": 1000000
+    }
+]

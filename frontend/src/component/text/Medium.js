@@ -14,9 +14,9 @@ const Medium = styled.div`
     if (props.theme && props.theme.font) {
       return props.theme.font;
     }
-    return "NanumSquareR";
+    return "TAEBAEKmilkyway";
   }};
-  color: ${(props) => (props.color ? props.color : "black")};
+  color: ${(props) => (props.color ? props.color : "#fff")};
 `;
 
 export default Medium;

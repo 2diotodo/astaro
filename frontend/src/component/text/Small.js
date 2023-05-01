@@ -14,9 +14,10 @@ const Small = styled.div`
     if (props.theme && props.theme.font) {
       return props.theme.font;
     }
-    return "NanumSquareR";
+    return "TAEBAEKmilkyway";
   }};
-  color: ${(props) => (props.color ? props.color : "black")};
+  line-height: ${(props) => (props.lineHeight ? props.lineHeight : "1.2em")};
+  color: ${(props) => (props.color ? props.color : "white")};
   cursor: ${(props) => (props.cursor ? props.cursor : "default")};
 `;
 

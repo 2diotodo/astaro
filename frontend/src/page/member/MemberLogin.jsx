@@ -2,6 +2,46 @@ import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { login } from "@features/memberSlice";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  height: 80%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+`;
+
+const Title = styled.div`
+  color: white;
+  position: relative;
+  font-size: 40px;
+  font-family: "Nanum Myeongjo", monospace;
+  margin: 30% 0 10% 0;
+`;
+
+const Input = styled.input`
+  width: 60%;
+  height: 30px;
+  margin: 8%;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 20px;
+
+  ::placeholder {
+    color: white;
+  }
+`;
+const Button = styled.button`
+  width: 50%;
+  position: relative;
+  padding: 5px 20px;
+  margin: 2%;
+  border: 1px solid white;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 20px;
+`;
 
 function MemberLogin() {
   const dispatch = useDispatch();
@@ -89,39 +129,43 @@ function MemberLogin() {
   };
   return (
     <>
-      <div className="login">
-        <div className="login-text">로그인</div>
-        <form className="login-form" onSubmit={loginSubmitHandler}>
-          <input
-            type="text"
-            name="memberId"
-            value={logins.memberId}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            placeholder="ID"
-          />
-          {/* 아이디 오류메시지를 출력한다 */}
-          {touched.memberId && errors.memberId && (
-            <span>{errors.memberId}</span>
-          )}
-          <input
-            type="password"
-            name="password"
-            value={logins.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            placeholder="Password"
-          />
-          {/* 비밀번호 오류메시지를 출력한다 */}
-          {touched.password && errors.password && (
-            <span>{errors.password}</span>
-          )}
-          <button type="submit">로그인</button>
-        </form>
-        <button type="button" onClick={signupHandler}>
-          <div className="signup-button">회원가입</div>
-        </button>
-      </div>
+      <Wrapper>
+        <div className="login" style={{ justifyContent: "center" }}>
+          <Title className="login-text">로그인</Title>
+          <form className="login-form" onSubmit={loginSubmitHandler}>
+            <Input
+              type="text"
+              name="memberId"
+              value={logins.memberId}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="별명을 말해줘"
+            />
+            {/* 아이디 오류메시지를 출력한다 */}
+            {touched.memberId && errors.memberId && (
+              <span>{errors.memberId}</span>
+            )}
+            <Input
+              type="password"
+              name="password"
+              value={logins.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="비밀번호를 말해줘"
+            />
+            {/* 비밀번호 오류메시지를 출력한다 */}
+            {touched.password && errors.password && (
+              <span>{errors.password}</span>
+            )}
+            <Button type="submit" style={{ marginTop: "10%" }}>
+              로그인
+            </Button>
+          </form>
+          <Button type="button" onClick={signupHandler}>
+            <div className="signup-button">회원가입</div>
+          </Button>
+        </div>
+      </Wrapper>
     </>
   );
 }
