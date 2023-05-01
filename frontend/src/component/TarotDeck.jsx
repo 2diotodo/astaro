@@ -62,10 +62,10 @@ const TarotDeck = () => {
       .querySelector("#card" + card.id)
       .setAttribute("style", `transform: translate(${toMove}px, -215px); `);
     // Create a new array of selected cards with the clicked card on top
-    // let newSelectedCards = [...selectedCards];
-    let newSelectedCards = selectedCards;
+    let newSelectedCards = [...selectedCards];
     newSelectedCards.push(card.name);
-    setCards(newSelectedCards);
+    setSelectedCards(newSelectedCards);
+    dispatch(setCards(newSelectedCards));
   };
 
   return (
@@ -90,11 +90,6 @@ const TarotDeck = () => {
     </ColContainer>
   );
 };
-
-const TarotDeckContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 const TarotCard = styled.div`
   position: relative;
