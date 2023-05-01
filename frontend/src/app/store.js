@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import navSlice from "@features/commonSlice/navSlice";
 import loginSlice from "@features/commonSlice/loginSlice";
 import memberSlice from "@features/memberSlice";
+import chatSlice from "@/features/shootingStarSlice/chatSlice";
 import tarotSlice from "@features/tarotSlice";
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     loginCheck: loginSlice,
     navBars: navSlice,
     memberCheck: memberSlice,
+    chat: chatSlice,
     tarot: tarotSlice,
   },
   // saga 쓰면 여기에 추가
