@@ -21,7 +21,6 @@ const Category = styled.div`
   color: white;
 `;
 
-
 const SlideWrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -33,7 +32,6 @@ const PaginationWrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
 `;
-
 
 const StyledSwiper = styled(Swiper)`
   margin: 0;
@@ -52,12 +50,10 @@ const StarPage = () => {
     setShootingStarsKey((prevKey) => prevKey + 1);
   }, [swiperIndex]);
 
-
   return (
     <div>
-      <Background />
       <PaginationWrapper>
-          <div className="swiper-pagination" />
+        <div className="swiper-pagination" />
       </PaginationWrapper>
       <StyledSwiper
         spaceBetween={50}
@@ -67,7 +63,7 @@ const StarPage = () => {
           clickable: true,
           el: ".swiper-pagination",
           dynamicBullets: true,
-          direction: 'horizontal'
+          direction: "horizontal",
         }}
       >
         <SwiperSlide>
@@ -96,7 +92,7 @@ const StarPage = () => {
         </SwiperSlide>
         <SwiperSlide>
           <SlideWrapper>
-           <ShootingStars key={shootingStarsKey} />
+            <ShootingStars key={shootingStarsKey} />
             <Category>
               <p>진로</p>
             </Category>

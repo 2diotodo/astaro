@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-
 const ResultContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,7 +73,6 @@ const TaroResultPage = () => {
 
   return (
     <>
-      <Background />
       <ResultContainer style={{ position: "relative" }}>
         <Carousel showThumbs={false} showStatus={false}>
           {renderCarouselImages()}
