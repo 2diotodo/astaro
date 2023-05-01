@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { signup, duplicateId } from "@features/memberSlice";
-import { Background } from "@/component/Background";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -134,7 +133,6 @@ function MemberSignup() {
 
   return (
     <>
-      <Background style={{ position: "relative", zIndex: -10000000 }} />
       <Wrapper>
         <div className="signup">
           <Title className="signup-text">회원가입</Title>

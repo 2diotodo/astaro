@@ -2,7 +2,6 @@ import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { login } from "@features/memberSlice";
-import { Background } from "@component/Background";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -130,7 +129,6 @@ function MemberLogin() {
   };
   return (
     <>
-      <Background style={{ position: "relative", zIndex: -10000000 }} />
       <Wrapper>
         <div className="login" style={{ justifyContent: "center" }}>
           <Title className="login-text">로그인</Title>
