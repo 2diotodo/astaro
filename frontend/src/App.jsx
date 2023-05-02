@@ -10,15 +10,17 @@ import MemberLogin from "@page/member/MemberLogin";
 import MemberSignup from "@page/member/MemberSignup";
 import MemberMypage from "@page/member/MemberMypage";
 import ChatPage from "./page/shootingStar/ChatPage";
-import StarPage from"./page/shootingStar/StarPage";
+import StarPage from "./page/shootingStar/StarPage";
 import TaroResultPage from "./page/shootingStar/TaroResultPage";
 import { Background } from "@component/Background";
+import Header from "@component/common/Header";
 
 function App() {
   return (
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/prompt" element={<WhiteholeTest />} />

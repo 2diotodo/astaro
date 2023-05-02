@@ -17,14 +17,14 @@ const Title = styled.div`
   position: relative;
   font-size: 40px;
   font-family: "Nanum Myeongjo", monospace;
-  margin: 30% 0 10% 0;
+  margin: 15% 0 10% 0;
 `;
 
 const Button = styled.button`
   width: 50%;
   position: relative;
   padding: 5px 20px;
-  margin: 2%;
+  margin: 3%;
   border: 1px solid white;
   background-color: rgba(0, 0, 0, 0);
   color: white;
