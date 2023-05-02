@@ -14,7 +14,7 @@ const Title = styled.div`
   position: relative;
   font-size: 40px;
   font-family: "Nanum Myeongjo", monospace;
-  margin: 25% 0 5% 0;
+  margin: 15% 0 5% 0;
 `;
 
 const ErrorMessage = styled.div`
