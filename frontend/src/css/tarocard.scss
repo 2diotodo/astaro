@@ -135,10 +135,10 @@
     box-shadow: 0 0 10px 5px #c8c8c8;
 }
 
-.selected-tarocard::before {
+.selected-tarocard::after {
     content: "";
     width: 104%;
-    height: 102%;
+    height: 104%;
     border-radius: 8px;
     background-image: linear-gradient(
                     var(--rotate),
@@ -150,29 +150,23 @@
     z-index: -1;
     top: -1%;
     left: -2%;
-    animation: spin 2.5s linear infinite;
+    animation: spin 1s linear infinite;
 }
 
-.selected-tarocard::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    transform: scale(0.8);
-    filter: blur(calc(var(--card-height) / 6));
-    background-image: linear-gradient(
-                    var(--rotate),
-                    #fffde7,
-                    #fdd835 43%,
-                    #f57f17
-    );
-    opacity: 1;
-    transition: opacity 0.5s;
-    animation: spin 2.5s linear infinite;
+.selected-tarocard > img.tarot-front {
+    transition: all .5s;
+    position: relative;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    z-index: 50 !important;
+}
+
+.selected-tarocard > img.tarot-back {
+    transition: all .5s;
+    position: relative;
+    z-index: 10;
+    transform: rotateY(180deg) !important;
+    backface-visibility: hidden;
 }
 
 @keyframes spin {
@@ -181,20 +175,5 @@
     }
     100% {
         --rotate: 360deg;
-    }
-}
-
-@keyframes lightEffect {
-    0% {
-        transform: translate(0, 0);
-        box-shadow: 0 0 10px 5px #c8c8c8;
-    }
-    50% {
-        transform: translate(300px, 300px);
-        box-shadow: 0 0 20px 10px #c8c8c8;
-    }
-    100% {
-        transform: translate(0, 0);
-        box-shadow: 0 0 10px 5px #c8c8c8;
     }
 }

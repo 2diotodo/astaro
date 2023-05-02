@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import ColContainer from "@component/layout/ColContainer";
 import RowContainer from "@component/layout/RowContainer";
 import "@css/tarocard.scss";
@@ -7,8 +6,8 @@ import GapH from "@component/layout/GapH";
 import Subtitle from "@component/text/Subtitle";
 import { useDispatch } from "react-redux";
 import { setCards, setCardsSeq } from "@features/tarotSlice";
-import TarotCard from "@component/TarotCard";
 import TarotCardArr from "@assets/TarotCardArr";
+import TarotCard from "@component/TarotCard";
 
 let tarotCardArr = TarotCardArr;
 
@@ -22,11 +21,9 @@ const TarotDeck = () => {
   useEffect(() => {}, []);
 
   const handleCardClick = (card) => {
-    if (
-      document
-        .querySelector("#card" + card.id)
-        .classList.contains("selected-tarocard")
-    ) {
+    console.log(card);
+    let selectedCard = document.querySelector("#card" + card.id);
+    if (selectedCard.classList.contains("selected-tarocard")) {
       return;
     }
     if (cardIndex > 2) {
@@ -37,13 +34,13 @@ const TarotDeck = () => {
     }
     const xPos = coordinates[cardIndex];
     setCardIndex(cardIndex + 1);
-    document
-      .querySelector("#card" + card.id)
-      .classList.add("selected-tarocard");
+    selectedCard.classList.add("selected-tarocard");
     const toMove = -xPos + 50;
-    document
-      .querySelector("#card" + card.id)
-      .setAttribute("style", `transform: translate(${toMove}px, -215px); `);
+
+    selectedCard.setAttribute(
+      "style",
+      `transform: translate(${toMove}px, -215px) rotateY(-180deg);`
+    );
 
     let newSelectedCards = [...selectedCards];
     newSelectedCards.push(card.name);
@@ -60,30 +57,24 @@ const TarotDeck = () => {
     <ColContainer height="80vh">
       <Subtitle>3장의 카드를 뽑아주세요.</Subtitle>
       <GapH height="300px" />
-      <RowContainer justify="center" height="100%" class="filp-card">
+      <RowContainer
+        justify="center"
+        height="100%"
+        class="filp-card"
+        style={{ position: "relative" }}
+      >
         {tarotCardArr.map((card) => (
           <TarotCard
-            className="tarot-card"
-            id={"card" + card.id}
-            key={card.id}
+            card={card}
             selected={selectedCards.includes(card)}
             onClick={() => {
               handleCardClick(card);
             }}
-          >
-            <TarotCardImage src={card.image} alt={card.name} />
-          </TarotCard>
+          />
         ))}
       </RowContainer>
     </ColContainer>
   );
 };
-
-const TarotCardImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
-`;
 
 export default TarotDeck;
