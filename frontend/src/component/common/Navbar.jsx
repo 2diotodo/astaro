@@ -38,8 +38,8 @@ function Navbar() {
     localStorage.clear();
     dispatch(isLoginCheck(false));
     setIsLogin(false);
-    navigate("/");
     dispatch(toggleNavBar(false));
+    navigate("/", { replace: true });
   };
 
   return (
