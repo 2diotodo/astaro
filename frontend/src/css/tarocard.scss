@@ -137,8 +137,6 @@
 
 .selected-tarocard::after {
     content: "";
-    width: 104%;
-    height: 104%;
     border-radius: 8px;
     background-image: linear-gradient(
                     var(--rotate),
@@ -150,11 +148,14 @@
     z-index: -1;
     top: -1%;
     left: -2%;
-    animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite, light-effect 1s forwards;
 }
 
 .selected-tarocard > img.tarot-front {
-    transition: all .5s;
+    direction: rtl;
+    width: 120%;
+    height: 120%;
+    transition: all 1s;
     position: relative;
     transform: rotateY(0deg);
     backface-visibility: hidden;
@@ -162,11 +163,12 @@
 }
 
 .selected-tarocard > img.tarot-back {
-    transition: all .5s;
+    transition: all 1s;
     position: relative;
-    z-index: 10;
+    z-index: -2;
     transform: rotateY(180deg) !important;
     backface-visibility: hidden;
+    display:none;
 }
 
 @keyframes spin {
@@ -175,5 +177,17 @@
     }
     100% {
         --rotate: 360deg;
+    }
+}
+
+@keyframes light-effect {
+    0% {
+        width: 104%;
+        height: 104%;
+    }
+    100%{
+        width: 124%;
+        height: 122%;
+        box-shadow: 0 0 12px 5px #c8c8c8;
     }
 }

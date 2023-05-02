@@ -195,6 +195,7 @@ function TarotService() {
           id="slide-from-category"
           style={{ position: "absolute" }}
           className="slide-in"
+          justify="start"
         >
           <TarotCategory />
           <Button margin="50px 0" onClick={slideFromCategoryToTarot}>
@@ -205,6 +206,7 @@ function TarotService() {
           style={{ position: "absolute" }}
           id="slide-from-tarot"
           className="slide-in right-hidden"
+          justify="start"
         >
           <TarotDeck />
           <Input
@@ -212,6 +214,7 @@ function TarotService() {
             placeholder="당신의 고민을 입력하세요."
             onChange={handleMessageChange}
             name="message"
+            zIndex="100"
             onKeyDown={(e) => {
               sendToGpt(e, message);
             }}

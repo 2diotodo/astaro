@@ -12,9 +12,15 @@ import TarotCard from "@component/TarotCard";
 let tarotCardArr = TarotCardArr;
 
 const TarotDeck = () => {
+  const selectedCardWidth = 100 * 1.24;
+  const selectedCardMargin = 12;
   const dispatch = useDispatch();
   const [cardIndex, setCardIndex] = useState(0);
-  const coordinates = [175, 50, -75];
+  const coordinates = [
+    1.5 * selectedCardWidth - selectedCardMargin,
+    0.5 * selectedCardWidth - 2 * selectedCardMargin,
+    -0.5 * selectedCardWidth - 3 * selectedCardMargin,
+  ];
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectedCardsSeq, setSelectedCardsSeq] = useState([]);
 
@@ -39,7 +45,7 @@ const TarotDeck = () => {
 
     selectedCard.setAttribute(
       "style",
-      `transform: translate(${toMove}px, -215px) rotateY(-180deg);`
+      `transform: translate(${toMove}px, -240px) rotateY(-180deg);`
     );
 
     let newSelectedCards = [...selectedCards];
@@ -54,9 +60,10 @@ const TarotDeck = () => {
   };
 
   return (
-    <ColContainer height="80vh">
+    <ColContainer height="75vh">
+      <GapH height="80px" />
       <Subtitle>3장의 카드를 뽑아주세요.</Subtitle>
-      <GapH height="300px" />
+      <GapH height="350px" />
       <RowContainer
         justify="center"
         height="100%"
