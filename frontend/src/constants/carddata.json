@@ -1,66 +1,66 @@
 [
   {
     "cardId": 1,
-    "cardItem": "The Magician"
+    "cardItem": "mercury"
   },
   {
     "cardId": 2,
-    "cardItem": "The Magician"
+    "cardItem": "mercury"
   },
   {
     "cardId": 3,
-    "cardItem": "The Empress"
+    "cardItem": "venus"
   },
   {
     "cardId": 4,
-    "cardItem": "The Empress"
+    "cardItem": "venus"
   },
   {
     "cardId": 5,
-    "cardItem": "The Hierophant"
+    "cardItem": "earth"
   },
   {
     "cardId": 6,
-    "cardItem": "The Hierophant"
+    "cardItem": "earth"
   },
   {
     "cardId": 7,
-    "cardItem": "The Chariot"
+    "cardItem": "mars"
   },
   {
     "cardId": 8,
-    "cardItem": "The Chariot"
+    "cardItem": "mars"
   },
   {
     "cardId": 9,
-    "cardItem": "The Hermit"
+    "cardItem": "jupiter"
   },
   {
     "cardId": 10,
-    "cardItem": "The Hermit"
+    "cardItem": "jupiter"
   },
   {
     "cardId": 11,
-    "cardItem": "Justice"
+    "cardItem": "saturn"
   },
   {
     "cardId": 12,
-    "cardItem": "Justice"
+    "cardItem": "saturn"
   },
   {
     "cardId": 13,
-    "cardItem": "Death"
+    "cardItem": "uranus"
   },
   {
     "cardId": 14,
-    "cardItem": "Death"
+    "cardItem": "uranus"
   },
   {
     "cardId": 15,
-    "cardItem": "The Devil"
+    "cardItem": "neptune"
   },
   {
     "cardId": 16,
-    "cardItem": "The Devil"
+    "cardItem": "neptune"
   }
 ]

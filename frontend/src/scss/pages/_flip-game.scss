@@ -5,20 +5,19 @@
   width: 100%;
   perspective: 1000px;
   margin-bottom: -15px;
-  .card {
+  .game-card {
     width: 20%;
     user-select: none;
-    height: 112px;
+    height: 110px;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
-    margin: 16px;
-    transition: 0.6s;
+    margin: 5px;
+    transition: transform 0.6s;
     transform-style: preserve-3d;
     position: relative;
-    .back,
-    .front {
-      backface-visibility: hidden;
+    .game-back,
+    .game-front {
       position: absolute;
       top: 0;
       left: 0;
@@ -26,20 +25,20 @@
       height: 100%;
       border-radius: 10px;
       transition: 0.6s;
-      background: #ffffff;
+      background: #d6d6d6;
+      backface-visibility: hidden;
     }
-    .back {
+    .game-back {
       font-size: 50px;
       line-height: 120px;
       cursor: pointer;
-      // color: darken(#ee6910, 30%);
-      background-color: #ffffff;
+      color: darken(#ee6910, 30%);
       color: #6d1124;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .front {
+    .game-front {
       transform: rotateY(180deg);
       line-height: 110px;
       text-emphasis: none;
@@ -55,11 +54,14 @@
     }
     &.matched {
       transform: rotateY(180deg);
-      .front {
+      .game-front {
         box-shadow: 0 0 0 2px rgba(#000, 0.05) inset;
         animation: selected 0.8s 0s ease 1;
         animation-fill-mode: both;
-        opacity: 0.2;
+        opacity: 1;
+      }
+      .game-back {
+        visibility: hidden;
       }
     }
   }
@@ -69,15 +71,16 @@
   width: 12em;
   height: 3em;
   cursor: pointer;
-  color: rgb(255, 255, 255);
   border-radius: 4px;
-  font-size: 12px;
-  background-color: #6d1124;
-  border: 0;
+  font-size: 15px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
 }
 
-.centered {
+.game-result-centered {
   width: 100%;
   height: 100%;
   text-align: center;
+  color: white;
 }

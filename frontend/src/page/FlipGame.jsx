@@ -1,34 +1,30 @@
-import { useState, useEffect, useMemo } from "react";
-import cards from "@constants/carddata.json";
+import { useState, useEffect, useMemo } from 'react';
+import cards from '@constants/carddata.json';
+import Timer from '@component/Timer';
 
 const Card = ({ id, name, flipped, matched, clicked }) => {
   return (
     <div
       onClick={() => (flipped ? undefined : clicked(name, id))}
-      className={
-        "card" + (flipped ? " flipped" : "") + (matched ? " matched" : "")
-      }
+      className={'game-card' + (flipped ? ' flipped' : '') + (matched ? ' matched' : '')}
     >
-      <div className="back">?</div>
-      <div className="front">
-        <img alt={name} src={"images/" + name + ".png"} />
+      <div className='game-back'>?</div>
+      <div className='game-front'>
+        <img alt={name} src={'img/' + name + '.png'} />
       </div>
     </div>
   );
 };
 
-const GameOver = ({ restartGame }) => {
-  return (
-    <div className="centered">
-      <h1>Congrats!</h1>
-      <button className="restart-button" onClick={restartGame}>
-        Play Again?
-      </button>
-    </div>
-  );
-};
-
 function FlipGame() {
+  // timer
+  const [savedTime, setSavedTime] = useState(null);
+
+  const handleSaveTime = (time) => {
+    // Save the elapsed time to the state
+    setSavedTime(time);
+  };
+
   ///////////// HELPER FUNCTION /////////////
 
   const shuffle = (array) => {
@@ -48,16 +44,15 @@ function FlipGame() {
   ///////////// SETUP /////////////
 
   const [cardList, setCardList] = useState(
-    shuffle(cards).map((name, index) => {
+    shuffle(cards).map((card, index) => {
       return {
         id: index,
-        name: name,
+        name: card.cardItem,
         flipped: false,
         matched: false,
       };
     })
   );
-
   const [flippedCards, setFlippedCards] = useState([]);
   const [gameOver, setGameOver] = useState(false);
 
@@ -118,10 +113,10 @@ function FlipGame() {
 
   const restartGame = () => {
     setCardList(
-      shuffle(cards).map((name, index) => {
+      shuffle(cards).map((card, index) => {
         return {
           id: index,
-          name: name,
+          name: card.cardItem,
           flipped: false,
           matched: false,
         };
@@ -132,23 +127,35 @@ function FlipGame() {
     setGameOver(false);
   };
 
-  ///////////// DISPLAY /////////////
+  const GameOver = ({ restartGame }) => {
+    return (
+      <div className='game-result-centered'>
+        <h1>{savedTime !== null ? savedTime : ''}</h1>
+        <button className='restart-button' onClick={restartGame}>
+          Play Again?
+        </button>
+      </div>
+    );
+  };
 
   return (
-    <div className="game-board">
-      {!gameOver &&
-        cardList.map((card, index) => (
-          <Card
-            key={index}
-            id={index}
-            name={card.name}
-            flipped={card.flipped}
-            matched={card.matched}
-            clicked={flippedCards.length === 2 ? () => {} : handleClick}
-          />
-        ))}
-      {gameOver && <GameOver restartGame={restartGame} />}
-    </div>
+    <>
+      <Timer onSaveTime={handleSaveTime} />
+      <div className='game-board'>
+        {!gameOver &&
+          cardList.map((card, index) => (
+            <Card
+              key={index}
+              id={index}
+              name={card.name}
+              flipped={card.flipped}
+              matched={card.matched}
+              clicked={flippedCards.length === 2 ? () => {} : handleClick}
+            />
+          ))}
+        {gameOver && <GameOver restartGame={restartGame} />}
+      </div>
+    </>
   );
 }
 
