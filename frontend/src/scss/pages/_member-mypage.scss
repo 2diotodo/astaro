@@ -24,6 +24,10 @@
     animation: backglow1 15s ease infinite;
   }
 }
+.mypage-update:hover .mypage-update-inner,
+.mypage-update active .mypage-update-inner {
+  transform: rotateY(-180deg);
+}
 .mypage-update {
   background-color: transparent;
   width: 320px;
@@ -33,17 +37,13 @@
   border-radius: 5%;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   pointer-events: auto;
+  position: relative;
   .mypage-update-inner {
-    position: relative;
     width: 100%;
     height: 100%;
-    text-align: center;
-    transition: all 0.8s;
+    transition: transform 0.6s;
     transform-style: preserve-3d;
-    .mypage-update :hover .mypage-update-inner,
-    .mypage-update.active .mypage-update-inner {
-      transform: rotateY(-180deg);
-    }
+
     .mypage-front,
     .mypage-back {
       position: absolute;
@@ -75,23 +75,25 @@
     }
     .mypage-back {
       transform: rotateY(-180deg);
-      .mypage-area {
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 5%;
-        width: 80%;
-        margin: auto;
-        padding-bottom: 5%;
-        vertical-align: middle;
-        .update-form {
-          .input-box {
-            display: flex;
-            justify-content: end;
-            .input-name {
-              color: white;
-              margin-right: 5%;
-            }
-          }
-        }
+    }
+  }
+}
+.mypage-area {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5%;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 5%;
+  .update-form {
+    margin: auto;
+    .input-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 5%;
+      .input-name {
+        color: white;
+        margin-left: 5%;
       }
     }
   }
