@@ -19,7 +19,7 @@ const Title = styled.div`
   position: relative;
   font-size: 40px;
   font-family: "Nanum Myeongjo", monospace;
-  margin-top: 20%;
+  margin-top: 10%;
 `;
 const Subtitle = styled.div`
   position: relative;
@@ -163,7 +163,14 @@ function MemberMypage() {
       return;
     }
     console.log("update-memberinfo");
+    if (window.confirm("정보를 수정하시겠습니까?")) {
+      alert("수정되었습니다.");
+    } else {
+      alert("수정을 취소하셨습니다.");
+      return;
+    }
     setIsUpdated(false);
+    // setFlipped(false);
   };
 
   // 필드값을 검증한다.
@@ -206,7 +213,7 @@ function MemberMypage() {
 
   // 수정하기 누르면 수정UI+수정완료버튼으로 바꾸기
   const toggleButtonHandler = () => {
-    setIsUpdated(true);
+    setIsUpdated(false);
   };
 
   // 회원탈퇴버튼
