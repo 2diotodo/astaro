@@ -14,6 +14,7 @@ import StarPage from "./page/shootingStar/StarPage";
 import TaroResultPage from "./page/shootingStar/TaroResultPage";
 import { Background } from "@component/Background";
 import Header from "@component/common/Header";
+import FlipGame from "@page/FlipGame";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/star/chat/:id" element={<ChatPage />} />
           <Route path="/star" element={<StarPage />} />
           <Route path="/star/taro-result" element={<TaroResultPage />} />
+          <Route path="/flipgame" element={<FlipGame />} />
         </Routes>
       </Router>
     </div>

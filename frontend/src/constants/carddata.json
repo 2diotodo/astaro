@@ -1,0 +1,66 @@
+[
+  {
+    "cardId": 1,
+    "cardItem": "The Magician"
+  },
+  {
+    "cardId": 2,
+    "cardItem": "The Magician"
+  },
+  {
+    "cardId": 3,
+    "cardItem": "The Empress"
+  },
+  {
+    "cardId": 4,
+    "cardItem": "The Empress"
+  },
+  {
+    "cardId": 5,
+    "cardItem": "The Hierophant"
+  },
+  {
+    "cardId": 6,
+    "cardItem": "The Hierophant"
+  },
+  {
+    "cardId": 7,
+    "cardItem": "The Chariot"
+  },
+  {
+    "cardId": 8,
+    "cardItem": "The Chariot"
+  },
+  {
+    "cardId": 9,
+    "cardItem": "The Hermit"
+  },
+  {
+    "cardId": 10,
+    "cardItem": "The Hermit"
+  },
+  {
+    "cardId": 11,
+    "cardItem": "Justice"
+  },
+  {
+    "cardId": 12,
+    "cardItem": "Justice"
+  },
+  {
+    "cardId": 13,
+    "cardItem": "Death"
+  },
+  {
+    "cardId": 14,
+    "cardItem": "Death"
+  },
+  {
+    "cardId": 15,
+    "cardItem": "The Devil"
+  },
+  {
+    "cardId": 16,
+    "cardItem": "The Devil"
+  }
+]
