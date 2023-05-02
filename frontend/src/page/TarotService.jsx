@@ -4,7 +4,7 @@ import axios from "axios";
 import axiosInstance from "@utils/axiosInstance";
 import Input from "../component/Input";
 import ColContainer from "../component/layout/ColContainer";
-import "@css/tarocard.css";
+import "@css/tarocard.scss";
 import "@css/tarotpageslide.css";
 import TarotDeck from "@component/TarotDeck";
 import GapH from "@component/layout/GapH";
@@ -151,12 +151,17 @@ function TarotService() {
       .querySelector("#slide-from-tarot")
       .classList.remove("right-hidden");
     document.querySelector("#slide-from-category").classList.add("left-hidden");
-    Array.prototype.slice
-      .call(document.getElementsByClassName("tarot-card"))
-      .map((elem) => {
-        elem.classList.add("shuffle-card");
+    const shuffleArr = Array.prototype.slice.call(
+      document.getElementsByClassName("tarot-card")
+    );
+    shuffleArr.map((elem) => {
+      elem.classList.add("shuffle-card");
+    });
+    setTimeout(() => {
+      shuffleArr.map((elem) => {
+        elem.classList.add("shuffled");
       });
-    document.querySelector(".tarot-card").classList.add("shuffle-card");
+    }, 5000);
   };
 
   const slideFromTarotToLoading = () => {
