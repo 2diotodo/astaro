@@ -61,8 +61,8 @@ function Navbar({ setIsLogin, isLoginState }) {
 
               <div
                 className="header-font-tag"
-                onClick={() => navigateToWhat("member/membermypage")}
-                onKeyDown={() => navigateToWhat("member/membermypage")}
+                onClick={() => navigateToWhat("member/mypage")}
+                onKeyDown={() => navigateToWhat("member/mypage")}
               >
                 마이페이지&nbsp;
               </div>
@@ -70,8 +70,8 @@ function Navbar({ setIsLogin, isLoginState }) {
           ) : (
             <div
               className="header-font-tag"
-              onClick={() => navigateToWhat("member/memberlogin")}
-              onKeyDown={() => navigateToWhat("member/memberlogin")}
+              onClick={() => navigateToWhat("member/login")}
+              onKeyDown={() => navigateToWhat("member/login")}
             >
               로그인&nbsp;
             </div>
