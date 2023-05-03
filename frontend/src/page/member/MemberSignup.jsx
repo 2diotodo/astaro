@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { signup, duplicateId } from "@features/memberSlice";
 import Input from "@component/Input";
+import Button from "@component/Button";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -13,23 +14,22 @@ const Title = styled.div`
   color: white;
   position: relative;
   font-size: 40px;
-  font-family: "Nanum Myeongjo", monospace;
-  margin: 15% 0 5% 0;
+  margin: 10% 0 10% 0;
 `;
 
 const ErrorMessage = styled.div`
   color: white;
 `;
-const Button = styled.button`
-  width: 50%;
-  position: relative;
-  padding: 5px 20px;
-  margin: 10%;
-  border: 1px solid white;
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  font-size: 20px;
-`;
+// const Button = styled.button`
+//   width: 50%;
+//   position: relative;
+//   padding: 5px 20px;
+//   margin: 10%;
+//   border: 1px solid white;
+//   background-color: rgba(0, 0, 0, 0);
+//   color: white;
+//   font-size: 20px;
+// `;
 const DuplicateButteon = styled.button`
   width: 13;
   position: relative;
@@ -135,9 +135,17 @@ function MemberSignup() {
               width={"34%"}
               textIndent={"0px"}
             />
-            <DuplicateButteon type="button" onClick={checkDuplicateId}>
-              중복확인
-            </DuplicateButteon>
+            <Button
+              type="button"
+              onClick={checkDuplicateId}
+              style={{
+                width: "16%",
+                marginLeft: "5%",
+                fontSize: "15px",
+              }}
+            >
+              확인
+            </Button>
             {checkId() && (
               <ErrorMessage>한글과 특수문자는 사용할 수 없어요</ErrorMessage>
             )}
@@ -189,7 +197,9 @@ function MemberSignup() {
             {errors.email && checkEmail() && (
               <ErrorMessage>유효하지 않은 이메일이에요</ErrorMessage>
             )}
-            <Button type="submit">회원가입</Button>
+            <Button type="submit" style={{ margin: "10%" }}>
+              회원가입
+            </Button>
           </form>
         </div>
       </Wrapper>
