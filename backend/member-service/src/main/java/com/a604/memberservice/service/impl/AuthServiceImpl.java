@@ -7,12 +7,12 @@ import com.a604.memberservice.entity.Member;
 import com.a604.memberservice.repository.MemberRepository;
 import com.a604.memberservice.service.AuthService;
 import com.a604.memberservice.util.JwtUtil;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.Cookie;
 import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -71,8 +71,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public TokenResponseDto reissuance(Cookie cookie) {
-        return new TokenResponseDto();
+    public TokenResponseDto reissuance(String refreshToken) {
+
+        Claims claims = jwtUtil.getClaimsFromToken(refreshToken);
+        Long memberSeq = claims.get("memberSeq", Long.class);
+
+        Member member = memberRepository.findById(memberSeq).get();
+
+        return jwtUtil.generateToken(member);
     }
 
     @Override

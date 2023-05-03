@@ -6,7 +6,6 @@ import com.a604.memberservice.dto.response.GetMemberDto;
 import com.a604.memberservice.dto.response.TokenResponseDto;
 import com.a604.memberservice.entity.Member;
 
-import javax.servlet.http.Cookie;
 import java.util.Optional;
 
 public interface AuthService {
@@ -18,7 +17,7 @@ public interface AuthService {
     public boolean writeMember(SignUpRequestDto signUpRequestDto);
 
     // 토큰 재발급
-    public TokenResponseDto reissuance(Cookie cookie);
+    public TokenResponseDto reissuance(String refreshToken);
 
     // 아이디 중복 체크
     public boolean checkIdDuplicate(String memeberId);

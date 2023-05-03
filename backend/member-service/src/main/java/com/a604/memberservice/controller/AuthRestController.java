@@ -52,8 +52,7 @@ public class AuthRestController {
             response.addCookie(refreshCookie);
 
             result.put("message", "로그인 성공");
-            result.put("accessToken", token.get().getAccessToken());
-            result.put("refreshToken", token.get().getRefreshToken());
+            result.put("status", "200");
 
             return new ResponseEntity<>(result, HttpStatus.OK);
 
@@ -73,7 +72,7 @@ public class AuthRestController {
         authService.writeMember(signUpRequestDto);
 
         result.put("message", "회원가입 성공");
-
+        result.put("status", "200");
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -100,13 +99,14 @@ public class AuthRestController {
         response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
 
-        result.put("message", "로그아웃 성공 성공");
+        result.put("message", "로그아웃 성공");
+        result.put("status", "200");
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/reissuance")
-    public ResponseEntity<Map<String, String>> reissuance(HttpServletRequest request) {
+    public ResponseEntity<Map<String, String>> reissuance(HttpServletRequest request, HttpServletResponse response) {
 
         Map<String, String> result = new HashMap<>();
 
@@ -114,15 +114,38 @@ public class AuthRestController {
 
             for (Cookie cookie : request.getCookies()) {
                 if (cookie.getName().equals("refreshToken")) {
+                    TokenResponseDto token = authService.reissuance(cookie.getValue());
 
+                    Cookie accessCookie = new Cookie("accessToken", token.getAccessToken());
+                    accessCookie.setHttpOnly(true);
+                    accessCookie.setSecure(true);
+                    accessCookie.setMaxAge(10 * 60); // 30분
+                    accessCookie.setPath("/");
+                    accessCookie.setDomain("localhost");
+
+                    Cookie refreshCookie = new Cookie("refreshToken", token.getRefreshToken());
+                    refreshCookie.setHttpOnly(true);
+                    refreshCookie.setSecure(true);
+                    refreshCookie.setMaxAge(24 * 60 * 60); // 24시간
+                    refreshCookie.setPath("/");
+                    refreshCookie.setDomain("localhost");
+
+                    response.addCookie(accessCookie);
+                    response.addCookie(refreshCookie);
+
+                    result.put("message", "토큰 재발급 성공");
+                    result.put("status", "200");
+
+                    return new ResponseEntity<>(result, HttpStatus.OK);
                 }
             }
 
-        } else {
-
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        result.put("message", "토큰 재발급 실패");
+        result.put("status", "401");
+
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     // 아이디 중복 체크
