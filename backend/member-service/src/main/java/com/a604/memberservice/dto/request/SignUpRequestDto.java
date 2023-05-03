@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignUpMemberDto {
+public class SignUpRequestDto {
 
     private Long memberSeq;
     private String memberId;
