@@ -4,7 +4,14 @@ import styled from 'styled-components';
 import '@css/todayresult.css';
 import { Link } from "react-router-dom";
 
-export function Result(){
+export function TodayResult(){
+
+  const randomNum = Math.floor(Math.random() * 23 );
+  console.log(randomNum); 
+
+  
+
+
   return(
     <Back>
       
@@ -15,7 +22,8 @@ export function Result(){
               <Img src={slide_image} alt="pic5" className="photos"  />
                 
               
-              <StyledDiv>내용</StyledDiv>
+              <StyledDiv>내용{randomNum}</StyledDiv>
+              
             </FlexBox>
             <FlexBox>
               <StyledDiv>
