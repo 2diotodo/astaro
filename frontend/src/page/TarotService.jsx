@@ -211,7 +211,7 @@ function TarotService() {
         </ColContainer>
         <ColContainer
           id="slide-from-loading"
-          style={{ position: "absolute" }}
+          style={{ position: "absolute", top:0 }}
           className="slide-in right-hidden"
           justify="start"
         >

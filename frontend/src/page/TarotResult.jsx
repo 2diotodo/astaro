@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 import "@/css/swiper-custom.css";
 import styled from "styled-components";
-import UpDownContainer from "@component/layout/UpDownContainer";
 import Medium from "@component/text/Medium";
 import ColContainer from "@component/layout/ColContainer";
 import GapH from "@component/layout/GapH";
 import Small from "@component/text/Small";
-import TarotCard from "@component/TarotCard";
 import { useSelector } from "react-redux";
 import tarotCardArr from "@assets/TarotCardArr";
+import TarotCard from "@component/TarotCard";
 
 SwiperCore.use([Pagination]);
 
 const SlideWrapper = styled.div`
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 `;
 
 const PaginationWrapper = styled.div`
@@ -36,13 +41,16 @@ const ResultDiv = styled.div`
 `
 
 function TarotResult() {
+  const [swiperIndex, setSwiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
   const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
   const respStory = useSelector((state) => state.tarot.stateStory);
-  const tarotCardsSeq = useSelector((state) => state.tarot.stateCardsSeq);
-
+  const tarotCardsInfo = useSelector((state) => state.tarot.stateCardsInfo);
+  useEffect(() => {
+    console.log(tarotCardsInfo);
+  }, [swiperIndex]);
   return (
-    <UpDownContainer height="80vh">
+    <div>
       <StyledSwiper
         spaceBetween={50}
         slidesPerView={1}
@@ -54,22 +62,34 @@ function TarotResult() {
         }}
       >
         <SwiperSlide>
-          <ColContainer height="100%" className="tarot-result">
-            <img width="200px" src={tarotCardArr[0].image}  alt={tarotCardArr[0]}/>
-            <GapH height="10vh"/>
+          <SlideWrapper>
+            <TarotCard
+              card={tarotCardsInfo[0]}
+              className="selected-tarocard"
+            />
             <ResultDiv>
               <Small style={{lineHeight:"2em"}}>{tarotResults[0]}</Small>
             </ResultDiv>
-          </ColContainer>
-          </SwiperSlide>
-        <SwiperSlide>
-          <SlideWrapper>
-            <Medium>{tarotResults[1]}</Medium>
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
           <SlideWrapper>
-            <Small>{tarotResults[2]}</Small>
+              <img width="200px" src={tarotCardArr[1].image}  alt={tarotCardArr[1]}/>
+              <GapH height="10vh"/>
+              <ResultDiv>
+                <Small style={{lineHeight:"2em"}}>{tarotResults[1]}</Small>
+              </ResultDiv>
+          </SlideWrapper>
+        </SwiperSlide>
+        <SwiperSlide>
+          <SlideWrapper>
+            <ColContainer height="100%" className="tarot-result">
+              <img width="200px" src={tarotCardArr[0].image}  alt={tarotCardArr[0]}/>
+              <GapH height="10vh"/>
+              <ResultDiv>
+                <Small style={{lineHeight:"2em"}}>{tarotResults[0]}</Small>
+              </ResultDiv>
+            </ColContainer>
           </SlideWrapper>
         </SwiperSlide>
 
@@ -95,7 +115,7 @@ function TarotResult() {
       <PaginationWrapper>
         <div className="swiper-pagination" />
       </PaginationWrapper>
-    </UpDownContainer>
+    </div>
   );
 };
 

@@ -4,7 +4,23 @@ const initialState = {
   stateCategory: null,
   stateMessage: null,
   stateCards: ["The Star", "The Emperor", "The High Priestess"],
-  stateCardsSeq: [4,7,5],
+  stateCardsInfo: [
+    {
+      "id": 20,
+      "name": "The Sun",
+      "image": "/static/media/1-20.155c5f41cdaa9dc6a1fb.png"
+    },
+    {
+      "id": 3,
+      "name": "The High Priestess",
+      "image": "/static/media/1-03.e5e919becc53974b3b33.png"
+    },
+    {
+      "id": 19,
+      "name": "The Moon",
+      "image": "/static/media/1-19.f8be0094c627ba1b0814.png"
+    }
+  ],
   stateResults: [
     "The Star 카드는 희망과 긍정적인 변화를 의미합니다. 이 카드는 당신이 연애에 대한 강한 욕망을 가지고 있음을 보여줍니다. 이제 당신은 과거의 상처를 극복하고 새로운 시작을 하려는 의지를 가지고 있습니다.",
     "The Emperor 카드는 안정적이고 권위 있는 에너지를 나타냅니다. 이 카드는 당신이 연애에 대한 책임감과 결정력을 가지고 있음을 보여줍니다. 당신은 직감을 믿고 자신의 선택을 할 준비가 되어 있습니다.",
@@ -28,8 +44,8 @@ const tarotSlice = createSlice({
     setStateCards: (state, action) => {
       state.stateCards = action.payload;
     },
-    setStateCardsSeq: (state, action) => {
-      state.stateCardsSeq = action.payload;
+    setStateCardsInfo: (state, action) => {
+      state.stateCardsInfo = action.payload;
     },
     setStateResults: (state, action) => {
       state.stateResults = action.payload;
@@ -44,6 +60,6 @@ const tarotSlice = createSlice({
   extraReducers: (builder) => {},
 });
 
-export const { setStateCategory, setStateMessage, setStateCards, setStateCardsSeq
+export const { setStateCategory, setStateMessage, setStateCards, setStateCardsInfo
 ,setStateResults, setStateStory, setStateImgUrl} = tarotSlice.actions;
 export default tarotSlice.reducer;

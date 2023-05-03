@@ -3,11 +3,11 @@ import ColContainer from "@component/layout/ColContainer";
 import RowContainer from "@component/layout/RowContainer";
 import "@css/tarocard.scss";
 import GapH from "@component/layout/GapH";
-import Subtitle from "@component/text/Subtitle";
 import { useDispatch } from "react-redux";
-import { setStateCards, setStateCardsSeq } from "@features/tarotSlice";
+import { setStateCards, setStateCardsInfo } from "@features/tarotSlice";
 import TarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/TarotCard";
+import Medium from "@component/text/Medium";
 
 let tarotCardArr = TarotCardArr;
 
@@ -57,15 +57,15 @@ const TarotDeck = () => {
     dispatch(setStateCards(newSelectedCards));
 
     let newSelectedCardsSeq = [...selectedCardsSeq];
-    newSelectedCardsSeq.push(card.id);
+    newSelectedCardsSeq.push(card);
     setSelectedCardsSeq(newSelectedCardsSeq);
-    dispatch(setStateCardsSeq(newSelectedCardsSeq));
+    dispatch(setStateCardsInfo(newSelectedCardsSeq));
   };
 
   return (
     <ColContainer height="75vh">
-      <GapH height="4vh" />
-      <Subtitle>3장의 카드를 뽑아주세요.</Subtitle>
+      <GapH height="2vh" />
+      <Medium>3장의 카드를 뽑아주세요.</Medium>
       <GapH height="350px" />
       <RowContainer
         justify="center"

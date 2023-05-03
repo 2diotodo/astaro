@@ -10,11 +10,6 @@ import { Link } from "react-router-dom";
 import "@css/flip.css";
 import "@css/carousel.css";
 import slide_image from '@assets/img/Taro_back.png';
-import slide_image1 from '@assets/img/Taro_back5.png';
-import slide_image2 from '@assets/img/Taro_back4.png';
-import slide_image3 from '@assets/img/Taro_back3.png';
-import slide_image4 from '@assets/img/Taro_back2.png';
-import slide_image5 from '@assets/img/Taro_back1.png';
 
 import { EffectCoverflow, EffectFlip } from "swiper";
 import styled from "styled-components";
