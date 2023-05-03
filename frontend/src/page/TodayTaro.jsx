@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
+import { Link } from "react-router-dom";
 
 import "@css/flip.css";
 import "@css/carousel.css";
@@ -16,6 +17,7 @@ import slide_image4 from '@assets/img/Taro_back2.png';
 import slide_image5 from '@assets/img/Taro_back1.png';
 
 import { EffectCoverflow, EffectFlip } from "swiper";
+import styled from "styled-components";
 
 export default function TodayTaro() {
   const swiperRef = useRef(null);
@@ -305,6 +307,20 @@ export default function TodayTaro() {
           <img src={slide_image} alt="pic5" className="photos" />
         </SwiperSlide> */}
       </Swiper>
+      <LinkWrapper>
+        <Link to="/todayresult">결과보기</Link>
+      </LinkWrapper>
     </>
   );
 }
+
+const LinkWrapper = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  z-index: 1;
+  position: relative;
+`
