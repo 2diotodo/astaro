@@ -40,6 +40,9 @@ public class Member {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "profile")
+    private String profile;
+
     @Column(name = "lux")
     private Integer lux;
 
