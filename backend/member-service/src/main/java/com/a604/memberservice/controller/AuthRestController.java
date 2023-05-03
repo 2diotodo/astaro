@@ -37,7 +37,7 @@ public class AuthRestController {
             Cookie accessCookie = new Cookie("accessToken", token.get().getAccessToken());
             accessCookie.setHttpOnly(true);
             accessCookie.setSecure(true);
-            accessCookie.setMaxAge(10 * 60); // 30분
+            accessCookie.setMaxAge(30 * 60); // 30분
             accessCookie.setPath("/");
             accessCookie.setDomain("localhost");
 
@@ -119,7 +119,7 @@ public class AuthRestController {
                     Cookie accessCookie = new Cookie("accessToken", token.getAccessToken());
                     accessCookie.setHttpOnly(true);
                     accessCookie.setSecure(true);
-                    accessCookie.setMaxAge(10 * 60); // 30분
+                    accessCookie.setMaxAge(30 * 60); // 30분
                     accessCookie.setPath("/");
                     accessCookie.setDomain("localhost");
 
