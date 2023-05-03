@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   category: null,
   cards: [],
+  cardsSeq: [],
 };
 
 const tarotSlice = createSlice({
@@ -15,9 +16,12 @@ const tarotSlice = createSlice({
     setCards: (state, action) => {
       state.cards = action.payload;
     },
+    setCardsSeq: (state, action) => {
+      state.cardsSeq = action.payload;
+    },
   },
   extraReducers: (builder) => {},
 });
 
-export const { setCategory, setCards } = tarotSlice.actions;
+export const { setCategory, setCards, setCardsSeq } = tarotSlice.actions;
 export default tarotSlice.reducer;

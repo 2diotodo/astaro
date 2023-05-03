@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29fc0633-107a-41f1-b295-6c90386af4ea" name="Changes" comment="" />
+    <list default="true" id="29fc0633-107a-41f1-b295-6c90386af4ea" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taro-service/src/main/java/com/a604/taroservice/dto/TaroResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/taro-service/src/main/java/com/a604/taroservice/data/dto/TaroResultDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taro-service/src/main/java/com/a604/taroservice/dto/TodayTaroDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/taro-service/src/main/java/com/a604/taroservice/data/dto/TodayTaroDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/component/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/component/TarotDeck.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/css/tarocard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/css/tarocard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/page/member/MemberLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/page/member/MemberLogin.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,9 +32,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/SSAFY/Desktop/project/S08P31A604/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\SSAFY\Desktop\project\S08P31A604\backend\taro-service\src\main\java\com\a604\taroservice\data" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -35,7 +59,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682899325231</updated>
+      <workItem from="1683077055055" duration="1277000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

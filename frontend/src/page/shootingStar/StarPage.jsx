@@ -5,8 +5,6 @@ import SwiperCore, { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "@/css/swiper-custom.css";
-
-import { Background } from "@component/Background";
 import ShootingStars from "@/component/shootingStar/ShootingStarBackground";
 
 SwiperCore.use([Pagination]);
@@ -66,7 +64,7 @@ const StarPage = () => {
           direction: "horizontal",
         }}
       >
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
             <Category>
               <p>연애</p>
@@ -74,7 +72,7 @@ const StarPage = () => {
             <ShootingStars key={shootingStarsKey} />
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>
@@ -82,7 +80,7 @@ const StarPage = () => {
             </Category>
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>
@@ -90,7 +88,7 @@ const StarPage = () => {
             </Category>
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>

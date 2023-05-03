@@ -4,32 +4,33 @@ import { useNavigate } from "react-router";
 import { login } from "@features/memberSlice";
 import Input from "@component/Input";
 import styled from "styled-components";
+import Button from "@component/Button";
 
 const Wrapper = styled.div`
   height: 80%;
   width: 100%;
   position: absolute;
   display: flex;
+  justify-content: center;
 `;
 
 const Title = styled.div`
   color: white;
   position: relative;
   font-size: 40px;
-  font-family: "Nanum Myeongjo", monospace;
   margin: 15% 0 10% 0;
 `;
 
-const Button = styled.button`
-  width: 50%;
-  position: relative;
-  padding: 5px 20px;
-  margin: 3%;
-  border: 1px solid white;
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  font-size: 20px;
-`;
+// const Button = styled.button`
+//   width: 50%;
+//   position: relative;
+//   padding: 5px 20px;
+//   margin: 3%;
+//   border: 1px solid white;
+//   background-color: rgba(0, 0, 0, 0);
+//   color: white;
+//   font-size: 20px;
+// `;
 
 function MemberLogin() {
   const dispatch = useDispatch();
@@ -119,7 +120,6 @@ function MemberLogin() {
     navigate("/member/membersignup");
   };
   return (
-    <>
       <Wrapper>
         <div className="login" style={{ justifyContent: "center" }}>
           <Title className="login-text">로그인</Title>
@@ -152,16 +152,16 @@ function MemberLogin() {
             {touched.password && errors.password && (
               <span>{errors.password}</span>
             )}
+            <br/>
             <Button type="submit" style={{ marginTop: "10%" }}>
               로그인
             </Button>
           </form>
-          <Button type="button" onClick={signupHandler}>
+          <Button margin="30px" type="button" onClick={signupHandler}>
             <div className="signup-button">회원가입</div>
           </Button>
         </div>
       </Wrapper>
-    </>
   );
 }
 
