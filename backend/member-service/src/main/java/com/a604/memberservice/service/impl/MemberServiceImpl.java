@@ -1,8 +1,7 @@
 package com.a604.memberservice.service.impl;
 
-import com.a604.memberservice.dto.request.SignUpMemberDto;
+import com.a604.memberservice.dto.request.SignUpRequestDto;
 import com.a604.memberservice.dto.response.GetMemberDto;
-import com.a604.memberservice.entity.Member;
 import com.a604.memberservice.repository.MemberRepository;
 import com.a604.memberservice.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +34,14 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public void writeMember(SignUpMemberDto signUpMemberDto) {
-        memberRepository.save(toEntity(signUpMemberDto));
+    public void writeMember(SignUpRequestDto signUpRequestDto) {
+        memberRepository.save(toEntity(signUpRequestDto));
     }
 
     @Override
     public Optional<GetMemberDto> getMember(String memberId) {
         return Optional.ofNullable(toDto(memberRepository.findByMemberId(memberId).orElseThrow()));
     }
-
-
 
 
 }

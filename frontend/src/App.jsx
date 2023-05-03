@@ -36,6 +36,7 @@ function App() {
           <Route path="/star/chat/:id" element={<ChatPage />} />
           <Route path="/star" element={<StarPage />} />
           <Route path="/star/taro-result" element={<TaroResultPage />} />
+          <Route path="/flipgame" element={<FlipGame />} />
         </Routes>
       </Router>
     </div>

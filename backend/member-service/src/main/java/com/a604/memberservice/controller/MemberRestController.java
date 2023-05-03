@@ -1,7 +1,6 @@
 package com.a604.memberservice.controller;
 
-import com.a604.memberservice.dto.request.SignUpMemberDto;
-import com.a604.memberservice.dto.request.LoginRequestDto;
+import com.a604.memberservice.dto.request.SignUpRequestDto;
 import com.a604.memberservice.dto.response.GetMemberDto;
 import com.a604.memberservice.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,12 @@ public class MemberRestController {
 
     // 회원가입
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody SignUpMemberDto signUpMemberDto) {
+    public ResponseEntity<String> signup(@RequestBody SignUpRequestDto signUpRequestDto) {
 
         String result = "성공 ㅎ";
 
 
-        memberService.writeMember(signUpMemberDto);
+        memberService.writeMember(signUpRequestDto);
 
 
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -45,20 +44,19 @@ public class MemberRestController {
 
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody GetMemberDto getMemberDto){
+    public ResponseEntity<Map<String, Object>> login(@RequestBody GetMemberDto getMemberDto) {
         Map<String, Object> result = new HashMap<>();
         try {
             GetMemberDto checkMemberDto = memberService.getMember(getMemberDto.getMemberId()).orElseThrow(() -> new NoSuchElementException("data is null"));
-            if(checkMemberDto.getPassword().equals(getMemberDto.getPassword())){
+            if (checkMemberDto.getPassword().equals(getMemberDto.getPassword())) {
                 result.put("data", checkMemberDto);
                 result.put("message", "로그인 SUCCESS");
-            }
-            else{
+            } else {
                 result.put("message", "비밀번호 INCORRECT");
                 return new ResponseEntity<>(result, HttpStatus.EXPECTATION_FAILED);
             }
 
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             result.put("message", "아이디 INCORRECT");
             return new ResponseEntity<>(result, HttpStatus.EXPECTATION_FAILED);
         }
