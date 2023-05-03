@@ -150,7 +150,7 @@ public class AuthRestController {
 
     // 아이디 중복 체크
     @GetMapping("check/id/{memberId}")
-    public ResponseEntity<Map<String,String>> checkAvailableId(@PathVariable String memberId) {
+    public ResponseEntity<Map<String, String>> checkAvailableId(@PathVariable String memberId) {
 
         Map<String, String> result = new HashMap<>();
 
@@ -158,7 +158,7 @@ public class AuthRestController {
             result.put("message", "이미 사용중인 ID입니다.");
             result.put("status", "409");
 
-            return new ResponseEntity<>(result, HttpStatus.CONFLICT)
+            return new ResponseEntity<>(result, HttpStatus.CONFLICT);
         }
 
         result.put("message", "사용 가능한 ID 입니다.");
@@ -169,15 +169,15 @@ public class AuthRestController {
 
     // 닉네임 중복 체크
     @GetMapping("check/nickname/{nickname}")
-    public ResponseEntity<Map<String,String>> checkAvailableNickname(@PathVariable String nickname) {
-        
+    public ResponseEntity<Map<String, String>> checkAvailableNickname(@PathVariable String nickname) {
+
         Map<String, String> result = new HashMap<>();
 
         if (authService.checkIdDuplicate(nickname)) {
             result.put("message", "이미 사용중인 닉네임입니다.");
             result.put("status", "409");
 
-            return new ResponseEntity<>(result, HttpStatus.CONFLICT)
+            return new ResponseEntity<>(result, HttpStatus.CONFLICT);
         }
 
         result.put("message", "사용 가능한 닉네임입니다.");
@@ -188,7 +188,7 @@ public class AuthRestController {
 
     // 이메일 중복 체크
     @GetMapping("check/email/{email}")
-    public ResponseEntity<Map<String,String>> checkAvailableEmail(@PathVariable String email) {
+    public ResponseEntity<Map<String, String>> checkAvailableEmail(@PathVariable String email) {
 
         Map<String, String> result = new HashMap<>();
 
@@ -196,7 +196,7 @@ public class AuthRestController {
             result.put("message", "이미 사용중인 닉네임입니다.");
             result.put("status", "409");
 
-            return new ResponseEntity<>(result, HttpStatus.CONFLICT)
+            return new ResponseEntity<>(result, HttpStatus.CONFLICT);
         }
 
         result.put("message", "사용 가능한 닉네임입니다.");
