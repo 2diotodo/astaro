@@ -4,7 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="" />
+    <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/TarotCardArr.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/TarotCardArr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-01.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-01.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-02.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-02.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-03.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-03.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-04.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-04.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-05.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-05.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-06.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-06.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-07.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-07.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-08.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-08.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-09.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-09.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-10.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-11.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-11.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-12.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-13.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-13.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-14.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-15.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-15.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-16.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-17.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-17.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-18.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-18.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-19.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-19.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-20.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-20.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-21.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-21.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-22.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-22.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/tarotimg/1-23.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-23.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/TarotCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/TarotCategory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/TarotDeck.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/layout/ColContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/layout/ColContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/layout/UpDownContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/layout/UpDownContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/carousel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/todayresult.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/todayresult.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/tarotSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tarotSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TarotResult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TarotService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TodayResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TodayResult.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,10 +51,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="com.haulmont.rcb.arrow_function_component" />
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="com.haulmont.rcb.function_component" />
+        <option value="com.haulmont.rcb.arrow_function_component" />
       </list>
     </option>
   </component>
@@ -31,26 +69,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SSAFY/Desktop/project/S08P31A604/frontend/src/component/text&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\SSAFY\\Desktop\\project\\S08P31A604\\frontend\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "C:/Users/SSAFY/Desktop/project/S08P31A604/backend/member-service",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\SSAFY\\Desktop\\project\\S08P31A604\\frontend\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -104,7 +142,8 @@
       <workItem from="1682300947012" duration="90815000" />
       <workItem from="1682815785823" duration="7695000" />
       <workItem from="1682905823006" duration="2523000" />
-      <workItem from="1682909928446" duration="45139000" />
+      <workItem from="1682909928446" duration="46162000" />
+      <workItem from="1683076359233" duration="17215000" />
     </task>
     <servers />
   </component>

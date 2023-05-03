@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import RowContainer from "@component/layout/RowContainer";
 import Button from "@component/Button";
 import GapH from "@component/layout/GapH";
-import { setCategory } from "@features/tarotSlice";
+import { setStateCategory } from "@features/tarotSlice";
 
 function TarotCategory() {
   const dispatch = useDispatch();
   const handleCategory = (event) => {
-    dispatch(setCategory(event.target.innerText));
+    dispatch(setStateCategory(event.target.innerText));
   };
 
   return (

@@ -5,8 +5,6 @@ import SwiperCore, { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "@/css/swiper-custom.css";
-
-import { Background } from "@component/Background";
 import ShootingStars from "@/component/shootingStar/ShootingStarBackground";
 
 SwiperCore.use([Pagination]);

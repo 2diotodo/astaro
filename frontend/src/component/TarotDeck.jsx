@@ -5,7 +5,7 @@ import "@css/tarocard.scss";
 import GapH from "@component/layout/GapH";
 import Subtitle from "@component/text/Subtitle";
 import { useDispatch } from "react-redux";
-import { setCards, setCardsSeq } from "@features/tarotSlice";
+import { setStateCards, setStateCardsSeq } from "@features/tarotSlice";
 import TarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/TarotCard";
 
@@ -13,7 +13,7 @@ let tarotCardArr = TarotCardArr;
 
 const TarotDeck = () => {
   const selectedCardWidth = 100 * 1.24;
-  const selectedCardMargin = 12;
+  const selectedCardMargin = 10;
   const dispatch = useDispatch();
   const [cardIndex, setCardIndex] = useState(0);
   const coordinates = [
@@ -27,7 +27,6 @@ const TarotDeck = () => {
   useEffect(() => {}, []);
 
   const handleCardClick = (card) => {
-    console.log(card);
     let selectedCard = document.querySelector("#card" + card.id);
     if (selectedCard.classList.contains("selected-tarocard")) {
       return;
@@ -55,24 +54,24 @@ const TarotDeck = () => {
     let newSelectedCards = [...selectedCards];
     newSelectedCards.push(card.name);
     setSelectedCards(newSelectedCards);
-    dispatch(setCards(newSelectedCards));
+    dispatch(setStateCards(newSelectedCards));
 
     let newSelectedCardsSeq = [...selectedCardsSeq];
     newSelectedCardsSeq.push(card.id);
     setSelectedCardsSeq(newSelectedCardsSeq);
-    dispatch(setCardsSeq(newSelectedCardsSeq));
+    dispatch(setStateCardsSeq(newSelectedCardsSeq));
   };
 
   return (
     <ColContainer height="75vh">
-      <GapH height="80px" />
+      <GapH height="4vh" />
       <Subtitle>3장의 카드를 뽑아주세요.</Subtitle>
       <GapH height="350px" />
       <RowContainer
         justify="center"
         height="100%"
         class="filp-card"
-        style={{ position: "relative" }}
+        style={{ position: "relative"}}
       >
         {tarotCardArr.map((card) => (
           <TarotCard

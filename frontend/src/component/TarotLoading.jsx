@@ -7,7 +7,7 @@ import GapH from "@component/layout/GapH";
 
 function TarotLoading() {
   return (
-    <ColContainer height="50vh">
+    <ColContainer height="30vh">
       <SmallMedium>점괘를 해석중입니다.</SmallMedium>
       <br />
       <SmallMedium>잠시 기다려주시기 바랍니다.</SmallMedium>
