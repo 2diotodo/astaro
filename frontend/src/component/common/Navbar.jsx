@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { useSelector, useDispatch } from "react-redux";
 
-function Navbar() {
+function Navbar({ setIsLogin, isLoginState }) {
   const navigate = useNavigate();
-
-  // 로그인 여부 확인
-  const [isLogin, setIsLogin] = useState(() => {
-    const token = localStorage.getItem("token");
-    return !!token;
-  });
-
-  // 로그인상태 가져오기
-  const isLoginState = useSelector((state) => state.loginCheck);
 
   // NavState 가져오기
   const navState = useSelector((state) => state.navBars);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(isLoginCheck(isLogin));
-  }, []);
 
   // 페이지 이동 함수
   const navigateToWhat = (linkParam) => {
