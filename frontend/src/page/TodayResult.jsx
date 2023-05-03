@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import '@css/todayresult.css';
 import { Link } from "react-router-dom";
 
-export function Result(){
+export function TodayResult(){
   return(
     <Back>
       
