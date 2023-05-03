@@ -224,7 +224,7 @@ function MemberMypage() {
     } else {
       alert("탈퇴를 취소하셨습니다.");
     }
-    // navigate("/member/membersignup");
+    // navigate("/member/signup");
   };
 
   // modal 관리
