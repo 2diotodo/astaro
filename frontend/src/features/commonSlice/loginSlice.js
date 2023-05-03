@@ -10,7 +10,6 @@ const loginSlice = createSlice({
   name: "loginSlice",
   initialState: initialState,
   reducers: {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isLoginCheck: (state, action) => {
       state.isLogin = action.payload;
     },
