@@ -48,6 +48,10 @@ const TarotDeck = () => {
       `transform: translate(${toMove}px, -240px) rotateY(-180deg);`
     );
 
+    setTimeout(()=>{
+      selectedCard.children[1].style.display = 'none';
+    }, 1000)
+
     let newSelectedCards = [...selectedCards];
     newSelectedCards.push(card.name);
     setSelectedCards(newSelectedCards);

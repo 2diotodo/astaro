@@ -48,7 +48,6 @@ function TarotCard({ card, selected, onClick }) {
           position: "relative",
           zIndex: 10,
           backfaceVisibility: "hidden",
-          // transform: "rotateY(-180deg)",
         }}
       />
       <TarotCardBackImage
