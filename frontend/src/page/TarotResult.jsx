@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
 import "@/css/swiper-custom.css";
 import styled from "styled-components";
 import UpDownContainer from "@component/layout/UpDownContainer";
 import Medium from "@component/text/Medium";
+import ColContainer from "@component/layout/ColContainer";
+import GapH from "@component/layout/GapH";
+import Small from "@component/text/Small";
+import TarotCard from "@component/TarotCard";
+import { useSelector } from "react-redux";
+import tarotCardArr from "@assets/TarotCardArr";
 
 SwiperCore.use([Pagination]);
 
 const SlideWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
+  width: 400px;
 `;
 
 const PaginationWrapper = styled.div`
@@ -27,22 +30,22 @@ const StyledSwiper = styled(Swiper)`
   height: 100%;
 `;
 
+const ResultDiv = styled.div`
+  width:80vw;
+  max-width: 400px;
+`
+
 function TarotResult() {
-  const [swiperIndex, setSwiperIndex] = useState(0);
-
-  const handleSwiperChange = (index) => {
-    setSwiperIndex(index);
-  };
-
-  useEffect(() => {
-  }, [swiperIndex]);
+  const tarotResults = useSelector((state) => state.tarot.stateResults);
+  const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
+  const respStory = useSelector((state) => state.tarot.stateStory);
+  const tarotCardsSeq = useSelector((state) => state.tarot.stateCardsSeq);
 
   return (
-    <UpDownContainer>
+    <UpDownContainer height="80vh">
       <StyledSwiper
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={(swiper) => handleSwiperChange(swiper.activeIndex)}
         pagination={{
           clickable: true,
           el: ".swiper-pagination",
@@ -51,23 +54,41 @@ function TarotResult() {
         }}
       >
         <SwiperSlide>
+          <ColContainer height="100%" className="tarot-result">
+            <img width="200px" src={tarotCardArr[0].image}  alt={tarotCardArr[0]}/>
+            <GapH height="10vh"/>
+            <ResultDiv>
+              <Small style={{lineHeight:"2em"}}>{tarotResults[0]}</Small>
+            </ResultDiv>
+          </ColContainer>
+          </SwiperSlide>
+        <SwiperSlide>
           <SlideWrapper>
-            <Medium>ㅎ1</Medium>
+            <Medium>{tarotResults[1]}</Medium>
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
           <SlideWrapper>
-            <Medium>ㅎ2</Medium>
+            <Small>{tarotResults[2]}</Small>
           </SlideWrapper>
         </SwiperSlide>
+
         <SwiperSlide>
           <SlideWrapper>
-            <p>학업</p>
-          </SlideWrapper>
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideWrapper>
-            <p>진로</p>
+            <ColContainer
+              id="slide-from-story"
+              style={{ position: "absolute" }}
+              className="slide-in right-hidden"
+            >
+              <GapH height="10vh" />
+              <Medium>- 당신의 이야기 -</Medium>
+              <ColContainer width="80vw" gap="35px">
+                <div className="selected-tarocard">
+                  <img alt="img" src={dalleImgUrl} width="256px" height="256px" />
+                </div>
+                <Small lineHeight="2em">{respStory}</Small>
+              </ColContainer>
+            </ColContainer>
           </SlideWrapper>
         </SwiperSlide>
       </StyledSwiper>

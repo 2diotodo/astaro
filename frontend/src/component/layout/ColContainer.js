@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ColContainer = styled.div`
   width: ${(props) => props.width || "auto"};
-  height: ${(props) => props.height || "100%"};
+  height: ${(props) => props.height || "auto"};
   display: flex;
   flex-direction: ${(props) => props.direction || "column"};
   justify-content: ${(props) => props.justify || "center"};

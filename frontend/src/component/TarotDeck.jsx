@@ -5,7 +5,7 @@ import "@css/tarocard.scss";
 import GapH from "@component/layout/GapH";
 import Subtitle from "@component/text/Subtitle";
 import { useDispatch } from "react-redux";
-import { setCards, setCardsSeq } from "@features/tarotSlice";
+import { setStateCards, setStateCardsSeq } from "@features/tarotSlice";
 import TarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/TarotCard";
 
@@ -27,7 +27,6 @@ const TarotDeck = () => {
   useEffect(() => {}, []);
 
   const handleCardClick = (card) => {
-    console.log(card);
     let selectedCard = document.querySelector("#card" + card.id);
     if (selectedCard.classList.contains("selected-tarocard")) {
       return;
@@ -55,12 +54,12 @@ const TarotDeck = () => {
     let newSelectedCards = [...selectedCards];
     newSelectedCards.push(card.name);
     setSelectedCards(newSelectedCards);
-    dispatch(setCards(newSelectedCards));
+    dispatch(setStateCards(newSelectedCards));
 
     let newSelectedCardsSeq = [...selectedCardsSeq];
     newSelectedCardsSeq.push(card.id);
     setSelectedCardsSeq(newSelectedCardsSeq);
-    dispatch(setCardsSeq(newSelectedCardsSeq));
+    dispatch(setStateCardsSeq(newSelectedCardsSeq));
   };
 
   return (
@@ -72,7 +71,7 @@ const TarotDeck = () => {
         justify="center"
         height="100%"
         class="filp-card"
-        style={{ position: "relative" }}
+        style={{ position: "relative"}}
       >
         {tarotCardArr.map((card) => (
           <TarotCard

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import slide_image from '@assets/img/Taro_back.png';
 import styled from 'styled-components';
-import '@css/todayresult.css';
+import '@css/todayresult.scss';
 import { Link } from "react-router-dom";
 
 export function TodayResult(){

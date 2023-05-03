@@ -20,3 +20,7 @@
   border-radius: 1rem;
   background-color: rgba(6, 21, 63, 0.5);
 }
+
+.tarot-result > img {
+  transform: scaleX(-1)
+}

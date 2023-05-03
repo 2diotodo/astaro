@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/prompt" element={<WhiteholeTest />} />
           <Route path="/tarot" element={<TarotService />} />
-          <Route path="/tarot-result" element={<TarotResult />} />
+          <Route path="/result" element={<TarotResult />} />
           <Route path="/todaytaro" element={<TodayTaro />} />
           <Route path="/todayresult" element={<TodayResult/>} />
           <Route path="/member/memberlogin" element={<MemberLogin />} />
