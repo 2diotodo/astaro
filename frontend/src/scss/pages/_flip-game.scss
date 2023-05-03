@@ -1,0 +1,158 @@
+.game-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5% 10% 0 10%;
+  width: 80%;
+  perspective: 1000px;
+  margin-bottom: -15px;
+  .game-card {
+    width: 20%;
+    user-select: none;
+    height: 100px;
+    padding: 1px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 2%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    .game-back,
+    .game-front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      // border-radius: 10px;
+      transition: 0.6s;
+      // background: #d6d6d6;
+      opacity: 0.8;
+      backface-visibility: hidden;
+      img {
+        height: 100%;
+      }
+    }
+    .game-back {
+      cursor: pointer;
+      color: #6d1124;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .game-front {
+      transform: rotateY(180deg);
+
+      img {
+        vertical-align: middle;
+        max-width: 150px;
+        max-height: 100%;
+      }
+    }
+    &.flipped {
+      transform: rotateY(180deg);
+
+      .game-front {
+        .game-front::before {
+          content: "";
+          position: absolute;
+          width: 104%;
+          height: 102%;
+          background: linear-gradient(
+            45deg,
+            red,
+            blue,
+            green,
+            yellow,
+            #e11d74,
+            black,
+            #ffff00,
+            #aa0000
+          );
+          z-index: -1;
+          animation: rotate 25s linear infinite;
+        }
+        .game-front::after {
+          content: "";
+          position: absolute;
+          width: 104%;
+          height: 102%;
+          background: linear-gradient(
+            45deg,
+            red,
+            blue,
+            green,
+            yellow,
+            #e11d74,
+            black,
+            #ffff00,
+            #aa0000
+          );
+          z-index: -1;
+          animation: rotate 25s linear infinite;
+          filter: blur(10px);
+        }
+      }
+    }
+    &.matched {
+      transform: rotateY(180deg);
+      .game-front {
+        box-shadow: 0 0 0 2px rgba(#000, 0.05) inset;
+        animation: selected 0.8s 0s ease 1;
+        animation-fill-mode: both;
+        opacity: 1;
+      }
+      .game-back {
+        visibility: hidden;
+        position: relative;
+        top: -4px;
+        left: -4px;
+        background: linear-gradient(
+          45deg,
+          red,
+          blue,
+          green,
+          yellow,
+          #e11d74,
+          black,
+          #ffff00,
+          #aa0000
+        );
+        background-size: 400%;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        z-index: -1;
+        animation: animate 25s linear infinite;
+      }
+    }
+  }
+}
+
+.restart-button {
+  width: 12em;
+  height: 3em;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 15px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+}
+.ranking-button {
+  width: 12em;
+  height: 3em;
+  cursor: pointer;
+  margin-top: 5%;
+  border-radius: 4px;
+  font-size: 15px;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.game-result-centered {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+}

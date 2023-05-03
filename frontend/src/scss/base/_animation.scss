@@ -126,3 +126,35 @@
     transform: rotate(0deg);
   }
 }
+
+@keyframes selected {
+  0% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
