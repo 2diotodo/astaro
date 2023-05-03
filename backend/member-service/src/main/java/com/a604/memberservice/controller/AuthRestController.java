@@ -150,19 +150,58 @@ public class AuthRestController {
 
     // 아이디 중복 체크
     @GetMapping("check/id/{memberId}")
-    public ResponseEntity<Boolean> checkAvailableId(@PathVariable String memberId) {
-        return ResponseEntity.ok(authService.checkIdDuplicate(memberId));
+    public ResponseEntity<Map<String,String>> checkAvailableId(@PathVariable String memberId) {
+
+        Map<String, String> result = new HashMap<>();
+
+        if (authService.checkIdDuplicate(memberId)) {
+            result.put("message", "이미 사용중인 ID입니다.");
+            result.put("status", "409");
+
+            return new ResponseEntity<>(result, HttpStatus.CONFLICT)
+        }
+
+        result.put("message", "사용 가능한 ID 입니다.");
+        result.put("status", "200");
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     // 닉네임 중복 체크
     @GetMapping("check/nickname/{nickname}")
-    public ResponseEntity<Boolean> checkAvailableNickname(@PathVariable String nickname) {
-        return ResponseEntity.ok(authService.checkNicknameDuplicate(nickname));
+    public ResponseEntity<Map<String,String>> checkAvailableNickname(@PathVariable String nickname) {
+        
+        Map<String, String> result = new HashMap<>();
+
+        if (authService.checkIdDuplicate(nickname)) {
+            result.put("message", "이미 사용중인 닉네임입니다.");
+            result.put("status", "409");
+
+            return new ResponseEntity<>(result, HttpStatus.CONFLICT)
+        }
+
+        result.put("message", "사용 가능한 닉네임입니다.");
+        result.put("status", "200");
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     // 이메일 중복 체크
     @GetMapping("check/email/{email}")
-    public ResponseEntity<Boolean> checkAvailableEmail(@PathVariable String email) {
-        return ResponseEntity.ok(authService.checkEmailDuplicate(email));
+    public ResponseEntity<Map<String,String>> checkAvailableEmail(@PathVariable String email) {
+
+        Map<String, String> result = new HashMap<>();
+
+        if (authService.checkIdDuplicate(email)) {
+            result.put("message", "이미 사용중인 닉네임입니다.");
+            result.put("status", "409");
+
+            return new ResponseEntity<>(result, HttpStatus.CONFLICT)
+        }
+
+        result.put("message", "사용 가능한 닉네임입니다.");
+        result.put("status", "200");
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

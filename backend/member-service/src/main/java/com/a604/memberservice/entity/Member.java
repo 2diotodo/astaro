@@ -41,7 +41,7 @@ public class Member {
     private String role;
 
     @Column(name = "profile")
-    private String profile;
+    private Integer profile;
 
     @Column(name = "lux")
     private Integer lux;

@@ -83,16 +83,16 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean checkIdDuplicate(String memeberId) {
-        return false;
+        return memberRepository.existsByMemberId(memeberId);
     }
 
     @Override
     public boolean checkNicknameDuplicate(String nickname) {
-        return false;
+        return memberRepository.existsByNickname(nickname);
     }
 
     @Override
     public boolean checkEmailDuplicate(String email) {
-        return false;
+        return memberRepository.existsByEmail(email);
     }
 }
