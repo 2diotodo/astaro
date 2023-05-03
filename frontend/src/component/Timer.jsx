@@ -1,47 +1,56 @@
-import { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect, useMemo } from "react";
+import styled from "styled-components";
 
 const Times = styled.div`
   position: relative;
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   margin: 1% 0 1% 0;
 `;
 
-function Timer({ onSaveTime }) {
-  const [startTime, setStartTime] = useState(new Date());
+function Timer({
+  startTime,
+  onSaveTime,
+  gameOver,
+  formatElapsedTime,
+  timeElapsed,
+}) {
+  const isoStartTime = useMemo(() => new Date(startTime), [startTime]);
+
   const [elapsedTime, setElapsedTime] = useState(0);
-  const intervalRef = useRef();
+
+  const getRunningTime = (start) => {
+    const current = new Date().getTime();
+    const elapsed = current - start.getTime();
+    timeElapsed = elapsed;
+    return elapsed;
+  };
+
+  const runningTime = useMemo(
+    () => getRunningTime(isoStartTime),
+    [isoStartTime]
+  );
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setElapsedTime(Date.now() - startTime.getTime());
-    }, 1000);
+    let interval;
+    if (!gameOver) {
+      interval = setInterval(() => {
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + 100);
+      }, 100);
+    }
     return () => {
-      clearInterval(intervalRef.current);
+      clearInterval(interval);
     };
-  }, [startTime]);
+  }, [gameOver]);
 
   useEffect(() => {
-    onSaveTime(elapsedTime);
-  }, [elapsedTime, onSaveTime]);
+    if (gameOver) {
+      const formattedTime = formatElapsedTime(elapsedTime);
+      onSaveTime(formattedTime);
+    }
+  }, [elapsedTime, onSaveTime, gameOver]);
 
-  const handleReset = () => {
-    setStartTime(new Date());
-    setElapsedTime(0);
-  };
-
-  const formatTime = (time) => {
-    const hours = Math.floor(time / (1000 * 60 * 60));
-    const minutes = Math.floor(time / (1000 * 60)) % 60;
-    const seconds = Math.floor(time / 1000) % 60;
-    const milliseconds = time % 1000;
-    return `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}.${
-      milliseconds < 10 ? '00' : milliseconds < 100 ? '0' : ''
-    }${milliseconds}`;
-  };
-
-  return <Times>Elapsed time: {formatTime(elapsedTime)}</Times>;
+  return <Times>{formatElapsedTime(elapsedTime)}</Times>;
 }
 
 export default Timer;

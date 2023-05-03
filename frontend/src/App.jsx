@@ -27,9 +27,9 @@ function App() {
           <Route path="/prompt" element={<WhiteholeTest />} />
           <Route path="/tarot" element={<TarotService />} />
           <Route path="/todaytaro" element={<TodayTaro />} />
-          <Route path="/member/memberlogin" element={<MemberLogin />} />
-          <Route path="/member/membersignup" element={<MemberSignup />} />
-          <Route path="/member/membermypage" element={<MemberMypage />} />
+          <Route path="/member/login" element={<MemberLogin />} />
+          <Route path="/member/signup" element={<MemberSignup />} />
+          <Route path="/member/mypage" element={<MemberMypage />} />
           <Route path="/star/chat/:id" element={<ChatPage />} />
           <Route path="/star" element={<StarPage />} />
           <Route path="/star/taro-result" element={<TaroResultPage />} />

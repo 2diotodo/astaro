@@ -1,66 +1,66 @@
 [
   {
     "cardId": 1,
-    "cardItem": "mercury"
+    "cardItem": "The_Fool_"
   },
   {
     "cardId": 2,
-    "cardItem": "mercury"
+    "cardItem": "The_Fool_"
   },
   {
     "cardId": 3,
-    "cardItem": "venus"
+    "cardItem": "The_Magician_"
   },
   {
     "cardId": 4,
-    "cardItem": "venus"
+    "cardItem": "The_Magician_"
   },
   {
     "cardId": 5,
-    "cardItem": "earth"
+    "cardItem": "The_Empress_"
   },
   {
     "cardId": 6,
-    "cardItem": "earth"
+    "cardItem": "The_Empress_"
   },
   {
     "cardId": 7,
-    "cardItem": "mars"
+    "cardItem": "The_Lovers_"
   },
   {
     "cardId": 8,
-    "cardItem": "mars"
+    "cardItem": "The_Lovers_"
   },
   {
     "cardId": 9,
-    "cardItem": "jupiter"
+    "cardItem": "WheelofFortune_"
   },
   {
     "cardId": 10,
-    "cardItem": "jupiter"
+    "cardItem": "WheelofFortune_"
   },
   {
     "cardId": 11,
-    "cardItem": "saturn"
+    "cardItem": "The_Tower_"
   },
   {
     "cardId": 12,
-    "cardItem": "saturn"
+    "cardItem": "The_Tower_"
   },
   {
     "cardId": 13,
-    "cardItem": "uranus"
+    "cardItem": "The_Moon_"
   },
   {
     "cardId": 14,
-    "cardItem": "uranus"
+    "cardItem": "The_Moon_"
   },
   {
     "cardId": 15,
-    "cardItem": "neptune"
+    "cardItem": "The_World_"
   },
   {
     "cardId": 16,
-    "cardItem": "neptune"
+    "cardItem": "The_World_"
   }
 ]
