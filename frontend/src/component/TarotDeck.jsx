@@ -13,7 +13,7 @@ let tarotCardArr = TarotCardArr;
 
 const TarotDeck = () => {
   const selectedCardWidth = 100 * 1.24;
-  const selectedCardMargin = 12;
+  const selectedCardMargin = 10;
   const dispatch = useDispatch();
   const [cardIndex, setCardIndex] = useState(0);
   const coordinates = [
@@ -65,7 +65,7 @@ const TarotDeck = () => {
 
   return (
     <ColContainer height="75vh">
-      <GapH height="80px" />
+      <GapH height="4vh" />
       <Subtitle>3장의 카드를 뽑아주세요.</Subtitle>
       <GapH height="350px" />
       <RowContainer

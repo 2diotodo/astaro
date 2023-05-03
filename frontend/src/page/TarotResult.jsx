@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "@/css/swiper-custom.css";
-import ShootingStars from "@/component/shootingStar/ShootingStarBackground";
+import ShootingStars from "@component/shootingStar/ShootingStarBackground";
+import styled from "styled-components";
 
 SwiperCore.use([Pagination]);
-
-const Category = styled.div`
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 2rem;
-  color: white;
-`;
 
 const SlideWrapper = styled.div`
   width: 100%;
@@ -36,7 +26,7 @@ const StyledSwiper = styled(Swiper)`
   height: 100%;
 `;
 
-const StarPage = () => {
+function TarotResult() {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [shootingStarsKey, setShootingStarsKey] = useState(0);
 
@@ -66,34 +56,22 @@ const StarPage = () => {
       >
         <SwiperSlide>
           <SlideWrapper>
-            <Category>
               <p>연애</p>
-            </Category>
-            <ShootingStars key={shootingStarsKey} />
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
           <SlideWrapper>
-            <ShootingStars key={shootingStarsKey} />
-            <Category>
               <p>재물</p>
-            </Category>
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
           <SlideWrapper>
-            <ShootingStars key={shootingStarsKey} />
-            <Category>
               <p>학업</p>
-            </Category>
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide>
           <SlideWrapper>
-            <ShootingStars key={shootingStarsKey} />
-            <Category>
               <p>진로</p>
-            </Category>
           </SlideWrapper>
         </SwiperSlide>
       </StyledSwiper>
@@ -101,4 +79,4 @@ const StarPage = () => {
   );
 };
 
-export default StarPage;
+export default TarotResult;

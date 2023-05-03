@@ -224,9 +224,10 @@ function TarotService() {
           id="slide-from-loading"
           style={{ position: "absolute" }}
           className="slide-in right-hidden"
+          justify="start"
         >
+          <GapH height="20vh"/>
           <TarotLoading />
-          <p></p>
           {tarotResult[0] ? (
             dalleImgUrl ? (
               <Button margin="50px 0" onClick={slideFromLoadingToResult}>
@@ -250,17 +251,17 @@ function TarotService() {
           style={{ position: "absolute" }}
           className="slide-in right-hidden"
         >
-          <GapH height="10vh" />
+          <GapH height="5vh" />
           <Medium>- 운세 결과 -</Medium>
-          <ColContainer width="80vw">
+          <GapH height="2vh" />
+          <ColContainer width="400px">
             {tarotResult.map((tarot) => (
               <>
                 <Small lineHeight="2em">{tarot}</Small>
                 <br />
-                <br />
               </>
             ))}
-            <Button margin="50px 0" onClick={slideFromResultToStory}>
+            <Button margin="5vh 0" onClick={slideFromResultToStory}>
               이야기보기
             </Button>
           </ColContainer>
