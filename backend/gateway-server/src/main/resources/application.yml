@@ -16,6 +16,21 @@ spring:
     name: apigateway-server
   cloud:
     gateway:
+      # CORS 설정
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://k8a604.p.ssafy.io",
+                            "http://astaro.co.kr",
+                            "https://k8a604.p.ssafy.io", 
+                            "https://astaro.co.kr",
+                            "http://localhost:3000"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTIONS
       routes:
         # Member Service Auth 컨트롤러
         - id: member-service
@@ -30,6 +45,10 @@ spring:
           predicates:
             - Path=/member-service/**
           filters:
+            - JwtAuthenticationFilter
+            - name: JwtAuthorizationFilter
+              args:
+                role: ROLE_USER
             - RewritePath=/member-service/(?<segment>.*), /$\{segment}
         # Taro Service
         - id: taro-service
@@ -37,6 +56,10 @@ spring:
           predicates:
             - Path=/taro-service/**
           filters:
+            - JwtAuthenticationFilter
+            - name: JwtAuthorizationFilter
+              args:
+                role: ROLE_USER
             - RewritePath=/taro-service/(?<segment>.*), /$\{segment}
         # Board Service
         - id: board-service
@@ -44,4 +67,8 @@ spring:
           predicates:
             - Path=/board-service/**
           filters:
+            - JwtAuthenticationFilter
+            - name: JwtAuthorizationFilter
+              args:
+                role: ROLE_USER
             - RewritePath=/board-service/(?<segment>.*), /$\{segment}
