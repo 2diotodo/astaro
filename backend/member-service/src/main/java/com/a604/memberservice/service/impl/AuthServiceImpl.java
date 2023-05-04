@@ -74,7 +74,7 @@ public class AuthServiceImpl implements AuthService {
     public TokenResponseDto reissuance(String refreshToken) {
 
         Claims claims = jwtUtil.getClaimsFromToken(refreshToken);
-        Long memberSeq = claims.get("memberSeq", Long.class);
+        Long memberSeq = claims.get("seq", Long.class);
 
         Member member = memberRepository.findById(memberSeq).get();
 

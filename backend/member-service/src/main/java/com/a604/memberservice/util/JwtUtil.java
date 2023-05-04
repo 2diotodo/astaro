@@ -45,11 +45,11 @@ public class JwtUtil {
         Date now = new Date();
 
         Claims accessTokenClaims = Jwts.claims().setSubject("accessToken");
-        accessTokenClaims.put("memberSeq", member.getMemberSeq());
         accessTokenClaims.put("role", member.getRole());
 
         String accessToken = Jwts.builder()
-                .setHeaderParam("alg", "HS256")
+                .setSubject(member.getMemberSeq().toString())
+                .setHeaderParam("alg", SignatureAlgorithm.HS256.getValue())
                 .setHeaderParam("typ", "JWT")
                 .setClaims(accessTokenClaims)
                 .setIssuedAt(now)
@@ -83,6 +83,39 @@ public class JwtUtil {
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
     }
 
+    public String provideAccessToken(Member member){
+        Date now = new Date();
+
+        Claims claims = Jwts.claims();
+        claims.put("role", member.getRole());
+
+        return Jwts.builder()
+                .setSubject(member.getMemberSeq().toString())
+                .setHeaderParam("alg", SignatureAlgorithm.HS256.getValue())
+                .setHeaderParam("typ", "JWT")
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + accessTokenValidTime))
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+    }
+
+    public String provideRefreshToken(Member member){
+        Date now = new Date();
+
+        Claims claims = Jwts.claims();
+        claims.put("role", member.getRole());
+
+        return Jwts.builder()
+                .setSubject(member.getMemberSeq().toString())
+                .setHeaderParam("alg", "HS256")
+                .setHeaderParam("typ", "JWT")
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + refreshTokenValidTime))
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+    }
     /**
      * 토큰에서 인증 subject 추출
      */
