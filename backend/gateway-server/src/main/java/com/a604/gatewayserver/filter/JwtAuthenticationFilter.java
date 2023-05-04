@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
@@ -20,6 +21,8 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
 
     // [ Dependency : jwtUtil ]
     private final JwtUtil jwtUtil;
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
+
 
     public JwtAuthenticationFilter(JwtUtil jwtUtil){
         super(Config.class);
@@ -36,7 +39,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
             ServerHttpResponse response = exchange.getResponse();
 
             // Request Cookie에서 accessToken을 추출
-            String token = jwtUtil.getAccessToken(request);
+            String token = jwtUtil.getAccessTokenFromHttpHeader(request);
 
             // 복호화 및 유효 시간 확인
             try {

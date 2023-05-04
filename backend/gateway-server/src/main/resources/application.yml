@@ -70,3 +70,5 @@ spring:
               args:
                 role: ROLE_USER
             - RewritePath=/board-service/(?<segment>.*), /$\{segment}
+
+jwt.secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
