@@ -51,6 +51,7 @@ public class AuthRestController {
             response.addCookie(accessCookie);
             response.addCookie(refreshCookie);
 
+
             result.put("message", "로그인 성공");
             result.put("status", "200");
 
@@ -193,13 +194,13 @@ public class AuthRestController {
         Map<String, String> result = new HashMap<>();
 
         if (authService.checkIdDuplicate(email)) {
-            result.put("message", "이미 사용중인 닉네임입니다.");
+            result.put("message", "이미 사용중인 이메일입니다.");
             result.put("status", "409");
 
             return new ResponseEntity<>(result, HttpStatus.CONFLICT);
         }
 
-        result.put("message", "사용 가능한 닉네임입니다.");
+        result.put("message", "사용 가능한 이메일입니다.");
         result.put("status", "200");
 
         return new ResponseEntity<>(result, HttpStatus.OK);

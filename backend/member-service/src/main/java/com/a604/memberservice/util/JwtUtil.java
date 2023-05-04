@@ -45,7 +45,7 @@ public class JwtUtil {
         Date now = new Date();
 
         Claims accessTokenClaims = Jwts.claims().setSubject("accessToken");
-        accessTokenClaims.put("memberSeq", member.getMemberSeq());
+        accessTokenClaims.put("memberSeq", member.getSeq());
         accessTokenClaims.put("role", member.getRole());
 
         String accessToken = Jwts.builder()
@@ -58,7 +58,7 @@ public class JwtUtil {
                 .compact();
 
         Claims refreshTokenClaims = Jwts.claims().setSubject("refreshToken");
-        refreshTokenClaims.put("memberSeq", member.getMemberSeq());
+        refreshTokenClaims.put("memberSeq", member.getSeq());
         refreshTokenClaims.put("role", member.getRole());
 
         String refreshToken = Jwts.builder()

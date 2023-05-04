@@ -12,10 +12,10 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    @Query(nativeQuery = true, value = "select * from `member`" + "where is_valid = 0")
+    @Query(nativeQuery = true, value = "select * from `member`" + "where is_deleted = 0")
     List<Member> findAllMember();
 
-    @Query(nativeQuery = true, value = "select * from `member`" + "where member_id = :memberId and is_valid = 0")
+    @Query(nativeQuery = true, value = "select * from `member`" + "where member_id = :memberId and is_deleted = 0")
     Optional<Member> findByMemberId(@Param("memberId") String memberId);
 
     boolean existsByMemberId(String memberId);

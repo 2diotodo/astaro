@@ -68,7 +68,7 @@ const memberSlice = createSlice({
       console.log("로그인중", state.result);
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log("로그인성공", state.result);
+      console.log("로그인성공", action.payload);
     });
     builder.addCase(login.rejected, (state, action) => {
       console.log("로그인실패", action.error);
