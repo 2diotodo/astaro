@@ -20,11 +20,9 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "http://k8a604.p.ssafy.io",
-                            "http://astaro.co.kr",
-                            "https://k8a604.p.ssafy.io", 
-                            "https://astaro.co.kr",
-                            "http://localhost:3000"
+            allowedOrigins: "http://k8a604.p.ssafy.io,http://astaro.co.kr,https://k8a604.p.ssafy.io,https://astaro.co.kr,http://localhost:3000"
+            allowedHeaders: "*"
+            allow-credentials: true
             allowedMethods:
               - GET
               - POST
