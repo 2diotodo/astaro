@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.apache.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,12 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private String secret = "VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa";
+    @Value("${jwt.secret}")
+    private String secret;
     private SecretKey secretKey;
+    private final static String TOKEN_PREFIX = "Bearer ";
+
+
 
     @PostConstruct
     public void init() {
@@ -29,8 +34,15 @@ public class JwtUtil {
     }
 
     // 토큰 추출
-    private String extractToken(ServerHttpRequest request) {
-        return request.getHeaders().getOrEmpty(HttpHeaders.AUTHORIZATION).get(0);
+    public String getAccessTokenFromHttpHeader(ServerHttpRequest request) {
+        String authHeader = request.getHeaders().getOrEmpty(HttpHeaders.AUTHORIZATION).get(0);
+        if(authHeader.isEmpty()){
+            return null;
+        }
+        if (authHeader.startsWith(TOKEN_PREFIX)) {
+            return authHeader.substring(TOKEN_PREFIX.length());
+        }
+        return null;
     }
 
     // 권한 추출
@@ -65,6 +77,8 @@ public class JwtUtil {
         return cookies.getFirst("accessToken").getValue();
 
     }
+
+
 
 
 }
