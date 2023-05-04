@@ -94,6 +94,7 @@ const ChatPage = () => {
         `http://localhost:8082/api/v1/message/${id}`
       );
       const messages = await response.json();
+      console.log("messages : ", messages)
       return messages;
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -146,10 +147,10 @@ const ChatPage = () => {
                 message.senderSeq === loggedInMemberSeq
                   ? MessageRight
                   : MessageLeft;
-              const messageLabel =
+                const messageLabel =
                 message.senderSeq === loggedInMemberSeq
-                  ? "보낸 쪽지"
-                  : `받은 쪽지`;
+                  ? "내가 보낸 쪽지"
+                  : `${message.nickname}님이 보낸 쪽지`;
               return (
                 <React.Fragment key={message.seq}>
                   <MessageComponent>

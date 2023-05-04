@@ -18,6 +18,7 @@ import Header from "@component/common/Header";
 import { TodayResult } from "@/page/TodayResult";
 import TarotResult from "@page/TarotResult";
 import FlipGame from "@page/FlipGame";
+import BlackHolePage from "./page/shootingStar/BlackHolePage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/star/chat/:id" element={<ChatPage />} />
           <Route path="/star" element={<StarPage />} />
           <Route path="/star/taro-result" element={<TaroResultPage />} />
+          <Route path="/star/black-hole" element={<BlackHolePage />} />
           <Route path="/flipgame" element={<FlipGame />} />
         </Routes>
       </Router>
