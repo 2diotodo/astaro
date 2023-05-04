@@ -34,6 +34,7 @@ public class MessageListDto {
 	private Boolean isRead;
 	private String nickname;
 	private int notReadCnt;
+	private float n;
 
 	public MessageList toEntity(){
 		MessageList messageList = MessageList.builder()

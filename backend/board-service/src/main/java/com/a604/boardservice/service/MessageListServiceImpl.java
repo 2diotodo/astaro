@@ -1,9 +1,13 @@
 package com.a604.boardservice.service;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +44,17 @@ public class MessageListServiceImpl implements MessageListService{
 				if(messageListDto.getReceiverSeq() == memberSeq & !messageListDto.getIsReadReceiver()){
 					messageListDto.setIsRead(true);
 				}
+
+				LocalDateTime createdAt = messageListDto.getCreatedAt();
+				Instant instant = createdAt.atZone(ZoneId.systemDefault()).toInstant();
+				Date date = Date.from(instant);
+
+				Date now = new Date();
+				long diffInMillies = now.getTime() - date.getTime();
+				float diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(diffInMillies);
+
+				messageListDto.setN(diffInSeconds/8640);
+
 				messageListDtoList.add(messageListDto);
 			}
 		}
