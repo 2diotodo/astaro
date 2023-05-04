@@ -7,10 +7,10 @@ const initialState = {
 };
 
 const navSlice = createSlice({
-  name: "navSlice",
+  name: "navBars",
   initialState: initialState,
   reducers: {
-    toogleNavBar: (state, action) => {
+    toggleNavBar: (state, action) => {
       // console.log(state.toogle, '이것은 toogle값.');
       state.toggle = action.payload;
     },
