@@ -1,6 +1,6 @@
 package com.a604.memberservice.service;
 
-import com.a604.memberservice.dto.request.SignUpMemberDto;
+import com.a604.memberservice.dto.request.SignUpRequestDto;
 import com.a604.memberservice.dto.response.GetMemberDto;
 import com.a604.memberservice.entity.Member;
 
@@ -25,7 +25,7 @@ public interface MemberService {
     public boolean CheckEmailDuplicate(String email);
 
     // 회원가입
-    public void writeMember(SignUpMemberDto signUpMemberDto);
+    public void writeMember(SignUpRequestDto signUpRequestDto);
 
     // 암호화
 
@@ -33,18 +33,18 @@ public interface MemberService {
     // 로그인
     public Optional<GetMemberDto> getMember(String memberId);
 
-    // SignUpMemberDto to Entity
-    default Member toEntity(SignUpMemberDto signUpMemberDto) {
+    // SignUpRequestDto to Entity
+    default Member toEntity(SignUpRequestDto signUpRequestDto) {
         return Member.builder()
-                .memberSeq(signUpMemberDto.getMemberSeq())
-                .memberId(signUpMemberDto.getMemberId())
-                .nickname(signUpMemberDto.getNickname())
-                .password(signUpMemberDto.getPassword())
-                .email(signUpMemberDto.getEmail())
+                .memberSeq(signUpRequestDto.getMemberSeq())
+                .memberId(signUpRequestDto.getMemberId())
+                .nickname(signUpRequestDto.getNickname())
+                .password(signUpRequestDto.getPassword())
+                .email(signUpRequestDto.getEmail())
                 .build();
     }
 
-    default GetMemberDto toDto(Member member){
+    default GetMemberDto toDto(Member member) {
         return GetMemberDto.builder()
                 .memberSeq(member.getMemberSeq())
                 .memberId(member.getMemberId())

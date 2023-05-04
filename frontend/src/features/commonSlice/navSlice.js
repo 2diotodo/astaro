@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // 네비바 open,close 관리
 
 const initialState = {
-  toogle: false,
+  toggle: false,
 };
 
 const navSlice = createSlice({
@@ -12,10 +12,10 @@ const navSlice = createSlice({
   reducers: {
     toogleNavBar: (state, action) => {
       // console.log(state.toogle, '이것은 toogle값.');
-      state.toogle = action.payload;
+      state.toggle = action.payload;
     },
   },
 });
 
-export const { toogleNavBar } = navSlice.actions;
+export const { toggleNavBar } = navSlice.actions;
 export default navSlice.reducer;

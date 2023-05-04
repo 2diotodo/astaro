@@ -4,9 +4,9 @@ import { useNavigate } from "react-router";
 import wisdoms from "@constants/wisdom.json";
 import profiles from "@constants/profile.json";
 import { GoPencil } from "react-icons/go";
-import moon from "@assets/img/moon.png";
 import Input from "@component/Input";
 import { Modal, Box, Typography } from "@mui/material";
+import GapW from "@component/layout/GapW";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -19,7 +19,7 @@ const Title = styled.div`
   position: relative;
   font-size: 40px;
   font-family: "Nanum Myeongjo", monospace;
-  margin-top: 20%;
+  margin-top: 10%;
 `;
 const Subtitle = styled.div`
   position: relative;
@@ -80,6 +80,8 @@ function MemberMypage() {
     passwordConfirm: "ee",
     nickname: "nick",
     email: "dora@naver.com",
+    lux: 5000,
+    profileId: 1,
   });
   const [errors, setErrors] = useState({
     nickname: "",
@@ -101,19 +103,31 @@ function MemberMypage() {
     password: false,
   });
 
+  // flip 상태관리
+  const [flipped, setFlipped] = useState(false);
+
+  const flipHandler = () => {
+    setFlipped(!flipped);
+  };
+
   // modal profile 행성목록
   const [stars, setStars] = useState(profiles);
   // modal profile icon list 선택관리
-  const [profileSelected, setProfileSelected] = useState(
-    Array(stars.length).fill(false)
-  );
+  const [profileSelected, setProfileSelected] = useState(0);
 
   const profileSelectHandler = (idx) => {
-    const selectedCheck = profileSelected.map((el, index) => {
-      return index === idx - 1;
-    });
-    console.log("len", profileSelected);
-    setProfileSelected(selectedCheck);
+    // console.log("len", profileSelected);
+    console.log(values.lux);
+    console.log(profiles[idx - 1].starlux);
+    if (values.lux >= profiles[idx - 1].starlux) {
+      setProfileSelected(idx);
+      let newlux = values.lux - profiles[idx - 1].starlux;
+      setValues({
+        ...values,
+        profileId: idx,
+        lux: newlux,
+      });
+    }
   };
   const navigate = useNavigate();
 
@@ -149,7 +163,14 @@ function MemberMypage() {
       return;
     }
     console.log("update-memberinfo");
+    if (window.confirm("정보를 수정하시겠습니까?")) {
+      alert("수정되었습니다.");
+    } else {
+      alert("수정을 취소하셨습니다.");
+      return;
+    }
     setIsUpdated(false);
+    // setFlipped(false);
   };
 
   // 필드값을 검증한다.
@@ -173,12 +194,14 @@ function MemberMypage() {
     const min = 1;
     const max = 101;
     let randNumber = Math.floor(Math.random() * (max - min)) + min;
-    console.log(randNumber);
-    console.log(wisdoms[randNumber].wisdom);
-    console.log(wisdoms[randNumber].writer);
+    // console.log(randNumber);
+    // console.log(wisdoms[randNumber].wisdom);
+    // console.log(wisdoms[randNumber].writer);
     setSelectWisdom(wisdoms[randNumber]);
   }, []);
-
+  useEffect(() => {
+    console.log("profileSelected", profileSelected);
+  }, [profileSelected]);
   // 입력값이 변경될때 마다 검증한다.
   useEffect(() => {
     validate();
@@ -190,13 +213,18 @@ function MemberMypage() {
 
   // 수정하기 누르면 수정UI+수정완료버튼으로 바꾸기
   const toggleButtonHandler = () => {
-    setIsUpdated(true);
+    setIsUpdated(false);
   };
 
   // 회원탈퇴버튼
   const resignHandler = () => {
-    console.log("탈퇴?");
-    // navigate("/member/membersignup");
+    if (window.confirm("정말 탈퇴하시겠습니까?")) {
+      alert("탈퇴되었습니다.");
+      navigate("/");
+    } else {
+      alert("탈퇴를 취소하셨습니다.");
+    }
+    // navigate("/member/signup");
   };
 
   // modal 관리
@@ -204,7 +232,7 @@ function MemberMypage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    // setProfileSelected(false);
+    setProfileSelected(0);
   };
   return (
     <>
@@ -218,121 +246,160 @@ function MemberMypage() {
             {selectWisdom.wisdom} -{selectWisdom.writer}
           </Subtitle>
           <div className="mypage-profile">
-            <img src={moon} alt="profile" style={{ width: "90px" }} />
+            <img
+              src={stars[values.profileId - 1].starImageUrl}
+              alt="profile"
+              style={{ height: "90px" }}
+            />
             <GoPencil onClick={changeProfileHandler} color="white" />
           </div>
-
-          <div className="mypage-area">
-            <form className="update-form" onSubmit={updateSubmitHandler}>
-              <div className="input-box">
-                <div className="input-name">아이디</div>
-                <Input
-                  type="text"
-                  name="memberId"
-                  value={values.memberId}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={values.memberId}
-                  width={"60%"}
-                  textIndent={"0px"}
-                  style={{ fontSize: "15px" }}
-                  disabled
-                />
-              </div>
-              <div className="input-box">
-                <div className="input-name">별명</div>
-                <Input
-                  type="text"
-                  name="nickname"
-                  value={values.nickname}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={values.nickname}
-                  width={"60%"}
-                  textIndent={"0px"}
-                  style={{ fontSize: "15px" }}
-                />
-                {/* 닉네임 오류메시지를 출력한다 */}
-                {touched.nickname && errors.nickname && (
-                  <span>{errors.nickname}</span>
-                )}
-              </div>
-              <div className="input-box">
-                <div className="input-name">이메일</div>
-                <Input
-                  type="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={values.email}
-                  width={"60%"}
-                  textIndent={"0px"}
-                  style={{ fontSize: "15px" }}
-                  disabled
-                />
-              </div>
-              <div className="input-box">
-                <div className="input-name">비밀번호</div>
-                <Input
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Password"
-                  width={"60%"}
-                  textIndent={"0px"}
-                  style={{ fontSize: "15px" }}
-                />
-                {/* 비밀번호 오류메시지를 출력한다 */}
-                {touched.password && errors.password && (
-                  <span>{errors.password}</span>
-                )}
-              </div>
-              <div className="input-box">
-                <Input
-                  type="password"
-                  name="passwordConfirm"
-                  value={values.passwordConfirm}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Password"
-                  width={"60%"}
-                  textIndent={"0px"}
-                  style={{ fontSize: "15px" }}
-                />
-              </div>
-              {isUpdated && (
-                <Button
-                  type="submit"
-                  style={{ marginTop: "9%", marginRight: "-8%" }}
-                >
-                  저장
-                </Button>
-              )}
-            </form>
-            {!isUpdated && (
-              <Button type="button" onClick={toggleButtonHandler}>
-                수정
-              </Button>
-            )}
-          </div>
-          <Button
-            type="button"
-            onClick={resignHandler}
-            style={{
-              width: "40px",
-              fontSize: "10px",
-              border: "none",
-              color: "gray",
-              position: "relative",
-              float: "left",
-              left: "10px",
-            }}
+          <div
+            className={`mypage-update ${flipped ? "active" : ""}`}
+            onClick={flipHandler}
           >
-            <div className="resign-button">탈퇴하기</div>
-          </Button>
+            <div className="mypage-update-inner">
+              <div className="mypage-front">
+                <div className="mypage-board">
+                  <div className="board-box">
+                    <div className="board-name">지난타로</div>
+                    <div className="board-value" style={{ width: "53%" }}>
+                      13
+                    </div>
+                  </div>
+                  <div className="board-box">
+                    <div className="board-name">내 별똥별</div>
+                    <div className="board-value" style={{ width: "53%" }}>
+                      5
+                    </div>
+                  </div>
+                  <div className="board-box">
+                    <div className="board-name">대화 목록</div>
+                    <div className="board-value" style={{ width: "53%" }}>
+                      4
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mypage-back">
+                <div className="mypage-area">
+                  <form className="update-form" onSubmit={updateSubmitHandler}>
+                    <div className="input-box">
+                      <div className="input-name">아이디</div>
+                      <Input
+                        type="text"
+                        name="memberId"
+                        value={values.memberId}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder={values.memberId}
+                        width={"60%"}
+                        textIndent={"0px"}
+                        style={{ fontSize: "15px" }}
+                        disabled
+                      />
+                    </div>
+                    <div className="input-box">
+                      <div className="input-name">별명</div>
+                      <Input
+                        type="text"
+                        name="nickname"
+                        value={values.nickname}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder={values.nickname}
+                        width={"60%"}
+                        textIndent={"0px"}
+                        style={{ fontSize: "15px" }}
+                      />
+                      {/* 닉네임 오류메시지를 출력한다 */}
+                      {touched.nickname && errors.nickname && (
+                        <span>{errors.nickname}</span>
+                      )}
+                    </div>
+                    <div className="input-box">
+                      <div className="input-name">이메일</div>
+                      <Input
+                        type="email"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder={values.email}
+                        width={"60%"}
+                        textIndent={"0px"}
+                        style={{ fontSize: "15px" }}
+                        disabled
+                      />
+                    </div>
+                    <div className="input-box">
+                      <div className="input-name">비밀번호</div>
+                      <Input
+                        type="password"
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Password"
+                        width={"60%"}
+                        textIndent={"0px"}
+                        style={{ fontSize: "15px" }}
+                      />
+                      {/* 비밀번호 오류메시지를 출력한다 */}
+                      {touched.password && errors.password && (
+                        <span>{errors.password}</span>
+                      )}
+                    </div>
+                    <div className="input-box">
+                      <div className="input-name"></div>
+                      <Input
+                        type="password"
+                        name="passwordConfirm"
+                        value={values.passwordConfirm}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Password"
+                        width={"60%"}
+                        textIndent={"0px"}
+                        style={{ fontSize: "15px" }}
+                      />
+                    </div>
+                    {isUpdated && (
+                      <Button
+                        type="submit"
+                        style={{ marginTop: "9%", marginRight: "-8%" }}
+                      >
+                        저장
+                      </Button>
+                    )}
+                  </form>
+                  {!isUpdated && (
+                    <Button
+                      type="button"
+                      onClick={toggleButtonHandler}
+                      style={{ marginTop: "9%", marginRight: "-8%" }}
+                    >
+                      수정
+                    </Button>
+                  )}
+                </div>
+                <Button
+                  type="button"
+                  onClick={resignHandler}
+                  style={{
+                    width: "40px",
+                    fontSize: "10px",
+                    border: "none",
+                    color: "gray",
+                    position: "relative",
+                    float: "left",
+                    left: "10px",
+                  }}
+                >
+                  <div className="resign-button">탈퇴하기</div>
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </Wrapper>
       <Modal
@@ -341,10 +408,18 @@ function MemberMypage() {
         aria-describedby="modal-modal-description"
       >
         <Box className="modal-box" sx={boxStyle}>
+          <Typography className="modal-header">
+            <span onClick={handleClose}>프로필 바꾸기</span>
+            <span onClick={handleClose}>&times;</span>
+          </Typography>
           <Typography className="modal-body" id="modal-modal-description">
             {stars.map((star) => (
-              <Star
-                className={profileSelected ? "modal-img selected" : "modal-img"}
+              <div
+                className={
+                  profileSelected === star.starId
+                    ? "modal-img selected"
+                    : "modal-img"
+                }
                 onClick={() => profileSelectHandler(star.starId)}
                 key={star.starId}
                 id={star.starId}
@@ -352,7 +427,7 @@ function MemberMypage() {
               >
                 <img src={star.starImageUrl} alt={star.starName} />
                 <div>{star.starlux} lux</div>
-              </Star>
+              </div>
             ))}
           </Typography>
         </Box>
@@ -360,7 +435,5 @@ function MemberMypage() {
     </>
   );
 }
-const Star = styled.div``;
-// opacity: ${({profileSelected, id}) => (profileSelected[id - 1] ? 1:.3)}
 
 export default MemberMypage;

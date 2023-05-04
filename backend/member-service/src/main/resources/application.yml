@@ -18,15 +18,18 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddlAuto: update
+      ddlAuto: validate
       useNewIdGeneratorMappings: true
     generateDdl: true
     databasePlatform: org.hibernate.dialect.MySQL8Dialect
 
 # Eureka Client Settings
-#eureka:
-#  instance:
-#    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-#  client:
-#    serviceUrl:
-#      defaultZone: http://127.0.0.1:8761/eureka
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa

@@ -2,46 +2,35 @@ import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { login } from "@features/memberSlice";
+import Input from "@component/Input";
 import styled from "styled-components";
+import Button from "@component/Button";
 
 const Wrapper = styled.div`
   height: 80%;
   width: 100%;
   position: absolute;
   display: flex;
+  justify-content: center;
 `;
 
 const Title = styled.div`
   color: white;
   position: relative;
   font-size: 40px;
-  font-family: "Nanum Myeongjo", monospace;
-  margin: 30% 0 10% 0;
+  margin: 10% 0 10% 0;
 `;
 
-const Input = styled.input`
-  width: 60%;
-  height: 30px;
-  margin: 8%;
-  background-color: rgba(0, 0, 0, 0);
-  border-bottom: 1px solid white;
-  color: white;
-  font-size: 20px;
-
-  ::placeholder {
-    color: white;
-  }
-`;
-const Button = styled.button`
-  width: 50%;
-  position: relative;
-  padding: 5px 20px;
-  margin: 2%;
-  border: 1px solid white;
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  font-size: 20px;
-`;
+// const Button = styled.button`
+//   width: 50%;
+//   position: relative;
+//   padding: 5px 20px;
+//   margin: 3%;
+//   border: 1px solid white;
+//   background-color: rgba(0, 0, 0, 0);
+//   color: white;
+//   font-size: 20px;
+// `;
 
 function MemberLogin() {
   const dispatch = useDispatch();
@@ -100,6 +89,9 @@ function MemberLogin() {
     }
     // console.log(logins);
     dispatch(login(logins));
+    // local storage에 memberSeq, Access Token 저장
+    localStorage.setItem("memberSeq");
+    localStorage.setItem("access-token");
     navigate("/");
   };
 
@@ -125,48 +117,51 @@ function MemberLogin() {
   }, [validate]);
 
   const signupHandler = () => {
-    navigate("/member/membersignup");
+    navigate("/member/signup");
   };
   return (
-    <>
-      <Wrapper>
-        <div className="login" style={{ justifyContent: "center" }}>
-          <Title className="login-text">로그인</Title>
-          <form className="login-form" onSubmit={loginSubmitHandler}>
-            <Input
-              type="text"
-              name="memberId"
-              value={logins.memberId}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="별명을 말해줘"
-            />
-            {/* 아이디 오류메시지를 출력한다 */}
-            {touched.memberId && errors.memberId && (
-              <span>{errors.memberId}</span>
-            )}
-            <Input
-              type="password"
-              name="password"
-              value={logins.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="비밀번호를 말해줘"
-            />
-            {/* 비밀번호 오류메시지를 출력한다 */}
-            {touched.password && errors.password && (
-              <span>{errors.password}</span>
-            )}
-            <Button type="submit" style={{ marginTop: "10%" }}>
-              로그인
-            </Button>
-          </form>
-          <Button type="button" onClick={signupHandler}>
-            <div className="signup-button">회원가입</div>
+    <Wrapper>
+      <div className="login" style={{ justifyContent: "center" }}>
+        <Title className="login-text">로그인</Title>
+        <form className="login-form" onSubmit={loginSubmitHandler}>
+          <Input
+            type="text"
+            name="memberId"
+            value={logins.memberId}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            width={"60%"}
+            textIndent={"0px"}
+            placeholder="별명을 말해줘"
+          />
+          {/* 아이디 오류메시지를 출력한다 */}
+          {touched.memberId && errors.memberId && (
+            <span>{errors.memberId}</span>
+          )}
+          <Input
+            type="password"
+            name="password"
+            value={logins.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            width={"60%"}
+            textIndent={"0px"}
+            placeholder="비밀번호를 말해줘"
+          />
+          {/* 비밀번호 오류메시지를 출력한다 */}
+          {touched.password && errors.password && (
+            <span>{errors.password}</span>
+          )}
+          <br />
+          <Button type="submit" style={{ marginTop: "10%" }}>
+            로그인
           </Button>
-        </div>
-      </Wrapper>
-    </>
+        </form>
+        <Button margin="30px" type="button" onClick={signupHandler}>
+          <div className="signup-button">회원가입</div>
+        </Button>
+      </div>
+    </Wrapper>
   );
 }
 

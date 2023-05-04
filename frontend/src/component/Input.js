@@ -9,15 +9,13 @@ const Input = styled.input.attrs((props) => ({
   padding: ${(props) => props.padding || "10px 0"};
   font-size: ${(props) => props.fontSize || "20px"};
   color: ${(props) => props.color || "white"};
-  //text-indent: ${(props) => (props.textIndent ? "0" : "20px")};
   border: ${(props) => props.border || "none"};
   border-bottom: ${(props) => props.borderBottom || "1px solid #fff"};
-  //padding-left: ${(props) => props.paddingLeft || "10px"};
   background: ${(props) => props.background || "transparent"};
-  //border-radius: ${(props) => props.borderRadius || "0"};
   text-align: ${(props) => (props.textAlign ? props.textAlign : "inherit")};
   text-justify: ${(props) => (props.textJustify ? props.textAlign : "inherit")};
   font-family: ${(props) => props.fontFamily || "TAEBAEKmilkyway"};
+  z-index: ${(props) => props.zIndex || "inherit"};
 
   &:focus {
     outline: ${(props) => props.outline || "none"};

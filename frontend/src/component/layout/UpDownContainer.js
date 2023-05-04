@@ -5,8 +5,7 @@ const UpDownContainer = styled.div`
   flex-direction: column;
   align-items: ${(props) => props.align || "center"};
   justify-content: ${(props) => props.justify || "center"};
-  min-height: ${(props) => props.minHeight || "100vh"};
-  height: ${(props) => props.height || "auto"};
+  height: ${(props) => props.height || "100%"};
   width: ${(props) => props.width || "auto"};
   background-color: ${(props) => props.background || "transparent"};
   position: ${(props) => props.position || "static"};

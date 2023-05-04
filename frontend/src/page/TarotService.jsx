@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../component/Button";
 import axios from "axios";
+import axiosInstance from "@utils/axiosInstance";
 import Input from "../component/Input";
 import ColContainer from "../component/layout/ColContainer";
-import "@css/tarocard.css";
+import "@css/tarocard.scss";
 import "@css/tarotpageslide.css";
 import TarotDeck from "@component/TarotDeck";
 import GapH from "@component/layout/GapH";
@@ -11,21 +12,22 @@ import TarotCategory from "@component/TarotCategory";
 import UpDownContainer from "@component/layout/UpDownContainer";
 import TarotLoading from "@component/TarotLoading";
 import Small from "@component/text/Small";
-import SmallMedium from "@component/text/SmallMedium";
-import { useSelector } from "react-redux";
-import Medium from "@component/text/Medium";
+import { useDispatch, useSelector } from "react-redux";
+import { setStateImgUrl, setStateMessage, setStateResults, setStateStory } from "@features/tarotSlice";
+import { useNavigate } from "react-router-dom";
 
 function TarotService() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [tarotResult, setTarotResult] = useState([]);
   const [dalleImgUrl, setDalleImgUrl] = useState("");
-  const [story, setStory] = useState("");
-  const category = useSelector((state) => state.tarot.category);
-  const stateCards = useSelector((state) => state.tarot.cards);
-
-  useEffect(() => {}, [story]);
-  const sendToGpt = (event, inputMessage) => {
+  const category = useSelector((state) => state.tarot.stateCategory);
+  const stateCards = useSelector((state) => state.tarot.stateCards);
+  const cardSeqList = useSelector((state) => state.tarot.stateCardsSeq);
+  const sendToGpt = (event, message) => {
     if (event.key === "Enter") {
+      dispatch(setStateMessage(message));
       slideFromTarotToLoading();
       const config = {
         headers: {
@@ -33,7 +35,6 @@ function TarotService() {
           Authorization: "Bearer " + process.env.REACT_APP_OPENAI_API_KEY,
         },
       };
-
       function constructRequestMessage(localCategory, cards, msg) {
         return (
           "- Format : JSON \n\n " +
@@ -64,7 +65,7 @@ function TarotService() {
               content: constructRequestMessage(
                 category,
                 stateCards.toString(),
-                inputMessage.message
+                message.message
               ),
             },
           ],
@@ -76,7 +77,8 @@ function TarotService() {
           .then((res) => {
             jsonRes = JSON.parse(res.data.choices[0].message.content);
             setTarotResult(jsonRes.해석);
-            setStory(jsonRes.동화.trim());
+            dispatch(setStateResults(jsonRes.해석));
+            dispatch(setStateStory(jsonRes.동화.trim()));
             console.log(jsonRes);
           });
 
@@ -101,11 +103,13 @@ function TarotService() {
             reqPicturePrompt =
               "fairy tale style, " + res.data.choices[0].message.content;
           });
+
         const reqPictureData = {
           prompt: reqPicturePrompt,
           n: 1,
           size: "512x512",
         };
+        let imgUrl;
         await axios
           .post(
             "https://api.openai.com/v1/images/generations",
@@ -114,10 +118,23 @@ function TarotService() {
           )
           .then((res) => {
             setDalleImgUrl(res.data.data[0].url);
+            imgUrl = res.data.data[0].url;
+            dispatch(setStateImgUrl(imgUrl));
           });
 
-        // await axios
-        //     .post(`${process.env.REACT_APP_BACKEND_URL}`)
+        const tarotResultDto = {
+          memberSeq: localStorage.getItem("user"),
+          category: category,
+          contentInput: message,
+          cardSeqList: cardSeqList,
+          contentList: jsonRes.해석,
+          imgList: [imgUrl],
+        };
+
+        await axiosInstance.post(
+          `${process.env.REACT_APP_BACKEND_URL}`,
+          tarotResultDto
+        );
       }
 
       receiveTaroResultAndPicture();
@@ -138,6 +155,17 @@ function TarotService() {
       .querySelector("#slide-from-tarot")
       .classList.remove("right-hidden");
     document.querySelector("#slide-from-category").classList.add("left-hidden");
+    const shuffleArr = Array.prototype.slice.call(
+      document.getElementsByClassName("tarot-card")
+    );
+    shuffleArr.map((elem) => {
+      elem.classList.add("shuffle-card");
+    });
+    setTimeout(() => {
+      shuffleArr.map((elem) => {
+        elem.classList.add("shuffled");
+      });
+    }, 5000);
   };
 
   const slideFromTarotToLoading = () => {
@@ -148,28 +176,15 @@ function TarotService() {
   };
 
   const slideFromLoadingToResult = () => {
-    document
-      .querySelector("#slide-from-result")
-      .classList.remove("right-hidden");
-    document.querySelector("#slide-from-loading").classList.add("left-hidden");
+    navigate("/result")
   };
 
-  const slideFromResultToStory = () => {
-    document
-      .querySelector("#slide-from-story")
-      .classList.remove("right-hidden");
-    document.querySelector("#slide-from-result").classList.add("left-hidden");
-  };
   return (
     <>
-      <UpDownContainer
-        style={{
-          position: "relative",
-        }}
-      >
+      <UpDownContainer style={{position:"relative"}}>
         <ColContainer
           id="slide-from-category"
-          style={{ position: "absolute" }}
+          style={{ position: "absolute", top:0}}
           className="slide-in"
         >
           <TarotCategory />
@@ -178,7 +193,7 @@ function TarotService() {
           </Button>
         </ColContainer>
         <ColContainer
-          style={{ position: "absolute" }}
+          style={{ position: "absolute", top:0}}
           id="slide-from-tarot"
           className="slide-in right-hidden"
         >
@@ -188,28 +203,20 @@ function TarotService() {
             placeholder="당신의 고민을 입력하세요."
             onChange={handleMessageChange}
             name="message"
+            zIndex="100"
             onKeyDown={(e) => {
               sendToGpt(e, message);
             }}
           />
-          <Button width="120px" margin="30px" onClick={slideFromTarotToLoading}>
-            전송하기
-          </Button>
         </ColContainer>
         <ColContainer
           id="slide-from-loading"
-          style={{ position: "absolute" }}
+          style={{ position: "absolute", top:0 }}
           className="slide-in right-hidden"
+          justify="start"
         >
-          <SmallMedium>점괘를 해석중입니다.</SmallMedium>
-          <br />
-          <SmallMedium>잠시 기다려주시기 바랍니다.</SmallMedium>
-          <br />
-          <br />
-          <Small>점괘 해석은 1분 정도 소요될 수 있습니다.</Small>
-          <GapH height="90px" />
+          <GapH height="20vh"/>
           <TarotLoading />
-          <p></p>
           {tarotResult[0] ? (
             dalleImgUrl ? (
               <Button margin="50px 0" onClick={slideFromLoadingToResult}>
@@ -228,39 +235,7 @@ function TarotService() {
             </>
           )}
         </ColContainer>
-        <ColContainer
-          id="slide-from-result"
-          style={{ position: "absolute" }}
-          className="slide-in right-hidden"
-        >
-          <GapH height="10vh" />
-          <Medium>- 운세 결과 -</Medium>
-          <ColContainer width="80vw">
-            {tarotResult.map((tarot) => (
-              <>
-                <Small lineHeight="2em">{tarot}</Small>
-                <br />
-                <br />
-              </>
-            ))}
-            <GapH height="20px" />
-            <Button margin="50px 0" onClick={slideFromResultToStory}>
-              이야기보기
-            </Button>
-          </ColContainer>
-        </ColContainer>
-        <ColContainer
-          id="slide-from-story"
-          style={{ position: "absolute" }}
-          className="slide-in right-hidden"
-        >
-          <GapH height="10vh" />
-          <Medium>- 당신의 이야기 -</Medium>
-          <ColContainer width="80vw" gap="35px">
-            <img alt="img" src={dalleImgUrl} width="256px" height="256px" />
-            <Small lineHeight="2em">{story}</Small>
-          </ColContainer>
-        </ColContainer>
+
       </UpDownContainer>
     </>
   );

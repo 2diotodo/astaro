@@ -3,9 +3,13 @@ import styled from "styled-components";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setSelectedChatRoom, setMessages, addMessage } from "../../features/shootingStarSlice/chatSlice";
-import {Background} from "@component/Background";
-import MessageInput from "../../component/shootingStar/MessageInput"
+import {
+  setSelectedChatRoom,
+  setMessages,
+  addMessage,
+} from "../../features/shootingStarSlice/chatSlice";
+import { Background } from "@component/Background";
+import MessageInput from "../../component/shootingStar/MessageInput";
 
 const MessageSeparator = styled.hr`
   margin: 0;
@@ -15,10 +19,10 @@ const MessageSeparator = styled.hr`
 `;
 
 const Wrapper = styled.div`
-      height:100%;
-      width:100%;
-      position: absolute;
-    `
+  height: 100%;
+  width: 100%;
+  position: absolute;
+`;
 const Title = styled.h1`
   color: white;
 `;
@@ -86,7 +90,9 @@ const ChatPage = () => {
 
   const fetchMessagesFromAPI = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8082/api/v1/message/${id}`);
+      const response = await fetch(
+        `http://localhost:8082/api/v1/message/${id}`
+      );
       const messages = await response.json();
       return messages;
     } catch (error) {
@@ -108,12 +114,12 @@ const ChatPage = () => {
           receiverSeq: 2,
           originalContent: message,
           resultSeq: 1,
-        })
-      })
+        }),
+      });
     } catch (error) {
-      console.error("메시지 전송 실패")
+      console.error("메시지 전송 실패");
     }
-  }
+  };
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -127,29 +133,36 @@ const ChatPage = () => {
 
   return (
     <div>
-      <Background/>
       <Wrapper>
-        <Title>{selectedChatRoom ? `${selectedChatRoom}번 님과의 쪽지함` : '채팅방을 불러오는 중...'}</Title>
+        <Title>
+          {selectedChatRoom
+            ? `${selectedChatRoom}번 님과의 쪽지함`
+            : "채팅방을 불러오는 중..."}
+        </Title>
         <ChatWindow>
           <MessageList>
-          {messages.map((message) => {
-            const MessageComponent =
-              message.senderSeq === loggedInMemberSeq ? MessageRight : MessageLeft;
-            const messageLabel =
-              message.senderSeq === loggedInMemberSeq ? "보낸 쪽지" : `받은 쪽지`;
-            return (
-              <React.Fragment key={message.seq}>
-                <MessageComponent>
-                  <MessageLabel>{messageLabel}</MessageLabel>
-                  {message.filteredContent}
-                </MessageComponent>
+            {messages.map((message) => {
+              const MessageComponent =
+                message.senderSeq === loggedInMemberSeq
+                  ? MessageRight
+                  : MessageLeft;
+              const messageLabel =
+                message.senderSeq === loggedInMemberSeq
+                  ? "보낸 쪽지"
+                  : `받은 쪽지`;
+              return (
+                <React.Fragment key={message.seq}>
+                  <MessageComponent>
+                    <MessageLabel>{messageLabel}</MessageLabel>
+                    {message.filteredContent}
+                  </MessageComponent>
                   <MessageSeparator /> {/* 구분선 추가 */}
-              </React.Fragment>
-            );
-          })}
+                </React.Fragment>
+              );
+            })}
           </MessageList>
         </ChatWindow>
-        <MessageInput onSubmit={handleSendMessage} MessageInput/>
+        <MessageInput onSubmit={handleSendMessage} MessageInput />
       </Wrapper>
     </div>
   );

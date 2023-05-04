@@ -5,8 +5,6 @@ import SwiperCore, { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "@/css/swiper-custom.css";
-
-import { Background } from "@component/Background";
 import ShootingStars from "@/component/shootingStar/ShootingStarBackground";
 
 SwiperCore.use([Pagination]);
@@ -21,7 +19,6 @@ const Category = styled.div`
   color: white;
 `;
 
-
 const SlideWrapper = styled.div`
   width: 100%;
   height: 100vh;
@@ -33,7 +30,6 @@ const PaginationWrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
 `;
-
 
 const StyledSwiper = styled(Swiper)`
   margin: 0;
@@ -52,12 +48,14 @@ const StarPage = () => {
     setShootingStarsKey((prevKey) => prevKey + 1);
   }, [swiperIndex]);
 
-
   return (
     <div>
+<<<<<<< HEAD
       {/* <Background /> */}
+=======
+>>>>>>> 0c8c45e8d407db7684264e9c9dc17a9a5e6c594d
       <PaginationWrapper>
-          <div className="swiper-pagination" />
+        <div className="swiper-pagination" />
       </PaginationWrapper>
       <StyledSwiper
         spaceBetween={50}
@@ -67,10 +65,10 @@ const StarPage = () => {
           clickable: true,
           el: ".swiper-pagination",
           dynamicBullets: true,
-          direction: 'horizontal'
+          direction: "horizontal",
         }}
       >
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
             <Category>
               <p>연애</p>
@@ -78,7 +76,7 @@ const StarPage = () => {
             <ShootingStars key={shootingStarsKey} />
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>
@@ -86,7 +84,7 @@ const StarPage = () => {
             </Category>
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>
@@ -94,9 +92,9 @@ const StarPage = () => {
             </Category>
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className='swiper-slide-page1'>
           <SlideWrapper>
-           <ShootingStars key={shootingStarsKey} />
+            <ShootingStars key={shootingStarsKey} />
             <Category>
               <p>진로</p>
             </Category>

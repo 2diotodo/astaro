@@ -11,19 +11,25 @@ import MemberSignup from "@page/member/MemberSignup";
 import MemberMypage from "@page/member/MemberMypage";
 import MessageListPage from "./page/message/MessageList";
 import ChatPage from "./page/shootingStar/ChatPage";
-import StarPage from"./page/shootingStar/StarPage";
+import StarPage from "./page/shootingStar/StarPage";
 import TaroResultPage from "./page/shootingStar/TaroResultPage";
 import { Background } from "@component/Background";
+import Header from "@component/common/Header";
+import { TodayResult } from "@/page/TodayResult";
+import TarotResult from "@page/TarotResult";
+import FlipGame from "@page/FlipGame";
 
 function App() {
   return (
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/prompt" element={<WhiteholeTest />} />
           <Route path="/tarot" element={<TarotService />} />
+          <Route path="/result" element={<TarotResult />} />
           <Route path="/todaytaro" element={<TodayTaro />} />
           <Route path="/member/memberlogin" element={<MemberLogin />} />
           <Route path="/member/membersignup" element={<MemberSignup />} />
@@ -32,6 +38,7 @@ function App() {
           <Route path="/star/chat/:id" element={<ChatPage />} />
           <Route path="/star" element={<StarPage />} />
           <Route path="/star/taro-result" element={<TaroResultPage />} />
+          <Route path="/flipgame" element={<FlipGame />} />
         </Routes>
       </Router>
     </div>
