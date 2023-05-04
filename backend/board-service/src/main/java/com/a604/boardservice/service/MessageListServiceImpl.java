@@ -66,6 +66,13 @@ public class MessageListServiceImpl implements MessageListService{
 				int hours = minutes / 60;
 				int remainingMinutes = minutes % 60;
 
+				if(remainingMinutes == 0){
+					hours = 24-hours;
+				}else{
+					hours = 23-hours;
+				}
+				remainingMinutes = 60 - remainingMinutes;
+
 				String formattedTime = String.format("%02d:%02d", hours, remainingMinutes);
 				System.out.println(formattedTime);
 				messageListDto.setRemainedTime(formattedTime);
