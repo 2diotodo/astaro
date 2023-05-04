@@ -6,17 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/Taro_back2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/Taro_back3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/Taro_back4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/Taro_back5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/Taro_back6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/Taro_back7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/TarotCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/TarotCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/TarotDeck.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/tarocard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/tarocard.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/tarotSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tarotSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TarotResult.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TarotService.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TodayTaro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TodayTaro.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +119,7 @@
       <workItem from="1682815785823" duration="7695000" />
       <workItem from="1682905823006" duration="2523000" />
       <workItem from="1682909928446" duration="46162000" />
-      <workItem from="1683076359233" duration="19476000" />
+      <workItem from="1683076359233" duration="22336000" />
     </task>
     <servers />
   </component>
