@@ -40,6 +40,7 @@ const ResultDiv = styled.div`
   max-width: 400px;
 `
 
+
 function TarotResult() {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
@@ -61,49 +62,29 @@ function TarotResult() {
           direction: "horizontal",
         }}
       >
+        {tarotCardsInfo.map((tarotCard, index) => (
         <SwiperSlide>
           <SlideWrapper>
-            <TarotCard
-              card={tarotCardsInfo[0]}
-              className="selected-tarocard"
-            />
-            <ResultDiv>
-              <Small style={{lineHeight:"2em"}}>{tarotResults[0]}</Small>
-            </ResultDiv>
-          </SlideWrapper>
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideWrapper>
-              <img width="200px" src={tarotCardArr[1].image}  alt={tarotCardArr[1]}/>
-              <GapH height="10vh"/>
+            <ColContainer height={"100%"}>
+              <TarotCard
+                card={tarotCard}
+                className="selected-tarocard result-tarocard"
+              />
               <ResultDiv>
-                <Small style={{lineHeight:"2em"}}>{tarotResults[1]}</Small>
-              </ResultDiv>
-          </SlideWrapper>
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideWrapper>
-            <ColContainer height="100%" className="tarot-result">
-              <img width="200px" src={tarotCardArr[0].image}  alt={tarotCardArr[0]}/>
-              <GapH height="10vh"/>
-              <ResultDiv>
-                <Small style={{lineHeight:"2em"}}>{tarotResults[0]}</Small>
+                <Small style={{lineHeight:"2em"}}>{tarotResults[index]}</Small>
               </ResultDiv>
             </ColContainer>
           </SlideWrapper>
-        </SwiperSlide>
-
+        </SwiperSlide>)
+      )}
         <SwiperSlide>
           <SlideWrapper>
             <ColContainer
               id="slide-from-story"
-              style={{ position: "absolute" }}
-              className="slide-in right-hidden"
             >
-              <GapH height="10vh" />
+              <ColContainer width="80vw" gap="35px" height="100%">
               <Medium>- 당신의 이야기 -</Medium>
-              <ColContainer width="80vw" gap="35px">
-                <div className="selected-tarocard">
+                <div className="story-image">
                   <img alt="img" src={dalleImgUrl} width="256px" height="256px" />
                 </div>
                 <Small lineHeight="2em">{respStory}</Small>

@@ -76,6 +76,7 @@ const TarotDeck = () => {
         {tarotCardArr.map((card) => (
           <TarotCard
             card={card}
+            className="tarot-card"
             selected={selectedCards.includes(card)}
             onClick={() => {
               handleCardClick(card);

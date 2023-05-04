@@ -5,34 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29fc0633-107a-41f1-b295-6c90386af4ea" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/TarotCardArr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/TarotCardArr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-01.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-02.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-02.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-03.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-03.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-04.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-04.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-05.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-05.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-06.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-06.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-07.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-07.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-08.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-08.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-09.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-09.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-10.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-11.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-11.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-12.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-13.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-13.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-14.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-14.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-15.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-15.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-16.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-17.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-17.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-18.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-18.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-19.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-19.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-20.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-21.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-21.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-22.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-22.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/tarotimg/1-23.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/fliped_tarot_img/1-23.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/component/TarotCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/component/TarotCategory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/component/TarotCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/component/TarotCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/component/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/component/TarotDeck.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/css/tarocard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/css/tarocard.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/features/tarotSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/features/tarotSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/page/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/page/TarotResult.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/page/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/page/TarotService.jsx" afterDir="false" />
@@ -83,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682899325231</updated>
-      <workItem from="1683077055055" duration="1873000" />
+      <workItem from="1683077055055" duration="3062000" />
     </task>
     <servers />
   </component>

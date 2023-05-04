@@ -30,21 +30,20 @@ const TarotCardBackImage = styled.img`
   top: -100%;
 `;
 
-function TarotCard({ card, selected, onClick }) {
+function TarotCard({ card, selected, onClick, className, style }) {
   return (
     <Panel
-      className="tarot-card"
+      className={className}
       id={"card" + card.id}
       key={card.id}
       selected={selected}
-      style={{ position: "absolute" }}
       onClick={onClick}
     >
       <TarotCardFrontImage
         src={card.image}
         alt={card.name}
         className="tarot-front"
-        style={{
+        style={style || {
           position: "relative",
           zIndex: 10,
           backfaceVisibility: "hidden",

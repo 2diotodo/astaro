@@ -235,7 +235,6 @@ function TarotService() {
             </>
           )}
         </ColContainer>
-
       </UpDownContainer>
     </>
   );

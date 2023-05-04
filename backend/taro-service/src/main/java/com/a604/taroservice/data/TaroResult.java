@@ -3,10 +3,7 @@ package com.a604.taroservice.data;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -20,19 +17,30 @@ import java.time.LocalDate;
 public class TaroResult {
     @Id
     @Column(nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
 
+    @Column(nullable = false)
     private Long memberSeq;
+
     @Size(max = 20)
+    @Column(nullable = false)
     private String category;
+
     @Size(max = 200)
     private String contentInput;
 
+    @Column(nullable = false)
     private String cardSeqList;
 
-    private String contentList;
+    @Column(columnDefinition = "TEXT")
+    private String resultList;
 
-    private String imgList;
+    @Column(columnDefinition = "TEXT")
+    private String imgUrl;
+
+    @Column(columnDefinition = "TEXT")
+    private String story;
 
     @ColumnDefault("0")
     private boolean isDangerous;
