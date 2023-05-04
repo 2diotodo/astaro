@@ -25,9 +25,6 @@ export const login = createAsyncThunk("memberSlice/login", async (logins) => {
     url: url,
     data: request,
   });
-  // const accessToken = response.headers.get("Set-Cookie");
-  // console.log(response.headers);
-  // localStorage.setItem("access-token", accessToken);
   return response.data;
 });
 

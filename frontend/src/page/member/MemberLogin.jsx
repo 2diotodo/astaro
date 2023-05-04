@@ -5,6 +5,7 @@ import { login } from "@features/memberSlice";
 import Input from "@component/Input";
 import styled from "styled-components";
 import Button from "@component/Button";
+import { isLoginCheck } from "@features/commonSlice/loginSlice";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -80,7 +81,7 @@ function MemberLogin() {
 
     // 필드 검사 후 잘못된 값이면 제출 처리를 중단한다.
     const errors = validate();
-    console.log("errors", errors);
+    // console.log("errors", errors);
     // 오류 메세지 상태를 갱신한다
     setErrors(errors);
     // 잘못된 값이면 제출 처리를 중단한다.
@@ -89,10 +90,13 @@ function MemberLogin() {
     }
     // console.log(logins);
     dispatch(login(logins));
+    console.log(login(logins));
+    dispatch(isLoginCheck(true));
     // local storage에 memberSeq, Access Token 저장
     // localStorage.setItem("memberSeq", memberSeq);
     // localStorage.setItem("access-token");
     navigate("/");
+    window.location.replace("/");
   };
 
   // 필드값을 검증한다.
