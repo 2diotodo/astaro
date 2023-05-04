@@ -50,6 +50,7 @@ const StarPage = () => {
 
   return (
     <div>
+      {/* <Background /> */}
       <PaginationWrapper>
         <div className="swiper-pagination" />
       </PaginationWrapper>
@@ -64,7 +65,7 @@ const StarPage = () => {
           direction: "horizontal",
         }}
       >
-        <SwiperSlide className='swiper-slide-page1'>
+        <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
             <Category>
               <p>연애</p>
@@ -72,7 +73,7 @@ const StarPage = () => {
             <ShootingStars key={shootingStarsKey} />
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide className='swiper-slide-page1'>
+        <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>
@@ -80,7 +81,7 @@ const StarPage = () => {
             </Category>
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide className='swiper-slide-page1'>
+        <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>
@@ -88,7 +89,7 @@ const StarPage = () => {
             </Category>
           </SlideWrapper>
         </SwiperSlide>
-        <SwiperSlide className='swiper-slide-page1'>
+        <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
             <Category>

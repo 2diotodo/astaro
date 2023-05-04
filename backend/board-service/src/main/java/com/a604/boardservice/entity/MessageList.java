@@ -91,6 +91,7 @@ public class MessageList {
 			.isReadReceiver(this.isReadReceiver)
 			.isLeaveSender(this.isLeaveSender)
 			.isLeaveReceiver(this.isLeaveReceiver)
+			.lastMessage(this.lastMessage)
 			.lastMessageTime(this.lastMessageTime)
 			.createdAt(this.createdAt)
 			.updatedAt(this.updatedAt)
