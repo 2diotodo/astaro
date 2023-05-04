@@ -1,15 +1,18 @@
 import React, { useRef, useState, useEffect } from "react";
-
+import GapH from "@component/layout/GapH";
+import Button from "@component/Button";
+import RowContainer from "@component/layout/RowContainer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "@css/flip.css";
 import "@css/carousel.css";
 import slide_image from '@assets/img/Taro_back.png';
+
 
 import { EffectCoverflow, EffectFlip } from "swiper";
 import styled from "styled-components";
@@ -17,56 +20,7 @@ import styled from "styled-components";
 export default function TodayTaro() {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-
-
-
-
-  // useEffect(() => {
-  //   const pos = swiperRef.current;
-  //   if (pos.current) {
-  //     pos.current.on("slideChange", () => {
-  //       setIndex(pos.current.activeIndex);
-  //       console.log(pos)
-  //     });
-  //   }
-  //   console.log(Swiper)
-  //   console.log(Swiper.activeIndex)
-  //   console.log(Swiper.slides)
-  //   console.log(swiperRef.activeIndex)
-  //   console.log(swiperRef.Index)
-  //   console.log(Index)
-  //   console.log(swiperRef)
-  //   console.log(swiperRef.current)
-  //   console.log(swiperRef.current.activeIndex)
-  //   console.log(setIndex)
-  //   console.log(swiperRef.Swiper)
-  //   // console.log(swiperRef.current.)
-  // }, [swiperRef, Index]);
-
-  // useEffect(() => {
-  //   const swiper = swiperRef.current;
-  //   if (swiper) {
-  //     swiper.current.on("slideChange", () => {
-  //       setActiveIndex(swiper.activeIndex);
-  //     });
-  //   }
-  // }, [swiperRef]);
-
-
-
-  useEffect(() => {
-    const swiperInstance = swiperRef.current.swiper;
-    swiperInstance.on("slideChange", () => {
-      setActiveIndex(swiperInstance.activeIndex);
-    });
-    console.log(activeIndex)
-    console.log(swiperInstance.list)
-  }, [activeIndex]);
-
-
-
-
-
+  const navigate = useNavigate()
 
   return (
     <>
@@ -89,18 +43,10 @@ export default function TodayTaro() {
         className="mySwiper"
       >
         <SwiperSlide style={activeIndex === 0 ? { transform: "rotateY(180deg)" } : {}}>
-          {/* <div className="flip">  
-            <div className="card">
-              <div className="front">                
-              </div>              
-              <div className="back">                
-              </div>
-            </div>
-          </div> */}
             <img src={slide_image} alt="pic5" className="photos" />
           0
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 1 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -111,7 +57,7 @@ export default function TodayTaro() {
           </div>
           1
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 2 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -122,7 +68,7 @@ export default function TodayTaro() {
           </div>
           2
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 3 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
         <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -133,7 +79,7 @@ export default function TodayTaro() {
           </div>
           3
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 4 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -144,7 +90,7 @@ export default function TodayTaro() {
           </div>
           4
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 5 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -155,7 +101,7 @@ export default function TodayTaro() {
           </div>
           5
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 6 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -166,7 +112,7 @@ export default function TodayTaro() {
           </div>
           6
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 7 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -177,10 +123,10 @@ export default function TodayTaro() {
           </div>
           7
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 8 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
-              <div className="front">                
+              <div className="front">
               </div>              
               <div className="back">                
               </div>
@@ -188,10 +134,10 @@ export default function TodayTaro() {
           </div>
           8
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 9 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
-              <div className="front">                
+              <div className="front">
               </div>              
               <div className="back">                
               </div>
@@ -199,7 +145,7 @@ export default function TodayTaro() {
           </div>
           9
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 10 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -210,7 +156,7 @@ export default function TodayTaro() {
           </div>
           10
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 11 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -221,7 +167,7 @@ export default function TodayTaro() {
           </div>
           11
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 12 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -232,7 +178,7 @@ export default function TodayTaro() {
           </div>
           12
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 13 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide>
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -254,13 +200,6 @@ export default function TodayTaro() {
           </div>
           14
         </SwiperSlide>
-
-
-
-
-
-
-
 
         {/* <SwiperSlide>
           <img src={slide_image} alt="pic5" className="photos" />
@@ -302,9 +241,11 @@ export default function TodayTaro() {
           <img src={slide_image} alt="pic5" className="photos" />
         </SwiperSlide> */}
       </Swiper>
-      <LinkWrapper>
-        <Link to="/todayresult">결과보기</Link>
-      </LinkWrapper>
+      
+      <RowContainer width="100%" style={{ justifyContent: "space-evenly" }}>
+        <Button onClick={() => navigate('/todayresult')}>결과보기</Button>
+        {/* <Button onClick={handleCategory}>연애</Button> */}
+      </RowContainer>
     </>
   );
 }
