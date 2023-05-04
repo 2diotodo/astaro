@@ -15,7 +15,7 @@ public class TaroContent {
 
     @Id
     @Column(nullable=false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer seq;
 
     @Column(nullable = false)

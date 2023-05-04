@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class TaroResult {
     @Id
     @Column(nullable=false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long seq;
 
     @Column(nullable = false)

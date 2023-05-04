@@ -17,7 +17,7 @@ public class CardInfo {
 
     @Id
     @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Short seq;
 
     @Size(max=20)
