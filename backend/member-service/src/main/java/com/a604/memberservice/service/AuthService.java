@@ -31,7 +31,7 @@ public interface AuthService {
     // SignUpRequestDto to Entity
     default Member toEntity(SignUpRequestDto signUpRequestDto) {
         return Member.builder()
-                .memberSeq(signUpRequestDto.getMemberSeq())
+                .seq(signUpRequestDto.getSeq())
                 .memberId(signUpRequestDto.getMemberId())
                 .nickname(signUpRequestDto.getNickname())
                 .password(signUpRequestDto.getPassword())
@@ -42,7 +42,7 @@ public interface AuthService {
     // Entity to GetMemberDto
     default GetMemberDto toDto(Member member) {
         return GetMemberDto.builder()
-                .memberSeq(member.getMemberSeq())
+                .seq(member.getSeq())
                 .memberId(member.getMemberId())
                 .nickname(member.getNickname())
                 .email(member.getEmail())

@@ -90,8 +90,8 @@ function MemberLogin() {
     // console.log(logins);
     dispatch(login(logins));
     // local storage에 memberSeq, Access Token 저장
-    localStorage.setItem("memberSeq");
-    localStorage.setItem("access-token");
+    // localStorage.setItem("memberSeq", memberSeq);
+    // localStorage.setItem("access-token");
     navigate("/");
   };
 

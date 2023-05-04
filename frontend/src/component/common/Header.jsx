@@ -16,7 +16,7 @@ function Header() {
 
   // 로그인 여부 확인
   const [isLogin, setIsLogin] = useState(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access-token");
     return !!token;
   });
 

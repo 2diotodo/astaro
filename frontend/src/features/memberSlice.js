@@ -25,6 +25,9 @@ export const login = createAsyncThunk("memberSlice/login", async (logins) => {
     url: url,
     data: request,
   });
+  // const accessToken = response.headers.get("Set-Cookie");
+  // console.log(response.headers);
+  // localStorage.setItem("access-token", accessToken);
   return response.data;
 });
 
@@ -68,7 +71,7 @@ const memberSlice = createSlice({
       console.log("로그인중", state.result);
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log("로그인성공", state.result);
+      console.log("로그인성공", action.payload);
     });
     builder.addCase(login.rejected, (state, action) => {
       console.log("로그인실패", action.error);
