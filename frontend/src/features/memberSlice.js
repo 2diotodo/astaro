@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { baseURL } from "@features/port";
+// import { baseURL } from "@features/port";
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 
@@ -10,13 +10,16 @@ const initialState = {
   nickname: "",
   email: "",
 };
+// const baseURL = "http://www.astaro.co.kr/auth";
+const baseURL = "http://localhost:8081/auth";
+
 // 로그인
 export const login = createAsyncThunk("memberSlice/login", async (logins) => {
   const request = {
     memberId: logins.memberId,
     password: logins.password,
   };
-  const url = `${baseURL}member/login`;
+  const url = `${baseURL}/login`;
   const response = await axios({
     method: "POST",
     url: url,
@@ -33,7 +36,7 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
     nickname: values.nickname,
     email: values.email,
   };
-  const url = `${baseURL}member/signup`;
+  const url = `${baseURL}/signup`;
   const response = await axios({
     method: "POST",
     url: url,
@@ -45,7 +48,7 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
 export const duplicateId = createAsyncThunk(
   "memberSlice/duplicateId",
   async (memberId) => {
-    const url = `${baseURL}exist/id/${memberId}`;
+    const url = `${baseURL}/check/id/${memberId}`;
     const response = await axios({
       method: "GET",
       url: url,
