@@ -1,42 +1,76 @@
 import React, { useRef, useState, useEffect } from 'react';
-import slide_image from '@assets/img/Taro_back.png';
+import slide_image from '@assets/img/1-01.png';
 import styled from 'styled-components';
-import '@css/todayresult.scss';
-import { Link } from "react-router-dom";
+import '@css/todayresult.css';
+import { Link, useNavigate } from "react-router-dom";
+import Button from "@component/Button";
+import RowContainer from "@component/layout/RowContainer";
+import Small from "@component/text/Small"
+// import api from 'constants/api'
+import axios from "axios";
 
 export function TodayResult(){
-  return(
+
+  const navigate = useNavigate()
+
+  // const randomNum = Math.floor(Math.random() * 23 );
+  const [result, setResult] = useState({});
+  // console.log(randomNum); 
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/tarot/today")
+      .then( (res) => {
+        setResult(res.data);
+        console.log(res);
+        // setProblems(res.data.problems)
+        // dispatch(setReduxProblems(res.data.problems))
+      })
+      .catch(() => {})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return( 
     <Back>
       
         <div className='wrapper'>
           <div className='content'>
             <FlexBox>
-              <StyledDiv>카드 사진</StyledDiv>
-              <Img src={slide_image} alt="pic5" className="photos"  />
-                
-              
-              <StyledDiv>내용</StyledDiv>
+              <StyledDiv>
+                카드 사진<br />
+                <br />
+                <div>
+                  <Img src={slide_image} alt="pic5" className="photos"  />
+                </div>
+              </StyledDiv>                                            
+              <StyledDiv>내용
+                <div>
+                <Small>{result.cardName}</Small>
+                </div>
+              </StyledDiv>              
             </FlexBox>
             <FlexBox>
               <StyledDiv>
                 좋은거 이름<br/>
                 좋은거 사진
               </StyledDiv>
-                <Img src={slide_image} alt="pic5" className="photos" /> 
+                {/* <imgae src={slide_image} alt="pic5" className="photos" />  */}
               <StyledDiv>
                 나쁜거 이름<br/>
                 나쁜거 사진
-              </StyledDiv>
-              
-            </FlexBox>
-            <div>
-                <LinkWrapper>
+              </StyledDiv>              
+            </FlexBox>            
+            <RowContainer width="100%" style={{ justifyContent: "space-evenly" }}>
+              <Button onClick={() => navigate('/')}>홈으로</Button>
+              <Button onClick={() => navigate('/todaytaro')}>SNS공유</Button>          
+            </RowContainer>
+                {/* <LinkWrapper>
                   <Link to="/">홈으로</Link>
                 </LinkWrapper>
                 <LinkWrapper>
                   <Link to="/">SNS공유</Link>
-                </LinkWrapper>                
-            </div>
+                </LinkWrapper>                 */}
+            
                         
           </div>
         </div>
@@ -65,9 +99,9 @@ const Bad = styled.div`
   height: 90px;
 `
 
-const Img = styled.image`
-  width: 25px;
-  height: 45px;
+const Img = styled.img`
+  width: 150px;
+  height: 237.4px;
 `
 
 const FlexBox = styled.div`
@@ -80,7 +114,7 @@ const FlexBox = styled.div`
 const StyledDiv = styled.div`
   flex: 1;
   
-  text-align: start;
+  text-align: center;
   font-size: 20px;
   color: blue;
 `

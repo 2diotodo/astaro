@@ -45,10 +45,11 @@ public class JwtUtil {
         Date now = new Date();
 
         Claims accessTokenClaims = Jwts.claims().setSubject("accessToken");
+        accessTokenClaims.put("memberSeq", member.getSeq());
         accessTokenClaims.put("role", member.getRole());
 
         String accessToken = Jwts.builder()
-                .setSubject(member.getMemberSeq().toString())
+                .setSubject(member.getSeq().toString())
                 .setHeaderParam("alg", SignatureAlgorithm.HS256.getValue())
                 .setHeaderParam("typ", "JWT")
                 .setClaims(accessTokenClaims)
@@ -58,7 +59,7 @@ public class JwtUtil {
                 .compact();
 
         Claims refreshTokenClaims = Jwts.claims().setSubject("refreshToken");
-        refreshTokenClaims.put("memberSeq", member.getMemberSeq());
+        refreshTokenClaims.put("memberSeq", member.getSeq());
         refreshTokenClaims.put("role", member.getRole());
 
         String refreshToken = Jwts.builder()
@@ -90,7 +91,7 @@ public class JwtUtil {
         claims.put("role", member.getRole());
 
         return Jwts.builder()
-                .setSubject(member.getMemberSeq().toString())
+                .setSubject(member.getSeq().toString())
                 .setHeaderParam("alg", SignatureAlgorithm.HS256.getValue())
                 .setHeaderParam("typ", "JWT")
                 .setClaims(claims)
@@ -107,7 +108,7 @@ public class JwtUtil {
         claims.put("role", member.getRole());
 
         return Jwts.builder()
-                .setSubject(member.getMemberSeq().toString())
+                .setSubject(member.getSeq().toString())
                 .setHeaderParam("alg", "HS256")
                 .setHeaderParam("typ", "JWT")
                 .setClaims(claims)

@@ -27,6 +27,7 @@ function FlipGame() {
 
   const handleSaveTime = (time) => {
     // Save the elapsed time to the state
+    console.log("savedtime", time);
     setSavedTime(time);
   };
 
