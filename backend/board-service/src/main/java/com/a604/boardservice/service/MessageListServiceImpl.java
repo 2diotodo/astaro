@@ -13,13 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.a604.boardservice.dto.MessageListDto;
+import com.a604.boardservice.entity.Member;
 import com.a604.boardservice.entity.MessageList;
+import com.a604.boardservice.repository.MemberRepository;
 import com.a604.boardservice.repository.MessageListRepository;
 
 @Service
 public class MessageListServiceImpl implements MessageListService{
 	@Autowired
 	private MessageListRepository messageListRepository;
+
+	@Autowired
+	private MemberRepository memberRepository;
 
 	@Override
 	public void addMessageList(MessageListDto messageListDto) throws Exception {
@@ -54,6 +59,22 @@ public class MessageListServiceImpl implements MessageListService{
 				float diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(diffInMillies);
 
 				messageListDto.setN(diffInSeconds/8640);
+
+				long Seconds = TimeUnit.MILLISECONDS.toSeconds(diffInMillies);
+
+				int minutes = (int) (Seconds / 60);
+				int hours = minutes / 60;
+				int remainingMinutes = minutes % 60;
+
+				String formattedTime = String.format("%02d:%02d", hours, remainingMinutes);
+				System.out.println(formattedTime);
+				messageListDto.setRemainedTime(formattedTime);
+
+				if(messageListDto.getSenderSeq() == memberSeq) {
+					messageListDto.setNickname(memberRepository.findById(messageListDto.getReceiverSeq()).get().getNickname());
+				}else {
+					messageListDto.setNickname(memberRepository.findById(messageListDto.getSenderSeq()).get().getNickname());
+				}
 
 				messageListDtoList.add(messageListDto);
 			}

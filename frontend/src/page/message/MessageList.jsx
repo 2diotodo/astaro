@@ -76,7 +76,7 @@ const MessageListPage = () => {
         {messageRooms.map((messageRooms, index) => (
           <MessageRoom
             key={index}
-            nickname={messageRooms.seq}
+            nickname={messageRooms.nickname}
             lastMessage={messageRooms.lastMessage}
             n={messageRooms.n}
           />
