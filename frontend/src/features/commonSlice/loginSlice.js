@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const loginSlice = createSlice({
-  name: "loginSlice",
+  name: "loginCheck",
   initialState: initialState,
   reducers: {
     isLoginCheck: (state, action) => {
