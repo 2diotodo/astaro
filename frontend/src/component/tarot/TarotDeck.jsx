@@ -7,19 +7,19 @@ import { useDispatch } from "react-redux";
 import { setStateCards, setStateCardsInfo } from "@features/tarotSlice";
 import TarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/tarot/TarotCard";
-import Medium from "@component/text/Medium";
+import SmallMedium from "@component/text/SmallMedium";
 
 let tarotCardArr = TarotCardArr;
 
 const TarotDeck = () => {
-  const selectedCardWidth = 100 * 1.24;
-  const selectedCardMargin = 10;
+  const selectedCardWidth = window.innerWidth * 0.28;
+  const selectedCardMargin = 15;
   const dispatch = useDispatch();
   const [cardIndex, setCardIndex] = useState(0);
   const coordinates = [
-    1.5 * selectedCardWidth - selectedCardMargin,
-    0.5 * selectedCardWidth - 2 * selectedCardMargin,
-    -0.5 * selectedCardWidth - 3 * selectedCardMargin,
+    1.5 * selectedCardWidth + selectedCardMargin,
+    0.5 * selectedCardWidth,
+    -0.5 * selectedCardWidth - selectedCardMargin,
   ];
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectedCardsSeq, setSelectedCardsSeq] = useState([]);
@@ -40,11 +40,11 @@ const TarotDeck = () => {
     const xPos = coordinates[cardIndex];
     setCardIndex(cardIndex + 1);
     selectedCard.classList.add("selected-tarocard");
-    const toMove = -xPos + 50;
+    const toMove = -xPos + 0.5 * selectedCardWidth;
 
     selectedCard.setAttribute(
       "style",
-      `transform: translate(${toMove}px, -240px) rotateY(-180deg);`
+      `transform: translate(${toMove}px, -35vh) rotateY(-180deg); width: 28vw;`
     );
 
     setTimeout(()=>{
@@ -65,8 +65,8 @@ const TarotDeck = () => {
   return (
     <ColContainer height="75vh">
       <GapH height="2vh" />
-      <Medium>3장의 카드를 뽑아주세요.</Medium>
-      <GapH height="350px" />
+      <SmallMedium>3장의 카드를 뽑아주세요.</SmallMedium>
+      <GapH height="30vh" />
       <RowContainer
         justify="center"
         height="100%"

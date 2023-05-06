@@ -17,7 +17,7 @@ function TarotCategory() {
         style={{
           margin: "50px",
           color: "white",
-          fontSize: "30px",
+          fontSize: "20px",
         }}
       >
         무엇을 고민하고 있나요?

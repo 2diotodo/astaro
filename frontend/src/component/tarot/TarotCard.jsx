@@ -5,8 +5,9 @@ import "@css/tarocard.scss";
 
 const Panel = styled.div`
   position: absolute;
-  width: 100px;
-  height: 185px;
+  width: 23vw;
+  height: 42vw;
+  bottom: 3vh;
   border-radius: 5px;
   transition: box-shadow 0.2s ease-in-out, transform 0.5s ease-in-out;
   &:hover {

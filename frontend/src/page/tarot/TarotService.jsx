@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "@component/Button";
 import axios from "axios";
-import customAxios from "@utils/axiosInstance"
 import axiosInstance from "@utils/axiosInstance";
 import Input from "@component/Input";
 import ColContainer from "@component/layout/ColContainer";

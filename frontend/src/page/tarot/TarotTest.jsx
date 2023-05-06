@@ -24,6 +24,7 @@ const TarotTest = () => {
     <>
       <ColContainer>
       <Button onClick={sendResult} style={{zIndex:30}}>요청보내기</Button>
+
       </ColContainer>
     </>
   );

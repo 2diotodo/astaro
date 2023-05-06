@@ -9,6 +9,7 @@ import {
 import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
+import Medium from "@component/text/Medium";
 
 function Header() {
   const navState = useSelector((state) => state.navBars);
@@ -66,7 +67,7 @@ function Header() {
           onKeyDown={navigateToMain}
           style={{ color: "white" }}
         >
-          <h1>Astaro</h1>
+          <Medium style={{fontFamily:"TAEBAEKmilkyway"}}>Astaro</Medium>
         </div>
         <div className={`navbar-wrapper ${navState.toggle ? "open" : "close"}`}>
           <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
