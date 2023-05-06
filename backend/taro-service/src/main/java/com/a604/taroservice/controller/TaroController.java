@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -32,7 +29,9 @@ public class TaroController {
 
     @PostMapping("/result")
     @ApiOperation(value = "타로 결과 저장", notes = "타로 결과값을 저장합니다.")
-    public ResponseEntity<?> SaveTaroResult(TaroResultDto taroResultDto) throws IOException {
+    public ResponseEntity<?> SaveTaroResult(@RequestBody TaroResultDto taroResultDto) throws IOException {
+        System.out.println(taroResultDto.getCategory());
+        System.out.println(taroResultDto.getStory());
         taroResultService.saveTaroResult(taroResultDto);
         return new ResponseEntity<>(taroResultDto, HttpStatus.OK);
     }

@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-// import { baseURL } from "@features/port";
+import axios from "@utils/axiosInstance";
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 
@@ -10,8 +9,8 @@ const initialState = {
   nickname: "",
   email: "",
 };
-// const baseURL = "http://www.astaro.co.kr/auth";
-const baseURL = "http://localhost:8081/auth";
+
+const baseURL = `${process.env.REACT_APP_BACKEND_URL}/member-service/auth`;
 
 // 로그인
 export const login = createAsyncThunk("memberSlice/login", async (logins) => {
@@ -24,6 +23,8 @@ export const login = createAsyncThunk("memberSlice/login", async (logins) => {
     method: "POST",
     url: url,
     data: request,
+  }).then((res)=>{
+    localStorage.setItem("access-token", res.data.accessToken);
   });
   return response.data;
 });

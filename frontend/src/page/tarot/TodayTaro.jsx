@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
-import GapH from "@component/layout/GapH";
+import React, { useRef, useState } from "react";
 import Button from "@component/Button";
 import RowContainer from "@component/layout/RowContainer";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,7 +6,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "@css/flip.css";
 import "@css/carousel.css";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Rings } from "react-loader-spinner";
-import ColContainer from "./layout/ColContainer";
+import ColContainer from "../layout/ColContainer";
 import SmallMedium from "@component/text/SmallMedium";
 import Small from "@component/text/Small";
 import GapH from "@component/layout/GapH";

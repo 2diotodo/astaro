@@ -6,7 +6,7 @@ import GapH from "@component/layout/GapH";
 import { useDispatch } from "react-redux";
 import { setStateCards, setStateCardsInfo } from "@features/tarotSlice";
 import TarotCardArr from "@assets/TarotCardArr";
-import TarotCard from "@component/TarotCard";
+import TarotCard from "@component/tarot/TarotCard";
 import Medium from "@component/text/Medium";
 
 let tarotCardArr = TarotCardArr;

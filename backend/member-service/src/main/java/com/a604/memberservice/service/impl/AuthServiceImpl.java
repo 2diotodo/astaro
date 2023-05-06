@@ -2,21 +2,26 @@ package com.a604.memberservice.service.impl;
 
 import com.a604.memberservice.dto.request.LoginRequestDto;
 import com.a604.memberservice.dto.request.SignUpRequestDto;
-import com.a604.memberservice.dto.response.TokenResponseDto;
 import com.a604.memberservice.entity.Member;
 import com.a604.memberservice.repository.MemberRepository;
 import com.a604.memberservice.service.AuthService;
+import com.a604.memberservice.util.CookieUtil;
 import com.a604.memberservice.util.JwtUtil;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -27,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
     private final MemberRepository memberRepository;
 
     @Override
-    public Optional<TokenResponseDto> checkMember(LoginRequestDto loginRequestDto) {
+    public Optional<String> checkMember(HttpServletResponse response, LoginRequestDto loginRequestDto) {
 
         Optional<Member> member = Optional.ofNullable(memberRepository.findByMemberId(loginRequestDto.getMemberId())
                 .orElseThrow(() -> new UsernameNotFoundException("가입되지 않은 아이디입니다.")));
@@ -35,7 +40,8 @@ public class AuthServiceImpl implements AuthService {
         if (!bCryptPasswordEncoder.matches(loginRequestDto.getPassword(), member.get().getPassword()))
             throw new UsernameNotFoundException("비밀번호가 일치하지 않습니다.");
 
-        return Optional.ofNullable(jwtUtil.generateToken(member.get()));
+        saveRefreshToken(response, member.get());
+        return Optional.ofNullable(jwtUtil.generateAccessToken(member.get()));
     }
 
     @Override
@@ -71,19 +77,23 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public TokenResponseDto reissuance(String refreshToken) {
-
-        Claims claims = jwtUtil.getClaimsFromToken(refreshToken);
-        Long memberSeq = claims.get("seq", Long.class);
-
-        Member member = memberRepository.findById(memberSeq).get();
-
-        return jwtUtil.generateToken(member);
+    public String reissueAccessToken(HttpServletRequest request, HttpServletResponse response) throws ExpiredJwtException, NullPointerException{
+        String originRefreshToken = CookieUtil.getCookie(request, "refreshToken").orElseThrow().getValue();
+        jwtUtil.verifyToken(originRefreshToken);
+        Member member = memberRepository.findById(jwtUtil.getSubject(originRefreshToken)).orElseThrow();
+        String newRefreshToken = jwtUtil.generateRefreshToken(member);
+        CookieUtil.addCookie(response, "refreshToken", newRefreshToken, 24 * 60 * 60);
+        return jwtUtil.generateAccessToken(member);
     }
 
     @Override
-    public boolean checkIdDuplicate(String memeberId) {
-        return memberRepository.existsByMemberId(memeberId);
+    public void saveRefreshToken(HttpServletResponse response, Member member){
+        CookieUtil.addCookie(response, "refreshToken", jwtUtil.generateRefreshToken(member), 24 * 60 * 60);
+    }
+
+    @Override
+    public boolean checkIdDuplicate(String memberId) {
+        return memberRepository.existsByMemberId(memberId);
     }
 
     @Override

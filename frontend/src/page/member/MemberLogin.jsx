@@ -96,7 +96,7 @@ function MemberLogin() {
     // localStorage.setItem("memberSeq", memberSeq);
     // localStorage.setItem("access-token");
     navigate("/");
-    window.location.replace("/");
+    // window.location.replace("/");
   };
 
   // 필드값을 검증한다.

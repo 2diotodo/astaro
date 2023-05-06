@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import "@/css/swiper-custom.css";
+import "@css/swiper-custom.css";
 import styled from "styled-components";
 import Medium from "@component/text/Medium";
 import ColContainer from "@component/layout/ColContainer";
@@ -11,7 +11,7 @@ import GapH from "@component/layout/GapH";
 import Small from "@component/text/Small";
 import { useSelector } from "react-redux";
 import tarotCardArr from "@assets/TarotCardArr";
-import TarotCard from "@component/TarotCard";
+import TarotCard from "@component/tarot/TarotCard";
 
 SwiperCore.use([Pagination]);
 
