@@ -8,7 +8,7 @@ import {
   setMessages,
   addMessage,
 } from "../../features/shootingStarSlice/chatSlice";
-import { Background } from "@component/Background";
+import { Background } from "@component/common/Background";
 import MessageInput from "../../component/shootingStar/MessageInput";
 
 const MessageSeparator = styled.hr`

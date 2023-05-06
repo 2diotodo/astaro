@@ -5,13 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/config/CorsConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/AuthRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/dto/request/SignUpRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/dto/request/SignUpRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/TarotCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/TarotCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/TarotDeck.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/tarocard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/tarocard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tarotSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tarotSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TarotResult.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/TarotService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Background.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/Background.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/TarotCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/TarotCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCategory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/TarotLoading.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotLoading.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/memberSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/memberSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/FlipGame.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotResult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TodayResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TodayResult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/TodayTaro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TodayTaro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/member/MemberLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/member/MemberLogin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/shootingStar/ChatPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/shootingStar/ChatPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/shootingStar/TaroResultPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/shootingStar/TaroResultPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/axiosInstance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/axiosInstance.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +54,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/auth" />
+                    <option name="lastUsedInstant" value="1683196692" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1683196691" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -47,10 +95,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "C:/Users/SSAFY/Desktop/project/S08P31A604/backend/member-service",
+    "git-widget-placeholder": "feature/auth",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Park Seongmin/Desktop/blog/S08P31A604/frontend",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -60,7 +110,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\SSAFY\\Desktop\\project\\S08P31A604\\frontend\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "settings.editor.selected.configurable": "advanced.settings",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -82,12 +132,15 @@
       <recent name="C:\Users\SSAFY\Desktop\project\S08P31A604\frontend\src\component" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Park Seongmin\Desktop\blog\S08P31A604\frontend\src\component\common" />
+      <recent name="C:\Users\Park Seongmin\Desktop\blog\S08P31A604\frontend\src\component\tarot" />
+      <recent name="C:\Users\Park Seongmin\Desktop\blog\S08P31A604\frontend\src\page\tarot" />
       <recent name="C:\Users\SSAFY\Desktop\project\S08P31A604\frontend\src\assets\img\tarotimg" />
       <recent name="C:\Users\SSAFY\Desktop\project\S08P31A604\frontend\src\component" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.TarotDeck.jsx">
-    <configuration name="TarotDeck.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/component/TarotDeck.jsx" working-dir="$PROJECT_DIR$/src/component">
+    <configuration name="TarotDeck.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" working-dir="$PROJECT_DIR$/src/component">
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -120,6 +173,10 @@
       <workItem from="1682905823006" duration="2523000" />
       <workItem from="1682909928446" duration="46162000" />
       <workItem from="1683076359233" duration="22336000" />
+      <workItem from="1683195241902" duration="552000" />
+      <workItem from="1683195807797" duration="77000" />
+      <workItem from="1683196231294" duration="316000" />
+      <workItem from="1683196562754" duration="11076000" />
     </task>
     <servers />
   </component>

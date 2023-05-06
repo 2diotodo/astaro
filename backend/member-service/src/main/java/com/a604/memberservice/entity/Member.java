@@ -1,9 +1,6 @@
 package com.a604.memberservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -22,7 +19,7 @@ public class Member {
 
     @Id
     @Column(name = "seq")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long seq;
 
     @Column(name = "member_id")
@@ -67,6 +64,8 @@ public class Member {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Setter
+    private String refreshToken;
 
     public void updateMember(String nickname, String password) {
         this.nickname = nickname;

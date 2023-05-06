@@ -29,6 +29,12 @@ spring:
               - DELETE
               - PUT
               - OPTIONS
+      default-filters:
+        - name: LoggingFilter
+          args:
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
       routes:
         # Member Service Auth 컨트롤러
         - id: member-service
@@ -70,5 +76,6 @@ spring:
               args:
                 role: ROLE_USER
             - RewritePath=/board-service/(?<segment>.*), /$\{segment}
+
 
 jwt.secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa

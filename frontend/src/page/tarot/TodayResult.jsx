@@ -1,8 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react';
-import slide_image from '@assets/img/1-01.png';
+import React, { useState, useEffect } from 'react';
+import slide_image from '@assets/img/Taro_back.png';
 import styled from 'styled-components';
-import '@css/todayresult.css';
-import { Link, useNavigate } from "react-router-dom";
+import '@css/todayresult.scss';
+import { useNavigate } from "react-router-dom";
 import Button from "@component/Button";
 import RowContainer from "@component/layout/RowContainer";
 import Small from "@component/text/Small"

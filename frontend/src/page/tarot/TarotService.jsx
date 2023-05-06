@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import Button from "../component/Button";
+import Button from "@component/Button";
 import axios from "axios";
+import customAxios from "@utils/axiosInstance"
 import axiosInstance from "@utils/axiosInstance";
-import Input from "../component/Input";
-import ColContainer from "../component/layout/ColContainer";
+import Input from "@component/Input";
+import ColContainer from "@component/layout/ColContainer";
 import "@css/tarocard.scss";
 import "@css/tarotpageslide.css";
-import TarotDeck from "@component/TarotDeck";
+import TarotDeck from "@component/tarot/TarotDeck";
 import GapH from "@component/layout/GapH";
-import TarotCategory from "@component/TarotCategory";
+import TarotCategory from "@component/tarot/TarotCategory";
 import UpDownContainer from "@component/layout/UpDownContainer";
-import TarotLoading from "@component/TarotLoading";
+import TarotLoading from "@component/tarot/TarotLoading";
 import Small from "@component/text/Small";
 import { useDispatch, useSelector } from "react-redux";
 import { setStateImgUrl, setStateMessage, setStateResults, setStateStory } from "@features/tarotSlice";
@@ -24,7 +25,7 @@ function TarotService() {
   const [dalleImgUrl, setDalleImgUrl] = useState("");
   const category = useSelector((state) => state.tarot.stateCategory);
   const stateCards = useSelector((state) => state.tarot.stateCards);
-  const cardSeqList = useSelector((state) => state.tarot.stateCardsSeq);
+  const cardSeqList = useSelector((state) => state.tarot.stateCardsInfo.map((card) => card.id));
   const sendToGpt = (event, message) => {
     if (event.key === "Enter") {
       dispatch(setStateMessage(message));

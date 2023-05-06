@@ -1,4 +1,4 @@
-import { Background } from "@/component/Background";
+import { Background } from "@component/common/Background";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
