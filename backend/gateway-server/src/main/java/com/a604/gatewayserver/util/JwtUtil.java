@@ -28,8 +28,6 @@ public class JwtUtil {
     private Key secretKey;
     private final static String TOKEN_PREFIX = "Bearer ";
 
-
-
     @PostConstruct
     public void init() {
         String encodedSecret = Base64.getEncoder().encodeToString(secret.getBytes());
@@ -37,7 +35,6 @@ public class JwtUtil {
         System.out.println(secretKey);
     }
 
-    // 토큰 추출
     public String getAccessTokenFromHttpHeader(ServerHttpRequest request) {
         String authHeader = request.getHeaders().getOrEmpty(HttpHeaders.AUTHORIZATION).get(0);
         if(authHeader.isEmpty()){
@@ -47,19 +44,6 @@ public class JwtUtil {
             return authHeader.substring(TOKEN_PREFIX.length());
         }
         return null;
-    }
-
-    // 권한 추출
-    private String getRole(String token) {
-        return "";
-    }
-
-
-    // 유효성 검사
-    public boolean isExpiredToken(Claims claims){
-        System.out.println(claims.getExpiration().toString());
-        System.out.println(!claims.getExpiration().before(new Date()));
-        return claims.getExpiration().before(new Date());
     }
 
     public Claims verifyToken(String token) throws ExpiredJwtException, SecurityException, MalformedJwtException, UnsupportedJwtException, IllegalArgumentException {
@@ -77,30 +61,6 @@ public class JwtUtil {
             throw e;
         }
     }
-
-    // 복호화
-    public Claims getClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
-
-
-    // 토큰 추출
-    public String getAccessToken(ServerHttpRequest request) {
-
-        final MultiValueMap<String, HttpCookie> cookies = request.getCookies();
-
-        if(cookies.isEmpty()) return null;
-
-        return cookies.getFirst("accessToken").getValue();
-
-    }
-
-
-
 
 }
 

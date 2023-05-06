@@ -23,7 +23,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const retry = error.response.data==="expired Token";
-    const {config, response:{status}} = error;
+    const {config} = error;
 
     if (error.response.status === 401 && retry) {
       const originalRequest = config;
@@ -38,15 +38,7 @@ axiosInstance.interceptors.response.use(
         .then((res) => {
           const accessToken = res.data.accessToken;
           localStorage.setItem('access-token', accessToken);
-          console.log(originalRequest.headers.Authorization)
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-          console.log(originalRequest.headers.Authorization);
-          console.log(originalRequest)
-          // const newConfig = Object.assign({}, originalRequest, {
-          //   headers: Object.assign({}, originalRequest.headers, {
-          //     Authorization: `Bearer ${accessToken}`
-          //   })
-          // });
           return axios(originalRequest);
       });
     }

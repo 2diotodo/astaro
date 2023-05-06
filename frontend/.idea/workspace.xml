@@ -5,17 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/util/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/AuthRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/CookieUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/CookieUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/taro-service/src/main/java/com/a604/taroservice/config/WebConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/taro-service/src/main/java/com/a604/taroservice/controller/TaroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/taro-service/src/main/java/com/a604/taroservice/controller/TaroController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" afterDir="false" />
@@ -48,12 +37,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/auth" />
-                    <option name="lastUsedInstant" value="1683196692" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1683407603" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1683196691" />
+                    <option name="branchName" value="feature/auth" />
+                    <option name="lastUsedInstant" value="1683196692" />
                   </RecentBranch>
                 </list>
               </option>
@@ -83,7 +72,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/auth",
+    "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Park Seongmin/Desktop/blog/S08P31A604/frontend",
     "list.type.of.created.stylesheet": "CSS",

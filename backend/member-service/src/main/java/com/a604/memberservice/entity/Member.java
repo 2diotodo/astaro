@@ -64,9 +64,6 @@ public class Member {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Setter
-    private String refreshToken;
-
     public void updateMember(String nickname, String password) {
         this.nickname = nickname;
         this.password = password;

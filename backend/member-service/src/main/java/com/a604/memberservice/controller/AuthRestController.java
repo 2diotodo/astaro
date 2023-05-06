@@ -52,29 +52,15 @@ public class AuthRestController {
 
     @PostMapping("/logout")
     public ResponseEntity<Map<String, String>> logout(HttpServletResponse response) {
-
         Map<String, String> result = new HashMap<>();
-
-        Cookie accessCookie = new Cookie("accessToken", null);
-        accessCookie.setHttpOnly(true);
-        accessCookie.setSecure(true);
-        accessCookie.setMaxAge(0);
-        accessCookie.setPath("/");
-        accessCookie.setDomain("localhost");
-
         Cookie refreshCookie = new Cookie("refreshToken", null);
         refreshCookie.setHttpOnly(true);
-        refreshCookie.setSecure(true);
+//        refreshCookie.setSecure(true);
         refreshCookie.setMaxAge(0);
         refreshCookie.setPath("/");
         refreshCookie.setDomain("localhost");
-
-        response.addCookie(accessCookie);
         response.addCookie(refreshCookie);
-
         result.put("message", "로그아웃 성공");
-        result.put("status", "200");
-
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

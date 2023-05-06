@@ -19,14 +19,12 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuthorizationFilter.Config> {
 
-    // [ Dependency : jwtUtil ]
     private final JwtUtil jwtUtil;
     public JwtAuthorizationFilter(JwtUtil jwtUtil){
         super(Config.class);
         this.jwtUtil = jwtUtil;
     }
-
-    // [ Filter apply : JwtAuthorization ]
+    
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
@@ -34,18 +32,15 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
             ServerHttpResponse response = exchange.getResponse();
 
             String role = "ROLE_" + request.getHeaders().get("X-Authorization-Role").get(0);
-            log.info("role : " + role);
-            log.info("config : " + config);
             log.info("config.getRole() : " + config.getRole());
             if(role.equals(config.getRole()))
                 return chain.filter(exchange);
             else
-                return onError(response, "UNATHORIZATION", HttpStatus.FORBIDDEN);
+                return onError(response, "UNAUTHORIZATION", HttpStatus.FORBIDDEN);
 
         });
     }
 
-    // Authorization Failure : Error Response
     private Mono<Void> onError(ServerHttpResponse response, String message, HttpStatus status){
         response.setStatusCode(status);
         DataBuffer buffer = response.bufferFactory().wrap(message.getBytes(StandardCharsets.UTF_8));

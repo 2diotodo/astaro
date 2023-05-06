@@ -17,10 +17,6 @@ const TarotTest = () => {
         ].toString(),
         story: "한때, 아름다운 꽃이 피어나던 마을이 있었습니다. 이 마을에 사는 한 남자가 자신의 마음에 드는 여인을 만나고 싶어했습니다. 그러던 어느 날, 그는 높은 산 꼭대기로 올라가 여신들의 축제를 보러 갔습니다. 그곳에서 그는 세 명의 여신들과 마주쳤습니다. 첫 번째 여신은 미소를 지으며, 두 번째 여신은 힘있는 모습으로 그를 바라보았고, 세 번째 여신은 깊은 눈빛으로 그를 바라보았습니다. 그 남자는 이들 여신들이 자신의 마음에 드는 여인과 닮았다고 생각했습니다. 이후, 그는 자신의 내면을 깊이 생각하고, 결국 그의 선택은 그가 만난 세 명의 여신들을 모두 닮은 자신의 마음에 드는 여인이었습니다.",
         imgUrl : "https://mblogthumb-phinf.pstatic.net/MjAxOTAxMTFfMjg5/MDAxNTQ3MTk1MDYyNTMw.L76iC1lFM-JFizYgtukjgAQLmmwqLon_86U2RPxMB9Ag.MxYhC3bLX2BuNJXF3EzLQ2JO2zZt9_4g6BhXJMaRLS4g.PNG.stranger234/image.png?type=w800",
-      }).then((res)=>{
-        console.log(res)
-      }).catch((err)=>{
-        console.log(err);
       })
   }
 

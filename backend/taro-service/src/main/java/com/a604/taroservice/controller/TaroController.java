@@ -30,8 +30,6 @@ public class TaroController {
     @PostMapping("/result")
     @ApiOperation(value = "타로 결과 저장", notes = "타로 결과값을 저장합니다.")
     public ResponseEntity<?> SaveTaroResult(@RequestBody TaroResultDto taroResultDto) throws IOException {
-        System.out.println(taroResultDto.getCategory());
-        System.out.println(taroResultDto.getStory());
         taroResultService.saveTaroResult(taroResultDto);
         return new ResponseEntity<>(taroResultDto, HttpStatus.OK);
     }

@@ -50,7 +50,6 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
                 }
                 Claims claims = jwtUtil.verifyToken(token);
                 addAuthorizationHeaders(request, claims.getSubject(), claims.get("role").toString());
-                log.info(claims.get("role").toString());
                 return chain.filter(exchange);
             } catch (ExpiredJwtException e){
                 return onError(response, "expired Token", HttpStatus.UNAUTHORIZED);

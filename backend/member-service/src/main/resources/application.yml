@@ -26,7 +26,6 @@ spring:
 # Eureka Client Settings
 eureka:
   instance:
-    lease-renewal-interval-in-seconds: 5
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     serviceUrl:
