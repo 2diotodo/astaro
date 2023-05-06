@@ -2,6 +2,7 @@ package com.a604.gatewayserver.filter;
 
 import com.a604.gatewayserver.util.JwtUtil;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -14,12 +15,12 @@ import reactor.core.publisher.Mono;
 import java.nio.charset.StandardCharsets;
 
 // 인가 필터
+@Slf4j
 @Component
 public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuthorizationFilter.Config> {
 
     // [ Dependency : jwtUtil ]
     private final JwtUtil jwtUtil;
-
     public JwtAuthorizationFilter(JwtUtil jwtUtil){
         super(Config.class);
         this.jwtUtil = jwtUtil;
@@ -32,8 +33,10 @@ public class JwtAuthorizationFilter extends AbstractGatewayFilterFactory<JwtAuth
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
 
-            String role = request.getHeaders().get("X-Authorization-Role").get(0);
-
+            String role = "ROLE_" + request.getHeaders().get("X-Authorization-Role").get(0);
+            log.info("role : " + role);
+            log.info("config : " + config);
+            log.info("config.getRole() : " + config.getRole());
             if(role.equals(config.getRole()))
                 return chain.filter(exchange);
             else

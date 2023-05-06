@@ -15,6 +15,7 @@ import org.springframework.util.MultiValueMap;
 import javax.annotation.PostConstruct;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 
@@ -24,15 +25,16 @@ public class JwtUtil {
 
     @Value("${jwt.secret}")
     private String secret;
-    private SecretKey secretKey;
+    private Key secretKey;
     private final static String TOKEN_PREFIX = "Bearer ";
 
 
 
     @PostConstruct
     public void init() {
-        var secret = Base64.getEncoder().encodeToString(this.secret.getBytes());
-        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        String encodedSecret = Base64.getEncoder().encodeToString(secret.getBytes());
+        this.secretKey = Keys.hmacShaKeyFor(encodedSecret.getBytes());
+        System.out.println(secretKey);
     }
 
     // 토큰 추출

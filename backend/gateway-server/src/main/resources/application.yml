@@ -49,10 +49,10 @@ spring:
           predicates:
             - Path=/member-service/**
           filters:
-            - JwtAuthenticationFilter
             - name: JwtAuthorizationFilter
               args:
                 role: ROLE_USER
+            - JwtAuthenticationFilter
             - RewritePath=/member-service/(?<segment>.*), /$\{segment}
         # Taro Service
         - id: taro-service
@@ -78,4 +78,5 @@ spring:
             - RewritePath=/board-service/(?<segment>.*), /$\{segment}
 
 
-jwt.secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa

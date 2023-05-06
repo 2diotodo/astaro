@@ -6,6 +6,7 @@ import com.a604.memberservice.service.AuthService;
 import com.a604.memberservice.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -80,10 +81,10 @@ public class AuthRestController {
     @PostMapping("/refresh")
     public ResponseEntity<Map<String, String>> refresh(HttpServletRequest request, HttpServletResponse response) {
         log.info(request.getRequestURI());
-        log.info("refresh token : " + CookieUtil.getCookie(request, "refreshToken").get());
         String newAccessToken;
         try {
             newAccessToken = authService.reissueAccessToken(request, response);
+            response.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + newAccessToken);
         } catch (Exception e){
             log.error(e.getMessage());
             return new ResponseEntity<>(new HashMap<>(), HttpStatus.FORBIDDEN);

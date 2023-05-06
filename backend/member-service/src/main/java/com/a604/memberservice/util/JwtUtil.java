@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 
@@ -32,13 +33,13 @@ public class JwtUtil {
     // secret key
     @Value("${jwt.secret}")
     private String secret;
-    private SecretKey secretKey;
+    private Key secretKey;
     private final static String TOKEN_PREFIX = "Bearer ";
 
     @PostConstruct
     private void init() {
-        this.secret = Base64.getEncoder().encodeToString(secret.getBytes());
-        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        String encodedSecret = Base64.getEncoder().encodeToString(secret.getBytes());
+        this.secretKey = Keys.hmacShaKeyFor(encodedSecret.getBytes());
     }
 
     public String getAccessTokenFromHttpHeader(HttpServletRequest request) {
@@ -101,39 +102,29 @@ public class JwtUtil {
 
     public String generateAccessToken(Member member){
         Date now = new Date();
-
-        Claims claims = Jwts.claims();
-        claims.put("role", member.getRole());
-
         return Jwts.builder()
-                .setSubject(member.getSeq().toString())
-                .setHeaderParam("alg", SignatureAlgorithm.HS256.getValue())
                 .setHeaderParam("typ", "JWT")
-                .setClaims(claims)
-                .setExpiration(new Date(now.getTime() + accessTokenValidTime))
+                .setSubject(member.getSeq().toString())
+                .claim("role", "USER")
                 .signWith(secretKey, SignatureAlgorithm.HS256)
+                .setExpiration(new Date(now.getTime() + accessTokenValidTime))
                 .compact();
     }
 
     public String generateRefreshToken(Member member){
         Date now = new Date();
-
-        Claims claims = Jwts.claims();
-        claims.put("role", member.getRole());
-
         return Jwts.builder()
-                .setSubject(member.getSeq().toString())
-                .setHeaderParam("alg", "HS256")
                 .setHeaderParam("typ", "JWT")
-                .setClaims(claims)
-                .setExpiration(new Date(now.getTime() + refreshTokenValidTime))
+                .setSubject(member.getSeq().toString())
+                .claim("role", "USER")
                 .signWith(secretKey, SignatureAlgorithm.HS256)
+                .setExpiration(new Date(now.getTime() + refreshTokenValidTime))
                 .compact();
     }
 
-    public void verifyToken(String token) {
+    public Claims verifyToken(String token) {
         try {
-            Jwts.parserBuilder()
+            return Jwts.parserBuilder()
                     .setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(token)

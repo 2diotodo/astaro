@@ -7,6 +7,7 @@ import com.a604.memberservice.repository.MemberRepository;
 import com.a604.memberservice.service.AuthService;
 import com.a604.memberservice.util.CookieUtil;
 import com.a604.memberservice.util.JwtUtil;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -77,13 +78,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String reissueAccessToken(HttpServletRequest request, HttpServletResponse response) throws ExpiredJwtException, NullPointerException{
-        String accessToken = jwtUtil.getAccessTokenFromHttpHeader(request);
-        log.info("accessToken : {}", accessToken);
-        Member member = memberRepository.findById(jwtUtil.getSubject(accessToken)).orElseThrow();
-        log.info("member : {}", member);
         String originRefreshToken = CookieUtil.getCookie(request, "refreshToken").orElseThrow().getValue();
-        log.info("originRefreshToken : {}", originRefreshToken);
         jwtUtil.verifyToken(originRefreshToken);
+        Member member = memberRepository.findById(jwtUtil.getSubject(originRefreshToken)).orElseThrow();
         String newRefreshToken = jwtUtil.generateRefreshToken(member);
         CookieUtil.addCookie(response, "refreshToken", newRefreshToken, 24 * 60 * 60);
         return jwtUtil.generateAccessToken(member);
@@ -91,7 +88,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void saveRefreshToken(HttpServletResponse response, Member member){
-        System.out.println("saveRefreshToken");
         CookieUtil.addCookie(response, "refreshToken", jwtUtil.generateRefreshToken(member), 24 * 60 * 60);
     }
 

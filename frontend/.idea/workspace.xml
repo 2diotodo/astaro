@@ -6,34 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/filter/JwtAuthorizationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/java/com/a604/gatewayserver/util/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/config/CorsConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/AuthRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/dto/request/SignUpRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/dto/request/SignUpRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/entity/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/CookieUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/CookieUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/util/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/taro-service/src/main/java/com/a604/taroservice/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/taro-service/src/main/java/com/a604/taroservice/controller/TaroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/taro-service/src/main/java/com/a604/taroservice/controller/TaroController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Background.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/Background.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/TarotCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/TarotCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCategory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/TarotLoading.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotLoading.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/memberSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/memberSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/FlipGame.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotResult.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TodayResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TodayResult.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/TodayTaro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TodayTaro.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/member/MemberLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/member/MemberLogin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/shootingStar/ChatPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/shootingStar/ChatPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/shootingStar/TaroResultPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/shootingStar/TaroResultPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/axiosInstance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/axiosInstance.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,7 +161,7 @@
       <workItem from="1683195241902" duration="552000" />
       <workItem from="1683195807797" duration="77000" />
       <workItem from="1683196231294" duration="316000" />
-      <workItem from="1683196562754" duration="11076000" />
+      <workItem from="1683196562754" duration="18439000" />
     </task>
     <servers />
   </component>

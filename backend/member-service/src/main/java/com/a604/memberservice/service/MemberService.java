@@ -40,6 +40,7 @@ public interface MemberService {
                 .nickname(signUpRequestDto.getNickname())
                 .password(signUpRequestDto.getPassword())
                 .email(signUpRequestDto.getEmail())
+                .role("USER")
                 .build();
     }
 
