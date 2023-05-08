@@ -1,6 +1,9 @@
 package com.a604.memberservice.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -75,6 +78,14 @@ public class Member {
 
     public void updateHeal(Integer heal) {
         this.heal = heal;
+    }
+
+    public void updateProfile(Integer profile) {
+        this.profile = profile;
+    }
+
+    public void updateIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
 }

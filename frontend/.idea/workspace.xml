@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Input.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/common/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/tarot/TarotCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/tarot/TarotCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCategory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/tarocard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/tarocard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/layout/_headers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/layout/_headers.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,28 +65,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "develop",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Park Seongmin/Desktop/blog/S08P31A604/frontend",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\SSAFY\\Desktop\\project\\S08P31A604\\frontend\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "advanced.settings",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Park Seongmin/Desktop/blog/S08P31A604/frontend&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\SSAFY\\Desktop\\project\\S08P31A604\\frontend\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -121,6 +113,10 @@
   </component>
   <component name="RunManager" selected="Node.js.TarotDeck.jsx">
     <configuration name="TarotDeck.jsx" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" working-dir="$PROJECT_DIR$/src/component">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
