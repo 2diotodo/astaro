@@ -1,9 +1,6 @@
 package com.a604.memberservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -21,9 +18,9 @@ import java.time.LocalDateTime;
 public class Member {
 
     @Id
-    @Column(name = "member_seq")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberSeq;
+    @Column(name = "seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long seq;
 
     @Column(name = "member_id")
     private String memberId;
@@ -55,8 +52,8 @@ public class Member {
     @Column(name = "ban_exp")
     private LocalDateTime banExp;
 
-    @Column(name = "is_valid")
-    private boolean isValid;
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
 
     @Column(name = "fword_cnt")
     private Integer fwordCnt;
@@ -66,7 +63,6 @@ public class Member {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
 
     public void updateMember(String nickname, String password) {
         this.nickname = nickname;
