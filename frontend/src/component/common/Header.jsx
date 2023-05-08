@@ -67,7 +67,9 @@ function Header() {
           onKeyDown={navigateToMain}
           style={{ color: "white" }}
         >
-          <Medium style={{fontFamily:"TAEBAEKmilkyway"}}>Astaro</Medium>
+          <Medium style={{ fontFamily: "TAEBAEKmilkyway", fontWeight: "bold" }}>
+            Astaro
+          </Medium>
         </div>
         <div className={`navbar-wrapper ${navState.toggle ? "open" : "close"}`}>
           <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
@@ -93,7 +95,9 @@ function Header() {
         )}
         <GiStarSwirl
           onClick={toggleNavHandler}
-          className={`cursor-pointer ${navState.toggle ? "open" : "close"}`}
+          className={`cursor-pointer ${navState.toggle ? "open" : "close"} ${
+            location.pathname === "/" ? "hidden" : " "
+          }`}
           color="white"
           size="30px"
           style={{ zIndex: 9999 }}
