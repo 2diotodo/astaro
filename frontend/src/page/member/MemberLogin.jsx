@@ -92,9 +92,6 @@ function MemberLogin() {
     dispatch(login(logins));
     console.log(login(logins));
     dispatch(isLoginCheck(true));
-    // local storage에 memberSeq, Access Token 저장
-    // localStorage.setItem("memberSeq", memberSeq);
-    // localStorage.setItem("access-token");
     navigate("/");
     // window.location.replace("/");
   };

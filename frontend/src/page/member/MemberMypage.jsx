@@ -7,7 +7,7 @@ import { GoPencil } from "react-icons/go";
 import Input from "@component/Input";
 import { Modal, Box, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { update } from "@/features/memberUpdateSlice";
+import { remove, update } from "@/features/memberUpdateSlice";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -229,6 +229,7 @@ function MemberMypage() {
   const resignHandler = () => {
     if (window.confirm("정말 탈퇴하시나요?")) {
       alert("탈퇴되었습니다.");
+      dispatch(remove());
       navigate("/");
     } else {
       alert("탈퇴를 취소하셨습니다.");
