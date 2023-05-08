@@ -36,14 +36,14 @@ function App() {
           <Route path="/todayresult" element={<TodayResult/>} />
           <Route path="/member/login" element={<MemberLogin />} />
           <Route path="/member/signup" element={<MemberSignup />} />
-          <Route path="/member/mypage" element={<MemberMypage />} />
+          <Route path="/member/mypage/:id" element={<MemberMypage />} />
           <Route path="/message/messageList" element={<MessageListPage />} />
           <Route path="/star/chat/:id" element={<ChatPage />} />
           <Route path="/star" element={<StarPage />} />
           <Route path="/star/taro-result" element={<TaroResultPage />} />
           <Route path="/star/black-hole" element={<BlackHolePage />} />
           <Route path="/flipgame" element={<FlipGame />} />
-          <Route path="/tarottest"  element={<TarotTest />} />
+          <Route path="/tarottest" element={<TarotTest />} />
         </Routes>
       </Router>
     </div>

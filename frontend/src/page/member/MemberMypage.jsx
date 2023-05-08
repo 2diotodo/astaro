@@ -6,7 +6,8 @@ import profiles from "@constants/profile.json";
 import { GoPencil } from "react-icons/go";
 import Input from "@component/Input";
 import { Modal, Box, Typography } from "@mui/material";
-import GapW from "@component/layout/GapW";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "@/features/memberUpdateSlice";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -74,15 +75,19 @@ const boxStyle = {
 };
 
 function MemberMypage() {
+  const user = useSelector((state) => state.memberUpdate.value);
+  console.log("user.value", user);
   const [values, setValues] = useState({
-    memberId: "john doe",
-    password: "ee",
-    passwordConfirm: "ee",
-    nickname: "nick",
-    email: "dora@naver.com",
-    lux: 5000,
-    profileId: 1,
+    memberId: "",
+    password: "",
+    passwordConfirm: "",
+    nickname: "",
+    email: "",
+    lux: 0,
+    heal: 0,
+    profile: 1,
   });
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({
     nickname: "",
     password: "",
@@ -96,7 +101,7 @@ function MemberMypage() {
   });
 
   // 수정버튼 보임 관리
-  const [isUpdated, setIsUpdated] = useState(false);
+  // const [isUpdated, setIsUpdated] = useState(false);
   // 필드 방문 상태를 관리한다
   const [touched, setTouched] = useState({
     nickname: false,
@@ -124,8 +129,8 @@ function MemberMypage() {
       let newlux = values.lux - profiles[idx - 1].starlux;
       setValues({
         ...values,
-        profileId: idx,
-        lux: newlux,
+        profile: idx,
+        // lux: newlux,
       });
     }
   };
@@ -165,11 +170,12 @@ function MemberMypage() {
     console.log("update-memberinfo");
     if (window.confirm("정보를 수정하시겠습니까?")) {
       alert("수정되었습니다.");
+      dispatch(update(values));
     } else {
       alert("수정을 취소하셨습니다.");
       return;
     }
-    setIsUpdated(false);
+    // setIsUpdated(false);
     // setFlipped(false);
   };
 
@@ -198,7 +204,10 @@ function MemberMypage() {
     // console.log(wisdoms[randNumber].wisdom);
     // console.log(wisdoms[randNumber].writer);
     setSelectWisdom(wisdoms[randNumber]);
+    console.log("user", user);
+    setValues(user);
   }, []);
+
   useEffect(() => {
     console.log("profileSelected", profileSelected);
   }, [profileSelected]);
@@ -212,13 +221,13 @@ function MemberMypage() {
   };
 
   // 수정하기 누르면 수정UI+수정완료버튼으로 바꾸기
-  const toggleButtonHandler = () => {
-    setIsUpdated(false);
-  };
+  // const toggleButtonHandler = () => {
+  //   setIsUpdated(false);
+  // };
 
   // 회원탈퇴버튼
   const resignHandler = () => {
-    if (window.confirm("정말 탈퇴하시겠습니까?")) {
+    if (window.confirm("정말 탈퇴하시나요?")) {
       alert("탈퇴되었습니다.");
       navigate("/");
     } else {
@@ -239,7 +248,8 @@ function MemberMypage() {
       <Wrapper>
         <div className="mypage">
           <Title className="mypage-text">
-            username<span style={{ fontSize: "15px" }}>님 안녕하세요</span>
+            {values.nickname}
+            <span style={{ fontSize: "15px" }}>님 안녕하세요</span>
           </Title>
 
           <Subtitle className="mypage-wisdom">
@@ -247,7 +257,7 @@ function MemberMypage() {
           </Subtitle>
           <div className="mypage-profile">
             <img
-              src={stars[values.profileId - 1].starImageUrl}
+              src={stars[values.profile - 1].starImageUrl}
               alt="profile"
               style={{ height: "90px" }}
             />
@@ -363,16 +373,16 @@ function MemberMypage() {
                         style={{ fontSize: "15px" }}
                       />
                     </div>
-                    {isUpdated && (
-                      <Button
-                        type="submit"
-                        style={{ marginTop: "9%", marginRight: "-8%" }}
-                      >
-                        저장
-                      </Button>
-                    )}
+                    {/* {isUpdated && ( */}
+                    <Button
+                      type="submit"
+                      style={{ marginTop: "9%", marginRight: "-8%" }}
+                    >
+                      저장
+                    </Button>
+                    {/* )} */}
                   </form>
-                  {!isUpdated && (
+                  {/* {!isUpdated && (
                     <Button
                       type="button"
                       onClick={toggleButtonHandler}
@@ -380,7 +390,7 @@ function MemberMypage() {
                     >
                       수정
                     </Button>
-                  )}
+                  )} */}
                 </div>
                 <Button
                   type="button"
