@@ -39,10 +39,19 @@ public class MessageListServiceImpl implements MessageListService{
 		List<MessageListDto> messageListDtoList = new ArrayList<>();
 		for(int i=0; i<messageListList.size(); i++){
 			MessageListDto messageListDto = messageListList.get(i).toDto();
+
 			if(Duration.between(messageListDto.getLastMessageTime(), LocalDateTime.now()).toHours() >= 24){
 				messageListList.get(i).setIsDeleted(true);
 				messageListRepository.save(messageListList.get(i));
 			}else{
+				if(messageListDto.getSenderSeq() == memberSeq && messageListDto.getIsLeaveSender()){
+					continue;
+				}
+
+				if(messageListDto.getReceiverSeq() == memberSeq && messageListDto.getIsLeaveReceiver()){
+					continue;
+				}
+
 				if(messageListDto.getSenderSeq() == memberSeq & !messageListDto.getIsReadSender()){
 					messageListDto.setIsRead(true);
 				}
