@@ -15,11 +15,14 @@ const MessageRoomList = styled.div`
 
 const MessageListPage = () => {
   const [messageRooms, setMessageRooms] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-    
+  
+  const memberSeq = 1;
+
   useEffect(() => {
-    dispatch(getMessageList(1)).then((data) => {
+    dispatch(getMessageList(memberSeq)).then((data) => {
         console.log(data.payload); // 첫번째 payload 출력
         setMessageRooms(data.payload);
     });
@@ -29,13 +32,13 @@ const MessageListPage = () => {
     <div>
       <MessageRoomList>
         <h2>채팅방</h2>
-        {messageRooms.map((messageRooms, index) => (
+        {messageRooms.map((messageRoom, index) => (
           <MessageRoom
             key={index}
-            nickname={messageRooms.nickname}
-            lastMessage={messageRooms.lastMessage}
-            n={messageRooms.n}
-            remainedTime={messageRooms.remainedTime}
+            messageRoom={messageRoom}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            setMessageRooms={setMessageRooms}
           />
         ))}
       </MessageRoomList>
