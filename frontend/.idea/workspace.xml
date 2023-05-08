@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/TarotCardArr.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/TarotCardArr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-09.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-09.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-12.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/fliped_tarot_img/1-12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/tarot/TarotCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotDeck.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/tarocard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/tarocard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotResult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

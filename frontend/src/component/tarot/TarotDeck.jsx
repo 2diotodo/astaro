@@ -44,7 +44,7 @@ const TarotDeck = () => {
 
     selectedCard.setAttribute(
       "style",
-      `transform: translate(${toMove}px, -35vh) rotateY(-180deg); width: 28vw;`
+      `transform: translate(${toMove}px, -35vh) rotateY(-180deg); width: 27.6vw; height: 50.4vw;`
     );
 
     setTimeout(()=>{
