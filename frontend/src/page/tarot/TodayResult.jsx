@@ -119,13 +119,3 @@ const StyledDiv = styled.div`
   color: blue;
 `
 
-const LinkWrapper = styled.button`
-  color: palevioletred;
-  font-size: 1rem;
-  margin: 1rem;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-  z-index: 1;
-  position: relative;
-`
