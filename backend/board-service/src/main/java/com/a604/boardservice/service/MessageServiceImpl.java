@@ -1,8 +1,11 @@
 package com.a604.boardservice.service;
 
 import com.a604.boardservice.dto.MessageRequestDto;
+import com.a604.boardservice.dto.MessageResponseDto;
+import com.a604.boardservice.entity.Member;
 import com.a604.boardservice.entity.Message;
 import com.a604.boardservice.entity.MessageList;
+import com.a604.boardservice.repository.MemberRepository;
 import com.a604.boardservice.repository.MessageListRepository;
 import com.a604.boardservice.repository.MessageRepository;
 import com.a604.boardservice.util.FwordFilter;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,10 +24,38 @@ public class MessageServiceImpl implements MessageService{
     @Autowired
     private MessageListRepository messageListRepository;
 
+    @Autowired
+    private MemberRepository memberRepository;
+
     @Override
-    public List<Message> getMessagesByMessageListSeq(long messageListSeq) {
-        return messageRepository.findByMessageListSeqAndIsDeletedFalseOrderByCreatedAtDesc(messageListSeq);
+    public List<MessageResponseDto> getMessagesByMessageListSeq(long messageListSeq) {
+        List<Message> messages = messageRepository.findByMessageListSeqAndIsDeletedFalseOrderByCreatedAtDesc(messageListSeq);
+        List<MessageResponseDto> messageResponseDtoList = new ArrayList<>();
+
+        for (Message message : messages) {
+            MessageResponseDto responseDto = new MessageResponseDto();
+
+            responseDto.setSeq(message.getSeq());
+            responseDto.setSenderSeq(message.getSenderSeq());
+            responseDto.setReceiverSeq(message.getReceiverSeq());
+            responseDto.setOriginalContent(message.getOriginalContent());
+            responseDto.setFilteredContent(message.getFilteredContent());
+            responseDto.setCreatedAt(message.getCreatedAt());
+
+            Member sender = memberRepository.findById(message.getSenderSeq()).orElse(null);
+            if (sender != null) {
+                responseDto.setNickname(sender.getNickname());
+            }
+
+            messageResponseDtoList.add(responseDto);
+        }
+
+
+
+
+        return messageResponseDtoList;
     }
+
 
     @Override
     public Message sendMessage(MessageRequestDto messageRequestDto) {

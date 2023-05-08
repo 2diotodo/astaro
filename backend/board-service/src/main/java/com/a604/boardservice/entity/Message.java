@@ -54,6 +54,8 @@ public class Message {
     @Comment("삭제 여부")
     private Boolean isDeleted;
 
+    @Column()
+
     public MessageResponseDto toDto() {
         MessageResponseDto messageResponseDto = MessageResponseDto.builder()
                 .senderSeq(this.senderSeq)
