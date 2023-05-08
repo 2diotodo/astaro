@@ -18,11 +18,13 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query(nativeQuery = true, value = "select * from `member`" + "where member_id = :memberId and is_deleted = 0")
     Optional<Member> findByMemberId(@Param("memberId") String memberId);
 
+    @Query(nativeQuery = true, value = "select * from `member`" + "where seq = :seq and is_deleted = 0")
+    Optional<Member> findBySeq(@Param("seq") Long seq);
+
     boolean existsByMemberId(String memberId);
 
     boolean existsByNickname(String nickname);
 
     boolean existsByEmail(String email);
 
-    Optional<Member> findByEmail(String email);
 }
