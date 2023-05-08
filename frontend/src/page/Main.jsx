@@ -61,7 +61,9 @@ export function Main() {
   const navigateToTarot = () => {
     navigate("/tarot");
   };
-
+  const navigateToResult = () => {
+    navigate('/todaytaro')
+  }
   const cards = [
     {
       src: Taro_front1,
@@ -114,6 +116,7 @@ export function Main() {
           넘어가기
         </button>
         <button onClick={() => navigateToTarot()}>타로보러가기</button>
+        <button onClick={() => navigateToResult()}>운세보러가기</button>
       </Wrapper>
     </>
   );
