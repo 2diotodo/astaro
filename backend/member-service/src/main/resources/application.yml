@@ -12,13 +12,13 @@ spring:
     url: jdbc:mysql://localhost:3306/astaro?characterEncoding=UTF-8&amp&serverTimezone=Asia/Seoul
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
-    password: ssafy
+    password: root
 
   # JPA Settings
   jpa:
     database: mysql
     hibernate:
-      ddlAuto: update
+      ddlAuto: validate
       useNewIdGeneratorMappings: true
     generateDdl: true
     databasePlatform: org.hibernate.dialect.MySQL8Dialect
