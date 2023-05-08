@@ -46,6 +46,7 @@ function Timer({
   useEffect(() => {
     if (gameOver) {
       const formattedTime = formatElapsedTime(elapsedTime);
+      console.log("formattedtime", formattedTime);
       onSaveTime(formattedTime);
     }
   }, [elapsedTime, onSaveTime, gameOver]);

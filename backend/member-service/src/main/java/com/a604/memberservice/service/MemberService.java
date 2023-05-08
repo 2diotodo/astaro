@@ -36,17 +36,17 @@ public interface MemberService {
     // SignUpRequestDto to Entity
     default Member toEntity(SignUpRequestDto signUpRequestDto) {
         return Member.builder()
-                .memberSeq(signUpRequestDto.getMemberSeq())
                 .memberId(signUpRequestDto.getMemberId())
                 .nickname(signUpRequestDto.getNickname())
                 .password(signUpRequestDto.getPassword())
                 .email(signUpRequestDto.getEmail())
+                .role("USER")
                 .build();
     }
 
     default GetMemberDto toDto(Member member) {
         return GetMemberDto.builder()
-                .memberSeq(member.getMemberSeq())
+                .seq(member.getSeq())
                 .memberId(member.getMemberId())
                 .password(member.getPassword())
                 .nickname(member.getNickname())

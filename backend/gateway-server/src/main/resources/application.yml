@@ -20,17 +20,21 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "http://k8a604.p.ssafy.io",
-                            "http://astaro.co.kr",
-                            "https://k8a604.p.ssafy.io", 
-                            "https://astaro.co.kr",
-                            "http://localhost:3000"
+            allowedOrigins: "http://k8a604.p.ssafy.io,http://astaro.co.kr,https://k8a604.p.ssafy.io,https://astaro.co.kr,http://localhost:3000"
+            allowedHeaders: "*"
+            allow-credentials: true
             allowedMethods:
               - GET
               - POST
               - DELETE
               - PUT
               - OPTIONS
+      default-filters:
+        - name: LoggingFilter
+          args:
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
       routes:
         # Member Service Auth 컨트롤러
         - id: member-service
@@ -45,10 +49,10 @@ spring:
           predicates:
             - Path=/member-service/**
           filters:
-            - JwtAuthenticationFilter
             - name: JwtAuthorizationFilter
               args:
                 role: ROLE_USER
+            - JwtAuthenticationFilter
             - RewritePath=/member-service/(?<segment>.*), /$\{segment}
         # Taro Service
         - id: taro-service
@@ -72,3 +76,6 @@ spring:
               args:
                 role: ROLE_USER
             - RewritePath=/board-service/(?<segment>.*), /$\{segment}
+
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa

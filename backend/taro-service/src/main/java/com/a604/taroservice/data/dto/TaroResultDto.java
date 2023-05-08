@@ -1,4 +1,4 @@
-package com.a604.taroservice.dto;
+package com.a604.taroservice.data.dto;
 
 import lombok.*;
 
@@ -14,5 +14,6 @@ public class TaroResultDto {
     private String contentInput;
     private String cardSeqList;
     private String contentList;
-    private String imgList;
+    private String imgUrl;
+    private String story;
 }
