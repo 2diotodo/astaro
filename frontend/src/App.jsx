@@ -32,6 +32,7 @@ function App() {
           <Route path="/tarot" element={<TarotService />} />
           <Route path="/result" element={<TarotResult />} />
           <Route path="/todaytaro" element={<TodayTaro />} />
+          <Route path="/todayresult" element={<TodayResult/>} />
           <Route path="/member/login" element={<MemberLogin />} />
           <Route path="/member/signup" element={<MemberSignup />} />
           <Route path="/member/mypage" element={<MemberMypage />} />
