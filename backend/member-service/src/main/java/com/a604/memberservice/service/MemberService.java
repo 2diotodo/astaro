@@ -1,37 +1,24 @@
 package com.a604.memberservice.service;
 
 import com.a604.memberservice.dto.request.SignUpRequestDto;
+import com.a604.memberservice.dto.request.UpdateRequestDto;
 import com.a604.memberservice.dto.response.GetMemberDto;
 import com.a604.memberservice.entity.Member;
 
-import java.util.Optional;
-
 public interface MemberService {
 
-    //아이디 찾기
+    // 회원 정보 조회 : 본인
+    public GetMemberDto getUser(Long memberSeq);
 
-//    // 비밀번호 찾기
-//
-//    // 회원 정보 조회
-//    public
+    // 업데이트 : 프로필
+    public void modifyProfile(Long memberSeq, Integer profile);
 
-    // 아이디 중복 체크
-    public boolean CheckIdDuplicate(String memeberId);
+    // 업데이트 : 그 외
+    public void modifyMember(Long memberSeq, UpdateRequestDto updateRequestDto);
 
-    // 닉네임 중복 체크
-    public boolean CheckNicknameDuplicate(String nickname);
+    // 회원 삭제
+    public void removeMember(Long memberSeq);
 
-    // 이메일 중복 체크
-    public boolean CheckEmailDuplicate(String email);
-
-    // 회원가입
-    public void writeMember(SignUpRequestDto signUpRequestDto);
-
-    // 암호화
-
-
-    // 로그인
-    public Optional<GetMemberDto> getMember(String memberId);
 
     // SignUpRequestDto to Entity
     default Member toEntity(SignUpRequestDto signUpRequestDto) {
@@ -46,10 +33,11 @@ public interface MemberService {
 
     default GetMemberDto toDto(Member member) {
         return GetMemberDto.builder()
-                .seq(member.getSeq())
                 .memberId(member.getMemberId())
-                .password(member.getPassword())
                 .nickname(member.getNickname())
+                .profile(member.getProfile())
+                .lux(member.getLux())
+                .heal(member.getHeal())
                 .email(member.getEmail())
                 .build();
 

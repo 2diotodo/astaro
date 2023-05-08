@@ -1,15 +1,13 @@
 package com.a604.boardservice.dto;
 
 import com.a604.boardservice.entity.Message;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MessageResponseDto {
@@ -42,12 +40,32 @@ public class MessageResponseDto {
      */
     private LocalDateTime createdAt;
 
-    public MessageResponseDto(Message message) {
+    // 추가된 nickname 필드
+    private String nickname;
+
+    public MessageResponseDto(Message message, String nickname) {
         this.seq = message.getSeq();
         this.senderSeq = message.getSenderSeq();
         this.receiverSeq = message.getReceiverSeq();
         this.originalContent = message.getOriginalContent();
         this.filteredContent = message.getFilteredContent();
         this.createdAt = message.getCreatedAt();
+        this.nickname = nickname; // 매개변수로 받은 nickname 값을 설정
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public long getSeq() {
+        return seq;
+    }
+
+    public void setSeq(long seq) {
+        this.seq = seq;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 }

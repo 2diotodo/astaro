@@ -23,7 +23,7 @@ export const login = createAsyncThunk("memberSlice/login", async (logins) => {
     method: "POST",
     url: url,
     data: request,
-  }).then((res)=>{
+  }).then((res) => {
     localStorage.setItem("access-token", res.data.accessToken);
   });
   return response.data;
@@ -46,6 +46,7 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
   return response.data;
 });
 
+// 아이디 중복확인
 export const duplicateId = createAsyncThunk(
   "memberSlice/duplicateId",
   async (memberId) => {

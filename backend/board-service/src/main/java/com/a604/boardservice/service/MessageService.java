@@ -1,6 +1,7 @@
 package com.a604.boardservice.service;
 
 import com.a604.boardservice.dto.MessageRequestDto;
+import com.a604.boardservice.dto.MessageResponseDto;
 import com.a604.boardservice.entity.Message;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface MessageService {
      * @param messageListSeq
      * @return
      */
-    List<Message> getMessagesByMessageListSeq(long messageListSeq);
+    List<MessageResponseDto> getMessagesByMessageListSeq(long messageListSeq);
 
     Message sendMessage(MessageRequestDto messageRequestDto);
 }

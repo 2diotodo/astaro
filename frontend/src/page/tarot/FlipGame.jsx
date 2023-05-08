@@ -152,9 +152,10 @@ function FlipGame() {
   const GameOver = ({ restartGame }) => {
     return (
       <div className="game-result-centered">
-        <h1>{savedTime !== null ? savedTime : ""}</h1>
+        {/* <h1>{savedTime !== null ? formatElapsedTime(savedTime) : ""}</h1> */}
+        <h1>10 lux 획득!</h1>
         <button className="restart-button" onClick={restartGame}>
-          Play Again?
+          한번 더?
         </button>
         <button className="ranking-button" onClick={restartGame}>
           랭킹 보기
@@ -165,19 +166,14 @@ function FlipGame() {
 
   return (
     <>
-      <video width="640" height="360" controls>
-        <source src="https://s3.amazonaws.com/bucket-name/video.mp4" type="video/mp4"/>
-      </video>
-
-      {!gameOver && (
-        <Timer
-          startTime={new Date()}
-          onSaveTime={handleSaveTime}
-          gameOver={gameOver}
-          formatElapsedTime={formatElapsedTime}
-          timeElapsed={elapsed}
-        />
-      )}
+      {/* {!gameOver && ( */}
+      <Timer
+        startTime={new Date()}
+        onSaveTime={handleSaveTime}
+        gameOver={gameOver}
+        formatElapsedTime={formatElapsedTime}
+        timeElapsed={elapsed}
+      />
 
       <div className="game-board">
         {!gameOver &&
