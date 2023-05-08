@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetMemberDto {
 
-    private Long seq;
     private String memberId;
-    private String password;
     private String nickname;
+    private Integer profile;
+    private Integer lux;
+    private Integer heal;
     private String email;
 }
