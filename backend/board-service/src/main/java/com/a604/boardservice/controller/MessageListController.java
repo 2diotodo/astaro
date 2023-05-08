@@ -35,10 +35,10 @@ public class MessageListController {
 	}
 
 	// 채팅방 업데이트
-	@PatchMapping("{member_list_seq}")
-	public ResponseEntity<String> messageListModify(@PathVariable("member_list_seq") long memberListSeq, @RequestBody MessageListDto messageListDto){
+	@PatchMapping("{message_list_seq}")
+	public ResponseEntity<String> messageListModify(@PathVariable("message_list_seq") long messageListSeq, @RequestBody MessageListDto messageListDto){
 		try{
-			messageListService.modifyMessageList(memberListSeq, messageListDto);
+			messageListService.modifyMessageList(messageListSeq, messageListDto);
 			return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();

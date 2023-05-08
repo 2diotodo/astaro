@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useSelector } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { updateMessageList } from "@features/messageSlice/messageListSlice";
+import { getMessageList } from "@features/messageSlice/messageListSlice";
 import { Popper } from '@mui/material';
 import { BsThreeDots } from "react-icons/bs";
 
@@ -46,35 +49,66 @@ const RoomHeader = styled.div`
 const PopperContent = styled.div`
   color : black;
   background-color: rgba(217, 217, 217, 0.9);
+  margin-left: -85px;
 `;
 
-const MessageRoom = ({ nickname, lastMessage, n, remainedTime}) => {
+const MessageRoom = ({messageRoom, setMessageRooms, isOpen, setIsOpen}) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const id = open ? 'simple-popper' : undefined;
 
+  const dispatch = useDispatch();
+
   const handleClick = (event) => {
-    setOpen((prevOpen) => !prevOpen);
-    setAnchorEl(event.currentTarget);
+    if (!isOpen && !open) {
+        setOpen((prevOpen) => !prevOpen);
+        setAnchorEl(event.currentTarget);
+        setIsOpen(true);
+    }
+    if (isOpen && open) {
+      setOpen(false);
+      setIsOpen(false);
+    }
+  };
+
+  const memberSeq = 1;
+
+  const leaveMessageRoom = (event) => {
+    if (memberSeq == messageRoom.senderSeq) {
+      console.log("messageRoom.senderSeq"+messageRoom.senderSeq)
+      messageRoom.isLeaveSender = true;
+    } else {
+      console.log("messageRoom.receiverSeq"+messageRoom.receiverSeq)
+      messageRoom.isLeaveReceiver = true;
+    }
+    dispatch(updateMessageList(messageRoom)).then((data) => {
+      console.log(data.payload); // 첫번째 payload 출력
+      dispatch(getMessageList(memberSeq)).then((data) => {
+        console.log(data.payload); // 첫번째 payload 출력
+        setMessageRooms(data.payload);
+    });
+    });
+    setOpen(false);
+    setIsOpen(false);
   };
 
   return (
     <div>
       <RoomContainer>
         <RoomHeader>
-          <Nickname>{nickname}</Nickname>
+          <Nickname>{messageRoom.nickname}</Nickname>
           <BsThreeDots onClick={handleClick}></BsThreeDots>
         </RoomHeader>
         <Popper id={id} open={open} anchorEl={anchorEl}>
           <PopperContent>
-            남은시간 {remainedTime}
+            남은시간 {messageRoom.remainedTime}
           </PopperContent>
-          <PopperContent>
+          <PopperContent onClick={leaveMessageRoom}>
             채팅방 나가기
           </PopperContent>
         </Popper>
-        <HorizontalLine n={n} />
-        <LastMessage>{lastMessage}</LastMessage>
+        <HorizontalLine n={messageRoom.n} />
+        <LastMessage>{messageRoom.lastMessage}</LastMessage>
       </RoomContainer>
     </div>
   );
