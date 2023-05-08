@@ -4,13 +4,13 @@ import RowContainer from "@component/layout/RowContainer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+
 
 import { useNavigate } from "react-router-dom";
 
 import "@css/flip.css";
 import "@css/carousel.css";
-import slide_image from '@assets/img/Taro_back.png';
+
 
 
 import { EffectCoverflow, EffectFlip } from "swiper";
@@ -41,11 +41,18 @@ export default function TodayTaro() {
         modules={[EffectCoverflow, EffectFlip]}
         className="mySwiper"
       >
-        <SwiperSlide style={activeIndex === 0 ? { transform: "rotateY(180deg)" } : {}}>
-            <img src={slide_image} alt="pic5" className="photos" />
+        <SwiperSlide className="carousel-swiper-slide" style={activeIndex === 0 ? { transform: "rotateY(180deg)" } : {}}>
+        <div className="flip">  
+            <div className="card">
+              <div className="front">                
+              </div>              
+              <div className="back">                
+              </div>
+            </div>
+          </div>
           0
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -56,7 +63,7 @@ export default function TodayTaro() {
           </div>
           1
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -67,7 +74,7 @@ export default function TodayTaro() {
           </div>
           2
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
         <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -78,7 +85,7 @@ export default function TodayTaro() {
           </div>
           3
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -89,7 +96,7 @@ export default function TodayTaro() {
           </div>
           4
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -100,7 +107,7 @@ export default function TodayTaro() {
           </div>
           5
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -111,7 +118,7 @@ export default function TodayTaro() {
           </div>
           6
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -122,7 +129,7 @@ export default function TodayTaro() {
           </div>
           7
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">
@@ -133,7 +140,7 @@ export default function TodayTaro() {
           </div>
           8
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">
@@ -144,7 +151,7 @@ export default function TodayTaro() {
           </div>
           9
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -155,7 +162,7 @@ export default function TodayTaro() {
           </div>
           10
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -166,7 +173,7 @@ export default function TodayTaro() {
           </div>
           11
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -177,7 +184,7 @@ export default function TodayTaro() {
           </div>
           12
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="carousel-swiper-slide">
           <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -188,7 +195,7 @@ export default function TodayTaro() {
           </div>
           13
         </SwiperSlide>
-        <SwiperSlide style={activeIndex === 14 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide className="carousel-swiper-slide" style={activeIndex === 14 ? { transform: "rotateY(180deg)" } : {}}>
           <div className="flip">  
             <div className="card">
               <div className="front">                
