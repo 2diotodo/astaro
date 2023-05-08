@@ -46,16 +46,24 @@ const RoomHeader = styled.div`
 const PopperContent = styled.div`
   color : black;
   background-color: rgba(217, 217, 217, 0.9);
+  margin-left: -85px;
 `;
 
-const MessageRoom = ({ nickname, lastMessage, n, remainedTime}) => {
+const MessageRoom = ({ nickname, lastMessage, n, remainedTime, isOpen, setIsOpen}) => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const id = open ? 'simple-popper' : undefined;
 
   const handleClick = (event) => {
-    setOpen((prevOpen) => !prevOpen);
-    setAnchorEl(event.currentTarget);
+    if (!isOpen && !open) {
+        setOpen((prevOpen) => !prevOpen);
+        setAnchorEl(event.currentTarget);
+        setIsOpen(true);
+    }
+    if (isOpen && open) {
+      setOpen(false);
+      setIsOpen(false);
+    }
   };
 
   return (

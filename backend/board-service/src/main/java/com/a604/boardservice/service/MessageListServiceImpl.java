@@ -70,8 +70,8 @@ public class MessageListServiceImpl implements MessageListService{
 					hours = 24-hours;
 				}else{
 					hours = 23-hours;
+					remainingMinutes = 60 - remainingMinutes;
 				}
-				remainingMinutes = 60 - remainingMinutes;
 
 				String formattedTime = String.format("%02d:%02d", hours, remainingMinutes);
 				System.out.println(formattedTime);

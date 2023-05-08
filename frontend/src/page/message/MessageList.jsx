@@ -15,6 +15,7 @@ const MessageRoomList = styled.div`
 
 const MessageListPage = () => {
   const [messageRooms, setMessageRooms] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
     
@@ -36,6 +37,8 @@ const MessageListPage = () => {
             lastMessage={messageRooms.lastMessage}
             n={messageRooms.n}
             remainedTime={messageRooms.remainedTime}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
           />
         ))}
       </MessageRoomList>
