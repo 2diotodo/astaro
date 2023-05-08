@@ -84,6 +84,7 @@ const TarotDeck = () => {
           />
         ))}
       </RowContainer>
+      <GapH height="5vh"/>
     </ColContainer>
   );
 };
