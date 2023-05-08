@@ -3,6 +3,10 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8082/";
 
+const initialState = {
+  seq: "",
+};
+
 // 채팅방 불러오기
 export const getMessageList = createAsyncThunk(
   "messageListSlice/getMessageList",
@@ -16,9 +20,23 @@ export const getMessageList = createAsyncThunk(
   }
 );
 
+// 채팅방 업데이트
+export const updateMessageList = createAsyncThunk(
+  "messageListSlice/updateMessageList",
+  async (messageList) => {
+    const url = `${baseURL}api/v1/room/${messageList.seq}`;
+    const response = await axios({
+      method: "PATCH",
+      url: url,
+      data: messageList,
+    });
+    return response.data;
+  }
+);
+
 const messageListSlice = createSlice({
   name: "messageListCheck",
-  // initialState: initialState,
+  initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     // 채팅방 불러오기
@@ -30,6 +48,17 @@ const messageListSlice = createSlice({
     });
     builder.addCase(getMessageList.rejected, (state, action) => {
       console.log("채팅방 불러오기 실패", action.error);
+    });
+
+    // 채팅방 업데이트
+    builder.addCase(updateMessageList.pending, (state, action) => {
+      console.log("채팅방 업데이트 중", state.result);
+    });
+    builder.addCase(updateMessageList.fulfilled, (state, action) => {
+      console.log("채팅방 업데이트 성공", state.result);
+    });
+    builder.addCase(updateMessageList.rejected, (state, action) => {
+      console.log("채팅방 업데이트 실패", action.error);
     });
   },
 });

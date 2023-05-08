@@ -6,7 +6,7 @@ import loginSlice from "@features/commonSlice/loginSlice";
 import memberSlice from "@features/memberSlice";
 import chatSlice from "@/features/shootingStarSlice/chatSlice";
 import tarotSlice from "@features/tarotSlice";
-import messageListSlice from "@features/memberSlice";
+import messageListSlice from "@features/messageSlice/messageListSlice";
 
 export const store = configureStore({
   reducer: {
