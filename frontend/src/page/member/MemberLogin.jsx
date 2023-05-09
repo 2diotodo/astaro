@@ -53,7 +53,7 @@ function MemberLogin() {
 
   const loginHandler = async () => {
     await dispatch(login(logins)).then((response) => {
-      if (response.payload.login) {
+      if (response.payload.status === "loginSuccess") {
         dispatch(isLoginCheck(true));
         navigate("/");
       } else {

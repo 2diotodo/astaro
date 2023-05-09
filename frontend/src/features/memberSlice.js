@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 // 회원 로그인, 로그아웃, 회원가입 관리
 
 const initialState = {
+  seq: "",
   memberId: "",
   password: "",
   nickname: "",
@@ -65,16 +66,23 @@ export const duplicateId = createAsyncThunk(
 const memberSlice = createSlice({
   name: "memberCheck",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    memberSeq: (state, action) => {
+      state.seq = action.payload.seq;
+    },
+  },
   extraReducers: (builder) => {
     // 로그인
     builder.addCase(login.pending, (state, action) => {
+      state.status = "loading";
       console.log("로그인중", action.payload);
     });
     builder.addCase(login.fulfilled, (state, action) => {
+      state.status = "loginSuccess";
       console.log("로그인성공", action.payload);
     });
     builder.addCase(login.rejected, (state, action) => {
+      state.status = "failed";
       console.log("로그인실패", action.error);
     });
 
@@ -102,5 +110,5 @@ const memberSlice = createSlice({
   },
 });
 
-// export const { isLogin, isLogout, memberSearch } = memberSlice.actions;
+export const { memberSeq } = memberSlice.actions;
 export default memberSlice.reducer;
