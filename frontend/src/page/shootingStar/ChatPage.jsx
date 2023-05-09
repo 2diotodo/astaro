@@ -66,9 +66,7 @@ const MessageList = styled.ul`
 `;
 const ChatWindow = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
-  // border-radius: 10px;
   padding: 15px;
-  // margin: 2rem;
   height: 6%;
   overflow-y: auto;
 `;
@@ -94,8 +92,6 @@ const loggedInMemberSeq = 1;
 
 const ChatPage = () => {
   const { id } = useParams();
-  const state = useSelector((state) => state);
-  console.log("State: ", state);
   const selectedChatRoom = useSelector((state) => state.chat.selectedChatRoom);
   const messages = useSelector((state) => state.chat.messages);
   const dispatch = useDispatch();
@@ -142,7 +138,7 @@ const ChatPage = () => {
                     <MessageLabel>{messageLabel}</MessageLabel>
                     {message.filteredContent}
                   </MessageComponent>
-                  <MessageSeparator /> {/* 구분선 추가 */}
+                  <MessageSeparator />
                 </React.Fragment>
               );
             })}

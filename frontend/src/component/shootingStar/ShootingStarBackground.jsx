@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTaroResult } from '@/features/shootingStarSlice/starSlice';
 
 const shootingTime = '1000ms';
 
@@ -12,7 +14,7 @@ const getRandomDuration = () => {
 };
 
 const ShootingStarsContainer = styled.div`
-  position: absolute;
+  position: absolute;   
   width: 100%;
   height: 100%;
 	// shooting star 각도
@@ -96,6 +98,7 @@ const updateStar = (star) => {
 
 const ShootingStars = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   
   const [stars, setStars] = useState([]);
 
@@ -134,25 +137,26 @@ const ShootingStars = () => {
   }, []);
 
   // API 요청 함수
-  const fetchTaroResult = async (memberSeq) => {
-    const response = await fetch(`http://localhost:8082/api/v1/star/${memberSeq}`);
-    if (!response.ok) {
-      // 응답 상태 코드가 200 범위에 없으면 에러 발생
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-  };  
+  // const fetchTaroResult = async (memberSeq) => {
+  //   const response = await fetch(`http://localhost:8082/api/v1/star/${memberSeq}`);
+  //   if (!response.ok) {
+  //     // 응답 상태 코드가 200 범위에 없으면 에러 발생
+  //     throw new Error(`API request failed with status ${response.status}`);
+  //   }
+  //   const data = await response.json();
+  //   return data;
+  // };  
 
   const handleStarClick = async () => {
     const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
     try {
-      const taroResultDto = await fetchTaroResult(memberSeq);
+      const taroResultAction = await dispatch(fetchTaroResult(memberSeq));
+      const taroResultDto = taroResultAction.payload;
       navigate("/star/taro-result", { state: { taroResult: taroResultDto } });
     } catch (error) {
       console.error('Error fetching taro result:', error);
     }
-  };    
+  };
 
   return <ShootingStarsContainer>{stars}</ShootingStarsContainer>;
 };
