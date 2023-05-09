@@ -69,7 +69,7 @@ const ChatWindow = styled.div`
   // border-radius: 10px;
   padding: 15px;
   // margin: 2rem;
-  height: 70%;
+  height: 6%;
   overflow-y: auto;
 `;
 
@@ -78,6 +78,15 @@ const MessageLabel = styled.p`
   color: white;
   margin-bottom: 2px;
   margin-top: 0;
+`;
+
+const MessageInputWrapper = styled.div`
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  padding: 0 15px;
+  background-color: rgba(0, 0, 0, 0.6);
 `;
 
 // 임시 가 데이터
@@ -90,20 +99,6 @@ const ChatPage = () => {
   const selectedChatRoom = useSelector((state) => state.chat.selectedChatRoom);
   const messages = useSelector((state) => state.chat.messages);
   const dispatch = useDispatch();
-
-  // const fetchMessagesFromAPI = async (id) => {
-  //   try {
-  //     const response = await fetch(
-  //       `http://localhost:8082/api/v1/message/${id}`
-  //     );
-  //     const messages = await response.json();
-  //     console.log("messages : ", messages)
-  //     return messages;
-  //   } catch (error) {
-  //     console.error("Error fetching messages:", error);
-  //     return [];
-  //   }
-  // };
 
   const handleSendMessage = async (message) => {
     dispatch(
@@ -153,7 +148,9 @@ const ChatPage = () => {
             })}
           </MessageList>
         </ChatWindow>
-        <MessageInput onSubmit={handleSendMessage} MessageInput />
+        <MessageInputWrapper>
+          <MessageInput onSubmit={handleSendMessage} />
+        </MessageInputWrapper>
       </Wrapper>
     </div>
   );
