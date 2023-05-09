@@ -5,8 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/entity/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/repository/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/dto/request/UpdateRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backend/sandArt-service/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nodesource_setup.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/blackhole.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/img/kakao.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/SNSshare.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/kakao.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/message/MessageRoom.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/shootingStar/BlackHoleInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/css/modal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/memberUpdateSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/page/shootingStar/BlackHolePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/controller/MessageListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/controller/MessageListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/dto/MessageListDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/dto/MessageListDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/dto/MessageResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/dto/MessageResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/entity/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/service/MessageListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/service/MessageListServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/service/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/board-service/src/main/java/com/a604/boardservice/service/MessageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/gateway-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/MemberRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/controller/MemberRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/dto/response/GetMemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/dto/response/GetMemberDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/MemberServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/java/com/a604/memberservice/service/impl/MemberServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/member-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/taro-service/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/taro-service/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Timer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Timer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/common/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/common/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/carousel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/memberSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/memberSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/messageSlice/messageListSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/messageSlice/messageListSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/member/MemberLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/member/MemberLogin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/member/MemberMypage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/member/MemberMypage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/message/MessageList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/message/MessageList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/shootingStar/ChatPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/shootingStar/ChatPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/TodayResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TodayResult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/layout/_headers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/layout/_headers.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,28 +114,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Park Seongmin/Desktop/blog/S08P31A604/frontend&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\SSAFY\\Desktop\\project\\S08P31A604\\frontend\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Merging develop",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Park Seongmin/Desktop/blog/S08P31A604/frontend",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\SSAFY\\Desktop\\project\\S08P31A604\\frontend\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>

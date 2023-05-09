@@ -47,7 +47,7 @@ function Timer({
     if (gameOver) {
       const formattedTime = formatElapsedTime(elapsedTime);
       console.log("formattedtime", formattedTime);
-      onSaveTime(formattedTime);
+      onSaveTime(elapsedTime);
     }
   }, [elapsedTime, onSaveTime, gameOver]);
 

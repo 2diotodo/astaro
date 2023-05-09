@@ -18,7 +18,7 @@ spring:
   jpa:
     database: mysql
     hibernate:
-      ddlAuto: create
+      ddlAuto: validate
       useNewIdGeneratorMappings: true
     generateDdl: true
     databasePlatform: org.hibernate.dialect.MySQL8Dialect

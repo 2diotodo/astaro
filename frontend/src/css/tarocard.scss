@@ -126,6 +126,15 @@
     }
 }
 
+.selected-tarocard.result-tarocard {
+    width: 40vw;
+    height: 74vw;
+    max-width: 150px;
+    max-height: 300px;
+    transform: scaleX(-1);
+    top: 4vh;
+}
+
 .selected-tarocard {
     position: fixed;
     border-radius: 80px;
@@ -146,13 +155,12 @@
     );
     position: absolute;
     z-index: -1;
-    top: -1%;
-    left: -3%;
+    top: -2%;
+    left: -2.5%;
     animation: spin 1s linear infinite, light-effect 1s forwards;
 }
 
 .selected-tarocard > img.tarot-front {
-    height: 120%;
     transition: all 1s;
     position: relative;
     transform: rotateY(0deg);
@@ -187,7 +195,7 @@
     }
     100%{
         width: 106%;
-        height: 122%;
+        height: 104%;
         box-shadow: 0 0 12px 5px #c8c8c8;
     }
 }
@@ -201,7 +209,18 @@
     }
 }
 
-.result-tarocard{
-    transform: scaleX(-1);
-    top: 4vh;
+.game-card.flipped > div > .game-front::after {
+    content: "";
+    border-radius: 8px;
+    background-image: linear-gradient(
+                    var(--rotate),
+                    #fffde7,
+                    #fdd835 43%,
+                    #f57f17
+    );
+    position: absolute;
+    z-index: -1;
+    top: -2%;
+    left: -2.5%;
+    animation: spin 1s linear infinite, light-effect 1s forwards;
 }

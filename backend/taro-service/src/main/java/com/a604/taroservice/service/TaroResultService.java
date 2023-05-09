@@ -4,7 +4,6 @@ import com.a604.taroservice.config.S3Config;
 import com.a604.taroservice.data.TaroResult;
 import com.a604.taroservice.data.dto.TaroResultDto;
 import com.a604.taroservice.repository.TaroResultRepository;
-import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.UUID;
 
 @Service

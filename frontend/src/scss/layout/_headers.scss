@@ -7,7 +7,7 @@
     justify-content: center;
     position: relative;
     z-index: 9999;
-    padding: 3vh;
+    padding: 1vh;
 
     .navbar-wrapper {
       max-width: 460px;
@@ -35,6 +35,11 @@
         transition: opacity 0.3s ease-in-out reverse;
       }
       transition: opacity 0.3s ease-in-out reverse;
+    }
+    .cursor-pointer {
+      &.hidden {
+        visibility: hidden;
+      }
     }
   }
 
