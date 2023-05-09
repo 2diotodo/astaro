@@ -7,7 +7,7 @@ import { GoPencil } from "react-icons/go";
 import Input from "@component/Input";
 import { Modal, Box, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { remove, update } from "@/features/memberUpdateSlice";
+import { remove, update } from "@features/memberUpdateSlice";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -29,22 +29,7 @@ const Subtitle = styled.div`
   font-family: "Nanum Myeongjo", monospace;
   margin: 5% 5% 5% 5%;
 `;
-const Inputs = styled.input`
-  width: 70%;
-  height: 30px;
-  margin: 5%;
-  background-color: rgba(0, 0, 0, 0);
-  border-bottom: 1px solid white;
-  color: white;
-  font-size: 20px;
 
-  ::placeholder {
-    color: white;
-  }
-  :disabled {
-    color: gray;
-  }
-`;
 const Button = styled.button`
   width: 30px;
   position: relative;
@@ -100,8 +85,6 @@ function MemberMypage() {
     writer: "",
   });
 
-  // 수정버튼 보임 관리
-  // const [isUpdated, setIsUpdated] = useState(false);
   // 필드 방문 상태를 관리한다
   const [touched, setTouched] = useState({
     nickname: false,
@@ -116,7 +99,7 @@ function MemberMypage() {
   };
 
   // modal profile 행성목록
-  const [stars, setStars] = useState(profiles);
+  // const [stars, setStars] = useState(profiles);
   // modal profile icon list 선택관리
   const [profileSelected, setProfileSelected] = useState(0);
 
@@ -126,7 +109,7 @@ function MemberMypage() {
     console.log(profiles[idx - 1].starlux);
     if (values.lux >= profiles[idx - 1].starlux) {
       setProfileSelected(idx);
-      let newlux = values.lux - profiles[idx - 1].starlux;
+      // let newlux = values.lux - profiles[idx - 1].starlux;
       setValues({
         ...values,
         profile: idx,
@@ -200,17 +183,18 @@ function MemberMypage() {
     const min = 1;
     const max = 101;
     let randNumber = Math.floor(Math.random() * (max - min)) + min;
-    // console.log(randNumber);
-    // console.log(wisdoms[randNumber].wisdom);
-    // console.log(wisdoms[randNumber].writer);
     setSelectWisdom(wisdoms[randNumber]);
+  }, []);
+
+  useEffect(() => {
     console.log("user", user);
     setValues(user);
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     console.log("profileSelected", profileSelected);
   }, [profileSelected]);
+
   // 입력값이 변경될때 마다 검증한다.
   useEffect(() => {
     validate();
@@ -258,7 +242,7 @@ function MemberMypage() {
           </Subtitle>
           <div className="mypage-profile">
             <img
-              src={stars[values.profile - 1].starImageUrl}
+              src={profiles[values.profile - 1].starImageUrl}
               alt="profile"
               style={{ height: "90px" }}
             />
@@ -424,7 +408,7 @@ function MemberMypage() {
             <span onClick={handleClose}>&times;</span>
           </Typography>
           <Typography className="modal-body" id="modal-modal-description">
-            {stars.map((star) => (
+            {profiles.map((star) => (
               <div
                 className={
                   profileSelected === star.starId

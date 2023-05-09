@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState } from "react";
 import cards from "@constants/carddata.json";
 import Timer from "@component/Timer";
 import tarot_back from "@assets/img/taro_back_.png";
@@ -27,7 +27,6 @@ function FlipGame() {
 
   const handleSaveTime = (time) => {
     // Save the elapsed time to the state
-    console.log("savedtime", time);
     setSavedTime(time);
   };
 
@@ -175,7 +174,6 @@ function FlipGame() {
         formatElapsedTime={formatElapsedTime}
         timeElapsed={elapsed}
       />
-      {/* )} */}
 
       <div className="game-board">
         {!gameOver &&

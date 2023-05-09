@@ -38,6 +38,7 @@ const StyledSwiper = styled(Swiper)`
 const ResultDiv = styled.div`
   width:80vw;
   max-width: 400px;
+  bottom: 10vh;
 `
 
 
@@ -65,11 +66,12 @@ function TarotResult() {
         {tarotCardsInfo.map((tarotCard, index) => (
         <SwiperSlide>
           <SlideWrapper>
-            <ColContainer height={"100%"}>
+            <ColContainer height="100%">
               <TarotCard
                 card={tarotCard}
                 className="selected-tarocard result-tarocard"
               />
+              <GapH height="20vh"/>
               <ResultDiv>
                 <Small style={{lineHeight:"2em"}}>{tarotResults[index]}</Small>
               </ResultDiv>
