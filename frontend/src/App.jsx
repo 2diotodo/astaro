@@ -18,6 +18,8 @@ import TarotResult from "@page/tarot/TarotResult";
 import FlipGame from "@page/tarot/FlipGame";
 import BlackHolePage from "@page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -25,6 +27,13 @@ function App() {
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
         <Header />
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar
+          theme="dark"
+        />
+
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/tarot" element={<TarotService />} />
