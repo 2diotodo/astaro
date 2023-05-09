@@ -18,6 +18,7 @@ import Header from "@component/common/Header";
 import { TodayResult } from "@/page/TodayResult";
 import TarotResult from "@page/TarotResult";
 import FlipGame from "@page/FlipGame";
+import TaroStoryPage from "./page/shootingStar/TaroStoryPage";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/star" element={<StarPage />} />
           <Route path="/star/taro-result" element={<TaroResultPage />} />
           <Route path="/flipgame" element={<FlipGame />} />
+          <Route path="/star/taro-story" element={<TaroStoryPage />} />
         </Routes>
       </Router>
     </div>

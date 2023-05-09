@@ -6,11 +6,13 @@ import MessageRoom from "@/component/message/MessageRoom";
 
 const MessageRoomList = styled.div`
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -10%);
   color: white;
   text-align: center;
+  overflow: scroll;
+  height: 700px;
 `;
 
 const MessageListPage = () => {
@@ -31,7 +33,6 @@ const MessageListPage = () => {
   return (
     <div>
       <MessageRoomList>
-        <h2>채팅방</h2>
         {messageRooms.map((messageRoom, index) => (
           <MessageRoom
             key={index}
@@ -42,7 +43,6 @@ const MessageListPage = () => {
           />
         ))}
       </MessageRoomList>
-      
     </div>
   );
 };
