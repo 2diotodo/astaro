@@ -8,6 +8,7 @@ const Button = styled.button.attrs((props) => ({}))`
   border: ${(props) => props.border || "1px solid #fff"};
   margin: ${(props) => props.margin || "0"};
   cursor: pointer;
+  z-index: 1;
   font-size: ${(props) => props.fontSize || "16px"};
   font-family: ${(props) => props.fontFamily || "TAEBAEKmilkyway"};
   letter-spacing: ${(props) => props.letterSpacing || ".2em"};

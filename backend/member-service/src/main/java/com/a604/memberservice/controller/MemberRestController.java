@@ -45,8 +45,8 @@ public class MemberRestController {
     }
 
     // 회원 탈퇴
-    @PutMapping("/update/isValid")
-    public ResponseEntity<Map<String, String>> updateIsValid() {
+    @PutMapping("/update/isDeleted")
+    public ResponseEntity<Map<String, String>> updateIsDeleted() {
         Map<String, String> result = new HashMap<>();
 
         return new ResponseEntity<>(result, HttpStatus.OK);

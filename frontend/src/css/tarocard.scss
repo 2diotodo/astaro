@@ -147,12 +147,11 @@
     position: absolute;
     z-index: -1;
     top: -1%;
-    left: -2%;
+    left: -3%;
     animation: spin 1s linear infinite, light-effect 1s forwards;
 }
 
 .selected-tarocard > img.tarot-front {
-    width: 120%;
     height: 120%;
     transition: all 1s;
     position: relative;
@@ -187,7 +186,7 @@
         height: 104%;
     }
     100%{
-        width: 124%;
+        width: 106%;
         height: 122%;
         box-shadow: 0 0 12px 5px #c8c8c8;
     }
@@ -200,4 +199,9 @@
     100% {
         display: none;
     }
+}
+
+.result-tarocard{
+    transform: scaleX(-1);
+    top: 4vh;
 }

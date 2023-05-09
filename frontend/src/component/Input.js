@@ -7,7 +7,7 @@ const Input = styled.input.attrs((props) => ({
 }))`
   width: ${(props) => props.width || "490px"};
   padding: ${(props) => props.padding || "10px 0"};
-  font-size: ${(props) => props.fontSize || "20px"};
+  font-size: ${(props) => props.fontSize || "16px"};
   color: ${(props) => props.color || "white"};
   border: ${(props) => props.border || "none"};
   border-bottom: ${(props) => props.borderBottom || "1px solid #fff"};
