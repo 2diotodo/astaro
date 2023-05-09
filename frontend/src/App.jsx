@@ -1,8 +1,6 @@
-import "./App.css";
 import "@scss/main.scss";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { WhiteholeTest } from "@page/WhiteholeTest";
 import { Main } from "@page/Main";
 import TarotService from "@page/tarot/TarotService";
 import TodayTaro from "@page/tarot/TodayTaro";
@@ -29,7 +27,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/prompt" element={<WhiteholeTest />} />
           <Route path="/tarot" element={<TarotService />} />
           <Route path="/result" element={<TarotResult />} />
           <Route path="/todaytaro" element={<TodayTaro />} />
