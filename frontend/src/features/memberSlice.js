@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "@utils/axiosInstance";
+import { toast } from "react-toastify";
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 
@@ -24,6 +25,7 @@ export const login = createAsyncThunk("memberSlice/login", async (logins) => {
     url: url,
     data: request,
   }).then((res) => {
+    console.log("res", res.data);
     localStorage.setItem("access-token", res.data.accessToken);
   });
   return response.data;
@@ -67,7 +69,7 @@ const memberSlice = createSlice({
   extraReducers: (builder) => {
     // 로그인
     builder.addCase(login.pending, (state, action) => {
-      console.log("로그인중", state.result);
+      console.log("로그인중", action.payload);
     });
     builder.addCase(login.fulfilled, (state, action) => {
       console.log("로그인성공", action.payload);

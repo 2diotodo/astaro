@@ -1,8 +1,6 @@
-import "./App.css";
 import "@scss/main.scss";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { WhiteholeTest } from "@page/WhiteholeTest";
 import { Main } from "@page/Main";
 import TarotService from "@page/tarot/TarotService";
 import TodayTaro from "@page/tarot/TodayTaro";
@@ -21,6 +19,8 @@ import FlipGame from "@page/tarot/FlipGame";
 import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
 import BlackHolePage from "@page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -28,9 +28,15 @@ function App() {
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
         <Header />
+        <ToastContainer
+          position="top-center"
+          autoClose={1000}
+          hideProgressBar
+          theme="dark"
+        />
+
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/prompt" element={<WhiteholeTest />} />
           <Route path="/tarot" element={<TarotService />} />
           <Route path="/result" element={<TarotResult />} />
           <Route path="/todaytaro" element={<TodayTaro />} />
