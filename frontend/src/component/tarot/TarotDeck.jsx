@@ -47,9 +47,9 @@ const TarotDeck = () => {
       `transform: translate(${toMove}px, -35vh) rotateY(-180deg); width: 27.6vw; height: 50.4vw;`
     );
 
-    setTimeout(()=>{
-      selectedCard.children[1].style.display = 'none';
-    }, 1000)
+    setTimeout(() => {
+      selectedCard.children[1].style.display = "none";
+    }, 1000);
 
     let newSelectedCards = [...selectedCards];
     newSelectedCards.push(card.name);
@@ -70,11 +70,12 @@ const TarotDeck = () => {
       <RowContainer
         justify="center"
         height="100%"
-        class="filp-card"
-        style={{ position: "relative"}}
+        className="filp-card"
+        style={{ position: "relative" }}
       >
         {tarotCardArr.map((card) => (
           <TarotCard
+            key={card.id}
             card={card}
             className="tarot-card"
             selected={selectedCards.includes(card)}
@@ -84,7 +85,7 @@ const TarotDeck = () => {
           />
         ))}
       </RowContainer>
-      <GapH height="5vh"/>
+      <GapH height="5vh" />
     </ColContainer>
   );
 };
