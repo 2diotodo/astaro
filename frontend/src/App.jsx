@@ -15,9 +15,10 @@ import StarPage from "./page/shootingStar/StarPage";
 import TaroResultPage from "./page/shootingStar/TaroResultPage";
 import { Background } from "@component/common/Background";
 import Header from "@component/common/Header";
-import { TodayResult } from "@page/tarot/TodayResult";
+import { TodayResult } from "@/page/tarot/TodayResult";
 import TarotResult from "@page/tarot/TarotResult";
 import FlipGame from "@page/tarot/FlipGame";
+import TaroStoryPage from "./page/shootingStar/TaroStoryPage";
 import BlackHolePage from "./page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/star/taro-result" element={<TaroResultPage />} />
           <Route path="/star/black-hole" element={<BlackHolePage />} />
           <Route path="/flipgame" element={<FlipGame />} />
+          <Route path="/star/taro-story" element={<TaroStoryPage />} />
           <Route path="/tarottest"  element={<TarotTest />} />
         </Routes>
       </Router>
