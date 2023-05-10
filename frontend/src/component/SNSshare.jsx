@@ -1,6 +1,10 @@
 import React from 'react';
 import '@css/modal.css';
 import styled from "styled-components";
+import Insta from "@assets/img/Insta.png"
+import axios from 'axios';
+
+
 
 import {
   InstapaperShareButton,
@@ -11,24 +15,24 @@ import {
 	TwitterShareButton,
 } from "react-share";
 
-import { useEffect } from "react";
-import { useScript } from "@/component/kakao";
+import { useEffect, useState } from "react";
+import { useScript } from "./kakao";
 import kakaoLogo from "@assets/img/kakao.png";
 
 
 export function Modal(props)  {
-  
-  // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
+
   const { open, close, header } = props;
+
+
 	const currentUrl = window.location.href;
 	const status = useScript("https://developers.kakao.com/sdk/js/kakao.js");
-
 	useEffect(() => {
 		if (status === "ready" && window.Kakao) {
 			// 중복 initialization 방지
 			if (!window.Kakao.isInitialized()) {
 				// 두번째 step 에서 가져온 javascript key 를 이용하여 initialize
-				window.Kakao.init("d2f8bffda79329fc9278a8bed23d88da");
+				window.Kakao.init("539b85d3d2a6de6494e6c15874cd2332");
 			}
 		}
 	}, [status]);
@@ -55,13 +59,13 @@ export function Modal(props)  {
             <Word>공유하기</Word>
             <br/>
 			      <GridContainer>              
-              <FacebookShareButton url={currentUrl}>
+              <FacebookShareButton url="https://astaro.co.kr/todaytaro">
                 <FacebookIcon size={48} round={true} borderRadius={24}></FacebookIcon>
               </FacebookShareButton>
-              <TwitterShareButton url={currentUrl}>
+              <TwitterShareButton url="https://astaro.co.kr/todaytaro">
                 <TwitterIcon size={48} round={true} borderRadius={24}></TwitterIcon>
               </TwitterShareButton>
-              <InstapaperShareButton url={currentUrl}>
+              <InstapaperShareButton url="https://astaro.co.kr/todaytaro">
                 <InstapaperIcon size={48} round={true} borderRadius={24}></InstapaperIcon>
               </InstapaperShareButton>
               <KakaoShareButton onClick={handleKakaoButton}>
@@ -80,6 +84,7 @@ export function Modal(props)  {
     </div>
   );
 };
+
 const Word = styled.div`
   font-family:TAEBAEKmilkyway;
 

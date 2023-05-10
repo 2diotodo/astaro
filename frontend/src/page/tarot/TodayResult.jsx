@@ -8,11 +8,12 @@ import Small from "@component/text/Small"
 // import api from 'constants/api'
 import axios from "axios";
 import { Modal } from '@component/SNSshare';
-
+import TarotCardArr from "@assets/TarotCardArr";
 
 export function TodayResult(){
 
   const [modalOpen, setModalOpen] = useState(false);
+  const tarotCardArr = TarotCardArr;
 
   const openModal = () => {
     setModalOpen(true);
@@ -29,7 +30,7 @@ export function TodayResult(){
 
   useEffect(() => {
     axios
-      .get("http://localhost:8083/tarot/today")
+      .get(`${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/today`)
       .then( (res) => {
         setResult(res.data);
         console.log(res);
@@ -47,18 +48,19 @@ export function TodayResult(){
           <div className='content'>
             <FlexBox>
               <StyledDiv>
-                {result.cadrName}<br />
+                {result.cardName}<br />
                 <br />
                 <div>
-                  {result.mainImageUrl}
+                  <img src={tarotCardArr[0].image} alt="" width="100px"/>
                 </div>
                 <br />
                 {result.cadrName}
               </StyledDiv>                                            
               <StyledDiv>
                 운세<br/>
+                <br/>
                 <div>
-                <Small>{result.content}</Small>
+                {result.content}
                 </div>
               </StyledDiv>              
             </FlexBox>
@@ -67,7 +69,7 @@ export function TodayResult(){
                 상성이 좋은 카드<br/>
                 <br />
                 <div>
-                  {result.goodImageUrl}
+                  <img src={result.goodImageUrl} alt="" width="100px"/>              
                 </div>
                 <br />
                 {result.goodCardName}
@@ -77,7 +79,7 @@ export function TodayResult(){
                 상성이 나쁜 카드<br/>
                 <br />
                 <div>
-                  {result.badImageUrl}
+                  <img src={result.badImageUrl} alt="" width="100px"/>
                 </div>
                 <br />
                 {result.badCardName}
@@ -101,7 +103,7 @@ const Back = styled.div`
 const FlexBox = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 50%;
+  height: 55%;
   width: 100%;
 `
 const StyledDiv = styled.div`
