@@ -24,7 +24,14 @@ const TarotTest = () => {
     <>
       <ColContainer>
       <Button onClick={sendResult} style={{zIndex:30}}>요청보내기</Button>
-
+        <div style={{zIndex:100}}>
+        <video width="750" height="500" controls >
+          <source src="https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process+(1).webm" type="video/webm"/>
+        </video>
+        </div>
+        {/*<iframe width="420" height="315"*/}
+        {/*        src="https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process.mp4" frameBorder="0"*/}
+        {/*        allowFullScreen></iframe>*/}
       </ColContainer>
     </>
   );

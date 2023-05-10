@@ -54,6 +54,13 @@ const MessageInput = ({ onSubmit }) => {
     }
   };
 
+  const handleEnter = () => {
+    if (message.trim() !== "" && window.event.keyCode == 13) {
+      onSubmit(message);
+      setMessage("");
+    }
+  };
+
   return (
     <InputContainer>
       <Input
@@ -61,6 +68,7 @@ const MessageInput = ({ onSubmit }) => {
         placeholder="메시지를 입력하세요..."
         value={message}
         onChange={handleChange}
+        onKeyDown={handleEnter}
       />
       {/* 전송 아이콘 추가 */}
       <SendButton onClick={handleSubmit}>

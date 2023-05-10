@@ -6,10 +6,13 @@ import { useParams } from "react-router-dom";
 import {
   setSelectedChatRoom,
   setMessages,
-  addMessage,
+  fetchMessages,
+  sendMessage
+  // addMessage,
 } from "../../features/shootingStarSlice/chatSlice";
-import { Background } from "@component/common/Background";
+// import { Background } from "@component/common/Background";
 import MessageInput from "../../component/shootingStar/MessageInput";
+
 
 const MessageSeparator = styled.hr`
   margin: 0;
@@ -88,48 +91,35 @@ const ChatPage = () => {
   const messages = useSelector((state) => state.chat.messages);
   const dispatch = useDispatch();
 
-  const fetchMessagesFromAPI = async (id) => {
-    try {
-      const response = await fetch(
-        `http://localhost:8082/api/v1/message/${id}`
-      );
-      const messages = await response.json();
-      console.log("messages : ", messages)
-      return messages;
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-      return [];
-    }
-  };
+  // const fetchMessagesFromAPI = async (id) => {
+  //   try {
+  //     const response = await fetch(
+  //       `http://localhost:8082/api/v1/message/${id}`
+  //     );
+  //     const messages = await response.json();
+  //     console.log("messages : ", messages)
+  //     return messages;
+  //   } catch (error) {
+  //     console.error("Error fetching messages:", error);
+  //     return [];
+  //   }
+  // };
 
   const handleSendMessage = async (message) => {
-    try {
-      await fetch(`http://localhost:8082/api/v1/message`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messageListSeq: selectedChatRoom,
-          senderSeq: 1,
-          receiverSeq: 2,
-          originalContent: message,
-          resultSeq: 1,
-        }),
-      });
-    } catch (error) {
-      console.error("메시지 전송 실패");
-    }
+    dispatch(
+      sendMessage({
+        messageListSeq: selectedChatRoom,
+        senderSeq: 1,
+        receiverSeq: 2,
+        originalContent: message,
+        resultSeq: 1,
+      })
+    );
   };
-
+  
   useEffect(() => {
-    const fetchMessages = async () => {
-      const messages = await fetchMessagesFromAPI(id);
-      dispatch(setMessages(messages));
-    };
-
     dispatch(setSelectedChatRoom(id));
-    fetchMessages();
+    dispatch(fetchMessages(id));
   }, [id, dispatch]);
 
   return (
@@ -147,7 +137,7 @@ const ChatPage = () => {
                 message.senderSeq === loggedInMemberSeq
                   ? MessageRight
                   : MessageLeft;
-                const messageLabel =
+              const messageLabel =
                 message.senderSeq === loggedInMemberSeq
                   ? "내가 보낸 쪽지"
                   : `${message.nickname}님이 보낸 쪽지`;
