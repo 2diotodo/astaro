@@ -7,7 +7,13 @@ import { GoPencil } from "react-icons/go";
 import Input from "@component/Input";
 import { Modal, Box, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { remove, update } from "@features/memberUpdateSlice";
+import {
+  getMember,
+  profileUpdate,
+  remove,
+  update,
+} from "@features/memberUpdateSlice";
+import { isLoginCheck } from "@features/commonSlice/loginSlice";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -60,19 +66,30 @@ const boxStyle = {
 };
 
 function MemberMypage() {
-  const user = useSelector((state) => state.memberUpdate.value);
-  console.log("user.value", user);
+  const dispatch = useDispatch();
+  const userinfo = useSelector((state) => state.memberUpdate);
+  const memberInfo = useSelector((state) => state.memberUpdate);
+  const { memberId, password, nickname, profile, email, lux, heal } =
+    memberInfo;
+  console.log("memberId", memberId);
+  console.log("password", password);
+  console.log("nickname", nickname);
+  console.log("profile", profile);
+  console.log("email", email);
+  console.log("lux", lux);
+  console.log("heal", heal);
+
+  // const user = useSelector((state) => state.memberUpdate.value);
   const [values, setValues] = useState({
     memberId: "",
     password: "",
     passwordConfirm: "",
-    nickname: "",
+    nickname: "ki",
+    profile: 1,
     email: "",
     lux: 0,
     heal: 0,
-    profile: 1,
   });
-  const dispatch = useDispatch();
   const [errors, setErrors] = useState({
     nickname: "",
     password: "",
@@ -98,13 +115,10 @@ function MemberMypage() {
     setFlipped(!flipped);
   };
 
-  // modal profile 행성목록
-  // const [stars, setStars] = useState(profiles);
   // modal profile icon list 선택관리
   const [profileSelected, setProfileSelected] = useState(0);
 
   const profileSelectHandler = (idx) => {
-    // console.log("len", profileSelected);
     console.log(values.lux);
     console.log(profiles[idx - 1].starlux);
     if (values.lux >= profiles[idx - 1].starlux) {
@@ -187,9 +201,25 @@ function MemberMypage() {
   }, []);
 
   useEffect(() => {
-    console.log("user", user);
-    setValues(user);
-  }, [user]);
+    dispatch(getMember());
+    console.log("memberInfo", memberInfo);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (userinfo) {
+      setValues({
+        memberId: userinfo.memberId,
+        password: userinfo.password,
+        passwordConfirm: userinfo.password,
+        nickname: userinfo.nickname,
+        profile: userinfo.profile,
+        email: userinfo.email,
+        lux: userinfo.lux,
+        heal: userinfo.heal,
+      });
+    }
+    console.log("values", values);
+  }, [userinfo]);
 
   useEffect(() => {
     console.log("profileSelected", profileSelected);
@@ -204,16 +234,13 @@ function MemberMypage() {
     handleOpen();
   };
 
-  // 수정하기 누르면 수정UI+수정완료버튼으로 바꾸기
-  // const toggleButtonHandler = () => {
-  //   setIsUpdated(false);
-  // };
-
   // 회원탈퇴버튼
   const resignHandler = () => {
     if (window.confirm("정말 탈퇴하시나요?")) {
       alert("탈퇴되었습니다.");
       dispatch(remove());
+      localStorage.clear();
+      dispatch(isLoginCheck(false));
       navigate("/");
     } else {
       alert("탈퇴를 취소하셨습니다.");
@@ -226,26 +253,35 @@ function MemberMypage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
+    setValues((prevalue) => ({
+      ...prevalue,
+      profile: profileSelected,
+    }));
+    dispatch(profileUpdate(values));
     setProfileSelected(0);
   };
   return (
     <>
       <Wrapper>
         <div className="mypage">
-          <Title className="mypage-text">
-            {values.nickname}
-            <span style={{ fontSize: "15px" }}>님 안녕하세요</span>
-          </Title>
+          {values.nickname && (
+            <Title className="mypage-text">
+              {values.nickname}
+              <span style={{ fontSize: "15px" }}>님 안녕하세요</span>
+            </Title>
+          )}
 
           <Subtitle className="mypage-wisdom">
             {selectWisdom.wisdom} -{selectWisdom.writer}
           </Subtitle>
           <div className="mypage-profile">
-            <img
-              src={profiles[values.profile - 1].starImageUrl}
-              alt="profile"
-              style={{ height: "90px" }}
-            />
+            {values.profile && (
+              <img
+                src={profiles[values.profile - 1].starImageUrl}
+                alt="profile"
+                style={{ height: "90px" }}
+              />
+            )}
             <GoPencil onClick={changeProfileHandler} color="white" />
           </div>
           <div
@@ -363,19 +399,10 @@ function MemberMypage() {
                       type="submit"
                       style={{ marginTop: "9%", marginRight: "-8%" }}
                     >
-                      저장
+                      수정
                     </Button>
                     {/* )} */}
                   </form>
-                  {/* {!isUpdated && (
-                    <Button
-                      type="button"
-                      onClick={toggleButtonHandler}
-                      style={{ marginTop: "9%", marginRight: "-8%" }}
-                    >
-                      수정
-                    </Button>
-                  )} */}
                 </div>
                 <Button
                   type="button"

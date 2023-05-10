@@ -1,9 +1,11 @@
 import { useState, useCallback } from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { signup, duplicateId } from "@features/memberSlice";
 import Input from "@component/Input";
 import Button from "@component/Button";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -22,6 +24,8 @@ const ErrorMessage = styled.div`
 `;
 
 function MemberSignup() {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     memberId: "",
     password: "",
@@ -49,11 +53,12 @@ function MemberSignup() {
     console.log(errors.memberId);
     console.log(checkId());
     dispatch(signup(values));
+    alert("회원가입 완료!");
+    navigate("/member/login");
   };
 
   // 중복확인
   const checkDuplicateId = () => {
-    console.log("아이디중복확인");
     dispatch(duplicateId(values.memberId));
   };
   // 필드 정규표현식체크
