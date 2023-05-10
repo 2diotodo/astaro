@@ -93,7 +93,7 @@ const AudioButton = styled.button`
 const Visualizer = styled.div`
   width: 800px;
   height: 200px;
-  background: rgba(255, 255, 255, 0.5);
+  // background: rgba(255, 255, 255, 0);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -124,7 +124,7 @@ const BlackHolePage = () => {
       requestAnimationFrame(drawWave);
       analyserRef.current.getByteTimeDomainData(dataArray);
 
-      canvasCtx.fillStyle = 'rgba(255, 255, 255, 0)';
+      canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
       canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
       canvasCtx.lineWidth = 2;
       canvasCtx.strokeStyle = 'black';
