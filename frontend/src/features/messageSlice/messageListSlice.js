@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = "http://localhost:8082/";
+// const baseURL = "http://localhost:8000/board-service/";
+const baseURL = `${process.env.REACT_APP_BACKEND_URL}/board-service/`;
 
 const initialState = {
   seq: "",
 };
+
+const token = `${localStorage.getItem("access-token")}`;
 
 // 채팅방 불러오기
 export const getMessageList = createAsyncThunk(
@@ -13,6 +16,7 @@ export const getMessageList = createAsyncThunk(
   async (memberSeq) => {
     const url = `${baseURL}api/v1/room/${memberSeq}`;
     const response = await axios({
+      headers: { Authorization: `Bearer ${token}` },
       method: "GET",
       url: url,
     });
@@ -26,6 +30,7 @@ export const updateMessageList = createAsyncThunk(
   async (messageList) => {
     const url = `${baseURL}api/v1/room/${messageList.seq}`;
     const response = await axios({
+      headers: { Authorization: `Bearer ${token}` },
       method: "PATCH",
       url: url,
       data: messageList,
