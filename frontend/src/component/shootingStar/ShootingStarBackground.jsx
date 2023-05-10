@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 const shootingTime = '1000ms';
 
 const getRandomDuration = () => {
-  const minDuration = 3000; // 최소 지속 시간(ms)
+  const minDuration = 6000; // 최소 지속 시간(ms)
   const maxDuration = 20000; // 최대 지속 시간(ms)
   return Math.floor(Math.random() * (maxDuration - minDuration + 1) + minDuration);
 };
@@ -22,8 +22,8 @@ const ShootingStarsContainer = styled.div`
     position: absolute;
     left: 10%;
     height: 1px;
-    background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
-    filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    filter: drop-shadow(0 0 6px lightyellow);
     animation: tail linear infinite, shooting linear infinite; // 여기서 'shootingTime' 변수를 제거했습니다.
   }
   
@@ -34,7 +34,7 @@ const ShootingStarsContainer = styled.div`
     position: absolute;
     right: 0;
     height: 2px;
-    background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     transform: translateX(50%) rotateZ(45deg);
     border-radius: 100%;
     animation: shining ${shootingTime} ease-in-out infinite;
@@ -70,10 +70,10 @@ const ShootingStarsContainer = styled.div`
 
   @keyframes shooting {
     0% {
-      transform: translateX(-100px);
+      transform: translateX(-100px) rotateX(0deg);
     }
     100% {
-      transform: translateX(500px);
+      transform: translateX(500px) rotateX(3600deg);
     }
   }
 `;

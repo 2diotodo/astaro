@@ -175,7 +175,7 @@ function TarotService() {
     document.querySelector("#slide-from-tarot").classList.add("left-hidden");
   };
 
-  const slideFromLoadingToResult = () => {
+  const navigateToResult = () => {
     navigate("/result")
   };
 
@@ -217,23 +217,16 @@ function TarotService() {
         >
           <GapH height="20vh"/>
           <TarotLoading />
-          {tarotResult[0] ? (
-            dalleImgUrl ? (
-              <Button margin="50px 0" onClick={slideFromLoadingToResult}>
+          {tarotResult[0] ?
+            (<Button margin="50px 0" onClick={navigateToResult}>
                 결과보기
-              </Button>
-            ) : (
-              <>
-                <GapH height="50px" />
-                <Small>동화를 그리는 중입니다...</Small>
-              </>
-            )
-          ) : (
-            <>
+            </Button>)
+            :
+            (<>
               <GapH height="50px" />
               <Small>타로 결과를 받아오는 중입니다...</Small>
-            </>
-          )}
+            </>)
+          }
         </ColContainer>
       </UpDownContainer>
     </>

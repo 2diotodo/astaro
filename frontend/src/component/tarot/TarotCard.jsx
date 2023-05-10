@@ -14,8 +14,8 @@ const Panel = styled.div`
     cursor: pointer;
     box-shadow: 0 0 10px 5px #c8c8c8;
   }
-  max-width: 100px;
-  max-height: 185px;
+  max-width: 120px;
+  max-height: 222px;
 `;
 
 const TarotCardFrontImage = styled.img`

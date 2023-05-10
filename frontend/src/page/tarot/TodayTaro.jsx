@@ -18,7 +18,6 @@ import styled from "styled-components";
 
 export default function TodayTaro() {
   const swiperRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate()
 
   return (
@@ -41,7 +40,7 @@ export default function TodayTaro() {
         modules={[EffectCoverflow, EffectFlip]}
         className="mySwiper"
       >
-        <SwiperSlide className="carousel-swiper-slide" style={activeIndex === 0 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide className="carousel-swiper-slide">
         <div className="flip">  
             <div className="card">
               <div className="front">                
@@ -195,7 +194,7 @@ export default function TodayTaro() {
           </div>
           13
         </SwiperSlide>
-        <SwiperSlide className="carousel-swiper-slide" style={activeIndex === 14 ? { transform: "rotateY(180deg)" } : {}}>
+        <SwiperSlide className="carousel-swiper-slide" >
           <div className="flip">  
             <div className="card">
               <div className="front">                

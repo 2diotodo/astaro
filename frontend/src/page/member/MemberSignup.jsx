@@ -20,26 +20,6 @@ const Title = styled.div`
 const ErrorMessage = styled.div`
   color: white;
 `;
-// const Button = styled.button`
-//   width: 50%;
-//   position: relative;
-//   padding: 5px 20px;
-//   margin: 10%;
-//   border: 1px solid white;
-//   background-color: rgba(0, 0, 0, 0);
-//   color: white;
-//   font-size: 20px;
-// `;
-const DuplicateButteon = styled.button`
-  width: 13;
-  position: relative;
-  padding: 5px;
-  margin: 5%;
-  border: 1px solid white;
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  font-size: 12px;
-`;
 
 function MemberSignup() {
   const [values, setValues] = useState({
