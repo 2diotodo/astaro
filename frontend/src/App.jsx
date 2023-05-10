@@ -1,6 +1,7 @@
 import "./App.css";
 import "@scss/main.scss";
 import React from "react";
+import Body from "./component/common/Body";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { WhiteholeTest } from "@page/WhiteholeTest";
 import { Main } from "@page/Main";
@@ -27,24 +28,26 @@ function App() {
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
         <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/prompt" element={<WhiteholeTest />} />
-          <Route path="/tarot" element={<TarotService />} />
-          <Route path="/result" element={<TarotResult />} />
-          <Route path="/todaytaro" element={<TodayTaro />} />
-          <Route path="/todayresult" element={<TodayResult/>} />
-          <Route path="/member/login" element={<MemberLogin />} />
-          <Route path="/member/signup" element={<MemberSignup />} />
-          <Route path="/member/mypage/:id" element={<MemberMypage />} />
-          <Route path="/message/messageList" element={<MessageListPage />} />
-          <Route path="/star/chat/:id" element={<ChatPage />} />
-          <Route path="/star" element={<StarPage />} />
-          <Route path="/star/taro-result" element={<TaroResultPage />} />
-          <Route path="/star/black-hole" element={<BlackHolePage />} />
-          <Route path="/flipgame" element={<FlipGame />} />
-          <Route path="/tarottest" element={<TarotTest />} />
-        </Routes>
+        <Body>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/prompt" element={<WhiteholeTest />} />
+            <Route path="/tarot" element={<TarotService />} />
+            <Route path="/result" element={<TarotResult />} />
+            <Route path="/todaytaro" element={<TodayTaro />} />
+            <Route path="/todayresult" element={<TodayResult />} />
+            <Route path="/member/login" element={<MemberLogin />} />
+            <Route path="/member/signup" element={<MemberSignup />} />
+            <Route path="/member/mypage/:id" element={<MemberMypage />} />
+            <Route path="/message/messageList" element={<MessageListPage />} />
+            <Route path="/star/chat/:id" element={<ChatPage />} />
+            <Route path="/star" element={<StarPage />} />
+            <Route path="/star/taro-result" element={<TaroResultPage />} />
+            <Route path="/star/black-hole" element={<BlackHolePage />} />
+            <Route path="/flipgame" element={<FlipGame />} />
+            <Route path="/tarottest" element={<TarotTest />} />
+          </Routes>
+        </Body>
       </Router>
     </div>
   );
