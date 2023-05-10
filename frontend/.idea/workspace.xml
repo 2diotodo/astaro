@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a536e59-b704-4a52-b2cd-40184587243e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/sandArt-service/flask/drawing_process.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/sandArt-service/flask/drawing_process.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotTest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/tarot/TarotCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotCategory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/tarot/TarotLoading.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/tarot/TarotLoading.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/default.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/default.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/FlipGame.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/tarot/TarotService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scss/pages/_flip-game.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/scss/pages/_flip-game.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

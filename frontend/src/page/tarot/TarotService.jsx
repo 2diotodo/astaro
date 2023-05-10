@@ -15,13 +15,14 @@ import Small from "@component/text/Small";
 import { useDispatch, useSelector } from "react-redux";
 import { setStateImgUrl, setStateMessage, setStateResults, setStateStory } from "@features/tarotSlice";
 import { useNavigate } from "react-router-dom";
+import FlipGame from "@page/tarot/FlipGame";
+import SmallMedium from "@component/text/SmallMedium";
 
 function TarotService() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [tarotResult, setTarotResult] = useState([]);
-  const [dalleImgUrl, setDalleImgUrl] = useState("");
   const category = useSelector((state) => state.tarot.stateCategory);
   const stateCards = useSelector((state) => state.tarot.stateCards);
   const cardSeqList = useSelector((state) => state.tarot.stateCardsInfo.map((card) => card.id));
@@ -117,7 +118,6 @@ function TarotService() {
             config
           )
           .then((res) => {
-            setDalleImgUrl(res.data.data[0].url);
             imgUrl = res.data.data[0].url;
             dispatch(setStateImgUrl(imgUrl));
           });
@@ -179,6 +179,13 @@ function TarotService() {
     navigate("/result")
   };
 
+  const letsGame = () => {
+    document
+      .querySelector("#slide-from-game")
+      .classList.remove("right-hidden");
+    document.querySelector("#slide-from-loading").classList.add("left-hidden");
+  }
+
   return (
     <>
       <UpDownContainer style={{position:"relative"}}>
@@ -186,9 +193,12 @@ function TarotService() {
           id="slide-from-category"
           style={{ position: "absolute", top:0}}
           className="slide-in"
+          width="80vw"
         >
           <TarotCategory />
-          <Button margin="50px 0" onClick={slideFromCategoryToTarot}>
+          <GapH height="10vh"/>
+          <hr style={{width:"100%", boxShadow:"0px 0px 10px 5px gray", border:"1px solid white"}}/>
+          <Button width="80%" margin="5vh 0" onClick={slideFromCategoryToTarot}>
             다음으로
           </Button>
         </ColContainer>
@@ -215,17 +225,43 @@ function TarotService() {
           className="slide-in right-hidden"
           justify="start"
         >
-          <GapH height="20vh"/>
-          <TarotLoading />
+          <>
+            <GapH height="10vh" />
+            {tarotResult[0] ?
+              (<Button margin="50px 0" onClick={navigateToResult}>
+                  결과보기
+              </Button>)
+              :
+              (<>
+                <SmallMedium>점괘를 해석중입니다.</SmallMedium>
+                <br />
+                <SmallMedium>잠시 기다려주시기 바랍니다.</SmallMedium>
+                <br />
+                <br />
+                <Small>점괘 해석은 1분 정도 소요될 수 있습니다.</Small>
+                <TarotLoading />
+              </>)
+            }
+            <Small>타로 결과를 받아오는 중입니다...</Small>
+            <br/>
+            <Small>잠시 심심함을 달래러 갈까요?</Small>
+            <GapH height="5vh"/>
+            <Button onClick={letsGame}>click !</Button>
+          </>
+        </ColContainer>
+        <ColContainer
+          id="slide-from-game"
+          style={{ position: "absolute", top:0, width:"90%"}}
+          className="slide-in right-hidden"
+          justify="start"
+        >
+          <FlipGame/>
           {tarotResult[0] ?
             (<Button margin="50px 0" onClick={navigateToResult}>
-                결과보기
+              결과보기
             </Button>)
             :
-            (<>
-              <GapH height="50px" />
-              <Small>타로 결과를 받아오는 중입니다...</Small>
-            </>)
+            (<TarotLoading />)
           }
         </ColContainer>
       </UpDownContainer>
