@@ -13,7 +13,7 @@ sys.setrecursionlimit(100000)
 
 
 def create_sand_art_video():
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter_fourcc(*'h264')
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
 
@@ -39,22 +39,23 @@ def create_sand_art_video():
     ret, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
 
     def initial_sand_color():
-        r = random.randint(133, 173)
-        g = random.randint(82, 122)
-        b = random.randint(31, 71)
+        r = random.randint(120, 180)
+        g = random.randint(60, 120)
+        b = random.randint(20, 80)
 
         return (b, g, r)
 
     def random_sand_color(intensity):
         r = random.randint(0, 100)
-        g = random.randint(0 + intensity * 10, 40 + intensity * 5)
-        b = random.randint(0 + intensity * 10, 40 + intensity * 5)
+        g = random.randint(0 + intensity * 10, 60 + intensity * 5)
+        b = random.randint(0 + intensity * 10, 60 + intensity * 5)
 
         return (b, g, r)
 
     output = np.zeros((*binary.shape, 3), dtype=np.uint8)
 
     height, width = binary.shape
+    # height, width = 1280, 720
 
     for i in range(height):
         for j in range(width):
@@ -95,7 +96,7 @@ def create_sand_art_video():
                 cv2.waitKey(1)
 
             random.shuffle(directions)
-            # step = random.randrange(1, 5)
+            step = random.randrange(1, 3)
 
             for dx, dy in directions:
                 ni, nj = i + dx * step, j + dy * step
@@ -129,7 +130,7 @@ def create_sand_art_video():
 
         # step = random.randrange(1, 5)
 
-        offsets = list(range(-1 * step, 2 * step, step))
+        offsets = list(range(-2 * step, 3 * step, step))
         random.shuffle(offsets)
 
         for k in offsets:
@@ -198,4 +199,3 @@ if __name__ == "__main__":
     bucket_name = "astaro"
     s3_file_name = "drawing_process.mp4"
     upload_to_s3(video_path, bucket_name, s3_file_name)
-    print('hello')
