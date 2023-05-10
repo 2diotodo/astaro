@@ -5,6 +5,7 @@ import { updateMessageList } from "@features/messageSlice/messageListSlice";
 import { getMessageList } from "@features/messageSlice/messageListSlice";
 import { Popper } from '@mui/material';
 import { BsThreeDots } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const RoomContainer = styled.div`
   border-radius: 10px;
@@ -52,7 +53,8 @@ const PopperContent = styled.div`
   margin-left: -85px;
 `;
 
-const MessageRoom = ({messageRoom, setMessageRooms, isOpen, setIsOpen}) => {
+const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const id = open ? 'simple-popper' : undefined;
@@ -92,6 +94,10 @@ const MessageRoom = ({messageRoom, setMessageRooms, isOpen, setIsOpen}) => {
     setIsOpen(false);
   };
 
+  const goToRoom = (event) => {
+    navigate(`/star/chat/${messageRoom.seq}`);
+  };
+
   return (
     <div>
       <RoomContainer>
@@ -108,7 +114,7 @@ const MessageRoom = ({messageRoom, setMessageRooms, isOpen, setIsOpen}) => {
           </PopperContent>
         </Popper>
         <HorizontalLine n={messageRoom.n} />
-        <LastMessage>{messageRoom.lastMessage}</LastMessage>
+        <LastMessage onClick={goToRoom}>{messageRoom.lastMessage}</LastMessage>
       </RoomContainer>
     </div>
   );
