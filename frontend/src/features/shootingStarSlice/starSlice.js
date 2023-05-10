@@ -6,7 +6,7 @@ const initialState = {
 
 // 비동기 요청
 export const fetchTaroResult = createAsyncThunk("star/fetchTaroResult", async (memberSeq) => {
-  const response = await fetch(`http://localhost:8082/api/v1/star/${memberSeq}`);
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/board-service/api/v1/star/${memberSeq}`);
   if (!response.ok) {
     throw new Error(`API request failed with status ${response.status}`);
   }
