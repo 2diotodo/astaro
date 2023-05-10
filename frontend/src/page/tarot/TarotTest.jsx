@@ -1,10 +1,10 @@
 import React from "react";
-import customAxios from "@utils/axiosInstance";
+import axios from "@utils/axiosInstance";
 import Button from "@component/Button";
 import ColContainer from "@component/layout/ColContainer";
 const TarotTest = () => {
   function sendResult() {
-      customAxios.post(`${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/result`, {
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/result`, {
         memberSeq:1,
         category:"연애",
         contentInput:"연애가 하고싶어요.",
@@ -24,7 +24,14 @@ const TarotTest = () => {
     <>
       <ColContainer>
       <Button onClick={sendResult} style={{zIndex:30}}>요청보내기</Button>
-
+        <div style={{zIndex:100}}>
+        <video width="750" height="500" controls>
+          <source src="https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process_webm.webm" type="video/webm"/>
+        </video>
+        </div>
+        {/*<iframe width="420" height="315"*/}
+        {/*        src="https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process.mp4" frameBorder="0"*/}
+        {/*        allowFullScreen></iframe>*/}
       </ColContainer>
     </>
   );

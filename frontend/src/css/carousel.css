@@ -16,6 +16,19 @@
 
 .carousel-swiper-slide img {
   display: block;
+  width: 100px;
+  height: 185px;
+}
+.main-swiper-slide {
+  margin-top: 18vh;
+  background-position: center;
+  background-size: cover;
+  width: 200px;
+  height: 370px;
+}
+
+.main-swiper-slide img {
+  display: block;
   width: 200px;
   height: 370px;
 }

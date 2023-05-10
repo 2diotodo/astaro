@@ -12,6 +12,8 @@ import Small from "@component/text/Small";
 import { useSelector } from "react-redux";
 import tarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/tarot/TarotCard";
+import Button from "@component/Button";
+import { useNavigate } from "react-router-dom";
 
 SwiperCore.use([Pagination]);
 
@@ -43,6 +45,7 @@ const ResultDiv = styled.div`
 
 
 function TarotResult() {
+  const navigate = useNavigate();
   const [swiperIndex, setSwiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
   const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
@@ -51,6 +54,10 @@ function TarotResult() {
   useEffect(() => {
     console.log(tarotCardsInfo);
   }, [swiperIndex]);
+
+  const SendToStar = () => {
+    navigate("/star");
+  }
   return (
     <div>
       <StyledSwiper
@@ -85,11 +92,15 @@ function TarotResult() {
               id="slide-from-story"
             >
               <ColContainer width="80vw" gap="35px" height="100%">
-              <Medium>- 당신의 이야기 -</Medium>
+                <GapH height="5px"/>
                 <div className="story-image">
-                  <img alt="img" src={dalleImgUrl} width="256px" height="256px" />
+                  <img alt="img" src={dalleImgUrl} width="80%"/>
                 </div>
-                <Small lineHeight="2em">{respStory}</Small>
+                <div style={{overflowY:"scroll", height:"35vh"}}>
+                  <Small lineHeight="2em">{respStory}</Small>
+                  <GapH height="40px"/>
+                  <Button width="200px" onClick={SendToStar}>별똥별로 보내기</Button>
+                </div>
               </ColContainer>
             </ColContainer>
           </SlideWrapper>

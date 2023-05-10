@@ -135,72 +135,73 @@ export function Main() {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
+          
           coverflowEffect={{
             rotate: 0,
             stretch: 30,
             depth: 70,
             modifier: 1,
-            slideShadows: true,
+            slideShadows: false,
           }}
           
-          modules={[EffectCoverflow,]}
-          className="mySwiper"
+          modules={[EffectCoverflow]}
+          className="swiper"
         >
-        <SwiperSlide className="carousel-swiper-slide" >
-          <div className="flip">  
-              <div className="card">
-                <div className="front">
-                </div>
-                <div className="back">                
-                </div>
-              </div>
-            </div>
-            
-          </SwiperSlide>
-          <SwiperSlide className="carousel-swiper-slide">
+          <SwiperSlide className="main-swiper-slide" >
             <div className="flip">  
-              <div className="card">
-                <div className="front">                
-                </div>              
-                <div className="back">                
+                <div className="card">
+                  <div className="main-front" onClick={() => navigate('/todaytaro')}>
+                  </div>
+                  <div className="main-back">                
+                  </div>
                 </div>
               </div>
-            </div>
-            
-          </SwiperSlide>
-          <SwiperSlide className="carousel-swiper-slide">
+              
+            </SwiperSlide>
+            <SwiperSlide className="main-swiper-slide">
+              <div className="flip">  
+                <div className="card">
+                  <div className="main-front" onClick={() => navigate('/tarot')}>                
+                  </div>              
+                  <div className="main-back">                
+                  </div>
+                </div>
+              </div>
+              
+            </SwiperSlide>
+            <SwiperSlide className="main-swiper-slide">
+              <div className="flip">  
+                <div className="card">
+                  <div className="main-front" onClick={() => navigate('/star')}>                
+                  </div>              
+                  <div className="main-back">                
+                  </div>
+                </div>
+              </div>
+              
+            </SwiperSlide>
+            <SwiperSlide className="main-swiper-slide">
             <div className="flip">  
-              <div className="card">
-                <div className="front">                
-                </div>              
-                <div className="back">                
+                <div className="card">
+                  <div className="main-front" onClick={() => navigate('/member/mypage/:id')}>                
+                  </div>              
+                  <div className="main-back">                
+                  </div>
                 </div>
               </div>
-            </div>
-            
-          </SwiperSlide>
-          <SwiperSlide className="carousel-swiper-slide">
+              
+            </SwiperSlide>
+          {/* <SwiperSlide className="main-carousel-swiper-slide">
           <div className="flip">  
               <div className="card">
-                <div className="front">                
+                <div className="main-front" onClick={() => navigate('/')}>                
                 </div>              
-                <div className="back">                
+                <div className="main-back">                
                 </div>
               </div>
             </div>
             
-          </SwiperSlide>
-          <SwiperSlide className="carousel-swiper-slide">
-          <div className="flip">  
-              <div className="card">
-                <div className="front">                
-                </div>              
-                <div className="back">                
-                </div>
-              </div>
-            </div>
-            
-          </SwiperSlide>
+          </SwiperSlide> */}
 
           
           </Swiper>
