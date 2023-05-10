@@ -1,17 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "@utils/axiosInstance";
-import { toast } from "react-toastify";
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 
 const initialState = {
-  seq: "",
   memberId: "",
   password: "",
   nickname: "",
   email: "",
 };
 
+// const baseURL = `http://localhost:8000/member-service/auth`;
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/member-service/auth`;
 
 // 로그인
@@ -57,7 +56,6 @@ export const duplicateId = createAsyncThunk(
     const response = await axios({
       method: "GET",
       url: url,
-      data: memberId,
     });
     return response.data;
   }
@@ -66,11 +64,7 @@ export const duplicateId = createAsyncThunk(
 const memberSlice = createSlice({
   name: "memberCheck",
   initialState: initialState,
-  reducers: {
-    memberSeq: (state, action) => {
-      state.seq = action.payload.seq;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     // 로그인
     builder.addCase(login.pending, (state, action) => {
