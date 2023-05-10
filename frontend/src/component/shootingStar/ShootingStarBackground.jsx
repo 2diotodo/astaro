@@ -2,17 +2,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTaroResult } from '@/features/shootingStarSlice/starSlice';
 
 const shootingTime = '1000ms';
 
 const getRandomDuration = () => {
-  const minDuration = 3000; // 최소 지속 시간(ms)
+  const minDuration = 6000; // 최소 지속 시간(ms)
   const maxDuration = 20000; // 최대 지속 시간(ms)
   return Math.floor(Math.random() * (maxDuration - minDuration + 1) + minDuration);
 };
 
 const ShootingStarsContainer = styled.div`
-  position: absolute;
+  position: absolute;   
   width: 100%;
   height: 100%;
 	// shooting star 각도
@@ -22,8 +24,8 @@ const ShootingStarsContainer = styled.div`
     position: absolute;
     left: 10%;
     height: 1px;
-    background: linear-gradient(-45deg, rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
-    filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    filter: drop-shadow(0 0 6px lightyellow);
     animation: tail linear infinite, shooting linear infinite; // 여기서 'shootingTime' 변수를 제거했습니다.
   }
   
@@ -34,7 +36,7 @@ const ShootingStarsContainer = styled.div`
     position: absolute;
     right: 0;
     height: 2px;
-    background: linear-gradient(-45deg, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
     transform: translateX(50%) rotateZ(45deg);
     border-radius: 100%;
     animation: shining ${shootingTime} ease-in-out infinite;
@@ -70,10 +72,10 @@ const ShootingStarsContainer = styled.div`
 
   @keyframes shooting {
     0% {
-      transform: translateX(-100px);
+      transform: translateX(-100px) rotateX(0deg);
     }
     100% {
-      transform: translateX(500px);
+      transform: translateX(500px) rotateX(3600deg);
     }
   }
 `;
@@ -96,6 +98,7 @@ const updateStar = (star) => {
 
 const ShootingStars = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   
   const [stars, setStars] = useState([]);
 
@@ -134,25 +137,26 @@ const ShootingStars = () => {
   }, []);
 
   // API 요청 함수
-  const fetchTaroResult = async (memberSeq) => {
-    const response = await fetch(`http://localhost:8082/api/v1/star/${memberSeq}`);
-    if (!response.ok) {
-      // 응답 상태 코드가 200 범위에 없으면 에러 발생
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-  };  
+  // const fetchTaroResult = async (memberSeq) => {
+  //   const response = await fetch(`http://localhost:8082/api/v1/star/${memberSeq}`);
+  //   if (!response.ok) {
+  //     // 응답 상태 코드가 200 범위에 없으면 에러 발생
+  //     throw new Error(`API request failed with status ${response.status}`);
+  //   }
+  //   const data = await response.json();
+  //   return data;
+  // };  
 
   const handleStarClick = async () => {
     const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
     try {
-      const taroResultDto = await fetchTaroResult(memberSeq);
+      const taroResultAction = await dispatch(fetchTaroResult(memberSeq));
+      const taroResultDto = taroResultAction.payload;
       navigate("/star/taro-result", { state: { taroResult: taroResultDto } });
     } catch (error) {
       console.error('Error fetching taro result:', error);
     }
-  };    
+  };
 
   return <ShootingStarsContainer>{stars}</ShootingStarsContainer>;
 };

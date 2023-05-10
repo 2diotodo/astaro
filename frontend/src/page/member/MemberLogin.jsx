@@ -1,11 +1,12 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { login } from "@features/memberSlice";
-import Input from "@component/Input";
+import { toast } from "react-toastify";
 import styled from "styled-components";
-import Button from "@component/Button";
+import { login } from "@features/memberSlice";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
+import Input from "@component/Input";
+import Button from "@component/Button";
 
 const Wrapper = styled.div`
   height: 80%;
@@ -35,25 +36,13 @@ const Title = styled.div`
 
 function MemberLogin() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  // 로그인 입력상태관리
   const [logins, setLogins] = useState({
     memberId: "",
     password: "",
   });
-
-  // 오류메세지 담기
-  const [errors, setErrors] = useState({
-    memberId: "",
-    password: "",
-  });
-
-  // 필드 방문 상태를 관리한다
-  const [touched, setTouched] = useState({
-    memberId: false,
-    password: false,
-  });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLogins({
@@ -62,63 +51,31 @@ function MemberLogin() {
     });
   };
 
-  // blur 이벤트가 발생하면 touched 상태를 true로 바꾼다
-  const handleBlur = (e) => {
-    console.log("blur");
-    setTouched({
-      ...touched,
-      [e.target.name]: true,
+  const loginHandler = async () => {
+    await dispatch(login(logins)).then((response) => {
+      console.log("response", response);
+      // if (response.payload.status) {
+      dispatch(isLoginCheck(true));
+      navigate("/");
+      // } else {
+      // toast.error("통신에 실패했습니다.");
+      // }
     });
   };
 
   const loginSubmitHandler = (e) => {
     e.preventDefault();
-    // 모든 필드에 방문했다고 표시한다.
-    setTouched({
-      memberId: true,
-      password: true,
-    });
-
-    // 필드 검사 후 잘못된 값이면 제출 처리를 중단한다.
-    const errors = validate();
-    // console.log("errors", errors);
-    // 오류 메세지 상태를 갱신한다
-    setErrors(errors);
-    // 잘못된 값이면 제출 처리를 중단한다.
-    if (Object.values(errors).some((v) => v)) {
-      return;
-    }
-    // console.log(logins);
-    dispatch(login(logins));
-    console.log(login(logins));
-    dispatch(isLoginCheck(true));
-    // local storage에 memberSeq, Access Token 저장
-    // localStorage.setItem("memberSeq", memberSeq);
-    // localStorage.setItem("access-token");
-    navigate("/");
-    // window.location.replace("/");
-  };
-
-  // 필드값을 검증한다.
-  const validate = useCallback(() => {
-    const errors = {
-      memberId: "",
-      password: "",
-    };
 
     if (!logins.memberId) {
-      errors.memberId = "아이디를 입력하세요";
+      toast.error("아이디를 입력하세요");
+      return;
+    } else if (!logins.password) {
+      toast.error("비밀번호를 입력하세요");
+      return;
     }
-    if (!logins.password) {
-      errors.password = "비밀번호를 입력하세요";
-    }
-    return errors;
-  }, [logins]);
 
-  // 입력값이 변경될때 마다 검증한다.
-  useEffect(() => {
-    validate();
-  }, [validate]);
+    loginHandler();
+  };
 
   const signupHandler = () => {
     navigate("/member/signup");
@@ -133,29 +90,19 @@ function MemberLogin() {
             name="memberId"
             value={logins.memberId}
             onChange={handleChange}
-            onBlur={handleBlur}
             width={"60%"}
             textIndent={"0px"}
             placeholder="별명을 말해줘"
           />
-          {/* 아이디 오류메시지를 출력한다 */}
-          {touched.memberId && errors.memberId && (
-            <span>{errors.memberId}</span>
-          )}
           <Input
             type="password"
             name="password"
             value={logins.password}
             onChange={handleChange}
-            onBlur={handleBlur}
             width={"60%"}
             textIndent={"0px"}
             placeholder="비밀번호를 말해줘"
           />
-          {/* 비밀번호 오류메시지를 출력한다 */}
-          {touched.password && errors.password && (
-            <span>{errors.password}</span>
-          )}
           <br />
           <Button type="submit" style={{ marginTop: "10%" }}>
             로그인

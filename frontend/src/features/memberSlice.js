@@ -10,6 +10,7 @@ const initialState = {
   email: "",
 };
 
+// const baseURL = `http://localhost:8000/member-service/auth`;
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/member-service/auth`;
 
 // 로그인
@@ -23,7 +24,8 @@ export const login = createAsyncThunk("memberSlice/login", async (logins) => {
     method: "POST",
     url: url,
     data: request,
-  }).then((res)=>{
+  }).then((res) => {
+    console.log("res", res.data);
     localStorage.setItem("access-token", res.data.accessToken);
   });
   return response.data;
@@ -46,6 +48,7 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
   return response.data;
 });
 
+// 아이디 중복확인
 export const duplicateId = createAsyncThunk(
   "memberSlice/duplicateId",
   async (memberId) => {
@@ -53,7 +56,6 @@ export const duplicateId = createAsyncThunk(
     const response = await axios({
       method: "GET",
       url: url,
-      data: memberId,
     });
     return response.data;
   }
@@ -66,12 +68,15 @@ const memberSlice = createSlice({
   extraReducers: (builder) => {
     // 로그인
     builder.addCase(login.pending, (state, action) => {
-      console.log("로그인중", state.result);
+      state.status = "loading";
+      console.log("로그인중", action.payload);
     });
     builder.addCase(login.fulfilled, (state, action) => {
+      state.status = "loginSuccess";
       console.log("로그인성공", action.payload);
     });
     builder.addCase(login.rejected, (state, action) => {
+      state.status = "failed";
       console.log("로그인실패", action.error);
     });
 
@@ -99,5 +104,5 @@ const memberSlice = createSlice({
   },
 });
 
-// export const { isLogin, isLogout, memberSearch } = memberSlice.actions;
+export const { memberSeq } = memberSlice.actions;
 export default memberSlice.reducer;

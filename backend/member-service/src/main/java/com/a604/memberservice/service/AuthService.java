@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
-public interface  AuthService {
+public interface AuthService {
 
     // 로그인
     public Optional<String> checkMember(HttpServletResponse response, LoginRequestDto loginRequestDto);
@@ -45,7 +45,6 @@ public interface  AuthService {
     // Entity to GetMemberDto
     default GetMemberDto toDto(Member member) {
         return GetMemberDto.builder()
-                .seq(member.getSeq())
                 .memberId(member.getMemberId())
                 .nickname(member.getNickname())
                 .email(member.getEmail())

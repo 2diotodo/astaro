@@ -1,21 +1,17 @@
+// eslint-disable-next-line
 @import "abstracts/responsive";
 @import "abstracts/variables";
 
 @import "base/base";
 @import "base/animation";
 
-@import "vendors/bootstrap";
-
 @import "layout/grid";
 @import "layout/navbar";
 @import "layout/headers";
 
-@import "components/card";
 @import "components/toast";
 
 @import "pages/flip-game";
-@import "pages/main-page";
-@import "pages/member-login";
 @import "pages/member-mypage";
 
 @import "themes/theme";

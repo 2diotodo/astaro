@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/message")
-@CrossOrigin(origins = "*")
 public class MessageController {
     @Autowired
     private MessageService messageService;
@@ -30,10 +29,10 @@ public class MessageController {
      */
     @GetMapping("/{messageListSeq}")
     public ResponseEntity<?> getMessagesByMessageListSeq(@PathVariable long messageListSeq) {
-        List<Message> messages = messageService.getMessagesByMessageListSeq(messageListSeq);
+        List<MessageResponseDto> messages = messageService.getMessagesByMessageListSeq(messageListSeq);
 
         if (messages != null && !messages.isEmpty()) {
-            List<MessageResponseDto> messageResponseDtoList = messages.stream().map(MessageResponseDto::new).collect(Collectors.toList());
+            List<MessageResponseDto> messageResponseDtoList = messages;
             return ResponseEntity.ok(messageResponseDtoList);
         } else {
             // Return error message with a custom HTTP status code (e.g. NOT_FOUND)
