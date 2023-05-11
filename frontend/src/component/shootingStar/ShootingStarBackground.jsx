@@ -90,22 +90,22 @@ const ShootingStarsContainer = styled.div`
     }
   }
 `;
-const updateStar = (star) => {
-  const top = Math.floor(Math.random() * 100);
-  const left = Math.floor(Math.random() * 100);
-  const delay = Math.floor(Math.random() * 10000);
-  const duration = getRandomDuration();
+// const updateStar = (star) => {
+//   const top = Math.floor(Math.random() * 100);
+//   const left = Math.floor(Math.random() * 100);
+//   const delay = Math.floor(Math.random() * 10000);
+//   const duration = getRandomDuration();
 
-  return React.cloneElement(star, {
-    style: {
-      ...star.props.style,
-      top: `${top}%`,
-      left: `${left}%`,
-      animationDelay: `${delay}ms`,
-      animationDuration: `${duration}ms`,
-    },
-  });
-};
+//   return React.cloneElement(star, {
+//     style: {
+//       ...star.props.style,
+//       top: `${top}%`,
+//       left: `${left}%`,
+//       animationDelay: `${delay}ms`,
+//       animationDuration: `${duration}ms`,
+//     },
+//   });
+// };
 
 const ShootingStars = () => {
   const navigate = useNavigate();
@@ -161,7 +161,7 @@ const ShootingStars = () => {
   const handleStarClick = async () => {
     const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
     try {
-      const taroResultAction = await dispatch(fetchTaroResult(memberSeq));
+      const taroResultAction = dispatch(fetchTaroResult(memberSeq));
       const taroResultDto = taroResultAction.payload;
       navigate("/star/taro-result", { state: { taroResult: taroResultDto } });
     } catch (error) {

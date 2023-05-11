@@ -23,9 +23,9 @@ public class ShootingStarController {
      * @return
      */
     @GetMapping("/{member_seq}")
-    public ResponseEntity<?> getRandomTaroResult(@PathVariable("member_seq") long memberSeq) {
+    public ResponseEntity<?> getRandomTaroResult(@PathVariable("member_seq") long memberSeq, @RequestParam("category") String category) {
         try {
-            TaroResultDto taroResultDto = shootingStarService.getTaroResult(memberSeq);
+            TaroResultDto taroResultDto = shootingStarService.getTaroResult(memberSeq, category);
             // 해당하는 타로가 있는지 확인
             if (taroResultDto == null) {
                 return new ResponseEntity<>(SUCCESS, HttpStatus.NO_CONTENT);
