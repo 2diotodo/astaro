@@ -1,5 +1,6 @@
 import "@scss/main.scss";
 import React from "react";
+import Body from "./component/common/Body";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Main } from "@page/Main";
 import TarotService from "@page/tarot/TarotService";
@@ -25,34 +26,35 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App">
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar
+        theme="dark"
+      />
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
         <Header />
-        <ToastContainer
-          position="top-center"
-          autoClose={1000}
-          hideProgressBar
-          theme="dark"
-        />
-
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/tarot" element={<TarotService />} />
-          <Route path="/result" element={<TarotResult />} />
-          <Route path="/todaytaro" element={<TodayTaro />} />
-          <Route path="/todayresult" element={<TodayResult />} />
-          <Route path="/member/login" element={<MemberLogin />} />
-          <Route path="/member/signup" element={<MemberSignup />} />
-          <Route path="/member/mypage" element={<MemberMypage />} />
-          <Route path="/message/messageList" element={<MessageListPage />} />
-          <Route path="/star/chat/:id" element={<ChatPage />} />
-          <Route path="/star" element={<StarPage />} />
-          <Route path="/star/taro-result" element={<TaroResultPage />} />
-          <Route path="/star/black-hole" element={<BlackHolePage />} />
-          <Route path="/flipgame" element={<FlipGame />} />
-          <Route path="/star/taro-story" element={<TaroStoryPage />} />
-          <Route path="/tarottest"  element={<TarotTest />} />
-        </Routes>
+        <Body>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/tarot" element={<TarotService />} />
+            <Route path="/result" element={<TarotResult />} />
+            <Route path="/todaytaro" element={<TodayTaro />} />
+            <Route path="/todayresult" element={<TodayResult />} />
+            <Route path="/member/login" element={<MemberLogin />} />
+            <Route path="/member/signup" element={<MemberSignup />} />
+            <Route path="/member/mypage" element={<MemberMypage />} />
+            <Route path="/message/messageList" element={<MessageListPage />} />
+            <Route path="/star/chat/:id" element={<ChatPage />} />
+            <Route path="/star" element={<StarPage />} />
+            <Route path="/star/taro-result" element={<TaroResultPage />} />
+            <Route path="/star/black-hole" element={<BlackHolePage />} />
+            <Route path="/flipgame" element={<FlipGame />} />
+            <Route path="/star/taro-story" element={<TaroStoryPage />} />
+            <Route path="/tarottest" element={<TarotTest />} />
+          </Routes>
+        </Body>
       </Router>
     </div>
   );

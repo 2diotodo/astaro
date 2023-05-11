@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, redirect
+from flask import Flask, redirect
 import SandArt
 
 app = Flask(__name__)

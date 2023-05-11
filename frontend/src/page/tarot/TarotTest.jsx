@@ -26,12 +26,9 @@ const TarotTest = () => {
       <Button onClick={sendResult} style={{zIndex:30}}>요청보내기</Button>
         <div style={{zIndex:100}}>
         <video width="750" height="500" controls>
-          <source src="https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process_webm.webm" type="video/webm"/>
+          <source src="https://astaro.s3.ap-northeast-2.amazonaws.com/file_example_WEBM_640_1_4MB.webm" type="video/webm"/>
         </video>
         </div>
-        {/*<iframe width="420" height="315"*/}
-        {/*        src="https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process.mp4" frameBorder="0"*/}
-        {/*        allowFullScreen></iframe>*/}
       </ColContainer>
     </>
   );
