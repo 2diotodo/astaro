@@ -57,12 +57,8 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
       url: url,
       data: request,
     });
-
-    console.log("then이라네", response.data);
     return response.data;
   } catch (err) {
-    console.log("여기 들어옴?");
-    console.log(err);
     return isRejectedWithValue(err.response.data);
   }
 });
@@ -70,13 +66,54 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
 // 아이디 중복확인
 export const duplicateId = createAsyncThunk(
   "memberSlice/duplicateId",
-  async (memberId) => {
+  async (memberId, { rejectWithValue }) => {
     const url = `${baseURL}/check/id/${memberId}`;
-    const response = await axios({
-      method: "GET",
-      url: url,
-    });
-    return response.data;
+
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+// 닉네임 중복확인
+export const duplicateNn = createAsyncThunk(
+  "memberSlice/duplicateNn",
+  async (nickname, { rejectWithValue }) => {
+    const url = `${baseURL}/check/nickname/${nickname}`;
+
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+// 이메일 중복확인
+export const duplicateEm = createAsyncThunk(
+  "memberSlice/duplicateEm",
+  async (email, { rejectWithValue }) => {
+    const url = `${baseURL}/check/email/${email}`;
+
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
   }
 );
 
@@ -108,16 +145,20 @@ const memberSlice = createSlice({
       console.log("회원가입실패", action.error);
     });
 
-    // 아이디중복확인
-    builder.addCase(duplicateId.pending, (state, action) => {
-      console.log("아이디중복확인중", action.payload);
-    });
-    builder.addCase(duplicateId.fulfilled, (state, action) => {
-      console.log("아이디중복확인성공", state.result);
-    });
-    builder.addCase(duplicateId.rejected, (state, action) => {
-      console.log("아이디중복확인실패", action.error);
-    });
+    // 아이디 중복확인
+    builder.addCase(duplicateId.pending, (state, action) => {});
+    builder.addCase(duplicateId.fulfilled, (state, action) => {});
+    builder.addCase(duplicateId.rejected, (state, action) => {});
+
+    // 닉네임 중복확인
+    builder.addCase(duplicateNn.pending, (state, action) => {});
+    builder.addCase(duplicateNn.fulfilled, (state, action) => {});
+    builder.addCase(duplicateNn.rejected, (state, action) => {});
+
+    // 이메일 중복확인
+    builder.addCase(duplicateEm.pending, (state, action) => {});
+    builder.addCase(duplicateEm.fulfilled, (state, action) => {});
+    builder.addCase(duplicateEm.rejected, (state, action) => {});
   },
 });
 
