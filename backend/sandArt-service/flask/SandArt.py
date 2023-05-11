@@ -3,40 +3,47 @@ import numpy as np
 import sys
 import random
 import os
+import math
 from collections import deque
 
 import boto3
 import configparser
 from botocore.exceptions import NoCredentialsError
+import urllib.request
 
 sys.setrecursionlimit(100000)
 
 
-def create_sand_art_video():
+def create_sand_art_video(image_url):
     fourcc = cv2.VideoWriter_fourcc(*'h264')
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
 
     # 이미지 파일 경로 설정
-    current_directory = os.path.dirname(os.path.realpath(__file__))
-    image_path = os.path.join(
-        current_directory, "static", "images", "fable7.jpg")
+    # current_directory = os.path.dirname(os.path.realpath(__file__))
+    # image_path = os.path.join(
+    #     current_directory, "static", "images", "fable7.jpg")
+
+    # 웹 이미지를 메모리로 로드
+    with urllib.request.urlopen(image_url) as url:
+        img_array = np.array(bytearray(url.read()), dtype=np.uint8)
+        src = cv2.imdecode(img_array, -1)
 
     # 이미지 불러오기
-    src = cv2.imread(image_path)
+    # src = cv2.imread(image_path)
 
     # Gaussian blur 적용
-    blurred_src = cv2.GaussianBlur(src, (3, 3), 300)
+    # blurred_src = cv2.GaussianBlur(src, (3, 3), 300)
 
     # blurred_src = cv2.bilateralFilter(src, 9, 75, 75)
 
-    gray = cv2.cvtColor(blurred_src, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
     # 히스토그램 평활화 적용
     equalized_gray = cv2.equalizeHist(gray)
 
     # 전역 이진화 적용
-    ret, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+    ret, binary = cv2.threshold(equalized_gray, 128, 255, cv2.THRESH_BINARY)
 
     def initial_sand_color():
         r = random.randint(120, 180)
@@ -82,11 +89,11 @@ def create_sand_art_video():
 
             visited[i, j] = True
             # output[i, j] = random_sand_color()
-            for a in range(3):
-                for b in range(3):
+            for a in range(5):
+                for b in range(5):
                     if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
                         output[i + a, j +
-                               b] = random_sand_color(3 - (a*b//3) % 3)
+                               b] = random_sand_color(3 - int((math.sqrt(a * b)) % 5))
 
             ran_show = int(random.randrange(1000, 3000))
 
@@ -112,11 +119,12 @@ def create_sand_art_video():
         visited[i, j] = True
         # output[i, j] = random_sand_color()
         # flag = 0
-        for a in range(3):
-            for b in range(3):
+        for a in range(5):
+            for b in range(5):
                 # flag = random.randrange(1, 4)
                 if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
-                    output[i + a, j + b] = random_sand_color(3 - (a*b//3) % 3)
+                    output[i + a, j +
+                           b] = random_sand_color(5 - int((math.sqrt(a * b)) % 5))
 
         ran_show = int(random.randrange(1000, 3000))
 
@@ -193,7 +201,8 @@ def upload_to_s3(file_path, bucket_name, s3_file_name):
 
 
 if __name__ == "__main__":
-    video_path = create_sand_art_video()
+    image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/03c27b9e-956d-4a7a-a6d5-a715c4c9ba7a.png"
+    video_path = create_sand_art_video(image_url)
 
     # S3 버킷에 업로드
     bucket_name = "astaro"
