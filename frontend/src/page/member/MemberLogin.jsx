@@ -53,12 +53,13 @@ function MemberLogin() {
 
   const loginHandler = async () => {
     await dispatch(login(logins)).then((response) => {
-      if (response.payload.login) {
-        dispatch(isLoginCheck(true));
-        navigate("/");
-      } else {
-        toast.error("통신에 실패했습니다.");
-      }
+      console.log("response", response);
+      // if (response.payload.status) {
+      dispatch(isLoginCheck(true));
+      navigate("/");
+      // } else {
+      // toast.error("통신에 실패했습니다.");
+      // }
     });
   };
 

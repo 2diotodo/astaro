@@ -1,6 +1,5 @@
 import { useState } from "react";
 import cards from "@constants/carddata.json";
-import Timer from "@component/Timer";
 import tarot_back from "@assets/img/taro_back_.png";
 
 const Card = ({ id, name, flipped, matched, clicked }) => {
@@ -24,11 +23,6 @@ const Card = ({ id, name, flipped, matched, clicked }) => {
 function FlipGame() {
   // timer
   const [savedTime, setSavedTime] = useState(0);
-
-  const handleSaveTime = (time) => {
-    // Save the elapsed time to the state
-    setSavedTime(time);
-  };
 
   const formatElapsedTime = (time) => {
     const hours = Math.floor(time / 3600000);
@@ -166,15 +160,6 @@ function FlipGame() {
 
   return (
     <>
-      {/* {!gameOver && ( */}
-      <Timer
-        startTime={new Date()}
-        onSaveTime={handleSaveTime}
-        gameOver={gameOver}
-        formatElapsedTime={formatElapsedTime}
-        timeElapsed={elapsed}
-      />
-
       <div className="game-board">
         {!gameOver &&
           cardList.map((card, index) => (

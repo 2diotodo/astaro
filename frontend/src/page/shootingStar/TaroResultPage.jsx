@@ -62,14 +62,31 @@ const TaroResultPage = () => {
   }
   const imgList = taroResult.imgList;
   const content = taroResult.input;
+  console.log("content ", content)
 
   const renderCarouselImages = () => {
+    console.log("여기는 taro Result", taroResult);
+    if (!imgList) {
+      console.error("imgList is undefined or null");
+      return [];
+    }
+  
     return imgList.split(",").map((imgSrc, index) => (
       <div key={index}>
         <img src={imgSrc} alt={`타로 카드 이미지 ${index}`} />
       </div>
     ));
   };
+  
+
+  // const renderCarouselImages = () => {
+  //   console.log("여기는 taro Result", taroResult)
+  //   return imgList.split(",").map((imgSrc, index) => (
+  //     <div key={index}>
+  //       <img src={imgSrc} alt={`타로 카드 이미지 ${index}`} />
+  //     </div>
+  //   ));
+  // };
 
   return (
     <>

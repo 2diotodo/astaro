@@ -66,10 +66,8 @@ const MessageList = styled.ul`
 `;
 const ChatWindow = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
-  // border-radius: 10px;
   padding: 15px;
-  // margin: 2rem;
-  height: 70%;
+  height: 80%;
   overflow-y: auto;
 `;
 
@@ -80,37 +78,31 @@ const MessageLabel = styled.p`
   margin-top: 0;
 `;
 
+const MessageInputWrapper = styled.div`
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  padding: 0 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
 // 임시 가 데이터
-const loggedInMemberSeq = 1;
+const loggedInMemberSeq = 5;
 
 const ChatPage = () => {
   const { id } = useParams();
-  const state = useSelector((state) => state);
-  console.log("State: ", state);
   const selectedChatRoom = useSelector((state) => state.chat.selectedChatRoom);
   const messages = useSelector((state) => state.chat.messages);
+  console.log(messages)
   const dispatch = useDispatch();
-
-  // const fetchMessagesFromAPI = async (id) => {
-  //   try {
-  //     const response = await fetch(
-  //       `http://localhost:8082/api/v1/message/${id}`
-  //     );
-  //     const messages = await response.json();
-  //     console.log("messages : ", messages)
-  //     return messages;
-  //   } catch (error) {
-  //     console.error("Error fetching messages:", error);
-  //     return [];
-  //   }
-  // };
 
   const handleSendMessage = async (message) => {
     dispatch(
       sendMessage({
         messageListSeq: selectedChatRoom,
-        senderSeq: 1,
-        receiverSeq: 2,
+        senderSeq: 5,
+        receiverSeq: 6,
         originalContent: message,
         resultSeq: 1,
       })
@@ -147,13 +139,15 @@ const ChatPage = () => {
                     <MessageLabel>{messageLabel}</MessageLabel>
                     {message.filteredContent}
                   </MessageComponent>
-                  <MessageSeparator /> {/* 구분선 추가 */}
+                  <MessageSeparator />
                 </React.Fragment>
               );
             })}
           </MessageList>
         </ChatWindow>
-        <MessageInput onSubmit={handleSendMessage} MessageInput />
+        <MessageInputWrapper>
+          <MessageInput onSubmit={handleSendMessage} />
+        </MessageInputWrapper>
       </Wrapper>
     </div>
   );
