@@ -48,7 +48,6 @@ function Header() {
   }, []);
 
   useEffect(() => {
-    console.log(location);
     dispatch(toggleNavBar(false));
   }, [dispatch, location.pathname, navigate]);
 

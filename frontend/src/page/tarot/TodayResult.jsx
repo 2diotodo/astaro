@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import "@css/todayresult.scss";
 import { useNavigate } from "react-router-dom";
 import Button from "@component/Button";
 import RowContainer from "@component/layout/RowContainer";
-
-import axios from "axios";
+import axios from "@utils/axiosInstance";
 import { Modal } from "@component/SNSshare";
-
 import html2canvas from "html2canvas";
 import * as PropTypes from "prop-types";
 import ColContainer from "@component/layout/ColContainer";
@@ -33,18 +31,13 @@ export function TodayResult() {
 
   const navigate = useNavigate();
 
-  // const randomNum = Math.floor(Math.random() * 23 );
   const [result, setResult] = useState({});
-  // console.log(randomNum);
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/today`)
       .then((res) => {
         setResult(res.data);
-        console.log(res);
-        // setProblems(res.data.problems)
-        // dispatch(setReduxProblems(res.data.problems))
       })
       .catch(() => {});
   }, []);
@@ -69,7 +62,7 @@ export function TodayResult() {
       width="80%"
       height="200vh"
       justify="start"
-      style={{ top: "0", position: "absolute" }}
+      style={{ top: "0", position: "absolute", paddingTop:"2vh" }}
     >
       <TodayMainCard>
         <img
@@ -146,4 +139,7 @@ const TodayTarotCard = styled.div`
   text-align: center;
   font-size: 14px;
   color: white;
+  & > .today-subcard > img{
+    max-width: 120px;
+  }
 `;

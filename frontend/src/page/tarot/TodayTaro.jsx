@@ -1,17 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "@component/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-
 import "@css/flip.css";
 import "@css/carousel.css";
-
 import { EffectCoverflow, EffectFlip } from "swiper";
-import styled from "styled-components";
 import Small from "@component/text/Small";
 import GapH from "@component/layout/GapH";
-import axios from "axios";
 import { TodayResult } from "@page/tarot/TodayResult";
 import TodayTarotFade from "@component/tarot/TodayTarotFade";
 
@@ -23,10 +19,8 @@ export default function TodayTaro() {
   for (let i = 0; i < 22; i++) {
     elements.push(
       <SwiperSlide className="carousel-swiper-slide">
-        <div className="flip">
-          <div className="card">
-            <div className="front"></div>
-          </div>
+        <div className="today-flip">
+          <div className="today-card"></div>
         </div>
       </SwiperSlide>
     );
@@ -83,13 +77,3 @@ export default function TodayTaro() {
   );
 }
 
-const LinkWrapper = styled.button`
-  color: palevioletred;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-  z-index: 1;
-  position: relative;
-`;

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchTaroResult } from "@/features/shootingStarSlice/starSlice";
 
 const shootingTime = "1000ms";
@@ -90,22 +90,6 @@ const ShootingStarsContainer = styled.div`
     }
   }
 `;
-const updateStar = (star) => {
-  const top = Math.floor(Math.random() * 100);
-  const left = Math.floor(Math.random() * 100);
-  const delay = Math.floor(Math.random() * 10000);
-  const duration = getRandomDuration();
-
-  return React.cloneElement(star, {
-    style: {
-      ...star.props.style,
-      top: `${top}%`,
-      left: `${left}%`,
-      animationDelay: `${delay}ms`,
-      animationDuration: `${duration}ms`,
-    },
-  });
-};
 
 const ShootingStars = () => {
   const navigate = useNavigate();

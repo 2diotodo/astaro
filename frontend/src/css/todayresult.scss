@@ -24,7 +24,7 @@
   transform: scaleX(-1)
 }
 
-.swiper-slide-active::after {
+.swiper-slide-active >.today-flip > .today-card::after {
   content: "";
   border-radius: 8px;
   background-image: linear-gradient(
@@ -41,7 +41,7 @@
 }
 
 .swiper-slide-active.selected-today {
-  z-index: 999;
+  z-index: 100;
   animation: today-selected 5s linear;
 }
 
@@ -50,7 +50,7 @@
     transform: rotateY(0deg)
   }
   25%{
-    transform: rotateY(720deg) scale(1.2)
+    transform: rotateY(360*2deg) scale(1.2)
   }
   50%{
     transform: rotateY(360*5deg) scale(1.4)

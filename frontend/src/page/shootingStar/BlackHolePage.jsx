@@ -3,8 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import BlackHoleInput from '@/component/shootingStar/BlackHoleInput';
 import { AiOutlineSend, AiOutlineAudio } from "react-icons/ai";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import WaveSurfer from 'wavesurfer.js';
-import MicrophonePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.microphone.min.js';
 
 const rotate = keyframes`
   0% {
