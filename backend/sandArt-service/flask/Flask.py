@@ -20,7 +20,7 @@ def run_script():
 
     # S3에 업로드된 비디오 파일의 URL 반환
     s3_video_url = f'https://{bucket_name}.s3.amazonaws.com/{s3_file_name}'
-    return redirect(s3_video_url)
+    return s3_video_url
 
 
 if __name__ == '__main__':
