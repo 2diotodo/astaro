@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 
   border-radius: 9px;
 
-  width: 50%;
+  height: 60%;
   aspect-ratio: 7/13;
 
   background-image: url(${(props) => props.image});
@@ -61,7 +61,7 @@ const Title = styled.div`
   opacity: 0;
 
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
 
   color: white;
   animation: ${FadeIn} 0.8s 0.4s linear forwards;

@@ -53,44 +53,20 @@
       transform: rotateY(180deg);
 
       .game-front {
-        .game-front::before {
+        &::after {
           content: "";
-          position: absolute;
-          width: 104%;
-          height: 102%;
-          background: linear-gradient(
-            45deg,
-            red,
-            blue,
-            green,
-            yellow,
-            #e11d74,
-            black,
-            #ffff00,
-            #aa0000
+          border-radius: 8px;
+          background-image: linear-gradient(
+                          var(--rotate),
+                          #fffde7,
+                          #fdd835 43%,
+                          #f57f17
           );
-          z-index: -1;
-          animation: rotate 25s linear infinite;
-        }
-        .game-front::after {
-          content: "";
           position: absolute;
-          width: 104%;
-          height: 102%;
-          background: linear-gradient(
-            45deg,
-            red,
-            blue,
-            green,
-            yellow,
-            #e11d74,
-            black,
-            #ffff00,
-            #aa0000
-          );
           z-index: -1;
-          animation: rotate 25s linear infinite;
-          filter: blur(10px);
+          top: -2%;
+          left: -2.5%;
+          animation: spin 1s linear infinite, light-effect 1s forwards;
         }
       }
     }

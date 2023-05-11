@@ -28,6 +28,7 @@ spring:
               - POST
               - DELETE
               - PUT
+              - PATCH
               - OPTIONS
       default-filters:
         - name: LoggingFilter

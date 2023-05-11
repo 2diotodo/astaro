@@ -10,6 +10,7 @@ import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import Medium from "@component/text/Medium";
+import AudioPlayer from "@/component/AudioPlayer";
 
 function Header() {
   const navState = useSelector((state) => state.navBars);
@@ -64,6 +65,7 @@ function Header() {
     <>
       {location.pathname === "/" ? null : (
         <div className="common-header">
+          {/* <AudioPlayer /> */}
           <div className="header-nav">
             <div
               className={`nav-logo ${
@@ -73,7 +75,11 @@ function Header() {
               onKeyDown={navigateToMain}
               style={{ color: "white" }}
             >
-              <Medium style={{ fontFamily: "TAEBAEKmilkyway" }}>Astaro</Medium>
+              <Medium
+                style={{ fontFamily: "TAEBAEKmilkyway", fontWeight: "bold" }}
+              >
+                Astaro
+              </Medium>
             </div>
             <div
               className={`navbar-wrapper ${navState.toggle ? "open" : "close"}`}
@@ -86,7 +92,7 @@ function Header() {
                   onClick={moveToMessageList}
                   color="white"
                   size="30px"
-                  style={{ right: "60px" }}
+                  style={{ zIndex: 9999 }}
                 />
               ) : (
                 <MdOutlineChatBubbleOutline
@@ -101,7 +107,9 @@ function Header() {
             )}
             <GiStarSwirl
               onClick={toggleNavHandler}
-              className={`cursor-pointer ${navState.toggle ? "open" : "close"}`}
+              className={`cursor-pointer ${
+                navState.toggle ? "open" : "close"
+              } ${location.pathname === "/" ? "hidden" : " "}`}
               color="white"
               size="30px"
               style={{ zIndex: 9999 }}
