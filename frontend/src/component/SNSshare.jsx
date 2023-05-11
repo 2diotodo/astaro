@@ -1,10 +1,6 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import '@css/modal.css';
 import styled from "styled-components";
-import Insta from "@assets/img/Insta.png"
-import axios from 'axios';
-
-
 
 import {
   InstapaperShareButton,
@@ -20,10 +16,10 @@ import { useScript } from "./kakao";
 import kakaoLogo from "@assets/img/kakao.png";
 
 
+
 export function Modal(props)  {
 
   const { open, close, header } = props;
-
 
 	const currentUrl = window.location.href;
 	const status = useScript("https://developers.kakao.com/sdk/js/kakao.js");
@@ -44,6 +40,20 @@ export function Modal(props)  {
 	};
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? 'openModal modal' : 'modal'}>
@@ -57,7 +67,7 @@ export function Modal(props)  {
           <main>
           <FlexContainer>
             <Word>공유하기</Word>
-            <br/>
+            <br/> 
 			      <GridContainer>              
               <FacebookShareButton url="https://astaro.co.kr/todaytaro">
                 <FacebookIcon size={48} round={true} borderRadius={24}></FacebookIcon>
