@@ -46,10 +46,12 @@ function TarotResult() {
   const tarotResults = useSelector((state) => state.tarot.stateResults);
   const tarotCardsInfo = useSelector((state) => state.tarot.stateCardsInfo);
   const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
+
   useEffect(() => {
     console.log(tarotCardsInfo);
     console.log(tarotResults)
   }, [swiperIndex, dalleImgUrl]);
+
 
 
   return (
