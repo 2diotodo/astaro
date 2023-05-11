@@ -5,12 +5,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "@component/Button";
 import RowContainer from "@component/layout/RowContainer";
 import Small from "@component/text/Small";
-// import api from 'constants/api'
+
 import axios from "axios";
 import { Modal } from "@component/SNSshare";
 
-import domtoimage from "dom-to-image";
-import { saveAs } from "file-saver";
 import html2canvas from "html2canvas";
 
 export function TodayResult() {
@@ -40,29 +38,33 @@ export function TodayResult() {
         // dispatch(setReduxProblems(res.data.problems))
       })
       .catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
+
+
   const captureScreenshot = () => {
-    html2canvas(document.getElementById("card")).then((canvas) => {
-      onSaveAs(canvas.toDataURL("image/png"), "test.png");
+    html2canvas(document.getElementById("todayresultcard")).then((canvas) => {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "todayresult.png";
+          link.click();
+          URL.revokeObjectURL(url);
+        }
+      });
     });
   };
 
-  const onSaveAs = (uri, filename) => {
-    const link = document.createElement("a");
-    document.body.appendChild(link);
-    link.href = uri;
-    link.download = filename;
-    link.click();
-    document.body.removeChild(link);
-  };
+
 
   return (
     <Back>
       <div className="wrapper">
         <div className="content">
-          <div className="card" style={{ marginBottom: "30px" }}>
+          <div id="todayresultcard" style={{ marginBottom: "30px", backgroundColor:'rgba(6, 21, 63, 0.5)' }}>
             <FlexBox>
               <StyledDiv>
                 {result.cardName}
@@ -81,6 +83,7 @@ export function TodayResult() {
                     height: "80%",
                     display: "flex",
                     alignItems: "center",
+                    lineHeight:'2em'
                   }}
                 >
                   {result.content}
