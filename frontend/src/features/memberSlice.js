@@ -1,5 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  isRejectedWithValue,
+} from "@reduxjs/toolkit";
 import axios from "@utils/axiosInstance";
+import { error } from "jquery";
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 
@@ -14,22 +19,27 @@ const initialState = {
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/member-service/auth`;
 
 // 로그인
-export const login = createAsyncThunk("memberSlice/login", async (logins) => {
-  const request = {
-    memberId: logins.memberId,
-    password: logins.password,
-  };
-  const url = `${baseURL}/login`;
-  const response = await axios({
-    method: "POST",
-    url: url,
-    data: request,
-  }).then((res) => {
-    console.log("res", res.data);
-    localStorage.setItem("access-token", res.data.accessToken);
-  });
-  return response.data;
-});
+export const login = createAsyncThunk(
+  "memberSlice/login",
+  async (logins, { rejectWithValue }) => {
+    const request = {
+      memberId: logins.memberId,
+      password: logins.password,
+    };
+    const url = `${baseURL}/login`;
+    try {
+      const response = await axios({
+        method: "POST",
+        url: url,
+        data: request,
+      });
+
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 // 회원가입
 export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
@@ -40,12 +50,21 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
     email: values.email,
   };
   const url = `${baseURL}/signup`;
-  const response = await axios({
-    method: "POST",
-    url: url,
-    data: request,
-  });
-  return response.data;
+
+  try {
+    const response = await axios({
+      method: "POST",
+      url: url,
+      data: request,
+    });
+
+    console.log("then이라네", response.data);
+    return response.data;
+  } catch (err) {
+    console.log("여기 들어옴?");
+    console.log(err);
+    return isRejectedWithValue(err.response.data);
+  }
 });
 
 // 아이디 중복확인
@@ -69,15 +88,13 @@ const memberSlice = createSlice({
     // 로그인
     builder.addCase(login.pending, (state, action) => {
       state.status = "loading";
-      console.log("로그인중", action.payload);
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.status = "loginSuccess";
-      console.log("로그인성공", action.payload);
+      localStorage.setItem("access-token", action.payload.accessToken);
     });
     builder.addCase(login.rejected, (state, action) => {
       state.status = "failed";
-      console.log("로그인실패", action.error);
     });
 
     // 회원가입
