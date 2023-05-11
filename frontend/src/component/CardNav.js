@@ -7,6 +7,8 @@ import styled, { keyframes } from "styled-components";
 // Icons or Component Import
 import Taro_back from "@assets/img/Taro_back.png";
 import Taro_front1 from "@assets/img/Taro_front1.png";
+import { useEffect } from "react";
+import { useState } from "react";
 
 // Styled Component : Rotate animation
 const Rotate = keyframes`
@@ -87,8 +89,8 @@ const Card = styled.div`
 
 // Component 정의
 const CardNav = (props) => {
-  const isLoginState = useSelector((state) => state.loginCheck);
   const navigate = useNavigate();
+  const isLoginState = useSelector((state) => state.loginCheck.isLogin);
 
   const clickCardBtn = (url) => {
     if (url == "/todaytaro") {
