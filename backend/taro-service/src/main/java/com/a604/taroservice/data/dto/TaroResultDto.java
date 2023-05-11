@@ -15,5 +15,6 @@ public class TaroResultDto {
     private String cardSeqList;
     private String contentList;
     private String imgUrl;
+    private String videoUrl;
     private String story;
 }

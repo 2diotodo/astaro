@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, redirect
+from flask import Flask, redirect
 import SandArt
 
 app = Flask(__name__)
@@ -19,4 +19,4 @@ def run_script():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)

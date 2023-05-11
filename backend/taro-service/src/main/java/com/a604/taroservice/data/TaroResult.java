@@ -41,6 +41,8 @@ public class TaroResult {
 
     @Column(columnDefinition = "TEXT")
     private String story;
+    @Column(columnDefinition = "TEXT")
+    private String videoUrl;
 
     @ColumnDefault("0")
     private boolean isDangerous;
