@@ -1,192 +1,240 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { signup, duplicateId } from "@features/memberSlice";
-import Input from "@component/Input";
-import Button from "@component/Button";
 import { useNavigate } from "react-router-dom";
+import {
+  signup,
+  duplicateId,
+  duplicateNn,
+  duplicateEm,
+} from "@features/memberSlice";
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
-  height: 80%;
-  width: 100%;
+  display: flex:
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   position: absolute;
+  height: 90%;
+  width: 90%;
+  background-color: tranparent;
 `;
 const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  font-size: 28px;
+  font-weight: 700;
   color: white;
-  position: relative;
-  font-size: 40px;
-  margin: 10% 0 10% 0;
+`;
+const Message = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  padding: 5%;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
 `;
 
-const ErrorMessage = styled.div`
-  color: white;
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin: 2%;
+  padding: 5%;
+
+  background-color: white;
 `;
+
+const Input = styled.input.attrs((props) => ({
+  type: props.type || "text",
+  placeholder: props.placeholder || "",
+}))``;
+
+const SubmitBtn = styled.button``;
 
 function MemberSignup() {
+  // 기능
   const navigate = useNavigate();
-
-  const [values, setValues] = useState({
-    memberId: "",
-    password: "",
-    passwordConfirm: "",
-    nickname: "",
-    email: "",
-  });
-
-  const [errors, setErrors] = useState({
-    empty: null,
-  });
-
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value,
+  // 회원가입 Input Value
+  const [memberId, setMemberId] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+
+  // 회원가입 가능 상태 Value
+  const [validateId, setValidateId] = useState(false);
+  const [validatePw, setValidatePw] = useState(false);
+  const [validateNn, setValidateNn] = useState(false);
+  const [validateEm, setValidateEm] = useState(false);
+  const [message, setMessage] = useState("사용하실 Id를 입력해주세요.");
+
+  // input 태그 onChange handler
+  const handleChangeId = (e) => {
+    setMemberId(e.target.value);
+
+    let check = /[~!@#$%^&*()_+|<>?:{}.,/;='"ㄱ-ㅎ | ㅏ-ㅣ |가-힣]$/;
+
+    if (check.test(memberId)) {
+    }
+  };
+  const handleChangePw = (e) => {
+    setPassword(e.target.value);
+
+    let check =
+      /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/; // 단순 8~12자리
+
+    if (check.test(password)) {
+      console.log("통과함?");
+    }
+  };
+  const handleChangePwConfirm = (e) => {
+    setPasswordConfirm(e.target.value);
+  };
+  const handleChangeNn = (e) => {
+    setNickname(e.target.value);
+
+    let check = /^[ㄱ-ㅎ | ㅏ-ㅣ |가-힣]{2,10}$/; // 글자 2-10자리
+    if (check.test(nickname)) {
+      setMessage("사용할 닉네임을 입력해 주세요.");
+    }
+  };
+
+  useEffect(() => {
+    if (passwordConfirm !== "") {
+      setTimeout(() => {
+        if (password === passwordConfirm) {
+          setValidatePw(true);
+          setMessage("사용하실 닉네임을 입력해주세요.");
+        }
+      }, 500);
+    }
+  }, [passwordConfirm]);
+
+  const handleChangeEm = (e) => {
+    setEmail(e.target.value);
+
+    let check = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (check.test(email)) {
+    }
+  };
+
+  // Button 태그 Onclick 이벤트 핸들러
+  const handleClickId = () => {
+    dispatch(duplicateId(memberId)).then((response) => {
+      if (response.payload.status === "409") {
+        alert(response.payload.message);
+        setMemberId("");
+      } else {
+        alert(response.payload.message);
+        setMessage("사용하실 비밀번호를 입력해주세요.");
+        setValidateId(true);
+      }
     });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    validate();
-    console.log(values);
-    console.log(errors.memberId);
-    console.log(checkId());
-    dispatch(signup(values));
-    alert("회원가입 완료!");
-    navigate("/member/login");
+  const handleClickNn = () => {
+    dispatch(duplicateNn(nickname)).then((response) => {
+      if (response.payload.status === "409") {
+        alert(response.payload.message);
+        setNickname("");
+      } else {
+        alert(response.payload.message);
+        setMessage("사용하실 이메일을 입력해주세요.");
+        setValidateNn(true);
+      }
+    });
   };
-
-  // 중복확인
-  const checkDuplicateId = () => {
-    dispatch(duplicateId(values.memberId));
+  const handleClickEm = () => {
+    dispatch(duplicateEm(email)).then((response) => {
+      if (response.payload.status === "409") {
+        alert(response.payload.message);
+        setEmail("");
+      } else {
+        alert(response.payload.message);
+        setMessage("좋아요!");
+        setValidateEm(true);
+      }
+    });
   };
-  // 필드 정규표현식체크
-  const checkId = () => {
-    let check = /[~!@#$%^&*()_+|<>?:{}.,/;='"ㄱ-ㅎ | ㅏ-ㅣ |가-힣]$/;
-    return check.test(values.memberId);
-  };
-  const checkPassword = () => {
-    let check = /^[A-Za-z0-9]{8,12}$/; // 단순 8~12자리
-    return !check.test(values.password);
-  };
-  const checkPasswordConfim = () => {
-    let check = false;
-    if (values.password !== values.passwordConfirm) {
-      check = true;
-    }
-    return check;
-  };
-  const checkNickname = () => {
-    let check = /^[ㄱ-ㅎ | ㅏ-ㅣ |가-힣]{2,10}$/; // 글자 2-10자리
-    return !check.test(values.name);
-  };
-  const checkEmail = () => {
-    let check = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return !check.test(values.email);
-  };
-
-  // 필드값을 검증한다.
-  const validate = useCallback(() => {
-    const errors = {
-      memberId: "",
-      password: "",
-      passwordConfirm: "",
-      nickname: "",
-      email: "",
+  const handleClickSubmit = async () => {
+    const values = {
+      memberId: memberId,
+      password: password,
+      nickname: nickname,
+      email: email,
     };
 
-    if (!values.memberId) {
-      errors.memberId = "아이디를 입력하세요";
-    }
-    if (!values.password) {
-      errors.password = "비밀번호를 입력하세요";
-    }
-    return errors;
-  }, [values]);
+    await dispatch(signup(values)).then((response) => {
+      if (!response.error) {
+        alert("회원가입 완료!");
+        navigate("/member/login");
+      } else {
+        alert(response.payload.message);
+        navigate("/member/signup");
+      }
+    });
+  };
 
   return (
     <>
       <Wrapper>
-        <div className="signup">
-          <Title className="signup-text">회원가입</Title>
-          <form className="signup-form" onSubmit={handleSubmit}>
+        <Title>회원가입</Title>
+        <Message key={message}>{message}</Message>
+        {validateNn === true ? (
+          <InputWrapper>
             <Input
-              type="text"
-              name="memberId"
-              value={values.memberId}
-              onChange={handleChange}
-              placeholder="별이름"
-              width={"34%"}
-              textIndent={"0px"}
+              placeholder={email}
+              onChange={handleChangeEm}
+              value={email}
             />
-            <Button
-              type="button"
-              onClick={checkDuplicateId}
-              style={{
-                width: "16%",
-                marginLeft: "5%",
-                fontSize: "15px",
-              }}
-            >
-              확인
-            </Button>
-            {checkId() && (
-              <ErrorMessage>한글과 특수문자는 사용할 수 없어요</ErrorMessage>
-            )}
+            <button onClick={handleClickEm}>이메일 체크</button>
+          </InputWrapper>
+        ) : null}
+        {validatePw === true ? (
+          <InputWrapper>
             <Input
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-              width={"60%"}
-              textIndent={"0px"}
-              placeholder="암호"
+              placeholder={nickname}
+              onChange={handleChangeNn}
+              value={nickname}
             />
-            {errors.password && checkPassword() && (
-              <ErrorMessage>비밀번호는 8-12자로 입력해주세요</ErrorMessage>
-            )}
+            <button onClick={handleClickNn}>닉네임 체크</button>
+          </InputWrapper>
+        ) : null}
+        {validateId === true ? (
+          <InputWrapper>
             <Input
-              type="password"
-              name="passwordConfirm"
-              value={values.passwordConfirm}
-              onChange={handleChange}
-              width={"60%"}
-              textIndent={"0px"}
-              placeholder="암호재입력"
+              placeholder={password}
+              onChange={handleChangePw}
+              value={password}
             />
-            {errors.passwordConfirm && checkPasswordConfim() && (
-              <ErrorMessage>비밀번호가 일치하지 않아요</ErrorMessage>
-            )}
             <Input
-              type="text"
-              name="nickname"
-              value={values.nickname}
-              onChange={handleChange}
-              width={"60%"}
-              textIndent={"0px"}
-              placeholder="별명"
+              placeholder={passwordConfirm}
+              onChange={handleChangePwConfirm}
+              value={passwordConfirm}
             />
-            {errors.nickname && checkNickname() && (
-              <ErrorMessage>닉네임을 입력하세요</ErrorMessage>
-            )}
-            <Input
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              width={"60%"}
-              textIndent={"0px"}
-              placeholder="이메일"
-            />
-            {errors.email && checkEmail() && (
-              <ErrorMessage>유효하지 않은 이메일이에요</ErrorMessage>
-            )}
-            <Button type="submit" style={{ margin: "10%" }}>
-              회원가입
-            </Button>
-          </form>
-        </div>
+          </InputWrapper>
+        ) : null}
+        <InputWrapper>
+          <Input
+            placeholder={memberId}
+            onChange={handleChangeId}
+            value={memberId}
+          />
+          <button onClick={handleClickId}>아이디 체크</button>
+        </InputWrapper>
+        {validateEm === true ? (
+          <InputWrapper>
+            <button onClick={handleClickSubmit}>회원가입</button>
+          </InputWrapper>
+        ) : null}
       </Wrapper>
     </>
   );
