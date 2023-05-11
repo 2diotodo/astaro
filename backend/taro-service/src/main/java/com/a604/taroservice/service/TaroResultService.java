@@ -42,7 +42,7 @@ public class TaroResultService {
         HttpEntity<FlaskDto> requestEntity = new HttpEntity<>(flaskDto);
         String flaskUrl = baseurl + "/api/run-script";
         String videoUrl = restTemplate.postForObject(flaskUrl, requestEntity, String.class);
-
+        System.out.println(videoUrl);
         URL url = new URL(dto.getImgUrl());
         byte[] imageBytes = IOUtils.toByteArray(url.openStream());
         String fileName = UUID.randomUUID() + ".png";
@@ -54,7 +54,7 @@ public class TaroResultService {
         if(dto.getContentInput().contains("자살")){
             dangerous = true;
         }
-        
+
         taroResultRepository.save(dtoToEntity(dto, dangerous));
         return dto;
     }
@@ -70,6 +70,7 @@ public class TaroResultService {
                 .story(dto.getStory())
                 .isDangerous(dangerous)
                 .createdAt(LocalDate.now())
+                .videoUrl(dto.getVideoUrl())
                 .build();
     }
 
