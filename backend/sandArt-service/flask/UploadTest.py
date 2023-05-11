@@ -20,7 +20,7 @@ def upload_to_s3(file_path, bucket_name, s3_file_name):
     try:
         # ContentType과 ACL 설정 추가
         ExtraArgs = {
-            'ContentType': 'video/mp4'
+            'ContentType': 'video/webm'
         }
         with open(file_path, "rb") as f:
             s3.upload_fileobj(f, bucket_name, s3_file_name, ExtraArgs)
@@ -34,10 +34,10 @@ def upload_to_s3(file_path, bucket_name, s3_file_name):
         raise
 
 if __name__ == "__main__":
-    video_path = "./drawing_process_mp4.mp4"
+    video_path = "./file_example_WEBM_640_1_4MB.webm"
 
     # S3 버킷에 업로드
     bucket_name = "astaro"
-    s3_file_name = "drawing_process_mp4.mp4"
+    s3_file_name = "file_example_WEBM_640_1_4MB.webm"
     upload_to_s3(video_path, bucket_name, s3_file_name)
     print('hello')
