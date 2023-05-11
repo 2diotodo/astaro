@@ -10,6 +10,7 @@ import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import Medium from "@component/text/Medium";
+import AudioPlayer from "@/component/AudioPlayer";
 
 function Header() {
   const navState = useSelector((state) => state.navBars);
@@ -25,6 +26,7 @@ function Header() {
   const isLoginState = useSelector((state) => state.loginCheck);
 
   const navigate = useNavigate();
+
   // url 정보 받아오는 hook
   const location = useLocation();
 
@@ -46,6 +48,7 @@ function Header() {
   }, []);
 
   useEffect(() => {
+    console.log(location);
     dispatch(toggleNavBar(false));
   }, [dispatch, location.pathname, navigate]);
 
@@ -59,51 +62,62 @@ function Header() {
   };
 
   return (
-    <div className="common-header">
-      <div className="header-nav">
-        <div
-          className={`nav-logo ${location.pathname === "/" ? "hidden" : " "}`}
-          onClick={navigateToMain}
-          onKeyDown={navigateToMain}
-          style={{ color: "white" }}
-        >
-          <Medium style={{ fontFamily: "TAEBAEKmilkyway", fontWeight: "bold" }}>
-            Astaro
-          </Medium>
-        </div>
-        <div className={`navbar-wrapper ${navState.toggle ? "open" : "close"}`}>
-          <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
-        </div>
-        {isLogin ? (
-          unread ? (
-            <MdOutlineMarkChatUnread
-              onClick={moveToMessageList}
+    <>
+      {location.pathname === "/" ? null : (
+        <div className="common-header">
+          {/* <AudioPlayer /> */}
+          <div className="header-nav">
+            <div
+              className={`nav-logo ${
+                location.pathname === "/" ? "hidden" : " "
+              }`}
+              onClick={navigateToMain}
+              onKeyDown={navigateToMain}
+              style={{ color: "white" }}
+            >
+              <Medium
+                style={{ fontFamily: "TAEBAEKmilkyway", fontWeight: "bold" }}
+              >
+                Astaro
+              </Medium>
+            </div>
+            <div
+              className={`navbar-wrapper ${navState.toggle ? "open" : "close"}`}
+            >
+              <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
+            </div>
+            {isLogin ? (
+              unread ? (
+                <MdOutlineMarkChatUnread
+                  onClick={moveToMessageList}
+                  color="white"
+                  size="30px"
+                  style={{ zIndex: 9999 }}
+                />
+              ) : (
+                <MdOutlineChatBubbleOutline
+                  onClick={moveToMessageList}
+                  color="white"
+                  size="30px"
+                  style={{ right: "60px" }}
+                />
+              )
+            ) : (
+              ""
+            )}
+            <GiStarSwirl
+              onClick={toggleNavHandler}
+              className={`cursor-pointer ${
+                navState.toggle ? "open" : "close"
+              } ${location.pathname === "/" ? "hidden" : " "}`}
               color="white"
               size="30px"
-              style={{ right: "60px" }}
+              style={{ zIndex: 9999 }}
             />
-          ) : (
-            <MdOutlineChatBubbleOutline
-              onClick={moveToMessageList}
-              color="white"
-              size="30px"
-              style={{ right: "60px" }}
-            />
-          )
-        ) : (
-          ""
-        )}
-        <GiStarSwirl
-          onClick={toggleNavHandler}
-          className={`cursor-pointer ${navState.toggle ? "open" : "close"} ${
-            location.pathname === "/" ? "hidden" : " "
-          }`}
-          color="white"
-          size="30px"
-          style={{ zIndex: 9999 }}
-        />
-      </div>
-    </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

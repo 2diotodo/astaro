@@ -22,7 +22,7 @@ public class Member {
 
     @Id
     @Column(name = "seq")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
 
     @Column(name = "member_id")

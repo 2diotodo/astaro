@@ -11,29 +11,35 @@ SwiperCore.use([Pagination]);
 
 const Category = styled.div`
   position: absolute;
-  top: 10%;
+  top: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
+  z-index: 4;
 `;
 
 const SlideWrapper = styled.div`
   width: 100%;
   height: 100vh;
+  z-index: 3;
 `;
 
 const PaginationWrapper = styled.div`
   position: absolute;
-  top: 5%; // 이 부분을 변경하였습니다.
+  top: 95%; // 이 부분을 변경하였습니다.
   left: 50%;
   transform: translateX(-50%);
+
+  z-index: 1;
 `;
 
 const StyledSwiper = styled(Swiper)`
   margin: 0;
   height: 100%;
+
+  z-index: 2;
 `;
 
 const StarPage = () => {
@@ -49,11 +55,8 @@ const StarPage = () => {
   }, [swiperIndex]);
 
   return (
-    <div>
+    <>
       {/* <Background /> */}
-      <PaginationWrapper>
-        <div className="swiper-pagination" />
-      </PaginationWrapper>
       <StyledSwiper
         spaceBetween={50}
         slidesPerView={1}
@@ -98,7 +101,10 @@ const StarPage = () => {
           </SlideWrapper>
         </SwiperSlide>
       </StyledSwiper>
-    </div>
+      <PaginationWrapper>
+        <div className="swiper-pagination" />
+      </PaginationWrapper>
+    </>
   );
 };
 

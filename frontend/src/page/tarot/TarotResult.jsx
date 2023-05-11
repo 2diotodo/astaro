@@ -45,19 +45,15 @@ const ResultDiv = styled.div`
 
 
 function TarotResult() {
-  const navigate = useNavigate();
   const [swiperIndex, setSwiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
-  const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
-  const respStory = useSelector((state) => state.tarot.stateStory);
   const tarotCardsInfo = useSelector((state) => state.tarot.stateCardsInfo);
+  const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
   useEffect(() => {
     console.log(tarotCardsInfo);
-  }, [swiperIndex]);
+  }, [swiperIndex, dalleImgUrl]);
 
-  const SendToStar = () => {
-    navigate("/star");
-  }
+
   return (
     <div>
       <StyledSwiper
@@ -88,20 +84,12 @@ function TarotResult() {
       )}
         <SwiperSlide>
           <SlideWrapper>
-            <ColContainer
-              id="slide-from-story"
-            >
-              <ColContainer width="80vw" gap="35px" height="100%">
-                <GapH height="5px"/>
-                <div className="story-image">
-                  <img alt="img" src={dalleImgUrl} width="80%"/>
-                </div>
-                <div style={{overflowY:"scroll", height:"35vh"}}>
-                  <Small lineHeight="2em">{respStory}</Small>
-                  <GapH height="40px"/>
-                  <Button width="200px" onClick={SendToStar}>별똥별로 보내기</Button>
-                </div>
-              </ColContainer>
+            <ColContainer height="100%">
+              <ResultDiv>
+                <Small style={{lineHeight:"2em"}}>{tarotResults[3]}</Small>
+                <GapH height="20vh"/>
+                <Button width="80%">이야기 보러가기</Button>
+              </ResultDiv>
             </ColContainer>
           </SlideWrapper>
         </SwiperSlide>

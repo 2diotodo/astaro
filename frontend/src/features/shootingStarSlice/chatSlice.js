@@ -1,42 +1,40 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import customAxios from "@utils/axiosInstance";
 
-// 비동기 액션 생성
 export const fetchMessages = createAsyncThunk(
-    "chat/fetchMessages",
-    async (id, { rejectWithValue }) => {
-      try {
-        const response = await fetch(`http://localhost:8082/api/v1/message/${id}`);
-        const messages = await response.json();
-        return messages;
-      } catch (error) {
-        return rejectWithValue("Error fetching messages:", error);
-      }
-    }
-  );
-  
-export const sendMessage = createAsyncThunk(
-"chat/sendMessage",
-async (messageData, { rejectWithValue }) => {
+  "chat/fetchMessages",
+  async (id, { rejectWithValue }) => {
     try {
-    const response = await fetch(`http://localhost:8082/api/v1/message`, {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json",
-        },
-        body: JSON.stringify(messageData),
-    });
-
-    if (!response.ok) {
-        throw new Error("메시지 전송 실패");
-    }
-
-    const responseData = await response.json();
-    return responseData;
+      const response = await customAxios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/board-service/api/v1/message/${id}`
+      );
+      return response.data;
     } catch (error) {
-    return rejectWithValue("메시지 전송 실패");
+      return rejectWithValue("Error fetching messages:", error);
     }
-}
+  }
 );
+
+export const sendMessage = createAsyncThunk(
+  "chat/sendMessage",
+  async (messageData, { rejectWithValue }) => {
+    try {
+      const response = await customAxios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/board-service/api/v1/message`,
+        messageData
+      );
+
+      if (!response) {
+        throw new Error("메시지 전송 실패");
+      }
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("메시지 전송 실패");
+    }
+  }
+);
+
 
 const initialState = {
     chatRoom: [],   // 채팅방 목록
