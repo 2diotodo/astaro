@@ -1,5 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  isRejectedWithValue,
+} from "@reduxjs/toolkit";
 import axios from "@utils/axiosInstance";
+import { error } from "jquery";
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 
@@ -14,22 +19,27 @@ const initialState = {
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/member-service/auth`;
 
 // 로그인
-export const login = createAsyncThunk("memberSlice/login", async (logins) => {
-  const request = {
-    memberId: logins.memberId,
-    password: logins.password,
-  };
-  const url = `${baseURL}/login`;
-  const response = await axios({
-    method: "POST",
-    url: url,
-    data: request,
-  }).then((res) => {
-    console.log("res", res.data);
-    localStorage.setItem("access-token", res.data.accessToken);
-  });
-  return response.data;
-});
+export const login = createAsyncThunk(
+  "memberSlice/login",
+  async (logins, { rejectWithValue }) => {
+    const request = {
+      memberId: logins.memberId,
+      password: logins.password,
+    };
+    const url = `${baseURL}/login`;
+    try {
+      const response = await axios({
+        method: "POST",
+        url: url,
+        data: request,
+      });
+
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 // 회원가입
 export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
@@ -40,24 +50,70 @@ export const signup = createAsyncThunk("memberSlice/signup", async (values) => {
     email: values.email,
   };
   const url = `${baseURL}/signup`;
-  const response = await axios({
-    method: "POST",
-    url: url,
-    data: request,
-  });
-  return response.data;
+
+  try {
+    const response = await axios({
+      method: "POST",
+      url: url,
+      data: request,
+    });
+    return response.data;
+  } catch (err) {
+    return isRejectedWithValue(err.response.data);
+  }
 });
 
 // 아이디 중복확인
 export const duplicateId = createAsyncThunk(
   "memberSlice/duplicateId",
-  async (memberId) => {
+  async (memberId, { rejectWithValue }) => {
     const url = `${baseURL}/check/id/${memberId}`;
-    const response = await axios({
-      method: "GET",
-      url: url,
-    });
-    return response.data;
+
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+// 닉네임 중복확인
+export const duplicateNn = createAsyncThunk(
+  "memberSlice/duplicateNn",
+  async (nickname, { rejectWithValue }) => {
+    const url = `${baseURL}/check/nickname/${nickname}`;
+
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+// 이메일 중복확인
+export const duplicateEm = createAsyncThunk(
+  "memberSlice/duplicateEm",
+  async (email, { rejectWithValue }) => {
+    const url = `${baseURL}/check/email/${email}`;
+
+    try {
+      const response = await axios({
+        method: "GET",
+        url: url,
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
   }
 );
 
@@ -69,15 +125,13 @@ const memberSlice = createSlice({
     // 로그인
     builder.addCase(login.pending, (state, action) => {
       state.status = "loading";
-      console.log("로그인중", action.payload);
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.status = "loginSuccess";
-      console.log("로그인성공", action.payload);
+      localStorage.setItem("access-token", action.payload.accessToken);
     });
     builder.addCase(login.rejected, (state, action) => {
       state.status = "failed";
-      console.log("로그인실패", action.error);
     });
 
     // 회원가입
@@ -91,16 +145,20 @@ const memberSlice = createSlice({
       console.log("회원가입실패", action.error);
     });
 
-    // 아이디중복확인
-    builder.addCase(duplicateId.pending, (state, action) => {
-      console.log("아이디중복확인중", action.payload);
-    });
-    builder.addCase(duplicateId.fulfilled, (state, action) => {
-      console.log("아이디중복확인성공", state.result);
-    });
-    builder.addCase(duplicateId.rejected, (state, action) => {
-      console.log("아이디중복확인실패", action.error);
-    });
+    // 아이디 중복확인
+    builder.addCase(duplicateId.pending, (state, action) => {});
+    builder.addCase(duplicateId.fulfilled, (state, action) => {});
+    builder.addCase(duplicateId.rejected, (state, action) => {});
+
+    // 닉네임 중복확인
+    builder.addCase(duplicateNn.pending, (state, action) => {});
+    builder.addCase(duplicateNn.fulfilled, (state, action) => {});
+    builder.addCase(duplicateNn.rejected, (state, action) => {});
+
+    // 이메일 중복확인
+    builder.addCase(duplicateEm.pending, (state, action) => {});
+    builder.addCase(duplicateEm.fulfilled, (state, action) => {});
+    builder.addCase(duplicateEm.rejected, (state, action) => {});
   },
 });
 

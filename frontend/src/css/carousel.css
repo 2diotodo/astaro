@@ -4,12 +4,15 @@
 
 .swiper {
   width: 100%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  height: 100%;
 }
-
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
 .carousel-swiper-slide {
-  margin-top: 10vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   background-position: center;
   background-size: cover;
   width: 100px;
