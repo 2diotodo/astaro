@@ -54,7 +54,7 @@ public class TaroResultService {
         if(dto.getContentInput().contains("자살")){
             dangerous = true;
         }
-        
+
         taroResultRepository.save(dtoToEntity(dto, dangerous));
         return dto;
     }
