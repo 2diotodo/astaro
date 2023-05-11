@@ -93,12 +93,11 @@ def create_sand_art_video(image_url):
                 for b in range(5):
                     if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
                         output[i + a, j +
-                               b] = random_sand_color(3 - int((math.sqrt(a * b)) % 5))
+                               b] = random_sand_color(3 - (a*b//5) % 5)
 
             ran_show = int(random.randrange(1000, 3000))
 
             if ((i * j) % (ran_show)) == 0:
-                cv2.imshow("output", output)
                 video.write(output)  # 현재 프레임 저장
                 cv2.waitKey(1)
 
@@ -123,13 +122,11 @@ def create_sand_art_video(image_url):
             for b in range(5):
                 # flag = random.randrange(1, 4)
                 if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
-                    output[i + a, j +
-                           b] = random_sand_color(5 - int((math.sqrt(a * b)) % 5))
+                    output[i + a, j + b] = random_sand_color(5 - (a*b//5) % 5)
 
         ran_show = int(random.randrange(1000, 3000))
 
         if ((i * j) % (ran_show)) == 0:
-            cv2.imshow("output", output)
             video.write(output)  # 현재 프레임 저장
             cv2.waitKey(1)
 

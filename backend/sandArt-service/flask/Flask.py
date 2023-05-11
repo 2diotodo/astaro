@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, jsonify, request, redirect
 import SandArt
 
 app = Flask(__name__)
@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/api/run-script', methods=['POST'])
 def run_script():
     # 이미지 URL을 요청 본문에서 가져오기
-    image_url = request.json.get('image_url')
+    image_url = request.json.get('imageUrl')
     if not image_url:
         return jsonify({"error": "image_url is required"}), 400
 
@@ -24,4 +24,4 @@ def run_script():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8500, debug=True)
