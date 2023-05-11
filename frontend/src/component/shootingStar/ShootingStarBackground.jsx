@@ -1,42 +1,53 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchTaroResult } from '@/features/shootingStarSlice/starSlice';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTaroResult } from "@/features/shootingStarSlice/starSlice";
 
-const shootingTime = '1000ms';
+const shootingTime = "1000ms";
 
 const getRandomDuration = () => {
   const minDuration = 6000; // 최소 지속 시간(ms)
   const maxDuration = 20000; // 최대 지속 시간(ms)
-  return Math.floor(Math.random() * (maxDuration - minDuration + 1) + minDuration);
+  return Math.floor(
+    Math.random() * (maxDuration - minDuration + 1) + minDuration
+  );
 };
 
 const ShootingStarsContainer = styled.div`
-  position: absolute;   
+  position: absolute;
   width: 100%;
   height: 100%;
-	// shooting star 각도
+  // shooting star 각도
   transform: rotateZ(30deg);
+  z-index: 5;
 
   .shooting_star {
     position: absolute;
     left: 10%;
     height: 1px;
-    background: linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0)
+    );
     filter: drop-shadow(0 0 6px lightyellow);
     animation: tail linear infinite, shooting linear infinite; // 여기서 'shootingTime' 변수를 제거했습니다.
   }
-  
 
   .shooting_star::before,
   .shooting_star::after {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     height: 2px;
-    background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0)
+    );
     transform: translateX(50%) rotateZ(45deg);
     border-radius: 100%;
     animation: shining ${shootingTime} ease-in-out infinite;
@@ -99,7 +110,7 @@ const updateStar = (star) => {
 const ShootingStars = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [stars, setStars] = useState([]);
 
   useEffect(() => {
@@ -109,7 +120,7 @@ const ShootingStars = () => {
         const left = Math.floor(Math.random() * 100);
         const delay = Math.floor(Math.random() * 10000);
         const duration = getRandomDuration();
-        
+
         return (
           <div
             onClick={handleStarClick}
@@ -145,7 +156,7 @@ const ShootingStars = () => {
   //   }
   //   const data = await response.json();
   //   return data;
-  // };  
+  // };
 
   const handleStarClick = async () => {
     const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
@@ -154,7 +165,7 @@ const ShootingStars = () => {
       const taroResultDto = taroResultAction.payload;
       navigate("/star/taro-result", { state: { taroResult: taroResultDto } });
     } catch (error) {
-      console.error('Error fetching taro result:', error);
+      console.error("Error fetching taro result:", error);
     }
   };
 
