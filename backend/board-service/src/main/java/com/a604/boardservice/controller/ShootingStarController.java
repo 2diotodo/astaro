@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/star")
-@CrossOrigin(origins = "*")
 public class ShootingStarController {
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
