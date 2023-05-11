@@ -1,5 +1,6 @@
 // Library Import
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
@@ -86,10 +87,18 @@ const Card = styled.div`
 
 // Component 정의
 const CardNav = (props) => {
+  const isLoginState = useSelector((state) => state.loginCheck);
   const navigate = useNavigate();
 
   const clickCardBtn = (url) => {
-    navigate(url);
+    if (url == "/todaytaro") {
+      navigate(url);
+    } else if (isLoginState === true) {
+      navigate(url);
+    } else {
+      alert("로그인이 필요한 기능입니다.");
+      navigate("/member/login");
+    }
   };
 
   const cardSrc = [
