@@ -6,9 +6,9 @@ const initialState = {
 };
 
 // 비동기 요청
-export const fetchTaroResult = createAsyncThunk("star/fetchTaroResult", async (memberSeq, { getState }) => {
+export const fetchTaroResult = createAsyncThunk("star/fetchTaroResult", async ({ getState }) => {
   const { category } = getState().category;
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/board-service/api/v1/star/${memberSeq}?category=${category}`);
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/board-service/api/v1/star?category=${category}`);
   if (!response.ok) {
     throw new Error(`API request failed with status ${response.status}`);
   }
