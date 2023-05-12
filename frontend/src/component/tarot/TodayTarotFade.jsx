@@ -17,8 +17,12 @@ const Fade = styled.div`
     50% {
       opacity: 1;
     }
+    99% {
+      opacity: 0;
+    }
     100% {
       opacity: 0;
+      z-index: -1;
     }
   }
 `;

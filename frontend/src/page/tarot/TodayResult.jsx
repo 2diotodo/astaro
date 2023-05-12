@@ -25,6 +25,7 @@ export function TodayResult() {
 
   const openModal = () => {
     setModalOpen(true);
+    console.log("Modal opened");
     captureScreenshot();
   };
   const closeModal = () => {
@@ -100,7 +101,13 @@ export function TodayResult() {
           {result.badCardName}
         </TodayTarotCard>
       </RowContainer>
-      <RowContainer width="100%" style={{ justifyContent: "space-evenly" }}>
+      <RowContainer
+        width="100%"
+        style={{
+          position: "relative",
+          justifyContent: "space-evenly",
+        }}
+      >
         <Button onClick={() => navigate("/")}>홈으로</Button>
         <Button onClick={openModal}>SNS공유</Button>
         <Modal open={modalOpen} close={closeModal} />
