@@ -1,5 +1,6 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,8 +9,8 @@ import {
   duplicateNn,
   duplicateEm,
 } from "@features/memberSlice";
-import { useEffect } from "react";
 
+// Styled Component
 const Wrapper = styled.div`
   display: flex:
   flex-direction: column;
@@ -42,21 +43,60 @@ const Message = styled.div`
 
 const InputWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: start;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  margin: 2%;
+
+  position: relative;
+
+  height: 15%
+
   padding: 5%;
 
-  background-color: white;
+  background-color: transparent;
+`;
+
+const Label = styled.label.attrs((props) => ({
+  for: props.for || "",
+}))`
+  width: 10%;
+  height: 90%;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  transition: all 0.2s;
 `;
 
 const Input = styled.input.attrs((props) => ({
+  id: props.id || "",
   type: props.type || "text",
   placeholder: props.placeholder || "",
-}))``;
+}))`
+  &:focus + ${Label}, &:valid + ${Label} {
+    ${Label} {
+      font-size: 16px;
+      bottom: 40px;
+      color: #666;
+      font-weight: bold;
+    }
+  }
 
-const SubmitBtn = styled.button``;
+  width: 70%;
+  height: 90%;
+
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+
+  color: white;
+  opacity: 0.5;
+  background: none;
+`;
+
+const SubmitBtn = styled.button`
+  width: 10%;
+  height: 90%;
+`;
 
 function MemberSignup() {
   // 기능
@@ -223,12 +263,15 @@ function MemberSignup() {
           </InputWrapper>
         ) : null}
         <InputWrapper>
+          <Label for="memberId">Id</Label>
           <Input
             placeholder={memberId}
             onChange={handleChangeId}
             value={memberId}
+            id="memberId"
           />
-          <button onClick={handleClickId}>아이디 체크</button>
+
+          <SubmitBtn onClick={handleClickId}>체크</SubmitBtn>
         </InputWrapper>
         {validateEm === true ? (
           <InputWrapper>
