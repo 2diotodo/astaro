@@ -71,20 +71,12 @@ function MemberMypage() {
   const memberInfo = useSelector((state) => state.memberUpdate);
   const { memberId, password, nickname, profile, email, lux, heal } =
     memberInfo;
-  console.log("memberId", memberId);
-  console.log("password", password);
-  console.log("nickname", nickname);
-  console.log("profile", profile);
-  console.log("email", email);
-  console.log("lux", lux);
-  console.log("heal", heal);
 
-  // const user = useSelector((state) => state.memberUpdate.value);
   const [values, setValues] = useState({
     memberId: "",
     password: "",
     passwordConfirm: "",
-    nickname: "ki",
+    nickname: "",
     profile: 1,
     email: "",
     lux: 0,
@@ -119,8 +111,6 @@ function MemberMypage() {
   const [profileSelected, setProfileSelected] = useState(0);
 
   const profileSelectHandler = (idx) => {
-    console.log(values.lux);
-    console.log(profiles[idx - 1].starlux);
     if (values.lux >= profiles[idx - 1].starlux) {
       setProfileSelected(idx);
       // let newlux = values.lux - profiles[idx - 1].starlux;
@@ -164,7 +154,6 @@ function MemberMypage() {
     if (Object.values(errors).some((v) => v)) {
       return;
     }
-    console.log("update-memberinfo");
     if (window.confirm("정보를 수정하시겠습니까?")) {
       alert("수정되었습니다.");
       dispatch(update(values));
@@ -202,7 +191,6 @@ function MemberMypage() {
 
   useEffect(() => {
     dispatch(getMember());
-    console.log("memberInfo", memberInfo);
   }, [dispatch]);
 
   useEffect(() => {
@@ -218,12 +206,9 @@ function MemberMypage() {
         heal: userinfo.heal,
       });
     }
-    console.log("values", values);
   }, [userinfo]);
 
-  useEffect(() => {
-    console.log("profileSelected", profileSelected);
-  }, [profileSelected]);
+  useEffect(() => {}, [profileSelected]);
 
   // 입력값이 변경될때 마다 검증한다.
   useEffect(() => {
