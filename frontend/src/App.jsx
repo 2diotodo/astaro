@@ -1,7 +1,8 @@
-import "@scss/main.scss";
 import React from "react";
-import Body from "./component/common/Body";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Background } from "@component/common/Background";
+import Header from "@component/common/Header";
+import Body from "./component/common/Body";
 import { Main } from "@page/Main";
 import TarotService from "@page/tarot/TarotService";
 import TodayTaro from "@page/tarot/TodayTaro";
@@ -12,26 +13,17 @@ import MessageListPage from "@page/message/MessageList";
 import ChatPage from "@page/shootingStar/ChatPage";
 import StarPage from "@page/shootingStar/StarPage";
 import TaroResultPage from "@page/shootingStar/TaroResultPage";
-import { Background } from "@component/common/Background";
-import Header from "@component/common/Header";
 import { TodayResult } from "@/page/tarot/TodayResult";
 import TarotResult from "@page/tarot/TarotResult";
 import FlipGame from "@page/tarot/FlipGame";
 import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
 import BlackHolePage from "@page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <ToastContainer
-        position="top-center"
-        autoClose={1000}
-        hideProgressBar
-        theme="dark"
-      />
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
         <Header />

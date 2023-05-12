@@ -11,6 +11,7 @@ import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import Medium from "@component/text/Medium";
 import AudioPlayer from "@/component/AudioPlayer";
+import "@css/headers.css";
 
 function Header() {
   const navState = useSelector((state) => state.navBars);

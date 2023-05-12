@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TaroBack from "@assets/img/Taro_back.png";
-import "@css/tarocard.scss";
+import "@css/tarocard.css";
 
 const Panel = styled.div`
   position: absolute;

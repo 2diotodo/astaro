@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ColContainer from "@component/layout/ColContainer";
 import RowContainer from "@component/layout/RowContainer";
-import "@css/tarocard.scss";
+import "@css/tarocard.css";
 import GapH from "@component/layout/GapH";
 import { useDispatch } from "react-redux";
 import { setStateCards, setStateCardsInfo } from "@features/tarotSlice";

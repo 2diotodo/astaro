@@ -1,0 +1,18 @@
+@font-face {
+  /* // 사용할 폰트이름 */
+  font-family: "TAEBAEKmilkyway";
+  /* // 브라우저 렌더링 차단 처리방식 */
+  font-display: fallback;
+  font-weight: normal;
+  font-style: normal;
+  /* // 사용할 폰트의 위치 및 형식 */
+  src: local("TAEBAEKmilkyway"), local("TAEBAEK milkyway"),
+    url("./assets/font/TAEBAEKmilkyway.woff2") format("woff2"),
+    url("./assets//font/TAEBAEKmilkyway.woff") format("woff");
+}
+
+.App {
+  width: auto;
+  height: 100vh;
+  max-width: 820px;
+}
