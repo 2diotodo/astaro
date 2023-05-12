@@ -2,7 +2,42 @@ import React from "react";
 import axios from "@utils/axiosInstance";
 import Button from "@component/Button";
 import ColContainer from "@component/layout/ColContainer";
+import { useSelector } from "react-redux";
+import Small from "@component/text/Small";
+import TarotCard from "@component/tarot/TarotCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import GapH from "@component/layout/GapH";
+import styled from "styled-components";
+const SlideWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+`;
+
+const PaginationWrapper = styled.div`
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
+const StyledSwiper = styled(Swiper)`
+  margin: 0;
+  height: 100%;
+`;
+
+const ResultDiv = styled.div`
+  width:80vw;
+  max-width: 400px;
+  bottom: 10vh;
+`
+
 const TarotTest = () => {
+  const tarotResults = useSelector((state) => state.tarot.stateResults);
+  const tarotCardsInfo = useSelector((state) => state.tarot.stateCardsInfo);
+  const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
   function sendResult() {
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/result`, {
         memberSeq:1,
@@ -24,11 +59,35 @@ const TarotTest = () => {
     <>
       <ColContainer>
       <Button onClick={sendResult} style={{zIndex:30}}>요청보내기</Button>
-        <div style={{zIndex:100}}>
-        <video width="750" height="500" controls>
-          <source src="https://astaro.s3.ap-northeast-2.amazonaws.com/file_example_WEBM_640_1_4MB.webm" type="video/webm"/>
-        </video>
-        </div>
+          <StyledSwiper
+            spaceBetween={50}
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+              el: ".swiper-pagination",
+              dynamicBullets: true,
+              direction: "horizontal",
+            }}
+          >
+        {tarotCardsInfo.map((tarotCard, index) => (
+          <>
+          <SwiperSlide key={tarotCard.id}>
+            <SlideWrapper>
+              <ColContainer height="100%">
+                <TarotCard
+                  card={tarotCard}
+                  className="selected-tarocard result-tarocard"
+                />
+                <GapH height="20vh"/>
+                <ResultDiv>
+                  <Small style={{lineHeight:"2em"}}>{tarotResults[index]}</Small>
+                </ResultDiv>
+              </ColContainer>
+            </SlideWrapper>
+          </SwiperSlide>)
+          </>)
+        )}
+        </StyledSwiper>
       </ColContainer>
     </>
   );

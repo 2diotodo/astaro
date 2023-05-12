@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TaroBack from "@assets/img/Taro_back.png";
-import "@css/tarocard.scss";
+import "@css/tarocard.css";
 
 const Panel = styled.div`
   position: absolute;
@@ -46,11 +46,13 @@ function TarotCard({ card, selected, onClick, className, style }) {
         src={card.image}
         alt={card.name}
         className="tarot-front"
-        style={style || {
-          position: "relative",
-          zIndex: 10,
-          backfaceVisibility: "hidden",
-        }}
+        style={
+          style || {
+            position: "relative",
+            zIndex: 10,
+            backfaceVisibility: "hidden",
+          }
+        }
       />
       <TarotCardBackImage
         src={TaroBack}

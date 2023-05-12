@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import styled from "styled-components";
 import { login } from "@features/memberSlice";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
@@ -53,13 +52,16 @@ function MemberLogin() {
 
   const loginHandler = async () => {
     await dispatch(login(logins)).then((response) => {
-      console.log("response", response);
-      // if (response.payload.status) {
-      dispatch(isLoginCheck(true));
-      navigate("/");
-      // } else {
-      // toast.error("통신에 실패했습니다.");
-      // }
+      if (!response.error) {
+        dispatch(isLoginCheck(true));
+        navigate("/");
+      } else {
+        alert(response.payload.message);
+        setLogins({
+          memberId: "",
+          password: "",
+        });
+      }
     });
   };
 
@@ -67,10 +69,10 @@ function MemberLogin() {
     e.preventDefault();
 
     if (!logins.memberId) {
-      toast.error("아이디를 입력하세요");
+      alert("아이디를 입력하세요");
       return;
     } else if (!logins.password) {
-      toast.error("비밀번호를 입력하세요");
+      alert("비밀번호를 입력하세요");
       return;
     }
 

@@ -73,11 +73,12 @@ export function Background() {
 
   return (
     <>
-      <div className="noite"></div>
-      <div className="constelacao"></div>
-      <div className="chuvaMeteoro"></div>
-      <div className="floresta">
-        <img src="bgTree.png" alt="" />
+      <div className="noite">
+        <div className="constelacao"></div>
+        <div className="chuvaMeteoro"></div>
+        <div className="floresta">
+          <img src="bgTree.png" alt="" />
+        </div>
       </div>
     </>
   );
