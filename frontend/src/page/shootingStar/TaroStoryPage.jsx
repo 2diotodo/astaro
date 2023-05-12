@@ -3,56 +3,62 @@ import styled from "styled-components";
 import MessageInput from "../../component/shootingStar/MessageInput";
 
 const TaroStory = styled.div`
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-  color: white;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 75%;
+  overflow: hidden;
+`;
+
+const Head = styled.video`
+  width: 100%;
+  height: 5%;
 `;
 
 const StoryVideo = styled.video`
-  transform: translate(0%, 20%);
+  width: 80%;
+  aspect-radio: 1/1;
 `;
 
 const Content = styled.div`
-  transform: translate(0%, 50%);
-  font-size: 20px;
-  margin-bottom: 5px;
+  width: 80%;
+  color: white;
+  font-size: 16px;
   text-align: left;
   line-height: 1.5;
 `;
 
 const MessageContainer = styled.div`
   width: 100%;
-  position: fixed;
-  bottom: 20%;
+  height: 20%;
 `;
 
 const Container = styled.div`
+  position: absolute;
   width: 100%;
-  transform: translate(0%, -20%);
-  max-width: 60em;
-  margin: 0 auto;
-  padding-bottom: 5em;
+  height: 100%;
   background: black;
   perspective: 100em;
 `;
 
 const Carousel = styled.div`
-  width: 20em;
-  height: 20em;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s linear;
   transform: rotateY(${props => (props.n) *(-90)}deg)
 `;
 
 const Slide = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
-  width: 20em;
-  height: 50em;
+  width: 100%;
+  height: 100%;
   background: black;
   overflow: hidden;
 `;
@@ -62,18 +68,19 @@ const Back = styled(Slide)`
 `;
 
 const Right = styled(Slide)`
-  transform: rotateY(90deg) translateX(10em);
+  transform: rotateY(90deg) translateX(50%);
   transform-origin: top right;
 `;
 
 const Left = styled(Slide)`
-  transform: rotateY(-90deg) translateX(-10em);
+  transform: rotateY(-90deg) translateX(-50%);
   transform-origin: center left;
 `;
 
 const Front = styled(Slide)`
   transform: translateZ(10em);
 `;
+
 
 const TaroStoryPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -205,16 +212,13 @@ const TaroStoryPage = () => {
     // handleTouchEnd();
   }
   return (
-    <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-      <Container>
+      <Container onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
         <Carousel n={currentSlide}>
         <Front>
-          <div>
+            <Head></Head>
             <TaroStory>
               <StoryVideo
                 ref={videoFrontRef}
-                width="320"
-                height="320"
                 muted
                 autoPlay
                 onEnded={handleVideoEnded}
@@ -228,15 +232,12 @@ const TaroStoryPage = () => {
             <MessageContainer>
               <MessageInput onSubmit={handleSendMessage} MessageInput />
             </MessageContainer>
-            </div>
         </Front>
         <Right>
-          <div>
+            <Head></Head>
             <TaroStory>
               <StoryVideo
                 ref={videoRightRef}
-                width="320"
-                height="320"
                 muted
                 autoPlay
                 onEnded={handleVideoEnded}
@@ -250,15 +251,12 @@ const TaroStoryPage = () => {
             <MessageContainer>
               <MessageInput onSubmit={handleSendMessage} MessageInput />
             </MessageContainer>
-            </div>
         </Right>
         <Back>
-          <div>
+        <Head></Head>
             <TaroStory>
               <StoryVideo
                 ref={videoBackRef}
-                width="320"
-                height="320"
                 muted
                 autoPlay
                 onEnded={handleVideoEnded}
@@ -272,15 +270,12 @@ const TaroStoryPage = () => {
             <MessageContainer>
               <MessageInput onSubmit={handleSendMessage} MessageInput />
             </MessageContainer>
-            </div>
         </Back>
         <Left>
-          <div>
+        <Head></Head>
             <TaroStory>
               <StoryVideo
                 ref={videoLeftRef}
-                width="320"
-                height="320"
                 muted
                 autoPlay
                 onEnded={handleVideoEnded}
@@ -294,11 +289,9 @@ const TaroStoryPage = () => {
             <MessageContainer>
               <MessageInput onSubmit={handleSendMessage} MessageInput />
             </MessageContainer>
-            </div>
         </Left>
         </Carousel>
       </Container>   
-    </div>
   );
 }
 

@@ -5,14 +5,11 @@ import { getMessageList } from "@features/messageSlice/messageListSlice";
 import MessageRoom from "@/component/message/MessageRoom";
 
 const MessageRoomList = styled.div`
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-  color: white;
-  text-align: center;
-  overflow: scroll;
-  height: 700px;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 `;
 
 const MessageListPage = () => {
@@ -29,7 +26,6 @@ const MessageListPage = () => {
   }, []);
     
   return (
-    <div>
       <MessageRoomList>
         {messageRooms.map((messageRoom, index) => (
           <MessageRoom
@@ -41,7 +37,6 @@ const MessageListPage = () => {
           />
         ))}
       </MessageRoomList>
-    </div>
   );
 };
 
