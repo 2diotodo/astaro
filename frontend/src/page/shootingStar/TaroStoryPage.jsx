@@ -200,6 +200,10 @@ const TaroStoryPage = () => {
     }
   };
 
+  const handleVideoEnded = async () => {
+    // await setNextSlide(currentSlide + 1);
+    // handleTouchEnd();
+  }
   return (
     <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
       <Container>
@@ -212,8 +216,8 @@ const TaroStoryPage = () => {
                 width="320"
                 height="320"
                 muted
-                loop
                 autoPlay
+                onEnded={handleVideoEnded}
               >
                 <source type="video/mp4" />
               </StoryVideo>
@@ -234,8 +238,8 @@ const TaroStoryPage = () => {
                 width="320"
                 height="320"
                 muted
-                loop
                 autoPlay
+                onEnded={handleVideoEnded}
               >
                 <source type="video/mp4" />
               </StoryVideo>
@@ -256,8 +260,8 @@ const TaroStoryPage = () => {
                 width="320"
                 height="320"
                 muted
-                loop
                 autoPlay
+                onEnded={handleVideoEnded}
               >
                 <source type="video/mp4" />
               </StoryVideo>
@@ -278,8 +282,8 @@ const TaroStoryPage = () => {
                 width="320"
                 height="320"
                 muted
-                loop
                 autoPlay
+                onEnded={handleVideoEnded}
               >
                 <source type="video/mp4" />
               </StoryVideo>
