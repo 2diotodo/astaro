@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect,  useRef} from "react";
 import styled from "styled-components";
 import MessageInput from "../../component/shootingStar/MessageInput";
 
@@ -75,10 +75,85 @@ const Front = styled(Slide)`
   transform: translateZ(10em);
 `;
 
-function TaroStoryPage() {
+const TaroStoryPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [nextSlide, setNextSlide] = useState(null);
   const [TouchX, setTouchX] = useState(null);
+  const [taroResult, setTaroResult] = useState([]);
+  const [flag, setFlag] = useState(0);
+  const videoFrontRef = useRef(null);
+  const videoRightRef = useRef(null);
+  const videoBackRef = useRef(null);
+  const videoLeftRef = useRef(null);
+  const [storyFront, setStoryFront] = useState("");
+  const [storyRight, setStoryRight] = useState("");
+  const [storyBack, setStoryBack] = useState("");
+  const [storyLeft, setStoryLeft] = useState("");
+
+  useEffect(() => {
+    if (flag === 0) {
+      setFlag(1);
+      const newTaroResult1 = {
+        story: 0,
+        url: "https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process.mp4",
+      };
+      setTaroResult(prevState => [...prevState, newTaroResult1]);
+      const newTaroResult2 = {
+        story: 1,
+        url: "https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4",
+      };
+      setTaroResult(prevState => [...prevState, newTaroResult2]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentSlide % 4 === 0) {
+      videoFrontRef.current.src = taroResult[currentSlide]?.url;
+      setStoryFront(taroResult[currentSlide]?.story);
+      if (currentSlide !== 0) {
+        videoLeftRef.current.src = taroResult[currentSlide - 1]?.url;
+        setStoryLeft(taroResult[currentSlide - 1]?.story);
+      }
+      videoRightRef.current.src = taroResult[currentSlide + 1]?.url;
+      setStoryRight(taroResult[currentSlide + 1]?.story);
+      videoBackRef.current.src = '';
+      setStoryBack('');
+    }
+    else if (currentSlide % 4 === 1) {
+      videoRightRef.current.src = taroResult[currentSlide]?.url;
+      setStoryRight(taroResult[currentSlide]?.story);
+      if (currentSlide !== 0) {
+        videoFrontRef.current.src = taroResult[currentSlide - 1]?.url;
+        setStoryFront(taroResult[currentSlide-1]?.story);
+      }
+      videoBackRef.current.src = taroResult[currentSlide + 1]?.url;
+      setStoryBack(taroResult[currentSlide + 1]?.story);
+      videoLeftRef.current.src = '';
+      setStoryLeft('');
+    } else if (currentSlide % 4 === 2) {
+      videoBackRef.current.src = taroResult[currentSlide]?.url;
+      setStoryBack(taroResult[currentSlide]?.story);
+      if (currentSlide !== 0) {
+        videoRightRef.current.src = taroResult[currentSlide - 1]?.url;
+        setStoryRight(taroResult[currentSlide - 1]?.story);
+      }
+      videoLeftRef.current.src = taroResult[currentSlide + 1]?.url;
+      setStoryLeft(taroResult[currentSlide + 1]?.story);
+      videoFrontRef.current.src = '';
+      setStoryFront('');
+    } else if (currentSlide % 4 === 3) {
+      videoLeftRef.current.src = taroResult[currentSlide]?.url;
+      setStoryLeft(taroResult[currentSlide]?.story);
+      if (currentSlide !== 0) {
+        videoBackRef.current.src = taroResult[currentSlide - 1]?.url;
+        setStoryBack(taroResult[currentSlide - 1]?.story);
+      }
+      videoFrontRef.current.src = taroResult[currentSlide + 1]?.url;
+      setStoryFront(taroResult[currentSlide + 1]?.story);
+      videoRightRef.current.src = '';
+      setStoryRight('');
+    }
+  }, [taroResult, currentSlide]);
 
   const handleSendMessage = (message) => {
     console.log(message);
@@ -90,7 +165,6 @@ function TaroStoryPage() {
   };
 
   const handleTouchMove = (event) => {
-    console.log(TouchX);
     if (TouchX === null) {
       return;
     }
@@ -102,7 +176,6 @@ function TaroStoryPage() {
       setNextSlide(currentSlide + 1);
     } else {
       if (currentSlide > 0) {
-        console.log(currentSlide);
         setNextSlide(currentSlide - 1);
       }
     }
@@ -110,82 +183,115 @@ function TaroStoryPage() {
   };
   
   const handleTouchEnd = () => {
-    setCurrentSlide(nextSlide);
-    setNextSlide(null);
+    if (taroResult.length === nextSlide) {
+      const newTaroResult = {
+        story: nextSlide,
+      };
+      if (nextSlide % 2 === 0) {
+        newTaroResult.url = "https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process.mp4";
+      } else {
+        newTaroResult.url = "https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4";
+      }
+      setTaroResult([...taroResult, newTaroResult]);
+    }
+    if (nextSlide != null) {
+      setCurrentSlide(nextSlide);
+      setNextSlide(null);
+    }
   };
 
   return (
     <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
       <Container>
         <Carousel n={currentSlide}>
-          <Front>
+        <Front>
           <div>
-      <TaroStory>
-        <StoryVideo autoPlay muted loop source width="320" height="320">
-          <source
-            src="https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4"
-            type="video/mp4"
-          ></source>
-        </StoryVideo>
-        <Content>
-          1한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
-        </Content>
-      </TaroStory>
-      <MessageContainer>
-        <MessageInput onSubmit={handleSendMessage} MessageInput />
-      </MessageContainer>
-    </div>          </Front>
-          <Right>
+            <TaroStory>
+              <StoryVideo
+                ref={videoFrontRef}
+                width="320"
+                height="320"
+                muted
+                loop
+                autoPlay
+              >
+                <source type="video/mp4" />
+              </StoryVideo>
+              <Content>
+                {storyFront}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
+              </Content>
+            </TaroStory>
+            <MessageContainer>
+              <MessageInput onSubmit={handleSendMessage} MessageInput />
+            </MessageContainer>
+            </div>
+        </Front>
+        <Right>
           <div>
-      <TaroStory>
-        <StoryVideo autoPlay muted loop source width="320" height="320">
-          <source
-            src="https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4"
-            type="video/mp4"
-          ></source>
-        </StoryVideo>
-        <Content>
-          2한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
-        </Content>
-      </TaroStory>
-      <MessageContainer>
-        <MessageInput onSubmit={handleSendMessage} MessageInput />
-      </MessageContainer>
-    </div>          </Right>
-          <Back>
+            <TaroStory>
+              <StoryVideo
+                ref={videoRightRef}
+                width="320"
+                height="320"
+                muted
+                loop
+                autoPlay
+              >
+                <source type="video/mp4" />
+              </StoryVideo>
+              <Content>
+                {storyRight}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
+              </Content>
+            </TaroStory>
+            <MessageContainer>
+              <MessageInput onSubmit={handleSendMessage} MessageInput />
+            </MessageContainer>
+            </div>
+        </Right>
+        <Back>
           <div>
-      <TaroStory>
-        <StoryVideo autoPlay muted loop source width="320" height="320">
-          <source
-            src="https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4"
-            type="video/mp4"
-          ></source>
-        </StoryVideo>
-        <Content>
-          3한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
-        </Content>
-      </TaroStory>
-      <MessageContainer>
-        <MessageInput onSubmit={handleSendMessage} MessageInput />
-      </MessageContainer>
-    </div>          </Back>
-          <Left>
+            <TaroStory>
+              <StoryVideo
+                ref={videoBackRef}
+                width="320"
+                height="320"
+                muted
+                loop
+                autoPlay
+              >
+                <source type="video/mp4" />
+              </StoryVideo>
+              <Content>
+                {storyBack}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.  
+              </Content>
+            </TaroStory>
+            <MessageContainer>
+              <MessageInput onSubmit={handleSendMessage} MessageInput />
+            </MessageContainer>
+            </div>
+        </Back>
+        <Left>
           <div>
-      <TaroStory>
-        <StoryVideo autoPlay muted loop source width="320" height="320">
-          <source
-            src="https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4"
-            type="video/mp4"
-          ></source>
-        </StoryVideo>
-        <Content>
-          4한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
-        </Content>
-      </TaroStory>
-      <MessageContainer>
-        <MessageInput onSubmit={handleSendMessage} MessageInput />
-      </MessageContainer>
-    </div>          </Left>
+            <TaroStory>
+              <StoryVideo
+                ref={videoLeftRef}
+                width="320"
+                height="320"
+                muted
+                loop
+                autoPlay
+              >
+                <source type="video/mp4" />
+              </StoryVideo>
+              <Content>
+                {storyLeft}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.  
+              </Content>
+            </TaroStory>
+            <MessageContainer>
+              <MessageInput onSubmit={handleSendMessage} MessageInput />
+            </MessageContainer>
+            </div>
+        </Left>
         </Carousel>
       </Container>   
     </div>
