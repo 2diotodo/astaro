@@ -10,7 +10,6 @@ import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import Medium from "@component/text/Medium";
-import AudioPlayer from "@/component/AudioPlayer";
 import "@css/headers.css";
 
 function Header() {
@@ -46,7 +45,7 @@ function Header() {
 
   useEffect(() => {
     dispatch(isLoginCheck(isLogin));
-  }, []);
+  }, [dispatch, isLogin]);
 
   useEffect(() => {
     dispatch(toggleNavBar(false));
@@ -65,7 +64,6 @@ function Header() {
     <>
       {location.pathname === "/" ? null : (
         <div className="common-header">
-          {/* <AudioPlayer /> */}
           <div className="header-nav">
             <div
               className={`nav-logo ${

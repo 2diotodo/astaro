@@ -432,7 +432,11 @@ function MemberMypage() {
                 id={star.starId}
                 value={star.starName}
               >
-                <img src={star.starImageUrl} alt={star.starName} />
+                <img
+                  src={star.starImageUrl}
+                  alt={star.starName}
+                  style={{ height: "90px" }}
+                />
                 <div>{star.starlux} lux</div>
               </div>
             ))}

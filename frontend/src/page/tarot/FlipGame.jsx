@@ -125,7 +125,7 @@ function FlipGame() {
     return (
       <div className="game-result-centered">
         {/* <h1>{savedTime !== null ? formatElapsedTime(savedTime) : ""}</h1> */}
-        <h1>10 lux 획득!</h1>
+        <h1>축하합니다!</h1>
         <button className="restart-button" onClick={restartGame}>
           한번 더?
         </button>

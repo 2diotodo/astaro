@@ -1,3 +1,10 @@
+.mypage-head {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .mypage-profile::after,
 .mypage-profile::before {
   position: absolute;
@@ -135,14 +142,10 @@
   justify-content: center;
 }
 
-.modal-box .modal-img {
+.modal-img {
   text-align: center;
   margin: 5% 5% 0 5%;
   opacity: 0.3;
-}
-
-.modal-box .modal-img img {
-  height: 90px;
 }
 
 .modal-box .modal-img.selected {

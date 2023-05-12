@@ -19,6 +19,8 @@ import FlipGame from "@page/tarot/FlipGame";
 import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
 import BlackHolePage from "@page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
+import AudioPlayer from "@/component/AudioPlayer";
+
 import "./App.css";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
       <Background style={{ position: "relative", zIndex: -100 }} />
       <Router>
         <Header />
+        {/* <AudioPlayer /> */}
         <Body>
           <Routes>
             <Route path="/" element={<Main />} />
