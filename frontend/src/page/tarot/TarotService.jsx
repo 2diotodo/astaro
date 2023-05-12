@@ -165,13 +165,13 @@ function TarotService() {
     const shuffleArr = Array.prototype.slice.call(
       document.getElementsByClassName("tarot-card")
     );
-    shuffleArr.map((elem) => {
-      elem.classList.add("shuffle-card");
-    });
+    shuffleArr.map((elem) =>
+      elem.classList.add("shuffle-card")
+    );
     setTimeout(() => {
-      shuffleArr.map((elem) => {
-        elem.classList.add("shuffled");
-      });
+      shuffleArr.map((elem) =>
+        elem.classList.add("shuffled")
+      );
     }, 5000);
   };
 
@@ -232,7 +232,7 @@ function TarotService() {
         </ColContainer>
         <ColContainer
           id="slide-from-loading"
-          style={{ position: "absolute", top: 0 }}
+          style={{ position: "absolute", top: 0, width: "80vw" }}
           className="slide-in right-hidden"
           justify="start"
         >

@@ -93,7 +93,7 @@ const CardNav = (props) => {
   const isLoginState = useSelector((state) => state.loginCheck.isLogin);
 
   const clickCardBtn = (url) => {
-    if (url == "/todaytaro") {
+    if (url === "/todaytaro") {
       navigate(url);
     } else if (isLoginState === true) {
       navigate(url);

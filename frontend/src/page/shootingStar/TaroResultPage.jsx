@@ -1,4 +1,3 @@
-import { Background } from "@component/common/Background";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -12,13 +11,6 @@ const ResultContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
-`;
-
-const Image = styled.img`
-  max-width: 80%;
-  max-height: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
 `;
 
 const Description = styled.p`
@@ -62,12 +54,9 @@ const TaroResultPage = () => {
   }
   const imgList = taroResult.imgList;
   const content = taroResult.input;
-  console.log("content ", content)
 
   const renderCarouselImages = () => {
-    console.log("여기는 taro Result", taroResult);
     if (!imgList) {
-      console.error("imgList is undefined or null");
       return [];
     }
   
@@ -77,16 +66,6 @@ const TaroResultPage = () => {
       </div>
     ));
   };
-  
-
-  // const renderCarouselImages = () => {
-  //   console.log("여기는 taro Result", taroResult)
-  //   return imgList.split(",").map((imgSrc, index) => (
-  //     <div key={index}>
-  //       <img src={imgSrc} alt={`타로 카드 이미지 ${index}`} />
-  //     </div>
-  //   ));
-  // };
 
   return (
     <>

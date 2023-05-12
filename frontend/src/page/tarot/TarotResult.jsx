@@ -42,14 +42,12 @@ const ResultDiv = styled.div`
 
 
 function TarotResult() {
-  const [swiperIndex, setSwiperIndex] = useState(0);
+  const [swiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
   const tarotCardsInfo = useSelector((state) => state.tarot.stateCardsInfo);
   const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
 
   useEffect(() => {
-    console.log(tarotCardsInfo);
-    console.log(tarotResults)
   }, [swiperIndex, dalleImgUrl]);
 
 
@@ -72,7 +70,9 @@ function TarotResult() {
             <ColContainer height="100%">
               <TarotCard
                 card={tarotCard}
+                id="result-tarocard"
                 className="selected-tarocard result-tarocard"
+                style={{position:"relative"}}
               />
               <GapH height="20vh"/>
               <ResultDiv>

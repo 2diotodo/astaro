@@ -4,7 +4,6 @@ import {
   isRejectedWithValue,
 } from "@reduxjs/toolkit";
 import axios from "@utils/axiosInstance";
-import { error } from "jquery";
 
 // 회원 로그인, 로그아웃, 회원가입 관리
 

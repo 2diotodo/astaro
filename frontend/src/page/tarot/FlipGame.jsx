@@ -21,22 +21,6 @@ const Card = ({ id, name, flipped, matched, clicked }) => {
 };
 
 function FlipGame() {
-  // timer
-  const [savedTime, setSavedTime] = useState(0);
-
-  const formatElapsedTime = (time) => {
-    const hours = Math.floor(time / 3600000);
-    const minutes = Math.floor((time - hours * 3600000) / 60000);
-    const seconds = Math.floor(
-      (time - hours * 3600000 - minutes * 60000) / 1000
-    );
-    const milliseconds = Math.floor((time % 1000) / 100);
-    return `${minutes.toString().padStart(2, "0")}:${seconds
-      .toString()
-      .padStart(2, "0")}.${milliseconds.toString()}`;
-  };
-  ///////////// HELPER FUNCTION /////////////
-
   const shuffle = (array) => {
     let currentIndex = array.length,
       temporaryValue,
@@ -65,9 +49,7 @@ function FlipGame() {
   );
   const [flippedCards, setFlippedCards] = useState([]);
   const [gameOver, setGameOver] = useState(false);
-  const [gameOverTime, setGameOverTime] = useState("");
-
-  ///////////// GAME LOGIC /////////////
+///////////// GAME LOGIC /////////////
 
   const handleClick = (name, index) => {
     let currentCard = {
@@ -112,17 +94,12 @@ function FlipGame() {
     setFlippedCards([]);
   };
 
-  const [elapsed, setElapsed] = useState(null);
-
   const isGameOver = () => {
     let done = true;
     cardList.forEach((card) => {
       if (!card.matched) done = false;
     });
     setGameOver(done);
-    // const currentTime = timerRef.current.getTime();
-    const formattedTime = formatElapsedTime(elapsed);
-    setGameOverTime(formattedTime);
   };
 
   ///////////// RESTART - REDO SETUP /////////////
