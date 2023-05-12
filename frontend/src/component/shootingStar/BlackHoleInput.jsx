@@ -1,6 +1,6 @@
 // src/component/shootingStar/BlackHoleInput.jsx
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const InputContainer = styled.div`
   width: 80%;
@@ -35,10 +35,14 @@ const SendButton = styled.button`
   color: white;
 `;
 
-const BlackHoleInput = ({ placeholder }) => {
+const BlackHoleInput = ({ textRef, placeholder }) => {
   return (
     <InputContainer>
-      <Input placeholder={placeholder} />
+      <Input
+        className="shattered-text"
+        placeholder={placeholder}
+        ref={textRef}
+      />
       <SendButton>
         <i className="fas fa-paper-plane"></i>
       </SendButton>
