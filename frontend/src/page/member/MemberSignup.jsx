@@ -47,18 +47,12 @@ const InputWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  position: relative;
+  height: 10%;
 
-  height: 15%
-
-  padding: 5%;
-
-  background-color: transparent;
+  margin: 2%;
 `;
 
-const Label = styled.label.attrs((props) => ({
-  for: props.for || "",
-}))`
+const Label = styled.label`
   width: 10%;
   height: 90%;
 
@@ -69,19 +63,9 @@ const Label = styled.label.attrs((props) => ({
 `;
 
 const Input = styled.input.attrs((props) => ({
-  id: props.id || "",
   type: props.type || "text",
   placeholder: props.placeholder || "",
 }))`
-  &:focus + ${Label}, &:valid + ${Label} {
-    ${Label} {
-      font-size: 16px;
-      bottom: 40px;
-      color: #666;
-      font-weight: bold;
-    }
-  }
-
   width: 70%;
   height: 90%;
 
@@ -130,7 +114,7 @@ function MemberSignup() {
     setPassword(e.target.value);
 
     let check =
-      /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/; // 단순 8~12자리
+      /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
 
     if (check.test(password)) {
       console.log("통과함?");
@@ -157,7 +141,7 @@ function MemberSignup() {
         }
       }, 500);
     }
-  }, [passwordConfirm]);
+  }, [password, passwordConfirm]);
 
   const handleChangeEm = (e) => {
     setEmail(e.target.value);
@@ -263,14 +247,12 @@ function MemberSignup() {
           </InputWrapper>
         ) : null}
         <InputWrapper>
-          <Label for="memberId">Id</Label>
+          <Label>Id</Label>
           <Input
             placeholder={memberId}
             onChange={handleChangeId}
             value={memberId}
-            id="memberId"
           />
-
           <SubmitBtn onClick={handleClickId}>체크</SubmitBtn>
         </InputWrapper>
         {validateEm === true ? (

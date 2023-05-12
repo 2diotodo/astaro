@@ -22,7 +22,7 @@ const Category = styled.div`
 
 const SlideWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 3;
 `;
 
