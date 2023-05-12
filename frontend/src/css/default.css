@@ -2,7 +2,7 @@
   box-sizing: content-box;
 }
 
-html{
+html {
   margin: 0;
   height: 100%;
   width: 100%;
@@ -22,7 +22,6 @@ body {
   overflow-y: scroll;
 }
 
-
 .title {
   position: absolute;
   width: 100%;
@@ -31,7 +30,7 @@ body {
   color: #fff;
   font-weight: 100;
   font-size: 3em;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
 }
 
 .title .avatar {
