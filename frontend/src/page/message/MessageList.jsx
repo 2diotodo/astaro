@@ -21,10 +21,8 @@ const MessageListPage = () => {
 
   const dispatch = useDispatch();
   
-  const memberSeq = 1;
-
   useEffect(() => {
-    dispatch(getMessageList(memberSeq)).then((data) => {
+    dispatch(getMessageList()).then((data) => {
         console.log(data.payload); // 첫번째 payload 출력
         setMessageRooms(data.payload);
     });
