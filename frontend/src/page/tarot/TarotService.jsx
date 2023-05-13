@@ -203,9 +203,10 @@ function TarotService() {
               width: "100%",
               boxShadow: "0px 0px 10px 5px gray",
               border: "1px solid white",
+              maxWidth: "500px",
             }}
           />
-          <Button width="80%" margin="5vh 0" onClick={slideFromCategoryToTarot}>
+          <Button width="80%" height="50px" margin="5vh 0" onClick={slideFromCategoryToTarot} style={{maxWidth:"300px"}}>
             다음으로
           </Button>
         </ColContainer>
