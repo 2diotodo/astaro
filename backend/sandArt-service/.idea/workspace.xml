@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b1b0427-aa22-4e35-bfcb-2379ac8c00d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotResult.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotTest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotTest.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="5b1b0427-aa22-4e35-bfcb-2379ac8c00d5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

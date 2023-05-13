@@ -1,6 +1,7 @@
 import { useState } from "react";
 import cards from "@constants/carddata.json";
 import tarot_back from "@assets/img/taro_back_.png";
+import "@css/flipgame.css";
 
 const Card = ({ id, name, flipped, matched, clicked }) => {
   return (
@@ -49,7 +50,7 @@ function FlipGame() {
   );
   const [flippedCards, setFlippedCards] = useState([]);
   const [gameOver, setGameOver] = useState(false);
-///////////// GAME LOGIC /////////////
+  ///////////// GAME LOGIC /////////////
 
   const handleClick = (name, index) => {
     let currentCard = {
