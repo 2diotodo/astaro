@@ -31,7 +31,7 @@ const Container = styled.div`
     width: 100vh;
     height: 100%;
     position: absolute;
-    z-index: 0;
+    z-index: 5;
     animation: ${rotate} 30s linear infinite;
   }
 `;
@@ -39,7 +39,7 @@ const Container = styled.div`
 const Title = styled.h1`
   color: white;
   margin-bottom: 1rem;
-  z-index: 1;
+  z-index: 5;
 `;
 
 const InputContainer = styled.div`
@@ -48,11 +48,10 @@ const InputContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 5;
 `;
 
 const SendButton = styled.button`
-  z-index: 1;
   background: none;
   border: none;
   cursor: pointer;
@@ -61,6 +60,7 @@ const SendButton = styled.button`
   margin-top: 1rem;
   display: flex;
   align-items: center;
+  z-index: 5;
 `;
 
 
@@ -77,7 +77,6 @@ const SendButtonContainer = styled.div`
 `;
 
 const AudioButton = styled.button`
-  z-index: 1;
   background: none;
   border: none;
   cursor: pointer;
@@ -86,6 +85,7 @@ const AudioButton = styled.button`
   margin-top: 1rem;
   display: flex;
   align-items: center;
+  z-index: 5;
 `;
 
 const Visualizer = styled.div`

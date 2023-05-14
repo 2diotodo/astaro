@@ -42,7 +42,6 @@ public class TaroResultService {
         HttpEntity<FlaskDto> requestEntity = new HttpEntity<>(flaskDto);
         String flaskUrl = baseurl + "/api/run-script";
         String videoUrl = restTemplate.postForObject(flaskUrl, requestEntity, String.class);
-        System.out.println(videoUrl);
         URL url = new URL(dto.getImgUrl());
         byte[] imageBytes = IOUtils.toByteArray(url.openStream());
         String fileName = UUID.randomUUID() + ".png";

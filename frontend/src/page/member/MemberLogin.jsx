@@ -22,17 +22,6 @@ const Title = styled.div`
   margin: 10% 0 10% 0;
 `;
 
-// const Button = styled.button`
-//   width: 50%;
-//   position: relative;
-//   padding: 5px 20px;
-//   margin: 3%;
-//   border: 1px solid white;
-//   background-color: rgba(0, 0, 0, 0);
-//   color: white;
-//   font-size: 20px;
-// `;
-
 function MemberLogin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

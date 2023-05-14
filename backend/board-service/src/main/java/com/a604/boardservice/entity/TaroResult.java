@@ -29,16 +29,20 @@ public class TaroResult {
     private String category;
 
     @Column(nullable = false)
-    private String input;
+    private String contentInput;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String cardSeqList;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String contentList;
+//    @Column(columnDefinition = "TEXT", nullable = false)
+//    private String contentList;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String imgList;
+    private String imgUrl;
+    @Column(columnDefinition = "TEXT")
+    private String story;
+    @Column(columnDefinition = "TEXT")
+    private String videoUrl;
     @Column(columnDefinition = "BIT", length = 1, nullable = false)
     @ColumnDefault("0")
     private Boolean isDangerous;
@@ -48,7 +52,6 @@ public class TaroResult {
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
-    @ColumnDefault("CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     @Column(columnDefinition = "BIT", length = 1, nullable = false)
@@ -60,10 +63,12 @@ public class TaroResult {
                 .seq(this.seq)
                 .memberSeq(this.memberSeq)
                 .category(this.category)
-                .input(this.input)
+                .contentInput(this.contentInput)
                 .cardSeqList(this.cardSeqList)
-                .contentList(this.contentList)
-                .imgList(this.imgList)
+//                .contentList(this.contentList)
+                .imgUrl(this.imgUrl)
+                .story(this.story)
+                .videoUrl(this.videoUrl)
                 .isDangerous(this.isDangerous)
                 .isPublic(this.isPublic)
                 .createdAt(this.createdAt)

@@ -38,6 +38,7 @@ public class AuthRestController {
             return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
         }
         result.put("accessToken", accessToken.orElseThrow());
+        result.put("seq", authService.getUserSeqFromToken(accessToken.get()).toString());
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -76,6 +77,7 @@ public class AuthRestController {
         }
         Map<String, String> result = new HashMap<>();
         result.put("accessToken", newAccessToken);
+        result.put("seq", authService.getUserSeqFromToken(newAccessToken).toString());
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

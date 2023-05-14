@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api/v1/star")
 public class ShootingStarController {
@@ -19,13 +21,14 @@ public class ShootingStarController {
     /**
      * 별똥별 랜덤 조회
      * 자기 자신이 작성한 고민 제외
-     * @param memberSeq
      * @return
      */
-    @GetMapping("/{member_seq}")
-    public ResponseEntity<?> getRandomTaroResult(@PathVariable("member_seq") long memberSeq) {
+    @GetMapping("")
+    public ResponseEntity<?> getRandomTaroResult(HttpServletRequest request, @RequestParam("category") String category) {
         try {
-            TaroResultDto taroResultDto = shootingStarService.getTaroResult(memberSeq);
+            System.out.println(Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement()));
+            long memberSeq = Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement());
+            TaroResultDto taroResultDto = shootingStarService.getTaroResult(memberSeq, category);
             // 해당하는 타로가 있는지 확인
             if (taroResultDto == null) {
                 return new ResponseEntity<>(SUCCESS, HttpStatus.NO_CONTENT);
