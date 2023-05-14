@@ -39,8 +39,6 @@ const ResultDiv = styled.div`
   max-width: 400px;
   bottom: 10vh;
 `
-
-
 function TarotResult() {
   const [swiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
@@ -48,9 +46,8 @@ function TarotResult() {
   const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
 
   useEffect(() => {
+      console.log(dalleImgUrl);
   }, [swiperIndex, dalleImgUrl]);
-
-
 
   return (
     <>
@@ -88,7 +85,7 @@ function TarotResult() {
               <ResultDiv>
                 <Small style={{lineHeight:"2em"}}>{tarotResults[3]}</Small>
                 <GapH height="20vh"/>
-                <Button width="80%">이야기 보러가기</Button>
+                  {dalleImgUrl ? <Button width="80%">이야기 보러가기</Button> : <></>}
               </ResultDiv>
             </ColContainer>
           </SlideWrapper>

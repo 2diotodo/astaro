@@ -44,7 +44,9 @@ export function TodayResult() {
   }, []);
 
   const captureScreenshot = () => {
-    html2canvas(document.getElementById("todayresultcard")).then((canvas) => {
+    html2canvas(document.getElementById("todayresultcard"),{    useCORS: true,
+      allowTaint: true}).then((canvas) => {
+      
       canvas.toBlob((blob) => {
         if (blob) {
           const url = URL.createObjectURL(blob);
@@ -59,11 +61,13 @@ export function TodayResult() {
   };
 
   return (
+    
     <ColContainer
       width="80%"
-      height="200vh"
+      height="100%"
       justify="start"
-      style={{ top: "0", position: "absolute", paddingTop: "2vh" }}
+      style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'black' }}
+      id="todayresultcard"
     >
       <TodayMainCard>
         <img
