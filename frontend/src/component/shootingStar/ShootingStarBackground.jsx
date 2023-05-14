@@ -145,7 +145,7 @@ const ShootingStars = () => {
   const handleStarClick = async () => {
     const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
     try {
-      const taroResultAction = await dispatch(fetchTaroResult(memberSeq));
+      const taroResultAction = dispatch(fetchTaroResult(memberSeq));
       const taroResultDto = taroResultAction.payload;
       navigate("/star/taro-result", { state: { taroResult: taroResultDto } });
     } catch (error) {
