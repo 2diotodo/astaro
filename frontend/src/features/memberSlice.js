@@ -32,7 +32,6 @@ export const login = createAsyncThunk(
         url: url,
         data: request,
       });
-
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -128,6 +127,7 @@ const memberSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.status = "loginSuccess";
       localStorage.setItem("access-token", action.payload.accessToken);
+      localStorage.setItem("seq", action.payload.seq);
     });
     builder.addCase(login.rejected, (state, action) => {
       state.status = "failed";

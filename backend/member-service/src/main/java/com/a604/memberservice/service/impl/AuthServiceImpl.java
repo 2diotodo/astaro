@@ -7,7 +7,6 @@ import com.a604.memberservice.repository.MemberRepository;
 import com.a604.memberservice.service.AuthService;
 import com.a604.memberservice.util.CookieUtil;
 import com.a604.memberservice.util.JwtUtil;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +41,11 @@ public class AuthServiceImpl implements AuthService {
 
         saveRefreshToken(response, member.get());
         return Optional.ofNullable(jwtUtil.generateAccessToken(member.get()));
+    }
+
+    @Override
+    public Long getUserSeqFromToken(String token){
+        return Long.parseLong(jwtUtil.getClaim(token).getSubject());
     }
 
     @Override

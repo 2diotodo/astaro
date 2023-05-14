@@ -15,6 +15,8 @@ public interface AuthService {
     // 로그인
     public Optional<String> checkMember(HttpServletResponse response, LoginRequestDto loginRequestDto);
 
+    Long getUserSeqFromToken(String token);
+
     // 회원가입
     public boolean writeMember(SignUpRequestDto signUpRequestDto);
 

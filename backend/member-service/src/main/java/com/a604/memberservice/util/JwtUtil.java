@@ -84,4 +84,12 @@ public class JwtUtil {
         return Long.parseLong(claims.getSubject());
     }
 
+    public Claims getClaim(String token){
+        return Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
 }

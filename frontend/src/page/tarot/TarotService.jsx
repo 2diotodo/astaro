@@ -17,7 +17,7 @@ import {
   setStateImgUrl,
   setStateMessage,
   setStateResults,
-  setStateStory,
+  setStateStory, setStateVideoUrl,
 } from "@features/tarotSlice";
 import { useNavigate } from "react-router-dom";
 import FlipGame from "@page/tarot/FlipGame";
@@ -30,6 +30,7 @@ function TarotService() {
   const [tarotResult, setTarotResult] = useState([]);
   const category = useSelector((state) => state.tarot.stateCategory);
   const stateCards = useSelector((state) => state.tarot.stateCards);
+  const stateVideoUrl = useSelector((state) => state.tarot.stateVideoUrl);
   const cardSeqList = useSelector((state) =>
     state.tarot.stateCardsInfo.map((card) => card.id)
   );
@@ -109,7 +110,7 @@ function TarotService() {
           )
           .then((res) => {
             reqPicturePrompt =
-              "fairy tale style, " + res.data.choices[0].message.content;
+              "simple drawing, fairytale style, " + res.data.choices[0].message.content;
           });
 
         const reqPictureData = {
@@ -130,18 +131,21 @@ function TarotService() {
           });
 
         const tarotResultDto = {
-          memberSeq: localStorage.getItem("user"),
+          memberSeq: localStorage.getItem("seq"),
           category: category,
           contentInput: message,
           cardSeqList: cardSeqList,
           contentList: jsonRes.해석,
-          imgList: [imgUrl],
+          imgList: imgUrl,
         };
 
         await axiosInstance.post(
           `${process.env.REACT_APP_BACKEND_URL}`,
           tarotResultDto
-        );
+        ).then((res) =>{
+          dispatch(setStateVideoUrl(res.data.videoUrl));
+          console.log(res);
+        });
       }
 
       receiveTaroResultAndPicture();
@@ -189,7 +193,7 @@ function TarotService() {
 
   return (
     <>
-      <UpDownContainer style={{ position: "relative" }}>
+      <UpDownContainer style={{ position: "relative", width:"100%" }}>
         <ColContainer
           id="slide-from-category"
           style={{ position: "absolute", top: 0 }}
