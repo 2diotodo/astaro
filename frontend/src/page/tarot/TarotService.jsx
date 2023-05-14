@@ -140,7 +140,7 @@ function TarotService() {
         };
 
         await axiosInstance.post(
-          `${process.env.REACT_APP_BACKEND_URL}`,
+          `${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/result`,
           tarotResultDto
         ).then((res) =>{
           dispatch(setStateVideoUrl(res.data.videoUrl));
