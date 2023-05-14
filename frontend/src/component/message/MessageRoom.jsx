@@ -73,19 +73,10 @@ const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
     }
   };
 
-  const memberSeq = 1;
-
   const leaveMessageRoom = (event) => {
-    if (memberSeq == messageRoom.senderSeq) {
-      console.log("messageRoom.senderSeq"+messageRoom.senderSeq)
-      messageRoom.isLeaveSender = true;
-    } else {
-      console.log("messageRoom.receiverSeq"+messageRoom.receiverSeq)
-      messageRoom.isLeaveReceiver = true;
-    }
     dispatch(updateMessageList(messageRoom)).then((data) => {
       console.log(data.payload); // 첫번째 payload 출력
-      dispatch(getMessageList(memberSeq)).then((data) => {
+      dispatch(getMessageList()).then((data) => {
         console.log(data.payload); // 첫번째 payload 출력
         setMessageRooms(data.payload);
     });

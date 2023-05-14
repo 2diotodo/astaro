@@ -8,7 +8,7 @@ import chatSlice from "@/features/shootingStarSlice/chatSlice";
 import tarotSlice from "@features/tarotSlice";
 import memberUpdateSlice from "@features/memberUpdateSlice";
 import messageListSlice from "@features/messageSlice/messageListSlice";
-
+import starSlice from "@/features/shootingStarSlice/starSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +20,7 @@ export const store = configureStore({
     tarot: tarotSlice,
     messageListCheck: messageListSlice,
     memberUpdate: memberUpdateSlice,
+    star: starSlice,
   },
   // saga 쓰면 여기에 추가
   // middleware: new MiddlewareArray().concat(additionalMiddleware, logger),
