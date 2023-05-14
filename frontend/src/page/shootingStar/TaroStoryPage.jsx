@@ -1,6 +1,10 @@
 import React, { useState, useEffect,  useRef} from "react";
 import styled from "styled-components";
 import MessageInput from "../../component/shootingStar/MessageInput";
+import { useDispatch } from "react-redux";
+import { fetchTaroResult } from "@features/shootingStarSlice/starSlice"
+import { sendMessage } from "@features/shootingStarSlice/chatSlice";
+import { useSelector } from 'react-redux';
 
 const TaroStory = styled.div`
   display: flex;
@@ -81,7 +85,6 @@ const Front = styled(Slide)`
   transform: translateZ(10em);
 `;
 
-
 const TaroStoryPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [nextSlide, setNextSlide] = useState(null);
@@ -96,66 +99,74 @@ const TaroStoryPage = () => {
   const [storyRight, setStoryRight] = useState("");
   const [storyBack, setStoryBack] = useState("");
   const [storyLeft, setStoryLeft] = useState("");
-
+  const dispatch = useDispatch();
+  
+  const category = useSelector(state => state.star.category);
   useEffect(() => {
     if (flag === 0) {
       setFlag(1);
-      const newTaroResult1 = {
-        story: 0,
-        url: "https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process.mp4",
-      };
-      setTaroResult(prevState => [...prevState, newTaroResult1]);
-      const newTaroResult2 = {
-        story: 1,
-        url: "https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4",
-      };
-      setTaroResult(prevState => [...prevState, newTaroResult2]);
+      dispatch(fetchTaroResult(category)).then((data) => {
+        console.log(data.payload);
+        setTaroResult(prevState => {
+          const newTaroResult = [...prevState, data.payload];
+          videoFrontRef.current.src = newTaroResult[currentSlide]?.videoUrl;
+          // setStoryFront(taroResult[currentSlide]?.story);
+          return newTaroResult;
+        });
+        // setTaroResult(prevState => [...prevState, data.payload]);
+        // videoFrontRef.current.src = taroResult[currentSlide]?.videoUrl;
+        // setStoryFront(taroResult[currentSlide]?.story);
+      });
+      dispatch(fetchTaroResult(category)).then((data) => {
+        console.log(data.payload);
+        setTaroResult(prevState => [...prevState, data.payload]);
+      });
     }
   }, []);
 
   useEffect(() => {
     if (currentSlide % 4 === 0) {
-      videoFrontRef.current.src = taroResult[currentSlide]?.url;
+      // videoFrontRef.current.src = taroResult[currentSlide]?.videoUrl;
       setStoryFront(taroResult[currentSlide]?.story);
       if (currentSlide !== 0) {
-        videoLeftRef.current.src = taroResult[currentSlide - 1]?.url;
+        videoLeftRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
         setStoryLeft(taroResult[currentSlide - 1]?.story);
       }
-      videoRightRef.current.src = taroResult[currentSlide + 1]?.url;
+      videoRightRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
       setStoryRight(taroResult[currentSlide + 1]?.story);
       videoBackRef.current.src = '';
       setStoryBack('');
     }
     else if (currentSlide % 4 === 1) {
-      videoRightRef.current.src = taroResult[currentSlide]?.url;
-      setStoryRight(taroResult[currentSlide]?.story);
+      // videoRightRef.current.src = taroResult[currentSlide]?.videoUrl;
+      // setStoryRight(taroResult[currentSlide]?.story);
       if (currentSlide !== 0) {
-        videoFrontRef.current.src = taroResult[currentSlide - 1]?.url;
+        videoFrontRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
         setStoryFront(taroResult[currentSlide-1]?.story);
       }
-      videoBackRef.current.src = taroResult[currentSlide + 1]?.url;
+      videoBackRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
       setStoryBack(taroResult[currentSlide + 1]?.story);
       videoLeftRef.current.src = '';
       setStoryLeft('');
     } else if (currentSlide % 4 === 2) {
-      videoBackRef.current.src = taroResult[currentSlide]?.url;
-      setStoryBack(taroResult[currentSlide]?.story);
+      // videoBackRef.current.src = taroResult[currentSlide]?.videUrl;
+      // setStoryBack(taroResult[currentSlide]?.story);
       if (currentSlide !== 0) {
-        videoRightRef.current.src = taroResult[currentSlide - 1]?.url;
+        videoRightRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
         setStoryRight(taroResult[currentSlide - 1]?.story);
       }
-      videoLeftRef.current.src = taroResult[currentSlide + 1]?.url;
+      videoLeftRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
       setStoryLeft(taroResult[currentSlide + 1]?.story);
       videoFrontRef.current.src = '';
       setStoryFront('');
     } else if (currentSlide % 4 === 3) {
-      videoLeftRef.current.src = taroResult[currentSlide]?.url;
-      setStoryLeft(taroResult[currentSlide]?.story);
+      // videoLeftRef.current.src = taroResult[currentSlide]?.videoUrl;
+      // setStoryLeft(taroResult[currentSlide]?.story);
       if (currentSlide !== 0) {
-        videoBackRef.current.src = taroResult[currentSlide - 1]?.url;
+        videoBackRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
         setStoryBack(taroResult[currentSlide - 1]?.story);
       }
-      videoFrontRef.current.src = taroResult[currentSlide + 1]?.url;
+      videoFrontRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
       setStoryFront(taroResult[currentSlide + 1]?.story);
       videoRightRef.current.src = '';
       setStoryRight('');
@@ -164,6 +175,13 @@ const TaroStoryPage = () => {
 
   const handleSendMessage = (message) => {
     console.log(message);
+    dispatch(
+      sendMessage({
+        messageListSeq: 0,
+        originalContent: message,
+        resultSeq: taroResult.resultSeq,
+      })
+    );
   };
 
   const handleTouchStart = (event) => {
@@ -190,16 +208,11 @@ const TaroStoryPage = () => {
   };
   
   const handleTouchEnd = () => {
-    if (taroResult.length === nextSlide) {
-      const newTaroResult = {
-        story: nextSlide,
-      };
-      if (nextSlide % 2 === 0) {
-        newTaroResult.url = "https://astaro.s3.ap-northeast-2.amazonaws.com/drawing_process.mp4";
-      } else {
-        newTaroResult.url = "https://a101-wedding101-pjt.s3.ap-northeast-2.amazonaws.com/dudwls624/final.mp4";
-      }
-      setTaroResult([...taroResult, newTaroResult]);
+    if (taroResult.length === nextSlide+1) {
+      dispatch(fetchTaroResult(category)).then((data) => {
+        console.log(data.payload);
+        setTaroResult(prevState => [...prevState, data.payload]);
+      });
     }
     if (nextSlide != null) {
       setCurrentSlide(nextSlide);
@@ -226,7 +239,7 @@ const TaroStoryPage = () => {
                 <source type="video/mp4" />
               </StoryVideo>
               <Content>
-                {storyFront}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
+                {storyFront}
               </Content>
             </TaroStory>
             <MessageContainer>
@@ -245,7 +258,7 @@ const TaroStoryPage = () => {
                 <source type="video/mp4" />
               </StoryVideo>
               <Content>
-                {storyRight}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.
+                {storyRight}
               </Content>
             </TaroStory>
             <MessageContainer>
@@ -264,7 +277,7 @@ const TaroStoryPage = () => {
                 <source type="video/mp4" />
               </StoryVideo>
               <Content>
-                {storyBack}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.  
+                {storyBack}
               </Content>
             </TaroStory>
             <MessageContainer>
@@ -283,7 +296,7 @@ const TaroStoryPage = () => {
                 <source type="video/mp4" />
               </StoryVideo>
               <Content>
-                {storyLeft}한때 멀고 먼 왕국에 제왕님이 살았습니다. 제왕님은 자신의 권위와 통치력으로 수많은 사람들…왕님은 외로움을 떨치고, 자신이 사랑하는 사람과 함께 하며 행복한 삶을 살게 되었습니다.  
+                {storyLeft}
               </Content>
             </TaroStory>
             <MessageContainer>
