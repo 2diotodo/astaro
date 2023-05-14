@@ -9,27 +9,13 @@ const Times = styled.div`
 `;
 
 function Timer({
-  startTime,
   onSaveTime,
   gameOver,
   formatElapsedTime,
-  timeElapsed,
 }) {
-  const isoStartTime = useMemo(() => new Date(startTime), [startTime]);
 
   const [elapsedTime, setElapsedTime] = useState(0);
 
-  const getRunningTime = (start) => {
-    const current = new Date().getTime();
-    const elapsed = current - start.getTime();
-    timeElapsed = elapsed;
-    return elapsed;
-  };
-
-  const runningTime = useMemo(
-    () => getRunningTime(isoStartTime),
-    [isoStartTime]
-  );
 
   useEffect(() => {
     let interval;
@@ -45,8 +31,6 @@ function Timer({
 
   useEffect(() => {
     if (gameOver) {
-      const formattedTime = formatElapsedTime(elapsedTime);
-      console.log("formattedtime", formattedTime);
       onSaveTime(elapsedTime);
     }
   }, [elapsedTime, onSaveTime, gameOver]);

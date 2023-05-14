@@ -24,9 +24,9 @@ public class MessageListController {
 	private MessageListService messageListService;
 
 	// 채팅방 불러오기
-	@GetMapping("/{member_seq}")
-	public ResponseEntity<List<MessageListDto>> messageListByMemberSeq(HttpServletRequest request, @PathVariable("member_seq") long memberSeq){
-		memberSeq = Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement());
+	@GetMapping("")
+	public ResponseEntity<List<MessageListDto>> messageListByMemberSeq(HttpServletRequest request){
+		long memberSeq = Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement());
 		List<MessageListDto> messageListDtoList = new ArrayList<>();
 		System.out.println("messageListByMemberSeq");
 		try{

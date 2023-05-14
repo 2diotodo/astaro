@@ -5,15 +5,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "@css/swiper-custom.css";
 import styled from "styled-components";
-import Medium from "@component/text/Medium";
 import ColContainer from "@component/layout/ColContainer";
 import GapH from "@component/layout/GapH";
 import Small from "@component/text/Small";
 import { useSelector } from "react-redux";
-import tarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/tarot/TarotCard";
 import Button from "@component/Button";
-import { useNavigate } from "react-router-dom";
 
 SwiperCore.use([Pagination]);
 
@@ -27,7 +24,7 @@ const SlideWrapper = styled.div`
 
 const PaginationWrapper = styled.div`
   position: absolute;
-  bottom: 5%; // 이 부분을 변경하였습니다.
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -45,17 +42,18 @@ const ResultDiv = styled.div`
 
 
 function TarotResult() {
-  const [swiperIndex, setSwiperIndex] = useState(0);
+  const [swiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
   const tarotCardsInfo = useSelector((state) => state.tarot.stateCardsInfo);
   const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
+
   useEffect(() => {
-    console.log(tarotCardsInfo);
   }, [swiperIndex, dalleImgUrl]);
 
 
+
   return (
-    <div>
+    <>
       <StyledSwiper
         spaceBetween={50}
         slidesPerView={1}
@@ -66,13 +64,15 @@ function TarotResult() {
           direction: "horizontal",
         }}
       >
-        {tarotCardsInfo.map((tarotCard, index) => (
-        <SwiperSlide>
+      {tarotCardsInfo.map((tarotCard, index) => (
+        <SwiperSlide key={tarotCard.id}>
           <SlideWrapper>
             <ColContainer height="100%">
               <TarotCard
                 card={tarotCard}
+                id="result-tarocard"
                 className="selected-tarocard result-tarocard"
+                style={{position:"relative"}}
               />
               <GapH height="20vh"/>
               <ResultDiv>
@@ -97,7 +97,7 @@ function TarotResult() {
       <PaginationWrapper>
         <div className="swiper-pagination" />
       </PaginationWrapper>
-    </div>
+    </>
   );
 };
 

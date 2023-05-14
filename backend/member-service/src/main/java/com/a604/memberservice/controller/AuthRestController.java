@@ -3,7 +3,6 @@ package com.a604.memberservice.controller;
 import com.a604.memberservice.dto.request.LoginRequestDto;
 import com.a604.memberservice.dto.request.SignUpRequestDto;
 import com.a604.memberservice.service.AuthService;
-import com.a604.memberservice.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -71,7 +70,7 @@ public class AuthRestController {
         try {
             newAccessToken = authService.reissueAccessToken(request, response);
             response.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + newAccessToken);
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new ResponseEntity<>(new HashMap<>(), HttpStatus.FORBIDDEN);
         }
@@ -105,7 +104,7 @@ public class AuthRestController {
 
         Map<String, String> result = new HashMap<>();
 
-        if (authService.checkIdDuplicate(nickname)) {
+        if (authService.checkNicknameDuplicate(nickname)) {
             result.put("message", "이미 사용중인 닉네임입니다.");
             result.put("status", "409");
 
@@ -124,7 +123,7 @@ public class AuthRestController {
 
         Map<String, String> result = new HashMap<>();
 
-        if (authService.checkIdDuplicate(email)) {
+        if (authService.checkEmailDuplicate(email)) {
             result.put("message", "이미 사용중인 이메일입니다.");
             result.put("status", "409");
 
