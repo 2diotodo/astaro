@@ -103,7 +103,9 @@ const ChatPage = () => {
         messageListSeq: selectedChatRoom,
         originalContent: message,
       })
-    );
+    ).then(() => {
+      dispatch(fetchMessages(id));
+  });;
   };
   
   useEffect(() => {

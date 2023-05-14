@@ -174,12 +174,12 @@ const TaroStoryPage = () => {
   }, [taroResult, currentSlide]);
 
   const handleSendMessage = (message) => {
-    console.log(message);
+    console.log(taroResult[currentSlide].seq);
     dispatch(
       sendMessage({
         messageListSeq: 0,
         originalContent: message,
-        resultSeq: taroResult.resultSeq,
+        resultSeq: taroResult[currentSlide].seq,
       })
     );
   };

@@ -147,7 +147,7 @@ const ShootingStars = () => {
     try {
       const taroResultAction = dispatch(fetchTaroResult(memberSeq));
       const taroResultDto = taroResultAction.payload;
-      navigate("/star/taro-result", { state: { taroResult: taroResultDto } });
+      navigate("/star/taro-story", { state: { taroResult: taroResultDto } });
     } catch (error) {
       console.error("Error fetching taro result:", error);
     }
