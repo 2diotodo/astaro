@@ -99,8 +99,13 @@ public class MessageListServiceImpl implements MessageListService{
 	}
 
 	@Override
-	public void modifyMessageList(long messageListSeq, MessageListDto messageListDto) throws Exception {
+	public void modifyMessageList(long memberSeq, long messageListSeq, MessageListDto messageListDto) throws Exception {
 		MessageList messageList = messageListDto.toEntity();
+		if (memberSeq == messageList.getSenderSeq()) {
+			messageList.setIsLeaveSender(true);
+		} else {
+			messageList.setIsLeaveReceiver(true);
+		}
 		messageList.setIsDeleted(false);
 		messageListRepository.save(messageList);
 	}

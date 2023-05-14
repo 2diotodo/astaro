@@ -15,6 +15,7 @@ sys.setrecursionlimit(100000)
 
 
 def create_sand_art_video(image_url):
+    image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/img-I6KZ7yUtChZGQgNneK0RFKkS.png"
     fourcc = cv2.VideoWriter_fourcc(*'h264')
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
@@ -33,11 +34,11 @@ def create_sand_art_video(image_url):
     # src = cv2.imread(image_path)
 
     # Gaussian blur 적용
-    # blurred_src = cv2.GaussianBlur(src, (3, 3), 300)
+    blurred_src = cv2.GaussianBlur(src, (3, 3), 300)
 
     # blurred_src = cv2.bilateralFilter(src, 9, 75, 75)
 
-    gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(blurred_src, cv2.COLOR_BGR2GRAY)
 
     # 히스토그램 평활화 적용
     equalized_gray = cv2.equalizeHist(gray)
@@ -54,10 +55,17 @@ def create_sand_art_video(image_url):
 
     def random_sand_color(intensity):
         r = random.randint(0, 100)
-        g = random.randint(0 + intensity * 10, 60 + intensity * 5)
-        b = random.randint(0 + intensity * 10, 60 + intensity * 5)
+        g = random.randint(0 + intensity * 10, 30 + intensity * 10)
+        b = random.randint(0 + intensity * 10, 30 + intensity * 10)
 
         return (b, g, r)
+
+    # def random_sand_color():
+    #     r = random.randint(0, 100)
+    #     g = random.randint(0, 60)
+    #     b = random.randint(0, 60)
+
+    #     return (b, g, r)
 
     output = np.zeros((*binary.shape, 3), dtype=np.uint8)
 
@@ -95,7 +103,7 @@ def create_sand_art_video(image_url):
                         output[i + a, j +
                                b] = random_sand_color(3 - (a*b//5) % 5)
 
-            ran_show = int(random.randrange(1000, 3000))
+            ran_show = int(random.randrange(3000, 5000))
 
             if ((i * j) % (ran_show)) == 0:
                 video.write(output)  # 현재 프레임 저장

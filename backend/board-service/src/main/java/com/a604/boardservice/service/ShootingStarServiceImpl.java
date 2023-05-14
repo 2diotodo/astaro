@@ -11,22 +11,13 @@ public class ShootingStarServiceImpl implements ShootingStarService{
     @Autowired
     ShootingStarRepository shootingStarRepository;
 
-    /**
-     * 랜덤 타로 결과 반환
-     * @param memberSeq
-     * @return TaroResultDto
-     */
     @Override
-    public TaroResultDto getTaroResult(long memberSeq) {
-        TaroResult randomTaroResult = shootingStarRepository.findRandomTaroResult(memberSeq);
-        String[] imgList = randomTaroResult.getImgList().split(",");
-        String firstImage = imgList[0];
-        System.out.println("#123 First image: " + firstImage);
-        // 해당하는 타로 결과가 없는 경우
+    public TaroResultDto getTaroResult(long memberSeq, String category) {
+        TaroResult randomTaroResult = shootingStarRepository.findRandomTaroResult(memberSeq, category);
         if (randomTaroResult == null) {
             return new TaroResultDto();
         } else {
-            TaroResultDto taroResultDto = new TaroResultDto(randomTaroResult);
+            TaroResultDto taroResultDto = randomTaroResult.toDto();
             return taroResultDto;
         }
     }

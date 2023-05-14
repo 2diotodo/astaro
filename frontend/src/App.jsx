@@ -12,7 +12,6 @@ import MemberMypage from "@page/member/MemberMypage";
 import MessageListPage from "@page/message/MessageList";
 import ChatPage from "@page/shootingStar/ChatPage";
 import StarPage from "@page/shootingStar/StarPage";
-import TaroResultPage from "@page/shootingStar/TaroResultPage";
 import { TodayResult } from "@/page/tarot/TodayResult";
 import TarotResult from "@page/tarot/TarotResult";
 import FlipGame from "@page/tarot/FlipGame";
@@ -40,7 +39,6 @@ function App() {
             <Route path="/message/messageList" element={<MessageListPage />} />
             <Route path="/star/chat/:id" element={<ChatPage />} />
             <Route path="/star" element={<StarPage />} />
-            <Route path="/star/taro-result" element={<TaroResultPage />} />
             <Route path="/star/black-hole" element={<BlackHolePage />} />
             <Route path="/flipgame" element={<FlipGame />} />
             <Route path="/star/taro-story" element={<TaroStoryPage />} />
