@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,8 +47,11 @@ public class MessageController {
      * @return
      */
     @PostMapping()
-    public ResponseEntity<?> createMessage(@RequestBody MessageRequestDto messageRequestDto) {
-        Message message = messageService.sendMessage(messageRequestDto);
+    public ResponseEntity<?> createMessage(HttpServletRequest request, @RequestBody MessageRequestDto messageRequestDto) {
+        long memberSeq = Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement());
+        System.out.println("memberSeq : " + memberSeq);
+
+        Message message = messageService.sendMessage(messageRequestDto, memberSeq);
         if (message != null) {
             return ResponseEntity.ok(HttpStatus.OK);
         } else {

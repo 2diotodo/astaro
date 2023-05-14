@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import "@css/todayresult.scss";
+import "@css/todayresult.css";
 import { useNavigate } from "react-router-dom";
 import Button from "@component/Button";
 import RowContainer from "@component/layout/RowContainer";
@@ -44,7 +44,9 @@ export function TodayResult() {
   }, []);
 
   const captureScreenshot = () => {
-    html2canvas(document.getElementById("todayresultcard")).then((canvas) => {
+    html2canvas(document.getElementById("todayresultcard"),{    useCORS: true,
+      allowTaint: true}).then((canvas) => {
+      
       canvas.toBlob((blob) => {
         if (blob) {
           const url = URL.createObjectURL(blob);
@@ -59,11 +61,13 @@ export function TodayResult() {
   };
 
   return (
+    
     <ColContainer
       width="80%"
-      height="200vh"
+      height="100%"
       justify="start"
-      style={{ top: "0", position: "absolute", paddingTop:"2vh" }}
+      style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'black' }}
+      id="todayresultcard"
     >
       <TodayMainCard>
         <img
@@ -146,7 +150,7 @@ const TodayTarotCard = styled.div`
   text-align: center;
   font-size: 14px;
   color: white;
-  & > .today-subcard > img{
+  & > .today-subcard > img {
     max-width: 120px;
   }
 `;

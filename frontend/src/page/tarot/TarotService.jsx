@@ -4,7 +4,7 @@ import axios from "axios";
 import axiosInstance from "@utils/axiosInstance";
 import Input from "@component/Input";
 import ColContainer from "@component/layout/ColContainer";
-import "@css/tarocard.scss";
+import "@css/tarocard.css";
 import "@css/tarotpageslide.css";
 import TarotDeck from "@component/tarot/TarotDeck";
 import GapH from "@component/layout/GapH";
@@ -17,7 +17,7 @@ import {
   setStateImgUrl,
   setStateMessage,
   setStateResults,
-  setStateStory,
+  setStateStory, setStateVideoUrl,
 } from "@features/tarotSlice";
 import { useNavigate } from "react-router-dom";
 import FlipGame from "@page/tarot/FlipGame";
@@ -30,6 +30,7 @@ function TarotService() {
   const [tarotResult, setTarotResult] = useState([]);
   const category = useSelector((state) => state.tarot.stateCategory);
   const stateCards = useSelector((state) => state.tarot.stateCards);
+  const stateVideoUrl = useSelector((state) => state.tarot.stateVideoUrl);
   const cardSeqList = useSelector((state) =>
     state.tarot.stateCardsInfo.map((card) => card.id)
   );
@@ -109,7 +110,7 @@ function TarotService() {
           )
           .then((res) => {
             reqPicturePrompt =
-              "fairy tale style, " + res.data.choices[0].message.content;
+              "simple drawing, fairytale style, " + res.data.choices[0].message.content;
           });
 
         const reqPictureData = {
@@ -130,18 +131,21 @@ function TarotService() {
           });
 
         const tarotResultDto = {
-          memberSeq: localStorage.getItem("user"),
+          memberSeq: localStorage.getItem("seq"),
           category: category,
           contentInput: message,
           cardSeqList: cardSeqList,
           contentList: jsonRes.해석,
-          imgList: [imgUrl],
+          imgList: imgUrl,
         };
 
         await axiosInstance.post(
-          `${process.env.REACT_APP_BACKEND_URL}`,
+          `${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/result`,
           tarotResultDto
-        );
+        ).then((res) =>{
+          dispatch(setStateVideoUrl(res.data.videoUrl));
+          console.log(res);
+        });
       }
 
       receiveTaroResultAndPicture();
@@ -165,13 +169,9 @@ function TarotService() {
     const shuffleArr = Array.prototype.slice.call(
       document.getElementsByClassName("tarot-card")
     );
-    shuffleArr.map((elem) =>
-      elem.classList.add("shuffle-card")
-    );
+    shuffleArr.map((elem) => elem.classList.add("shuffle-card"));
     setTimeout(() => {
-      shuffleArr.map((elem) =>
-        elem.classList.add("shuffled")
-      );
+      shuffleArr.map((elem) => elem.classList.add("shuffled"));
     }, 5000);
   };
 
@@ -193,7 +193,7 @@ function TarotService() {
 
   return (
     <>
-      <UpDownContainer style={{ position: "relative" }}>
+      <UpDownContainer style={{ position: "relative", width:"100%" }}>
         <ColContainer
           id="slide-from-category"
           style={{ position: "absolute", top: 0 }}
@@ -207,9 +207,10 @@ function TarotService() {
               width: "100%",
               boxShadow: "0px 0px 10px 5px gray",
               border: "1px solid white",
+              maxWidth: "500px",
             }}
           />
-          <Button width="80%" margin="5vh 0" onClick={slideFromCategoryToTarot}>
+          <Button width="80%" height="50px" margin="5vh 0" onClick={slideFromCategoryToTarot} style={{maxWidth:"300px"}}>
             다음으로
           </Button>
         </ColContainer>

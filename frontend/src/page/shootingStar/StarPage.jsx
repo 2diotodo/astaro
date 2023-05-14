@@ -6,6 +6,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "@/css/swiper-custom.css";
 import ShootingStars from "@/component/shootingStar/ShootingStarBackground";
+import { useDispatch } from "react-redux";
+import { setCategory } from "@/features/shootingStarSlice/starSlice";
 
 SwiperCore.use([Pagination]);
 
@@ -16,8 +18,8 @@ const Category = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 1.5rem;
-  color: white;
-  z-index: 4;
+  color: red;
+  z-index: 100;
 `;
 
 const SlideWrapper = styled.div`
@@ -28,7 +30,7 @@ const SlideWrapper = styled.div`
 
 const PaginationWrapper = styled.div`
   position: absolute;
-  top: 95%; // 이 부분을 변경하였습니다.
+  top: 95%;
   left: 50%;
   transform: translateX(-50%);
 
@@ -45,9 +47,13 @@ const StyledSwiper = styled(Swiper)`
 const StarPage = () => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [shootingStarsKey, setShootingStarsKey] = useState(0);
+  const dispatch = useDispatch();
 
   const handleSwiperChange = (index) => {
+    console.log("handleSwiperChange 됨")
     setSwiperIndex(index);
+    const categories = ["연애", "재물", "학업", "진로"];
+    dispatch(setCategory(categories[index]));
   };
 
   useEffect(() => {
@@ -56,7 +62,6 @@ const StarPage = () => {
 
   return (
     <>
-      {/* <Background /> */}
       <StyledSwiper
         spaceBetween={50}
         slidesPerView={1}

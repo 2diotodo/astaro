@@ -11,18 +11,15 @@ const initialState = {
 const token = `${localStorage.getItem("access-token")}`;
 
 // 채팅방 불러오기
-export const getMessageList = createAsyncThunk(
-  "messageListSlice/getMessageList",
-  async (memberSeq) => {
-    const url = `${baseURL}api/v1/room/${memberSeq}`;
-    const response = await axios({
-      headers: { Authorization: `Bearer ${token}` },
-      method: "GET",
-      url: url,
-    });
-    return response.data;
-  }
-);
+export const getMessageList = createAsyncThunk("messageListSlice/getMessageList", async () => {
+  const url = `${baseURL}api/v1/room`;
+  const response = await axios({
+    headers: { Authorization: `Bearer ${token}` },
+    method: "GET",
+    url: url,
+  });
+  return response.data;
+});
 
 // 채팅방 업데이트
 export const updateMessageList = createAsyncThunk(

@@ -2,7 +2,7 @@
   box-sizing: content-box;
 }
 
-html{
+html {
   margin: 0;
   height: 100%;
   width: 100%;
@@ -13,7 +13,7 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;
-  position: relative;
+  position: fixed;
   font-family: "TAEBAEKmilkyway", "Nanum Myeongjo", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -21,7 +21,6 @@ body {
   text-align: center;
   overflow-y: scroll;
 }
-
 
 .title {
   position: absolute;
@@ -31,7 +30,7 @@ body {
   color: #fff;
   font-weight: 100;
   font-size: 3em;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
 }
 
 .title .avatar {

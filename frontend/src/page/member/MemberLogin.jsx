@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 import styled from "styled-components";
 import { login } from "@features/memberSlice";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
@@ -22,17 +21,6 @@ const Title = styled.div`
   font-size: 40px;
   margin: 10% 0 10% 0;
 `;
-
-// const Button = styled.button`
-//   width: 50%;
-//   position: relative;
-//   padding: 5px 20px;
-//   margin: 3%;
-//   border: 1px solid white;
-//   background-color: rgba(0, 0, 0, 0);
-//   color: white;
-//   font-size: 20px;
-// `;
 
 function MemberLogin() {
   const dispatch = useDispatch();
@@ -70,10 +58,10 @@ function MemberLogin() {
     e.preventDefault();
 
     if (!logins.memberId) {
-      toast.error("아이디를 입력하세요");
+      alert("아이디를 입력하세요");
       return;
     } else if (!logins.password) {
-      toast.error("비밀번호를 입력하세요");
+      alert("비밀번호를 입력하세요");
       return;
     }
 

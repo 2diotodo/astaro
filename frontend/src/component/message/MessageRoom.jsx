@@ -10,29 +10,29 @@ import { useNavigate } from "react-router-dom";
 const RoomContainer = styled.div`
   border-radius: 10px;
   background-color: rgba(241, 241, 241, 0.2);
-  padding: 10px;
-  width: 300px;
-  margin: 10px;
+  color: white;
+  padding: 2%;
+  width: 90%;
+  text-align: left;
+  margin: 3%;
 `;
 
 const Nickname = styled.div`
-  font-size: 20px;
-  margin-bottom: 5px;
-  text-align: left;
-  width: 300px;
+  font-size: 100%;
+  margin-bottom: 2%;
+  width: 100%;
 `;
 
 const LastMessage = styled.div`
-  font-size: 20px;
-  margin-bottom: 5px;
-  text-align: left;
-  line-height: 1.5;
+  font-size: 100%;
+  margin-bottom: 2%;
+  line-height: 150%;
 `;
 
 const HorizontalLine = styled.div`
   width: 100%;
-  height: 5px;
-  margin-bottom: 5px;
+  height: 5%;
+  margin-bottom: 2%;
   background-image: linear-gradient(
     to right,
     rgba(0, 17, 169, 0.6) ${props => props.n * 10}%,
@@ -73,19 +73,10 @@ const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
     }
   };
 
-  const memberSeq = 1;
-
   const leaveMessageRoom = (event) => {
-    if (memberSeq == messageRoom.senderSeq) {
-      console.log("messageRoom.senderSeq"+messageRoom.senderSeq)
-      messageRoom.isLeaveSender = true;
-    } else {
-      console.log("messageRoom.receiverSeq"+messageRoom.receiverSeq)
-      messageRoom.isLeaveReceiver = true;
-    }
     dispatch(updateMessageList(messageRoom)).then((data) => {
       console.log(data.payload); // 첫번째 payload 출력
-      dispatch(getMessageList(memberSeq)).then((data) => {
+      dispatch(getMessageList()).then((data) => {
         console.log(data.payload); // 첫번째 payload 출력
         setMessageRooms(data.payload);
     });
@@ -99,7 +90,6 @@ const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
   };
 
   return (
-    <div>
       <RoomContainer>
         <RoomHeader>
           <Nickname>{messageRoom.nickname}</Nickname>
@@ -116,7 +106,6 @@ const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
         <HorizontalLine n={messageRoom.n} />
         <LastMessage onClick={goToRoom}>{messageRoom.lastMessage}</LastMessage>
       </RoomContainer>
-    </div>
   );
 };
 

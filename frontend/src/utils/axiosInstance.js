@@ -22,10 +22,13 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const retry = error.response.data==="expired Token";
+    let retry = null;
+    if (error.response){
+        retry = error.response.data ==="expired Token";
+    }
     const {config} = error;
 
-    if (error.response.status === 401 && retry) {
+    if (error.response && error.response.status === 401 && retry) {
       const originalRequest = config;
       const accessToken = localStorage.getItem('access-token');
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/member-service/auth/refresh`, {
@@ -37,7 +40,9 @@ axiosInstance.interceptors.response.use(
         withCredentials: true})
         .then((res) => {
           const accessToken = res.data.accessToken;
+          const seq = res.data.seq;
           localStorage.setItem('access-token', accessToken);
+          localStorage.setItem('seq', seq);
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
           return axios(originalRequest);
       });

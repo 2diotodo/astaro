@@ -72,11 +72,11 @@ function MemberMypage() {
   const { memberId, password, nickname, profile, email, lux, heal } =
     memberInfo;
 
- const [values, setValues] = useState({
+  const [values, setValues] = useState({
     memberId: "",
     password: "",
     passwordConfirm: "",
-    nickname: "ki",
+    nickname: "",
     profile: 1,
     email: "",
     lux: 0,
@@ -208,8 +208,7 @@ function MemberMypage() {
     }
   }, [userinfo]);
 
-  useEffect(() => {
-  }, [profileSelected]);
+  useEffect(() => {}, [profileSelected]);
 
   // 입력값이 변경될때 마다 검증한다.
   useEffect(() => {

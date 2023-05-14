@@ -17,5 +17,5 @@ public interface MessageService {
      */
     List<MessageResponseDto> getMessagesByMessageListSeq(long messageListSeq);
 
-    Message sendMessage(MessageRequestDto messageRequestDto);
+    Message sendMessage(MessageRequestDto messageRequestDto, long memberSeq);
 }
