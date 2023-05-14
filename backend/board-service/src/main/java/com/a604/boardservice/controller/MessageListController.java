@@ -38,12 +38,13 @@ public class MessageListController {
 		}
 	}
 
-	// 채팅방 업데이트
+	// 채팅방 나가기
 	@PatchMapping("/{message_list_seq}")
-	public ResponseEntity<String> messageListModify(@PathVariable("message_list_seq") long messageListSeq, @RequestBody MessageListDto messageListDto){
+	public ResponseEntity<String> messageListModify(HttpServletRequest request, @PathVariable("message_list_seq") long messageListSeq, @RequestBody MessageListDto messageListDto){
+		long memberSeq = Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement());
 		System.out.println("messageListModify");
 		try{
-			messageListService.modifyMessageList(messageListSeq, messageListDto);
+			messageListService.modifyMessageList(memberSeq, messageListSeq, messageListDto);
 			return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
