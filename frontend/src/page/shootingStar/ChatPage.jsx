@@ -101,10 +101,7 @@ const ChatPage = () => {
     dispatch(
       sendMessage({
         messageListSeq: selectedChatRoom,
-        senderSeq: 5,
-        receiverSeq: 6,
         originalContent: message,
-        resultSeq: 1,
       })
     );
   };
@@ -115,7 +112,7 @@ const ChatPage = () => {
   }, [id, dispatch]);
 
   return (
-    <div>
+    <>
       <Wrapper>
         <Title>
           {selectedChatRoom
@@ -149,7 +146,7 @@ const ChatPage = () => {
           <MessageInput onSubmit={handleSendMessage} />
         </MessageInputWrapper>
       </Wrapper>
-    </div>
+    </>
   );
 };
 

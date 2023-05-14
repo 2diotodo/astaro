@@ -18,8 +18,8 @@ const Category = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 1.5rem;
-  color: white;
-  z-index: 4;
+  color: red;
+  z-index: 100;
 `;
 
 const SlideWrapper = styled.div`
@@ -50,6 +50,7 @@ const StarPage = () => {
   const dispatch = useDispatch();
 
   const handleSwiperChange = (index) => {
+    console.log("handleSwiperChange 됨")
     setSwiperIndex(index);
     const categories = ["연애", "재물", "학업", "진로"];
     dispatch(setCategory(categories[index]));
