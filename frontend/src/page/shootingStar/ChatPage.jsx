@@ -88,16 +88,18 @@ const MessageInputWrapper = styled.div`
 `;
 
 // 임시 가 데이터
-const loggedInMemberSeq = 5;
+const loggedInMemberSeq = `${localStorage.getItem("seq")}`;
 
 const ChatPage = () => {
   const { id } = useParams();
   const selectedChatRoom = useSelector((state) => state.chat.selectedChatRoom);
   const messages = useSelector((state) => state.chat.messages);
-  console.log(messages)
+  console.log("message : ", messages)
+  console.log("message[0] : ", messages[0])
   const dispatch = useDispatch();
 
   const handleSendMessage = async (message) => {
+    console.log(message)
     dispatch(
       sendMessage({
         messageListSeq: selectedChatRoom,
@@ -117,21 +119,23 @@ const ChatPage = () => {
     <>
       <Wrapper>
         <Title>
-          {selectedChatRoom
-            ? `${selectedChatRoom}번 님과의 쪽지함`
-            : "채팅방을 불러오는 중..."}
+          {messages.length > 0 && 
+            (messages[0].senderSeq == loggedInMemberSeq
+              ? `${messages[0].receiverNickname}님과의 쪽지함`
+              : `${messages[0].senderNickname}님과의 쪽지함`)
+          }
         </Title>
         <ChatWindow>
           <MessageList>
             {messages.map((message) => {
               const MessageComponent =
-                message.senderSeq === loggedInMemberSeq
+                message.senderSeq == loggedInMemberSeq
                   ? MessageRight
                   : MessageLeft;
               const messageLabel =
-                message.senderSeq === loggedInMemberSeq
+                message.senderSeq == loggedInMemberSeq
                   ? "내가 보낸 쪽지"
-                  : `${message.nickname}님이 보낸 쪽지`;
+                  : `${message.senderNickname}님이 보낸 쪽지`;
               return (
                 <React.Fragment key={message.seq}>
                   <MessageComponent>
