@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -9,13 +9,26 @@ import {
   duplicateNn,
   duplicateEm,
 } from "@features/memberSlice";
+import { MdCheckCircleOutline } from "react-icons/md";
 
 // Styled Component
+const FadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex:
   flex-direction: column;
   justify-content: start;
   align-items: center;
+
   position: absolute;
   height: 90%;
   width: 90%;
@@ -32,7 +45,7 @@ const Title = styled.div`
 `;
 const Message = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 
   padding: 5%;
@@ -41,61 +54,41 @@ const Message = styled.div`
   color: white;
 `;
 
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  position: relative;
-
-  height: 15%
-
-  padding: 5%;
-
-  background-color: transparent;
-`;
-
-const Label = styled.label.attrs((props) => ({
-  for: props.for || "",
-}))`
-  width: 10%;
-  height: 90%;
-
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  transition: all 0.2s;
+const Label = styled.label`
+  font-size: 16px;
+  color: #fff;
 `;
 
 const Input = styled.input.attrs((props) => ({
-  id: props.id || "",
   type: props.type || "text",
   placeholder: props.placeholder || "",
 }))`
-  &:focus + ${Label}, &:valid + ${Label} {
-    ${Label} {
-      font-size: 16px;
-      bottom: 40px;
-      color: #666;
-      font-weight: bold;
-    }
-  }
+  width: 90%;
+  height: 30px;
 
-  width: 70%;
-  height: 90%;
+  border: 0;
+  background: transparent;
 
-  border: none;
-  border-bottom: solid #aaaaaa 1px;
-
-  color: white;
-  opacity: 0.5;
-  background: none;
+  font-size: 16px;
+  color: #fff;
 `;
 
-const SubmitBtn = styled.button`
-  width: 10%;
-  height: 90%;
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+
+  width: 80%;
+
+  margin-left: 10%;
+  margin-bottom: 5%;
+  padding-bottom: 5px;
+
+  border: 0;
+  border-bottom: 1px solid #555;
+
+  animation: ${FadeIn} 1s linear forwards;
 `;
 
 function MemberSignup() {
@@ -130,7 +123,7 @@ function MemberSignup() {
     setPassword(e.target.value);
 
     let check =
-      /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/; // 단순 8~12자리
+      /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
 
     if (check.test(password)) {
       console.log("통과함?");
@@ -157,7 +150,7 @@ function MemberSignup() {
         }
       }, 500);
     }
-  }, [passwordConfirm]);
+  }, [password, passwordConfirm]);
 
   const handleChangeEm = (e) => {
     setEmail(e.target.value);
@@ -231,52 +224,75 @@ function MemberSignup() {
         {validateNn === true ? (
           <InputWrapper>
             <Input
-              placeholder={email}
+              placeholder="이메일"
               onChange={handleChangeEm}
               value={email}
             />
-            <button onClick={handleClickEm}>이메일 체크</button>
+            <MdCheckCircleOutline
+              onClick={handleClickEm}
+              color={validateEm ? "green" : "white"}
+              size={30}
+            />
           </InputWrapper>
         ) : null}
         {validatePw === true ? (
           <InputWrapper>
             <Input
-              placeholder={nickname}
+              placeholder="닉네임"
               onChange={handleChangeNn}
               value={nickname}
             />
-            <button onClick={handleClickNn}>닉네임 체크</button>
+            <MdCheckCircleOutline
+              onClick={handleClickNn}
+              color={validateNn ? "green" : "white"}
+              size={30}
+            />
           </InputWrapper>
         ) : null}
+
+        {/* 비밀번호 태그 */}
         {validateId === true ? (
-          <InputWrapper>
-            <Input
-              placeholder={password}
-              onChange={handleChangePw}
-              value={password}
-            />
-            <Input
-              placeholder={passwordConfirm}
-              onChange={handleChangePwConfirm}
-              value={passwordConfirm}
-            />
-          </InputWrapper>
+          <>
+            <InputWrapper>
+              <Input
+                placeholder="비밀번호"
+                onChange={handleChangePw}
+                value={password}
+                type="password"
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <Input
+                placeholder="비밀번호 체크"
+                onChange={handleChangePwConfirm}
+                value={passwordConfirm}
+                type="password"
+              />
+              <MdCheckCircleOutline
+                onClick={handleClickId}
+                color={validatePw ? "green" : "white"}
+                size={30}
+              />
+            </InputWrapper>
+          </>
         ) : null}
+
+        {/* ID 태그 */}
         <InputWrapper>
-          <Label for="memberId">Id</Label>
           <Input
-            placeholder={memberId}
+            placeholder="아이디"
             onChange={handleChangeId}
             value={memberId}
-            id="memberId"
           />
-
-          <SubmitBtn onClick={handleClickId}>체크</SubmitBtn>
+          <MdCheckCircleOutline
+            onClick={handleClickId}
+            color={validateId ? "green" : "white"}
+            size={30}
+          />
         </InputWrapper>
+
         {validateEm === true ? (
-          <InputWrapper>
-            <button onClick={handleClickSubmit}>회원가입</button>
-          </InputWrapper>
+          <button onClick={handleClickSubmit}>회원가입</button>
         ) : null}
       </Wrapper>
     </>

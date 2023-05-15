@@ -26,6 +26,7 @@
     "react-share": "^4.4.1",
     "react-speech-recognition": "^3.10.0",
     "react-spring": "^9.7.1",
+    "react-typist": "^2.0.5",
     "redux-thunk": "^2.4.2",
     "styled-components": "^5.3.8",
     "swiper": "^9.3.0"

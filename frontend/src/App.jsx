@@ -18,9 +18,19 @@ import FlipGame from "@page/tarot/FlipGame";
 import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
 import BlackHolePage from "@page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
+import Landing from "./page/Landing";
+import music2 from "@assets/A_Quiet_Thought-Wayne_Jones.mp3";
 import "./App.css";
+import TarotStory from "@page/tarot/TarotStory";
 
 function App() {
+  const backgroundAudio = new Audio(music2);
+
+  const audioPlay = () => {
+    backgroundAudio.loop = true;
+    backgroundAudio.play();
+  };
+
   return (
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
@@ -28,11 +38,12 @@ function App() {
         <Header />
         <Body>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<Landing audio={audioPlay} />} />
+            <Route path="/home" element={<Main />} />
             <Route path="/tarot" element={<TarotService />} />
             <Route path="/result" element={<TarotResult />} />
             <Route path="/todaytaro" element={<TodayTaro />} />
-            <Route path="/todayresult" element={<TodayResult />} />
+            <Route path="/tarot/story" element={<TarotStory />} />
             <Route path="/member/login" element={<MemberLogin />} />
             <Route path="/member/signup" element={<MemberSignup />} />
             <Route path="/member/mypage" element={<MemberMypage />} />

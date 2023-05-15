@@ -133,10 +133,12 @@ function TarotService() {
         const tarotResultDto = {
           memberSeq: localStorage.getItem("seq"),
           category: category,
-          contentInput: message,
-          cardSeqList: cardSeqList,
-          contentList: jsonRes.해석,
-          imgList: imgUrl,
+          contentInput: message.message,
+          cardSeqList: cardSeqList.toString(),
+          contentList: jsonRes.해석.toString(),
+          imgUrl: imgUrl,
+          videoUrl: null,
+          story: jsonRes.동화.trim()
         };
 
         await axiosInstance.post(
