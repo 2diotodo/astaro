@@ -23,6 +23,7 @@ const Input = styled.textarea`
   resize: none;
   font-size: 1rem;
   margin-top: 1rem;
+  font-family: "TAEBAEKmilkyway";
 `;
 
 const SendButton = styled.button`
