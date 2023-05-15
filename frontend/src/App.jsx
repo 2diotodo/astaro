@@ -19,6 +19,7 @@ import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
 import BlackHolePage from "@page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
 import "./App.css";
+import TarotStory from "@page/tarot/TarotStory";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             <Route path="/tarot" element={<TarotService />} />
             <Route path="/result" element={<TarotResult />} />
             <Route path="/todaytaro" element={<TodayTaro />} />
-            <Route path="/todayresult" element={<TodayResult />} />
+            <Route path="/tarot/story" element={<TarotStory />} />
             <Route path="/member/login" element={<MemberLogin />} />
             <Route path="/member/signup" element={<MemberSignup />} />
             <Route path="/member/mypage" element={<MemberMypage />} />

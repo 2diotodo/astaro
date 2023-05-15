@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b1b0427-aa22-4e35-bfcb-2379ac8c00d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drawing_process.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/drawing_process.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/features/memberSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/features/memberSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/page/member/MemberLogin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/page/member/MemberLogin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotResult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/page/tarot/TarotService.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +42,29 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.Flask">
+  <component name="RunManager" selected="Python.Flask (1)">
+    <configuration name="Flask (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="sandArt-service" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\SSAFY\anaconda3\python.exe" />
+      <option name="SDK_NAME" value="Python 3.9" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Flask.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Flask" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sandArt-service" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,12 +177,14 @@
     </configuration>
     <list>
       <item itemvalue="Python.Unnamed" />
+      <item itemvalue="Python.Flask (1)" />
       <item itemvalue="Python.Flask" />
       <item itemvalue="Python.SandArt" />
       <item itemvalue="Python.UploadTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Flask (1)" />
         <item itemvalue="Python.Flask" />
         <item itemvalue="Python.UploadTest" />
         <item itemvalue="Python.SandArt" />

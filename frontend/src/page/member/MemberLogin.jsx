@@ -45,6 +45,7 @@ function MemberLogin() {
         dispatch(isLoginCheck(true));
         navigate("/");
       } else {
+        console.log(response);
         alert(response.payload.message);
         setLogins({
           memberId: "",
