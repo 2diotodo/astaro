@@ -131,21 +131,10 @@ const ShootingStars = () => {
     };
   }, []);
 
-  // API 요청 함수
-  // const fetchTaroResult = async (memberSeq) => {
-  //   const response = await fetch(`http://localhost:8082/api/v1/star/${memberSeq}`);
-  //   if (!response.ok) {
-  //     // 응답 상태 코드가 200 범위에 없으면 에러 발생
-  //     throw new Error(`API request failed with status ${response.status}`);
-  //   }
-  //   const data = await response.json();
-  //   return data;
-  // };
-
   const handleStarClick = async () => {
-    const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
+    // const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
     try {
-      const taroResultAction = dispatch(fetchTaroResult(memberSeq));
+      const taroResultAction = dispatch(fetchTaroResult());
       const taroResultDto = taroResultAction.payload;
       navigate("/star/taro-story", { state: { taroResult: taroResultDto } });
     } catch (error) {

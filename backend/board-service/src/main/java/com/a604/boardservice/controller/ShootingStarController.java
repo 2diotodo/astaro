@@ -26,7 +26,6 @@ public class ShootingStarController {
     @GetMapping("")
     public ResponseEntity<?> getRandomTaroResult(HttpServletRequest request, @RequestParam("category") String category) {
         try {
-            System.out.println(Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement()));
             long memberSeq = Long.valueOf(request.getHeaders("X-Authorization-Seq").nextElement());
             TaroResultDto taroResultDto = shootingStarService.getTaroResult(memberSeq, category);
             // 해당하는 타로가 있는지 확인

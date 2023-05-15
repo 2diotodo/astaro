@@ -49,15 +49,13 @@ public class MessageServiceImpl implements MessageService{
             responseDto.setCreatedAt(message.getCreatedAt());
 
             Member sender = memberRepository.findById(message.getSenderSeq()).orElse(null);
-            if (sender != null) {
-                responseDto.setNickname(sender.getNickname());
-            }
+            Member receiver = memberRepository.findById(message.getReceiverSeq()).orElse(null);
+
+            responseDto.setSenderNickname(sender.getNickname());
+            responseDto.setReceiverNickname(receiver.getNickname());
 
             messageResponseDtoList.add(responseDto);
         }
-
-
-
 
         return messageResponseDtoList;
     }
