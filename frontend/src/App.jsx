@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Background } from "@component/common/Background";
 import Header from "@component/common/Header";
@@ -30,6 +30,13 @@ function App() {
     backgroundAudio.loop = true;
     backgroundAudio.play();
   };
+
+  const setScreenSize= () =>  {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+
+  window.addEventListener('resize', ()=> setScreenSize);
 
   return (
     <div className="App">

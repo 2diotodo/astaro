@@ -45,8 +45,8 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
 
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const Container = styled.div`
@@ -156,6 +156,8 @@ const Button = styled.button`
 const Landing = (props) => {
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState(0);
+  const [touchedX, setTochedX] = useState(0);
+  const [touchedY, setTochedY] = useState(0);
 
   const handleUpBtn = () => {
     setActivePage(activePage - 1);
@@ -163,6 +165,26 @@ const Landing = (props) => {
   const handleDownBtn = () => {
     setActivePage(activePage + 1);
   };
+
+  const onTouchStart = (e) => {
+    
+    setTochedX(e.changedTouches[0].screenX);
+    setTochedY(e.changedTouches[0].screenY);
+  }
+
+  const onTouchEnd = (e) => {
+    const distanceX = touchedX - e.changedTouches[0].screenX;
+    const distanceY = touchedY - e.changedTouches[0].screenY;
+    const vector = Math.abs(distanceY / distanceX);
+
+    console.log(e)
+    console.log(distanceX);
+    console.log(distanceY);
+    console.log(vector);
+
+    if(distanceY > 30 && vector >2) setActivePage(activePage - 1);
+    else if ( distanceY < -30 && vector > 2) setActivePage(activePage + 1);
+  }
 
   const handleOnWheel = (e) => {
     if (e.deltaY <= -100) {
@@ -174,7 +196,7 @@ const Landing = (props) => {
 
   return (
     <>
-      <Wrapper onWheel={handleOnWheel}>
+      <Wrapper onWheel={handleOnWheel} onTouchEnd={onTouchEnd} onTouchStart={onTouchStart}>
         {/* 위로 가는 버튼 */}
         {activePage === 0 ? null : (
           <UpArrow onClick={handleUpBtn}>
