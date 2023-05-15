@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Background } from "@component/common/Background";
 import Header from "@component/common/Header";
@@ -12,7 +12,6 @@ import MemberMypage from "@page/member/MemberMypage";
 import MessageListPage from "@page/message/MessageList";
 import ChatPage from "@page/shootingStar/ChatPage";
 import StarPage from "@page/shootingStar/StarPage";
-import { TodayResult } from "@/page/tarot/TodayResult";
 import TarotResult from "@page/tarot/TarotResult";
 import FlipGame from "@page/tarot/FlipGame";
 import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
@@ -22,18 +21,34 @@ import Landing from "./page/Landing";
 import music2 from "@assets/A_Quiet_Thought-Wayne_Jones.mp3";
 import "./App.css";
 import TarotStory from "@page/tarot/TarotStory";
+import {IoMdVolumeHigh, IoMdVolumeOff} from "react-icons/io";
+import Medium from "@component/text/Medium";
+import VolumeButton from "@component/VolumeButton";
 
 function App() {
-  const backgroundAudio = new Audio(music2);
+  const [backgroundAudio] = useState(new Audio(music2));
+  const [audioToggle, setAudioToggle] = useState(true);
 
   const audioPlay = () => {
-    backgroundAudio.loop = true;
     backgroundAudio.play();
+    setAudioToggle(true);
   };
+
+  const audioPause = () => {
+    backgroundAudio.pause();
+    setAudioToggle(false)
+  }
+
 
   return (
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
+      {audioToggle?<VolumeButton onClick={audioPause}>
+        <Medium><IoMdVolumeHigh /></Medium>
+      </VolumeButton>:<VolumeButton onClick={audioPlay}>
+        <Medium><IoMdVolumeOff/></Medium>
+      </VolumeButton>}
+
       <Router>
         <Header />
         <Body>

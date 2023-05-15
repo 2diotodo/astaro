@@ -14,6 +14,7 @@ import TarotLoading from "@component/tarot/TarotLoading";
 import Small from "@component/text/Small";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setStateCardsInfo,
   setStateImgUrl,
   setStateMessage,
   setStateResults,
@@ -30,12 +31,11 @@ function TarotService() {
   const [tarotResult, setTarotResult] = useState([]);
   const category = useSelector((state) => state.tarot.stateCategory);
   const stateCards = useSelector((state) => state.tarot.stateCards);
-  const stateVideoUrl = useSelector((state) => state.tarot.stateVideoUrl);
   const cardSeqList = useSelector((state) =>
     state.tarot.stateCardsInfo.map((card) => card.id)
   );
   const sendToGpt = (event, message) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && message && stateCards.length === 3) {
       dispatch(setStateMessage(message));
       slideFromTarotToLoading();
       const config = {

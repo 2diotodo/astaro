@@ -16,8 +16,7 @@ const Input = styled.input.attrs((props) => ({
   text-justify: ${(props) => (props.textJustify ? props.textAlign : "inherit")};
   font-family: ${(props) => props.fontFamily || "TAEBAEKmilkyway"};
   z-index: ${(props) => props.zIndex || "inherit"};
-  box-shadow: 0 0 0 0 gray, 0 0 0 0 gray,
-  1px 1px 10px 0px gray, 0 0 0 0 gray;
+  box-shadow: 0px 15px 10px -15px #fff;
 
   &:focus {
     outline: ${(props) => props.outline || "none"};
