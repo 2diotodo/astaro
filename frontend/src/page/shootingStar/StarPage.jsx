@@ -37,7 +37,12 @@ const TypingMessage = styled(Typist)`
 
 const SlideWrapper = styled.div`
   width: 100%;
+<<<<<<< HEAD
+  height: 100%;
+  z-index: 3;
+=======
   height: 100vh;
+>>>>>>> c3460ba8b930a2b3a89641e31b0ccaf7355119be
 `;
 
 const PaginationWrapper = styled.div`
