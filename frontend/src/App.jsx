@@ -12,7 +12,6 @@ import MemberMypage from "@page/member/MemberMypage";
 import MessageListPage from "@page/message/MessageList";
 import ChatPage from "@page/shootingStar/ChatPage";
 import StarPage from "@page/shootingStar/StarPage";
-import { TodayResult } from "@/page/tarot/TodayResult";
 import TarotResult from "@page/tarot/TarotResult";
 import FlipGame from "@page/tarot/FlipGame";
 import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
