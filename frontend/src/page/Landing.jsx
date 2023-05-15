@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 
 // Icons or Component Import
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import GapH from "@component/layout/GapH";
 
 const Scale = keyframes`
   from {
@@ -164,7 +165,7 @@ const Button = styled.button`
   width: 50%;
   max-width: 300px;
   height: 30px;
-
+  font-family: "TAEBAEKmilkyway";
   animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards,
               ${Shadow} 1.5s 2s linear infinite;
 `;
@@ -210,6 +211,7 @@ const Landing = (props) => {
             <Title>
               <Text delay={0.5}>Astaro</Text>
             </Title>
+            <GapH height="10vh"/>
             <Button
               delay={0.6}
               onClick={() => {
