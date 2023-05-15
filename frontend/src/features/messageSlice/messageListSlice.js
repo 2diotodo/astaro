@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "@utils/axiosInstance";
 
 // const baseURL = "http://localhost:8000/board-service/";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/board-service/`;
