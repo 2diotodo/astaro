@@ -68,7 +68,6 @@ function Header() {
         <div className="common-header">
           {/* <AudioPlayer /> */}
           <div className="header-nav">
-            <Medium style={{position:"absolute", left:0, marginLeft:"2vw"}}><IoMdVolumeHigh /></Medium>
             <div
               className={`nav-logo ${
                 location.pathname === "/" ? "hidden" : " "
