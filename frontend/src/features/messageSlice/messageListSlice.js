@@ -5,7 +5,7 @@ import axios from "@utils/axiosInstance";
 const baseURL = `${process.env.REACT_APP_BACKEND_URL}/board-service/`;
 
 const initialState = {
-  seq: "",
+  nickname: "",
 };
 
 const token = `${localStorage.getItem("access-token")}`;
@@ -39,7 +39,11 @@ export const updateMessageList = createAsyncThunk(
 const messageListSlice = createSlice({
   name: "messageListCheck",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setNickname: (state, action) => {
+      state.nickname = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     // 채팅방 불러오기
     builder.addCase(getMessageList.pending, (state, action) => {
@@ -64,5 +68,7 @@ const messageListSlice = createSlice({
     });
   },
 });
+
+export const { setNickname } = messageListSlice.actions;
 
 export default messageListSlice.reducer;

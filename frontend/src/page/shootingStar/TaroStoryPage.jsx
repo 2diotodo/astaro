@@ -27,9 +27,13 @@ const StoryVideo = styled.video`
 `;
 
 const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 80%;
+  height: 100%;
   color: white;
-  font-size: 16px;
+  font-size: 95%;
   text-align: left;
   line-height: 1.5;
 `;
