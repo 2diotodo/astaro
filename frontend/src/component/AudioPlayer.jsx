@@ -3,25 +3,8 @@ import { BsPlayFill, BsPauseFill } from "react-icons/bs";
 
 function AudioPlayer() {
   const audio = new Audio(music2);
-  audio.loop = true;
 
-  return (
-    <>
-      <BsPlayFill
-        color="white"
-        onClick={() => {
-          audio.loop = true;
-          audio.play();
-        }}
-      />
-      <BsPauseFill
-        color="white"
-        onClick={() => {
-          audio.pause();
-        }}
-      />
-    </>
-  );
+  return AudioPlayer.audio;
 }
 
 export default AudioPlayer;

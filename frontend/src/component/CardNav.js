@@ -127,7 +127,7 @@ const CardNav = (props) => {
     {
       text: "[ 마이 페이지 ]",
       src: Taro_front1,
-      navigate: "/member/mypage/:id",
+      navigate: "/member/mypage",
     },
   ];
 

@@ -41,7 +41,7 @@ function Header() {
 
   // 해당 페이지로 이동 선언
   const navigateToMain = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function Header() {
 
   return (
     <>
-      {location.pathname === "/" ? null : (
+      {location.pathname === "/home" || location.pathname === "/" ? null : (
         <div className="common-header">
           {/* <AudioPlayer /> */}
           <div className="header-nav">
