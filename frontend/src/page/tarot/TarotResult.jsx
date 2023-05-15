@@ -11,6 +11,8 @@ import Small from "@component/text/Small";
 import { useSelector } from "react-redux";
 import TarotCard from "@component/tarot/TarotCard";
 import Button from "@component/Button";
+import TarotLoading from "@component/tarot/TarotLoading";
+import { useNavigate } from "react-router-dom";
 
 SwiperCore.use([Pagination]);
 
@@ -40,15 +42,18 @@ const ResultDiv = styled.div`
   bottom: 10vh;
 `
 function TarotResult() {
+  const navigate = useNavigate();
   const [swiperIndex] = useState(0);
   const tarotResults = useSelector((state) => state.tarot.stateResults);
   const tarotCardsInfo = useSelector((state) => state.tarot.stateCardsInfo);
-  const dalleImgUrl = useSelector((state) => state.tarot.stateImgUrl);
+  const videoUrl = useSelector((state) => state.tarot.stateVideoUrl);
 
   useEffect(() => {
-      console.log(dalleImgUrl);
-  }, [swiperIndex, dalleImgUrl]);
+  }, [swiperIndex, videoUrl]);
 
+  function goToStory(){
+    navigate("/tarot/story");
+  }
   return (
     <>
       <StyledSwiper
@@ -85,7 +90,7 @@ function TarotResult() {
               <ResultDiv>
                 <Small style={{lineHeight:"2em"}}>{tarotResults[3]}</Small>
                 <GapH height="20vh"/>
-                  {dalleImgUrl ? <Button width="80%">이야기 보러가기</Button> : <></>}
+                  {videoUrl ? <Button width="80%" onClick={goToStory}>이야기 보러가기</Button> : <TarotLoading/>}
               </ResultDiv>
             </ColContainer>
           </SlideWrapper>

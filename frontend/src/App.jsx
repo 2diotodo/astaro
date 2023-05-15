@@ -21,6 +21,7 @@ import TarotTest from "@page/tarot/TarotTest";
 import Landing from "./page/Landing";
 import music2 from "@assets/A_Quiet_Thought-Wayne_Jones.mp3";
 import "./App.css";
+import TarotStory from "@page/tarot/TarotStory";
 
 function App() {
   const backgroundAudio = new Audio(music2);
@@ -42,11 +43,11 @@ function App() {
             <Route path="/tarot" element={<TarotService />} />
             <Route path="/result" element={<TarotResult />} />
             <Route path="/todaytaro" element={<TodayTaro />} />
-            <Route path="/todayresult" element={<TodayResult />} />
+            <Route path="/tarot/story" element={<TarotStory />} />
             <Route path="/member/login" element={<MemberLogin />} />
             <Route path="/member/signup" element={<MemberSignup />} />
             <Route path="/member/mypage" element={<MemberMypage />} />
-            <Route path="/message/messageList" element={<MessageListPage />} />
+            <Route path="/message/message-list" element={<MessageListPage />} />
             <Route path="/star/chat/:id" element={<ChatPage />} />
             <Route path="/star" element={<StarPage />} />
             <Route path="/star/black-hole" element={<BlackHolePage />} />

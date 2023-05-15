@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useSelector } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { updateMessageList } from "@features/messageSlice/messageListSlice";
+import { setNickname, updateMessageList } from "@features/messageSlice/messageListSlice";
 import { getMessageList } from "@features/messageSlice/messageListSlice";
 import { Popper } from '@mui/material';
 import { BsThreeDots } from "react-icons/bs";
@@ -86,6 +86,7 @@ const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
   };
 
   const goToRoom = (event) => {
+    dispatch(setNickname(messageRoom.nickname));
     navigate(`/star/chat/${messageRoom.seq}`);
   };
 
