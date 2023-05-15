@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import BlackHoleInput from '@/component/shootingStar/BlackHoleInput';
 import { AiOutlineSend, AiOutlineAudio } from "react-icons/ai";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { css } from 'styled-components';
 
 const rotate = keyframes`
   0% {
@@ -32,7 +33,7 @@ const Container = styled.div`
     height: 100%;
     position: absolute;
     z-index: 5;
-    animation: ${rotate} 30s linear infinite;
+    animation: ${rotate} ${props => props.sendClicked ? '5s' : '30s'} linear infinite;
   }
 `;
 
@@ -49,6 +50,7 @@ const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 5;
+  animation: ${props => props.sendClicked ? css`${disappear} 3s ease-in-out forwards` : 'none'};
 `;
 
 const SendButton = styled.button`
@@ -89,15 +91,26 @@ const AudioButton = styled.button`
 `;
 
 const Visualizer = styled.div`
-  width: 800px;
-  height: 200px;
-  // background: rgba(255, 255, 255, 0);
-  border-radius: 5px;
+  // width: 80vw;
+  // height: 30vh;
+  background: rgba(255, 255, 255, 0);
+  // border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  color: #ffffff;
+  // font-weight: bold;
+  // color: #ffffff;
+`;
+
+const disappear = keyframes`
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
 `;
 
 const BlackHolePage = () => {
@@ -111,43 +124,48 @@ const BlackHolePage = () => {
 
   useEffect(() => {
     if (!canvasRef.current) return;
-
+  
     const drawWave = () => {
       if (!analyserRef.current || !canvasRef.current) return;
-      
+  
       const canvas = canvasRef.current;
       const canvasCtx = canvas.getContext('2d');
       const dataArray = new Uint8Array(bufferLengthRef.current);
-
+  
       requestAnimationFrame(drawWave);
       analyserRef.current.getByteTimeDomainData(dataArray);
+  
+      canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 투명 배경
+      canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+      canvasCtx.lineWidth = 3;
 
-      canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-      canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
-      canvasCtx.lineWidth = 2;
-      canvasCtx.strokeStyle = 'black';
+      const getRandomRGB = () => `rgb(${Math.random() * (100- 80) + 80}, ${Math.random() * (100- 80) + 80}, ${Math.random() * (255 - 200) + 200})`;
+
+      canvasCtx.strokeStyle = getRandomRGB();
       canvasCtx.beginPath();
-
-      const sliceWidth = (canvas.width * 1.0) / bufferLengthRef.current;
+  
+      const sliceWidth = (canvas.width * 1) / bufferLengthRef.current;
       let x = 0;
-
+  
       for (let i = 0; i < bufferLengthRef.current; i++) {
         const v = dataArray[i] / 128.0;
         const y = v * canvas.height / 2;
-
+  
         if (i === 0) {
           canvasCtx.moveTo(x, y);
         } else {
           canvasCtx.lineTo(x, y);
         }
-
+  
         x += sliceWidth;
       }
-
-      canvasCtx.lineTo(canvas.width, canvas.height / 2);
+  
+      canvasCtx.lineTo(canvas.width, canvas.height);
       canvasCtx.stroke();
-    };
 
+      setTimeout(drawWave, 2000)
+    };
+  
     if (recording) {
       navigator.mediaDevices.getUserMedia({ audio: true })
         .then(stream => {
@@ -156,7 +174,7 @@ const BlackHolePage = () => {
           analyserRef.current = audioContextRef.current.createAnalyser();
           analyserRef.current.fftSize = 2048;
           bufferLengthRef.current = analyserRef.current.frequencyBinCount;
-
+  
           source.connect(analyserRef.current);
           drawWave();
         })
@@ -189,10 +207,12 @@ const BlackHolePage = () => {
     }
   };
 
+  const [sendClicked, setSendClicked] = useState(false);
+
   return (
-    <Container>
+    <Container sendClicked={sendClicked}>
       <Title>블랙홀</Title>
-      <InputContainer>
+      <InputContainer sendClicked={sendClicked}>
         {recording ? (
           <Visualizer ref={visualizerRef}>
             <canvas ref={canvasRef} width="800" height="200" />
@@ -205,10 +225,11 @@ const BlackHolePage = () => {
         <AudioButton recording={recording} onClick={toggleRecording}>
           <AiOutlineAudio />
         </AudioButton>
-        <SendButton>
+        <SendButton onClick={() => setSendClicked(true)}>
           <AiOutlineSend />
           <SendText>Send</SendText>
         </SendButton>
+
       </SendButtonContainer>
     </Container>
   );
