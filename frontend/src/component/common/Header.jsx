@@ -54,7 +54,7 @@ function Header() {
 
   // 채팅목록으로 이동-변경필요
   const moveToMessageList = () => {
-    navigate("/");
+    navigate("/message/message-list");
   };
   // toggle로 로그인상태관리
   const toggleNavHandler = () => {

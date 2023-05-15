@@ -47,7 +47,7 @@ function App() {
             <Route path="/member/login" element={<MemberLogin />} />
             <Route path="/member/signup" element={<MemberSignup />} />
             <Route path="/member/mypage" element={<MemberMypage />} />
-            <Route path="/message/messageList" element={<MessageListPage />} />
+            <Route path="/message/message-list" element={<MessageListPage />} />
             <Route path="/star/chat/:id" element={<ChatPage />} />
             <Route path="/star" element={<StarPage />} />
             <Route path="/star/black-hole" element={<BlackHolePage />} />
