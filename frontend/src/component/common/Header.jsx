@@ -6,12 +6,13 @@ import {
   MdOutlineChatBubbleOutline,
   MdOutlineMarkChatUnread,
 } from "react-icons/md";
+import {IoMdVolumeHigh} from "react-icons/io";
 import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import Medium from "@component/text/Medium";
-import AudioPlayer from "@/component/AudioPlayer";
 import "@css/headers.css";
+import GapW from "@component/layout/GapW";
 
 function Header() {
   const navState = useSelector((state) => state.navBars);
@@ -76,7 +77,7 @@ function Header() {
               style={{ color: "white" }}
             >
               <Medium
-                style={{ fontFamily: "TAEBAEKmilkyway", fontWeight: "bold" }}
+                style={{ fontWeight: "bold" }}
               >
                 Astaro
               </Medium>
@@ -86,20 +87,19 @@ function Header() {
             >
               <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
             </div>
+            <div style={{position:"absolute", right:"2vw"}}>
             {isLogin ? (
               unread ? (
                 <MdOutlineMarkChatUnread
                   onClick={moveToMessageList}
                   color="white"
                   size="30px"
-                  style={{ zIndex: 9999 }}
                 />
               ) : (
                 <MdOutlineChatBubbleOutline
                   onClick={moveToMessageList}
                   color="white"
                   size="30px"
-                  style={{ right: "60px" }}
                 />
               )
             ) : (
@@ -112,8 +112,8 @@ function Header() {
               } ${location.pathname === "/" ? "hidden" : " "}`}
               color="white"
               size="30px"
-              style={{ zIndex: 9999 }}
             />
+            </div>
           </div>
         </div>
       )}

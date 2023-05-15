@@ -49,7 +49,7 @@ function TarotCard({ card, selected, onClick, className, style }) {
         style={
           style || {
             position: "relative",
-            zIndex: 10,
+            zIndex: 1,
             backfaceVisibility: "hidden",
           }
         }

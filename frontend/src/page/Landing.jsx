@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 
 // Icons or Component Import
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import GapH from "@component/layout/GapH";
 
 const Scale = keyframes`
   from {
@@ -39,6 +40,21 @@ const Blink = keyframes`
     transform: scale(1);
   }
 `;
+
+const Shadow = keyframes`
+  0% {
+    box-shadow: 0 0 0 white;
+  }
+  60%{
+    box-shadow: 0 0 0 white;
+  }
+  80% {
+    box-shadow: 0 0 20px white;
+  }
+  100% {
+    box-shadow: 0 0 0 white;
+  }
+`
 
 const Wrapper = styled.div`
   position: fixed;
@@ -122,6 +138,7 @@ const SubTitle = styled.div`
 
   margin-bottom: 10px;
   width: 80%;
+  max-width: 300px;
 
   & > span {
     opacity: 0;
@@ -137,20 +154,20 @@ const Text = styled.span`
 `;
 
 const Button = styled.button`
-  border: 1;
   border-radius: 15px;
-
   opacity: 0;
   color: white;
-  border-color: white;
+  border: 1px solid white;
   background-color: transparent;
 
   font-size: 16px;
 
   width: 50%;
+  max-width: 300px;
   height: 30px;
-
-  animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards;
+  font-family: "TAEBAEKmilkyway";
+  animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards,
+              ${Shadow} 1.5s 2s linear infinite;
 `;
 
 const Landing = (props) => {
@@ -216,6 +233,7 @@ const Landing = (props) => {
             <Title>
               <Text delay={0.5}>Astaro</Text>
             </Title>
+            <GapH height="10vh"/>
             <Button
               delay={0.6}
               onClick={() => {

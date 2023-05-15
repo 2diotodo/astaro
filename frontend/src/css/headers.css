@@ -10,7 +10,7 @@
   justify-content: center;
   position: relative;
   z-index: 999;
-  padding: 2%;
+  padding: 2vh 0;
 }
 
 .common-header .header-nav .navbar-wrapper {
@@ -58,9 +58,8 @@
 
 .common-header .header-nav svg {
   align-self: center;
-  position: absolute;
-  right: 15px;
   transform-origin: center;
+  margin: 0 10px;
 }
 
 .common-header .header-nav svg.open {

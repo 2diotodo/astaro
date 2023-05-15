@@ -65,7 +65,7 @@ export function TodayResult() {
       logging: true, letterRendering: 1,
       backgroundColor:'black',
       allowTaint: false,
-      useCORS: true
+      useCORS: true,
     }).then(function(canvas) {
       const downloadLink = document.createElement("a");
       downloadLink.download = "filename.png";
@@ -91,12 +91,12 @@ export function TodayResult() {
   // }
 
   return (
-    <ColContainer>
+    <ColContainer style={{position:"relative", top:0, width:"100%", height:"100%"}}>
       <ColContainer
         width="80%"
-        height="81%"
         justify="start"
-        style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)' }}
+        height="100%"
+        style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
         id="todayresultcard"
         >
         <TodayMainCard>
@@ -132,9 +132,10 @@ export function TodayResult() {
       <RowContainer
         width="100%"
         style={{
+          maxWidth:"600px",
           justifyContent: "space-evenly",
-          marginTop:'63vh',
-          position: "absolute"
+          position: "absolute",
+          bottom: "1vh"
         }}
         >
       {/* <div
@@ -152,7 +153,7 @@ export function TodayResult() {
           height:"auto",
         }}
         > */}
-        <Button onClick={() => navigate("/")}>홈으로</Button>
+        <Button onClick={() => navigate("/")} >홈으로</Button>
         <Button onClick={openModal}>SNS공유</Button>
         <Modal open={modalOpen} close={closeModal} />
       </RowContainer>
