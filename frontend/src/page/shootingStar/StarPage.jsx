@@ -18,14 +18,12 @@ const Category = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 1.5rem;
-  color: red;
-  z-index: 100;
+  color: white;
 `;
 
 const SlideWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  z-index: 3;
 `;
 
 const PaginationWrapper = styled.div`
@@ -33,26 +31,22 @@ const PaginationWrapper = styled.div`
   top: 95%;
   left: 50%;
   transform: translateX(-50%);
-
-  z-index: 1;
 `;
 
 const StyledSwiper = styled(Swiper)`
   margin: 0;
   height: 100%;
-
-  z-index: 2;
 `;
 
 const StarPage = () => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [shootingStarsKey, setShootingStarsKey] = useState(0);
   const dispatch = useDispatch();
+  const categories = ["결혼", "연애", "학업", "취직", "이직", "사업", "금전", "건강"];
 
   const handleSwiperChange = (index) => {
-    console.log("handleSwiperChange 됨")
     setSwiperIndex(index);
-    const categories = ["연애", "재물", "학업", "진로"];
+    console.log(categories[index])
     dispatch(setCategory(categories[index]));
   };
 
@@ -62,6 +56,9 @@ const StarPage = () => {
 
   return (
     <>
+      <Category>
+        {categories[swiperIndex]}
+      </Category>
       <StyledSwiper
         spaceBetween={50}
         slidesPerView={1}
@@ -75,34 +72,42 @@ const StarPage = () => {
       >
         <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
-            <Category>
-              <p>연애</p>
-            </Category>
             <ShootingStars key={shootingStarsKey} />
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
-            <Category>
-              <p>재물</p>
-            </Category>
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
-            <Category>
-              <p>학업</p>
-            </Category>
           </SlideWrapper>
         </SwiperSlide>
         <SwiperSlide className="swiper-slide-page1">
           <SlideWrapper>
             <ShootingStars key={shootingStarsKey} />
-            <Category>
-              <p>진로</p>
-            </Category>
+          </SlideWrapper>
+        </SwiperSlide>
+        <SwiperSlide className="swiper-slide-page1">
+          <SlideWrapper>
+            <ShootingStars key={shootingStarsKey} />
+          </SlideWrapper>
+        </SwiperSlide>
+        <SwiperSlide className="swiper-slide-page1">
+          <SlideWrapper>
+            <ShootingStars key={shootingStarsKey} />
+          </SlideWrapper>
+        </SwiperSlide>
+        <SwiperSlide className="swiper-slide-page1">
+          <SlideWrapper>
+            <ShootingStars key={shootingStarsKey} />
+          </SlideWrapper>
+        </SwiperSlide>
+        <SwiperSlide className="swiper-slide-page1">
+          <SlideWrapper>
+            <ShootingStars key={shootingStarsKey} />
           </SlideWrapper>
         </SwiperSlide>
       </StyledSwiper>
