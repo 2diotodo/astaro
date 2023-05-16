@@ -82,6 +82,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String reissueAccessToken(HttpServletRequest request, HttpServletResponse response) throws ExpiredJwtException, NullPointerException{
+        log.info(CookieUtil.getCookie(request, "refreshToken").get().toString());
         String originRefreshToken = CookieUtil.getCookie(request, "refreshToken").orElseThrow().getValue();
         jwtUtil.verifyToken(originRefreshToken);
         Member member = memberRepository.findById(jwtUtil.getSubject(originRefreshToken)).orElseThrow();

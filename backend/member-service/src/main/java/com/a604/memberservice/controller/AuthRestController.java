@@ -70,6 +70,7 @@ public class AuthRestController {
         String newAccessToken;
         try {
             newAccessToken = authService.reissueAccessToken(request, response);
+            log.info(newAccessToken);
             response.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + newAccessToken);
         } catch (Exception e) {
             log.error(e.getMessage());

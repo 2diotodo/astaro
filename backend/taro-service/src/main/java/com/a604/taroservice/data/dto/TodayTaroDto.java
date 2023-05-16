@@ -1,4 +1,4 @@
-package com.a604.taroservice.dto;
+package com.a604.taroservice.data.dto;
 
 import lombok.*;
 

@@ -90,7 +90,7 @@ function TarotResult() {
               <ResultDiv>
                 <Small style={{lineHeight:"2em"}}>{tarotResults[3]}</Small>
                 <GapH height="20vh"/>
-                  {videoUrl ? <Button width="80%" onClick={goToStory}>이야기 보러가기</Button> : <TarotLoading/>}
+                  {videoUrl ? <Button width="80%" onClick={goToStory}>이야기 보러가기</Button> : <><TarotLoading/><br/><Small>이야기를 그리는 중입니다...</Small></>}
                 <GapH height="10vh"/>
               </ResultDiv>
             </ColContainer>
