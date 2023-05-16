@@ -4,6 +4,7 @@ import sys
 import random
 import os
 import math
+import uuid
 from collections import deque
 
 import boto3
@@ -36,10 +37,10 @@ def create_sand_art_video(image_url):
     gray = cv2.cvtColor(blurred_src, cv2.COLOR_BGR2GRAY)
 
     # 히스토그램 평활화 적용
-    equalized_gray = cv2.equalizeHist(gray)
+    # equalized_gray = cv2.equalizeHist(gray)
 
     # 전역 이진화 적용
-    ret, binary = cv2.threshold(equalized_gray, 128, 255, cv2.THRESH_BINARY)
+    ret, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
 
     def initial_sand_color():
         r = random.randint(120, 180)
@@ -73,7 +74,7 @@ def create_sand_art_video(image_url):
 
     visited = np.zeros_like(binary, dtype=bool)
 
-    video_path = "drawing_process.mp4"
+    video_path = str(uuid.uuid1()) + ".mp4"
 
     # VideoWriter 객체 생성
     video = cv2.VideoWriter(video_path, fourcc,
@@ -165,7 +166,7 @@ def create_sand_art_video(image_url):
 
     # 비디오 객체 닫기
     video.release()
-    os.system("ffmpeg -i drawing_process.mp4 -vcodec libx264 h264_drawing_process.mp4")
+    os.system(f"ffmpeg -i {video_path} -vcodec libx264 h264_{video_path}")
     return video_path
 
 
