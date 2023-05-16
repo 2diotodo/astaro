@@ -1,17 +1,19 @@
-FROM python:3.9-slim-buster
+FROM python:3.11
 
-# Set the working directory to /app
-WORKDIR /app
-
-# Copy the contents of the project directory into the container at /app
-COPY . /app
-
-ENV PATH="/app/venv/bin:$PATH"
-
-COPY . /app
-
+WORKDIR  /workspace
+ 
+COPY requirements.txt .
+ 
 EXPOSE 8500
 
-ENV FLASK_APP=Flask.py
+RUN pip install -r requirements.txt
 
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8500"]
+RUN apt-get update &&\
+    apt-get install libgl1-mesa-glx -y &&\
+    apt-get install libglib2.0-0 -y &&\
+    apt-get install ffmpeg x264 libx264-dev -y&&\
+    apt-get install watch -y
+ 
+COPY . /workspace/
+ 
+CMD ["python", "app.py"]
