@@ -15,15 +15,10 @@ sys.setrecursionlimit(100000)
 
 
 def create_sand_art_video(image_url):
-    image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/img-I6KZ7yUtChZGQgNneK0RFKkS.png"
-    fourcc = cv2.VideoWriter_fourcc(*'h264')
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
 
-    # 이미지 파일 경로 설정
-    # current_directory = os.path.dirname(os.path.realpath(__file__))
-    # image_path = os.path.join(
-    #     current_directory, "static", "images", "fable7.jpg")
 
     # 웹 이미지를 메모리로 로드
     with urllib.request.urlopen(image_url) as url:
@@ -82,7 +77,7 @@ def create_sand_art_video(image_url):
 
     # VideoWriter 객체 생성
     video = cv2.VideoWriter(video_path, fourcc,
-                            fps, (width, height), isColor=True)
+                            fps, (width, height), True)
 
     def bfs(i, j, step):
         queue = deque([(i, j)])
@@ -170,7 +165,7 @@ def create_sand_art_video(image_url):
 
     # 비디오 객체 닫기
     video.release()
-
+    os.system("ffmpeg -i drawing_process.mp4 -vcodec libx264 h264_drawing_process.mp4")
     return video_path
 
 
