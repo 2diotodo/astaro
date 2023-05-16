@@ -65,6 +65,7 @@ public class MessageServiceImpl implements MessageService{
     public Message sendMessage(MessageRequestDto messageRequestDto, long memberSeq) {
         List<String> fwords = FwordFilter.loadFwordList("classpath:fword_list.txt");
         String filteredContent = FwordFilter.filterFwords(messageRequestDto.getOriginalContent(), fwords);
+        System.out.println("#123" + filteredContent);
 
         Message message = messageRequestDto.toEntity();
         message.setFilteredContent(filteredContent);
@@ -72,7 +73,6 @@ public class MessageServiceImpl implements MessageService{
 
         MessageList messageList = messageListRepository.findMessageListByResultSeqAndSenderSeq(messageRequestDto.getResultSeq(), memberSeq);
         TaroResult taroResult = shootingStarRepository.findBySeq(messageRequestDto.getResultSeq());
-        System.out.println("#123" + messageRequestDto.getResultSeq());
 
         // 스토리에서 메시지를 보낸 경우
         if (messageRequestDto.getMessageListSeq() == 0) {
@@ -99,8 +99,17 @@ public class MessageServiceImpl implements MessageService{
             messageList.setLastMessageTime(LocalDateTime.now());
             messageListRepository.save(messageList);
         }
-        message.setReceiverSeq(messageList.getReceiverSeq());
-        message.setSenderSeq(messageList.getSenderSeq());
+
+        message.setSenderSeq(memberSeq);
+        if (messageList.getSenderSeq() == memberSeq) {
+            message.setReceiverSeq(messageList.getReceiverSeq());
+        } else {
+            message.setReceiverSeq(messageList.getSenderSeq());
+        }
+        System.out.println(message);
+        System.out.println(message.getSeq());
+        System.out.println("#234" + message.getFilteredContent());
+
         return messageRepository.save(message);
     };
 }
