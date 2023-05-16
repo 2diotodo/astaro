@@ -20,9 +20,9 @@ import java.util.Date;
 public class JwtUtil {
 
     // access token 유효시간
-    private final long accessTokenValidTime = 30 * 60 * 1000L;
-//    private final long accessTokenValidTime = 2 * 1000L;
-    // refresh token 유효시간
+//    private final long accessTokenValidTime = 30 * 60 * 1000L;
+    private final long accessTokenValidTime = 2 * 1000L;
+//     refresh token 유효시간
     private final long refreshTokenValidTime = 24 * 60 * 60 * 1000L;
     // secret key
     @Value("${jwt.secret}")
