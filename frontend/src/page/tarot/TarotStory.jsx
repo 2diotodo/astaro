@@ -21,8 +21,8 @@ function TarotStory() {
     navigate("/star");
   }
   return (
-    <UpDownContainer style={{overflowY:"scroll"}}>
-    <ColContainer>
+    <UpDownContainer style={{position:"relative", overflowY:"scroll", width:"100%"}}>
+    <ColContainer style={{position:"absolute", top:0}}>
       <video controls width="80%" autoPlay>
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.

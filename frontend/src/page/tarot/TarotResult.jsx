@@ -91,6 +91,7 @@ function TarotResult() {
                 <Small style={{lineHeight:"2em"}}>{tarotResults[3]}</Small>
                 <GapH height="20vh"/>
                   {videoUrl ? <Button width="80%" onClick={goToStory}>이야기 보러가기</Button> : <TarotLoading/>}
+                <GapH height="10vh"/>
               </ResultDiv>
             </ColContainer>
           </SlideWrapper>
