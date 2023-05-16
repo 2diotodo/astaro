@@ -27,15 +27,16 @@ const StoryVideo = styled.video`
 `;
 
 const Content = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   width: 80%;
   height: 100%;
   color: white;
-  font-size: 95%;
+  font-size: 80%;
   text-align: left;
   line-height: 1.5;
+  overflow-y: scroll;
 `;
 
 const MessageContainer = styled.div`
@@ -200,12 +201,14 @@ const TaroStoryPage = () => {
     
     const currentTouchX = event.touches[0].clientX;
     const diffX = TouchX - currentTouchX;
-
-    if (diffX > 0) {
-      setNextSlide(currentSlide + 1);
-    } else {
-      if (currentSlide > 0) {
-        setNextSlide(currentSlide - 1);
+    console.log(diffX);
+    if (Math.abs(diffX) > 10) {
+      if (diffX > 0) {
+        setNextSlide(currentSlide + 1);
+      } else {
+        if (currentSlide > 0) {
+          setNextSlide(currentSlide - 1);
+        }
       }
     }
     setTouchX(null);
