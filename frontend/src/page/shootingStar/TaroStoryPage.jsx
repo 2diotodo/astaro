@@ -27,9 +27,6 @@ const StoryVideo = styled.video`
 `;
 
 const Content = styled.div`
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   width: 80%;
   height: 100%;
   color: white;

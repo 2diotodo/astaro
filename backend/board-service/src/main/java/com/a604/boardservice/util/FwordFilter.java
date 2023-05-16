@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class FwordFilter {
 
@@ -30,11 +31,32 @@ public class FwordFilter {
     }
 
     public static String filterFwords(String message, List<String> fwords) {
-        String filteredMessage = message;
+        // String filteredMessage = message;
+        //
+        // for (String fword : fwords) {
+        //     String replacement = "*".repeat(fword.length());
+        //     filteredMessage = filteredMessage.replaceAll("(?i)" + fword, replacement);
+        // }
+        //
+        // return filteredMessage;
+        String[] arr = message.split(" ");
+        String filteredMessage = "";
 
-        for (String fword : fwords) {
-            String replacement = "*".repeat(fword.length());
-            filteredMessage = filteredMessage.replaceAll("(?i)" + fword, replacement);
+        list : for(String text : arr){
+            for (String fword : fwords) {
+                int j = 0;
+                for(int i=0; i<text.length(); i++) {
+                    if(text.charAt(i) == fword.charAt(j)) {
+                        j++;
+                        if(j==fword.length()) {
+                            String replacement = "*".repeat(text.length());
+                            filteredMessage += replacement + " ";
+                            continue list;
+                        }
+                    }
+                }
+            }
+            filteredMessage += text + " ";
         }
 
         return filteredMessage;
