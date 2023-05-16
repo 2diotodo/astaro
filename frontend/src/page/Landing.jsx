@@ -104,7 +104,7 @@ const Title = styled.div`
 const SubTitle = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
   margin-bottom: 10px;
@@ -120,7 +120,29 @@ const SubTitle = styled.div`
   }
 `;
 
+const ContentTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 10px;
+  width: 80%;
+  max-width: 300px;
+
+  & > span {
+    opacity: 0;
+    filter: blur(4);
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
+`;
+
 const Text = styled.span`
+  margin-left: 3px;
+  margin-right: 3px;
+
   animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards;
 `;
 
@@ -138,7 +160,7 @@ const Button = styled.button`
   height: 30px;
   font-family: "TAEBAEKmilkyway";
   animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards,
-    ${Shadow} 2s 2s linear infinite;
+    ${Shadow} 2s 3.5s linear infinite;
 `;
 
 const Landing = (props) => {
@@ -147,9 +169,6 @@ const Landing = (props) => {
   const [touchedX, setTochedX] = useState(0);
   const [touchedY, setTochedY] = useState(0);
 
-  const handleUpBtn = () => {
-    setActivePage(activePage - 1);
-  };
   const handleDownBtn = () => {
     setActivePage(activePage + 1);
   };
@@ -182,28 +201,21 @@ const Landing = (props) => {
         onTouchEnd={onTouchEnd}
         onTouchStart={onTouchStart}
       >
-        {/* 위로 가는 버튼 */}
-        {/* {activePage === 0 ? null : (
-          <UpArrow onClick={handleUpBtn}>
-            <HiChevronUp color="white" size={40}></HiChevronUp>
-          </UpArrow>
-        )} */}
-
         {/* 내용물 : 0번 */}
         {activePage === 0 ? (
           <Container>
             <SubTitle>
-              <Text delay={0.1}>오늘도</Text>
-              <Text delay={0.2}>별처럼</Text>
-              <Text delay={0.3}>빛나는</Text>
-              <Text delay={0.4}>당신에게</Text>
+              <Text delay={0.2}>오늘도</Text>
+              <Text delay={0.4}>별처럼</Text>
+              <Text delay={0.6}>빛나는</Text>
+              <Text delay={0.8}>당신에게</Text>
             </SubTitle>
             <Title>
-              <Text delay={0.5}>Astaro</Text>
+              <Text delay={1}>Astaro</Text>
             </Title>
             <GapH height="10vh" />
             <Button
-              delay={0.6}
+              delay={1}
               onClick={() => {
                 props.audio();
                 navigate("/home");
@@ -215,19 +227,54 @@ const Landing = (props) => {
         ) : null}
 
         {/* 내용물 : 1번 */}
-        {activePage === 1 ? <Container></Container> : null}
+        {activePage === 1 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 2번 */}
-        {activePage === 2 ? <Container></Container> : null}
+        {activePage === 2 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 3번 */}
-        {activePage === 3 ? <Container></Container> : null}
+        {activePage === 3 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 4번 */}
-        {activePage === 4 ? <Container></Container> : null}
+        {activePage === 4 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 5번 */}
-        {activePage === 5 ? <Container></Container> : null}
+        {activePage === 5 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 아래로 가는 버튼 */}
         {activePage === 5 ? null : (

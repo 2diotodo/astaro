@@ -7,8 +7,7 @@ import styled, { keyframes } from "styled-components";
 // Icons or Component Import
 import Taro_back from "@assets/img/Taro_back.png";
 import Taro_front1 from "@assets/img/Taro_front1.png";
-import { useEffect } from "react";
-import { useState } from "react";
+import { GiWindHole } from "react-icons/gi";
 
 // Styled Component : Rotate animation
 const Rotate = keyframes`
@@ -137,7 +136,8 @@ const CardNav = (props) => {
       image={cardSrc[props.activeCard].src}
       onClick={() => clickCardBtn(cardSrc[props.activeCard].navigate)}
     >
-      <Card image={cardSrc[props.activeCard].src}></Card>
+      <GiWindHole color="white"></GiWindHole>
+
       <Title>{cardSrc[props.activeCard].text}</Title>
     </Wrapper>
   );

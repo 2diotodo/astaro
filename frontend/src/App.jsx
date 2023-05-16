@@ -30,11 +30,13 @@ function App() {
   const [audioToggle, setAudioToggle] = useState(true);
 
   const audioPlay = () => {
+    backgroundAudio.loop = true;
     backgroundAudio.play();
     setAudioToggle(true);
   };
 
   const audioPause = () => {
+    backgroundAudio.loop = false;
     backgroundAudio.pause();
     setAudioToggle(false);
   };
