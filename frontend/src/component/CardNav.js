@@ -40,7 +40,7 @@ const Wrapper = styled.div`
 
   border-radius: 9px;
 
-  height: 60%;
+  height: 90%;
   aspect-ratio: 7/13;
 
   background-image: url(${(props) => props.image});
