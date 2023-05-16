@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Background } from "@component/common/Background";
 import Header from "@component/common/Header";
@@ -34,11 +34,17 @@ function App() {
     setAudioToggle(true);
   };
 
+  const setScreenSize= () =>  {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+
+  window.addEventListener('resize', ()=> setScreenSize);
+
   const audioPause = () => {
     backgroundAudio.pause();
     setAudioToggle(false)
   }
-
 
   return (
     <div className="App">

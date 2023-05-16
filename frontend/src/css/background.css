@@ -5,8 +5,8 @@
 .stars-wrapper {
     position: relative;
     pointer-events: none;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(#16161d, #1f1f3a, #3b2f4a);
     overflow: hidden;
 }
