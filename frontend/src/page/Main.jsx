@@ -1,5 +1,6 @@
 // Library Import
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 // Icons or Component Import
@@ -121,6 +122,7 @@ const Wrapper = styled.div`
 `;
 
 export function Main() {
+  const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState(0);
 
   const clickLeftArrowBtn = () => {
@@ -164,8 +166,20 @@ export function Main() {
           </div>
         </NavContainer>
         <LoginContainer>
-          <Button>로그인</Button>
-          <Button>회원가입</Button>
+          <Button
+            onClick={() => {
+              navigate("/member/login");
+            }}
+          >
+            로그인
+          </Button>
+          <Button
+            onClick={() => {
+              navigate("/member/signup");
+            }}
+          >
+            회원가입
+          </Button>
         </LoginContainer>
       </Wrapper>
     </>
