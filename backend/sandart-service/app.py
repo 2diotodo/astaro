@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, redirect
 import SandArt
 import uuid
+import os
 
 app = Flask(__name__)
 
@@ -21,6 +22,8 @@ def run_script():
 
     # S3에 업로드된 비디오 파일의 URL 반환
     s3_video_url = f'https://{bucket_name}.s3.amazonaws.com/{s3_file_name}'
+    os.system(f"rm -rf {video_path}")
+    os.system(f"rm -rf h264_{video_path}")
     return s3_video_url
 
 
