@@ -208,10 +208,10 @@ function MemberSignup() {
     await dispatch(signup(values)).then((response) => {
       if (!response.error) {
         alert("회원가입 완료!");
-        navigate("/member/login");
+        navigate("/login");
       } else {
         alert(response.payload.message);
-        navigate("/member/signup");
+        navigate("/signup");
       }
     });
   };

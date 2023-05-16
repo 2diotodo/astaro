@@ -19,11 +19,10 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class JwtUtil {
 
-    // access token 유효시간
-//    private final long accessTokenValidTime = 30 * 60 * 1000L;
-    private final long accessTokenValidTime = 2 * 1000L;
-//     refresh token 유효시간
-    private final long refreshTokenValidTime = 24 * 60 * 60 * 1000L;
+    private final long ACCESS_TOKEN_VALID_TIME = 30 * 60 * 1000L;
+//    private final long ACCESS_TOKEN_VALID_TIME = 1 * 1000L;
+    private final long REFRESH_TOKEN_VALID_TIME = 24 * 60 * 60 * 1000L;
+//    private final long REFRESH_TOKEN_VALID_TIME = 2 * 1000L;
     // secret key
     @Value("${jwt.secret}")
     private String secret;
@@ -42,7 +41,7 @@ public class JwtUtil {
                 .setSubject(member.getSeq().toString())
                 .claim("role", "USER")
                 .signWith(secretKey, SignatureAlgorithm.HS256)
-                .setExpiration(new Date(now.getTime() + accessTokenValidTime))
+                .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_VALID_TIME))
                 .compact();
     }
 
@@ -53,7 +52,7 @@ public class JwtUtil {
                 .setSubject(member.getSeq().toString())
                 .claim("role", "USER")
                 .signWith(secretKey, SignatureAlgorithm.HS256)
-                .setExpiration(new Date(now.getTime() + refreshTokenValidTime))
+                .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_VALID_TIME))
                 .compact();
     }
 

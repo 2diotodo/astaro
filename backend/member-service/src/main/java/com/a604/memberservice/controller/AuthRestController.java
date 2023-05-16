@@ -67,16 +67,16 @@ public class AuthRestController {
     @PostMapping("/refresh")
     public ResponseEntity<Map<String, String>> refresh(HttpServletRequest request, HttpServletResponse response) {
         log.info(request.getRequestURI());
+        Map<String, String> result = new HashMap<>();
         String newAccessToken;
         try {
             newAccessToken = authService.reissueAccessToken(request, response);
-            log.info(newAccessToken);
             response.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + newAccessToken);
         } catch (Exception e) {
+            result.put("message", e.getMessage());
             log.error(e.getMessage());
             return new ResponseEntity<>(new HashMap<>(), HttpStatus.FORBIDDEN);
         }
-        Map<String, String> result = new HashMap<>();
         result.put("accessToken", newAccessToken);
         result.put("seq", authService.getUserSeqFromToken(newAccessToken).toString());
         return new ResponseEntity<>(result, HttpStatus.OK);

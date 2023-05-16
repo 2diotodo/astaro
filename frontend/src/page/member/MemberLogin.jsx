@@ -70,7 +70,7 @@ function MemberLogin() {
   };
 
   const signupHandler = () => {
-    navigate("/member/signup");
+    navigate("/signup");
   };
   return (
     <Wrapper>

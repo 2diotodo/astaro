@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Background } from "@component/common/Background";
 import Header from "@component/common/Header";
@@ -21,7 +21,7 @@ import Landing from "./page/Landing";
 import music2 from "@assets/A_Quiet_Thought-Wayne_Jones.mp3";
 import "./App.css";
 import TarotStory from "@page/tarot/TarotStory";
-import {IoMdVolumeHigh, IoMdVolumeOff} from "react-icons/io";
+import { IoMdVolumeHigh, IoMdVolumeOff } from "react-icons/io";
 import Medium from "@component/text/Medium";
 import VolumeButton from "@component/VolumeButton";
 
@@ -34,26 +34,34 @@ function App() {
     setAudioToggle(true);
   };
 
-  const setScreenSize= () =>  {
+  const setScreenSize = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }
+  };
 
-  window.addEventListener('resize', ()=> setScreenSize);
+  window.addEventListener("resize", () => setScreenSize);
 
   const audioPause = () => {
     backgroundAudio.pause();
-    setAudioToggle(false)
-  }
+    setAudioToggle(false);
+  };
 
   return (
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
-      {audioToggle?<VolumeButton onClick={audioPause}>
-        <Medium><IoMdVolumeHigh /></Medium>
-      </VolumeButton>:<VolumeButton onClick={audioPlay}>
-        <Medium><IoMdVolumeOff/></Medium>
-      </VolumeButton>}
+      {audioToggle ? (
+        <VolumeButton onClick={audioPause}>
+          <Medium>
+            <IoMdVolumeHigh />
+          </Medium>
+        </VolumeButton>
+      ) : (
+        <VolumeButton onClick={audioPlay}>
+          <Medium>
+            <IoMdVolumeOff />
+          </Medium>
+        </VolumeButton>
+      )}
 
       <Router>
         <Header />
@@ -65,9 +73,9 @@ function App() {
             <Route path="/result" element={<TarotResult />} />
             <Route path="/todaytaro" element={<TodayTaro />} />
             <Route path="/tarot/story" element={<TarotStory />} />
-            <Route path="/member/login" element={<MemberLogin />} />
-            <Route path="/member/signup" element={<MemberSignup />} />
-            <Route path="/member/mypage" element={<MemberMypage />} />
+            <Route path="/login" element={<MemberLogin />} />
+            <Route path="/signup" element={<MemberSignup />} />
+            <Route path="/mypage" element={<MemberMypage />} />
             <Route path="/message/message-list" element={<MessageListPage />} />
             <Route path="/star/chat/:id" element={<ChatPage />} />
             <Route path="/star" element={<StarPage />} />
