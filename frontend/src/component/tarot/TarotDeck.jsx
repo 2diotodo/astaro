@@ -3,16 +3,21 @@ import ColContainer from "@component/layout/ColContainer";
 import RowContainer from "@component/layout/RowContainer";
 import "@css/tarocard.css";
 import GapH from "@component/layout/GapH";
-import { useDispatch } from "react-redux";
-import { setStateCards, setStateCardsInfo } from "@features/tarotSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setStateCards,
+  setStateCardsInfo,
+  setStateCurrentCard,
+} from "@features/tarotSlice";
 import TarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/tarot/TarotCard";
 import SmallMedium from "@component/text/SmallMedium";
+import Medium from "@component/text/Medium";
 
 let tarotCardArr = TarotCardArr;
 
 const TarotDeck = () => {
-  const selectedCardWidth = window.innerWidth * 0.28;
+  const selectedCardWidth = Math.min(window.innerWidth * 0.28, 200);
   const selectedCardMargin = 15;
   const dispatch = useDispatch();
   const [cardIndex, setCardIndex] = useState(0);
@@ -23,8 +28,7 @@ const TarotDeck = () => {
   ];
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectedCardsSeq, setSelectedCardsSeq] = useState([]);
-
-  useEffect(() => {}, []);
+  const [currentCard, setCurrentCard] = useState([]);
 
   const handleCardClick = (card) => {
     let selectedCard = document.querySelector("#card" + card.id);
@@ -44,8 +48,16 @@ const TarotDeck = () => {
 
     selectedCard.setAttribute(
       "style",
-      `transform: translate(${toMove}px, -30vh) rotateY(-180deg); width: 27.6vw; height: 50.4vw;`
+      `transform: translateY(-15vh) rotateY(-180deg) scale(2); z-index:300`
     );
+    selectedCard.classList.add("selected-moving");
+    setTimeout(() => {
+      selectedCard.setAttribute(
+        "style",
+        `transform: translate(${toMove}px, -30vh) scale(1.2) rotateY(-180deg); zIndex:100`
+      );
+      selectedCard.classList.remove("selected-moving");
+    }, 1000);
 
     setTimeout(() => {
       selectedCard.children[1].style.display = "none";
@@ -56,16 +68,24 @@ const TarotDeck = () => {
     setSelectedCards(newSelectedCards);
     dispatch(setStateCards(newSelectedCards));
 
+    setCurrentCard(card.name);
+
     let newSelectedCardsSeq = [...selectedCardsSeq];
     newSelectedCardsSeq.push(card);
     setSelectedCardsSeq(newSelectedCardsSeq);
     dispatch(setStateCardsInfo(newSelectedCardsSeq));
   };
 
+  useEffect(() => {
+    document
+      .querySelector(".current-card-name")
+      .animate([{ opacity: 0 }, { opacity: 1 }], 1000);
+  }, [currentCard]);
+
   return (
     <ColContainer height="75vh">
       <GapH height="2vh" />
-      <SmallMedium>3장의 카드를 뽑아주세요.</SmallMedium>
+      <Medium className="current-card-name">{currentCard}</Medium>
       <GapH height="30vh" />
       <RowContainer
         justify="center"

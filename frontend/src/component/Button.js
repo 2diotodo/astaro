@@ -6,6 +6,7 @@ const Button = styled.button.attrs((props) => ({}))`
   background-color: ${(props) => props.backgroundColor || "transparent"};
   color: ${(props) => props.color || "white"};
   border: ${(props) => props.border || "1px solid #fff"};
+  border-radius: 20px;
   margin: ${(props) => props.margin || "0"};
   cursor: pointer;
   z-index: 1;

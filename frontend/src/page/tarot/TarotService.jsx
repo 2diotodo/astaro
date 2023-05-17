@@ -15,14 +15,18 @@ import Small from "@component/text/Small";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setStateCardsInfo,
+  setStateCategory,
   setStateImgUrl,
   setStateMessage,
   setStateResults,
-  setStateStory, setStateVideoUrl,
+  setStateStory,
+  setStateVideoUrl,
 } from "@features/tarotSlice";
 import { useNavigate } from "react-router-dom";
 import FlipGame from "@page/tarot/FlipGame";
 import SmallMedium from "@component/text/SmallMedium";
+import GoToNextButton from "@component/GoToNextButton";
+import Medium from "@component/text/Medium";
 
 function TarotService() {
   const dispatch = useDispatch();
@@ -110,7 +114,8 @@ function TarotService() {
           )
           .then((res) => {
             reqPicturePrompt =
-              "simple drawing, fairytale style, " + res.data.choices[0].message.content;
+              "simple drawing, fairytale style, " +
+              res.data.choices[0].message.content;
           });
 
         const reqPictureData = {
@@ -138,16 +143,18 @@ function TarotService() {
           contentList: jsonRes.해석.toString(),
           imgUrl: imgUrl,
           videoUrl: null,
-          story: jsonRes.동화.trim()
+          story: jsonRes.동화.trim(),
         };
 
-        await axiosInstance.post(
-          `${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/result`,
-          tarotResultDto
-        ).then((res) =>{
-          dispatch(setStateVideoUrl(res.data.videoUrl));
-          console.log(res);
-        });
+        await axiosInstance
+          .post(
+            `${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/result`,
+            tarotResultDto
+          )
+          .then((res) => {
+            dispatch(setStateVideoUrl(res.data.videoUrl));
+            console.log(res);
+          });
       }
 
       receiveTaroResultAndPicture();
@@ -160,17 +167,25 @@ function TarotService() {
   };
 
   const slideFromCategoryToTarot = () => {
-    if (!category) {
-      window.alert("카테고리를 선택해주세요.");
-      return;
-    }
+    dispatch(
+      setStateCategory(
+        document.querySelector(
+          ".tarot-category-swiper > .swiper-wrapper > .swiper-slide-active > div"
+        ).innerHTML
+      )
+    );
+
+    dispatch(setStateMessage(message));
+
     document
       .querySelector("#slide-from-tarot")
       .classList.remove("right-hidden");
     document.querySelector("#slide-from-category").classList.add("left-hidden");
+
     const shuffleArr = Array.prototype.slice.call(
       document.getElementsByClassName("tarot-card")
     );
+
     shuffleArr.map((elem) => elem.classList.add("shuffle-card"));
     setTimeout(() => {
       shuffleArr.map((elem) => elem.classList.add("shuffled"));
@@ -195,7 +210,7 @@ function TarotService() {
 
   return (
     <>
-      <UpDownContainer style={{ position: "relative", width:"100%" }}>
+      <UpDownContainer style={{ position: "relative", width: "100%" }}>
         <ColContainer
           id="slide-from-category"
           style={{ position: "absolute", top: 0 }}
@@ -204,17 +219,23 @@ function TarotService() {
         >
           <TarotCategory />
           <GapH height="10vh" />
-          <hr
-            style={{
-              width: "100%",
-              boxShadow: "0px 0px 10px 5px gray",
-              border: "1px solid white",
-              maxWidth: "500px",
-            }}
+          <Input
+            width="360px"
+            placeholder="당신의 고민을 입력하세요."
+            onChange={handleMessageChange}
+            name="message"
+            zIndex="100"
           />
-          <Button width="80%" height="50px" margin="5vh 0" onClick={slideFromCategoryToTarot} style={{maxWidth:"300px"}}>
+          <GapH height={"10vh"} />
+          <GoToNextButton
+            width="80%"
+            height="50px"
+            margin="5vh 0"
+            onClick={slideFromCategoryToTarot}
+            style={{ maxWidth: "300px" }}
+          >
             다음으로
-          </Button>
+          </GoToNextButton>
         </ColContainer>
         <ColContainer
           style={{ position: "absolute", top: 0 }}
@@ -222,16 +243,13 @@ function TarotService() {
           className="slide-in right-hidden"
         >
           <TarotDeck />
-          <Input
-            width="360px"
-            placeholder="당신의 고민을 입력하세요."
-            onChange={handleMessageChange}
-            name="message"
-            zIndex="100"
-            onKeyDown={(e) => {
-              sendToGpt(e, message);
-            }}
-          />
+          {stateCards.length === 3 ? (
+            <GoToNextButton>다음으로</GoToNextButton>
+          ) : (
+            <div style={{ bottom: "10vh" }}>
+              <SmallMedium>3장의 카드를 뽑아주세요.</SmallMedium>
+            </div>
+          )}
         </ColContainer>
         <ColContainer
           id="slide-from-loading"

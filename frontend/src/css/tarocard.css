@@ -3,7 +3,6 @@
   animation-duration: 0.85s;
   animation-iteration-count: 3;
   animation-delay: 1.5s;
-  z-index: 2;
 }
 
 .shuffle-card :nth-child(3) {
@@ -11,7 +10,6 @@
   animation-duration: 2s;
   animation-iteration-count: 2;
   animation-delay: 1s;
-  z-index: 3;
 }
 
 .shuffle-card :nth-child(4) {
@@ -19,7 +17,6 @@
   animation-duration: 1.1s;
   animation-iteration-count: 3;
   animation-delay: 1s;
-  z-index: 2;
 }
 
 .shuffle-card:nth-child(5) {
@@ -27,14 +24,12 @@
   animation-duration: 0.8s;
   animation-delay: 0.6s;
   animation-iteration-count: 4;
-  z-index: 1;
 }
 .shuffle-card:nth-child(6) {
   animation-name: shuffle1;
   animation-duration: 0.53s;
   animation-iteration-count: 5;
   animation-delay: 1s;
-  z-index: 4;
 }
 
 .shuffle-card:nth-child(7) {
@@ -42,7 +37,6 @@
   animation-duration: 0.6s;
   animation-iteration-count: 5;
   animation-delay: 0.7s;
-  z-index: 4;
 }
 
 @keyframes shuffle1 {
@@ -87,7 +81,6 @@
   }
   50% {
     transform: translate(-20px, -50px);
-    z-index: 1;
   }
   80% {
     transform: translateX(-10px);
@@ -112,7 +105,6 @@
   }
   50% {
     transform: translate(-50px, -10px) rotate(8deg);
-    z-index: 1;
   }
   100% {
     transform: translate(0, 0);
@@ -121,112 +113,90 @@
 
 .shuffled:nth-child(1) {
   transform: translate(-135px, 30px) rotate(-30deg);
-  z-index: 1;
 }
 
 .shuffled:nth-child(2) {
   transform: translate(-120px, 27px) rotate(-27deg);
-  z-index: 2;
 }
 
 .shuffled:nth-child(3) {
   transform: translate(-105px, 21px) rotate(-24deg);
-  z-index: 3;
 }
 
 .shuffled:nth-child(4) {
   transform: translate(-90px, 16px) rotate(-21deg);
-  z-index: 4;
 }
 
 .shuffled:nth-child(5) {
   transform: translate(-75px, 12px) rotate(-18deg);
-  z-index: 5;
 }
 
 .shuffled:nth-child(6) {
   transform: translate(-60px, 8px) rotate(-15deg);
-  z-index: 6;
 }
 
 .shuffled:nth-child(7) {
   transform: translate(-45px, 5px) rotate(-12deg);
-  z-index: 7;
 }
 
 .shuffled:nth-child(8) {
   transform: translate(-30px, 3px) rotate(-9deg);
-  z-index: 8;
 }
 
 .shuffled:nth-child(9) {
   transform: translate(-15px, 1px) rotate(-6deg);
-  z-index: 9;
 }
 
 .shuffled:nth-child(10) {
   transform: translate(0px, 0px) rotate(-3deg);
-  z-index: 10;
 }
 
 .shuffled:nth-child(11) {
   transform: translate(15px, 0px) rotate(0deg);
-  z-index: 11;
 }
 
 .shuffled:nth-child(12) {
   transform: translate(30px, 0px) rotate(3deg);
-  z-index: 12;
 }
 
 .shuffled:nth-child(13) {
   transform: translate(45px, 1px) rotate(6deg);
-  z-index: 13;
 }
 
 .shuffled:nth-child(14) {
   transform: translate(60px, 3px) rotate(9deg);
-  z-index: 14;
 }
 
 .shuffled:nth-child(15) {
   transform: translate(75px, 5px) rotate(12deg);
-  z-index: 15;
 }
 
 .shuffled:nth-child(16) {
   transform: translate(90px, 8px) rotate(15deg);
-  z-index: 16;
 }
 
 .shuffled:nth-child(17) {
   transform: translate(105px, 12px) rotate(18deg);
-  z-index: 17;
 }
 
 .shuffled:nth-child(18) {
   transform: translate(120px, 18px) rotate(21deg);
-  z-index: 18;
 }
 
 .shuffled:nth-child(19) {
   transform: translate(135px, 21px) rotate(24deg);
-  z-index: 19;
 }
 
 .shuffled:nth-child(20) {
   transform: translate(150px, 27px) rotate(27deg);
-  z-index: 20;
 }
 
 .shuffled:nth-child(21) {
   transform: translate(165px, 33px) rotate(30deg);
-  z-index: 21;
 }
 
 .shuffled:nth-child(22) {
   transform: translate(180px, 40px) rotate(33deg);
-  z-index: 22;
 }
 
 .selected-tarocard.result-tarocard {
@@ -245,6 +215,10 @@
   transition-duration: 2s;
   transition-delay: 1s;
   box-shadow: 0 0 10px 5px #c8c8c8;
+}
+
+.selected-tarocard .selected-moving{
+  animation: zoomIn 1.5s forwards;
 }
 
 .selected-tarocard::after {
@@ -268,13 +242,11 @@
   position: relative;
   transform: rotateY(0deg);
   backface-visibility: hidden;
-  z-index: 50 !important;
 }
 
 .selected-tarocard > img.tarot-back {
   transition: all 1s;
   position: relative;
-  z-index: 10;
   transform: rotateY(180deg) !important;
   backface-visibility: hidden;
   animation-name: remove-display;
