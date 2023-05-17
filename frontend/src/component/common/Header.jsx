@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { GiStarSwirl } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
 import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
@@ -70,7 +70,7 @@ function Header() {
               <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
             </div>
             <div style={{ position: "absolute", right: "2vw" }}>
-              <GiStarSwirl
+              <GiHamburgerMenu
                 onClick={toggleNavHandler}
                 className={`cursor-pointer ${
                   navState.toggle ? "open" : "close"
