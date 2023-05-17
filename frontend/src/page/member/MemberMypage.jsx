@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router";
 import wisdoms from "@constants/wisdom.json";
 import profiles from "@constants/profile.json";
@@ -14,6 +14,33 @@ import {
   update,
 } from "@features/memberUpdateSlice";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
+
+const backglow1 = keyframes`
+0% {
+  transform: translate(10%, 10%) scale(1);
+  opacity: 0.5;
+}
+
+25% {
+  transform: translate(-10%, 10%) scale(0.8);
+  opacity: 0.5;
+}
+
+50% {
+  transform: translate(-10%, -10%) scale(1.2);
+  opacity: 0.8;
+}
+
+75% {
+  transform: translate(10%, -10%) scale(1.1);
+  opacity: 0.2;
+}
+
+100% {
+  transform: translate(10%, 10%) scale(1);
+  opacity: 0.5;
+}
+`;
 
 const Wrapper = styled.div`
   height: 80%;
@@ -48,6 +75,35 @@ const Button = styled.button`
   float: right;
   right: 10%;
 `;
+const MypageProfile = styled.div`
+  position: absolute;
+  content: "";
+  top: -5%;
+  left: -5%;
+  height: 110%;
+  width: 110%;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(60px);
+  &:after {
+    animation: ${backglow1} 15s ease infinite;
+  }
+  &:before {
+    animation: ${backglow1} 15s ease infinite;
+  }
+`;
+const MyUpdate = styled.div`
+  background-color: transparent;
+  width: 320px;
+  height: 200px;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 5%;
+  perspective: 1000px;
+  pointer-events: auto;
+  position: relative;
+  transform: ${({ flipped }) => (flipped ? "rotateY(-180deg)" : "")};
+`;
 
 // modal style - mui
 const boxStyle = {
@@ -65,6 +121,16 @@ const boxStyle = {
   p: 4,
 };
 
+const ModalImg = styled.div`
+  text-align: center;
+  margin: 5% 5% 0 5%;
+  opacity: 0.3;
+  img {
+    height: 90px;
+  }
+  opacity: ${({ selected }) => (selected ? "1" : "0.3")};
+`;
+
 function MemberMypage() {
   const dispatch = useDispatch();
   const userinfo = useSelector((state) => state.memberUpdate);
@@ -77,7 +143,7 @@ function MemberMypage() {
     password: "",
     passwordConfirm: "",
     nickname: "",
-    profile: 1,
+    profile: 0,
     email: "",
     lux: 0,
     heal: 0,
@@ -111,9 +177,9 @@ function MemberMypage() {
   const [profileSelected, setProfileSelected] = useState(0);
 
   const profileSelectHandler = (idx) => {
-    if (values.lux >= profiles[idx - 1].starlux) {
+    if (values.lux >= profiles[idx].starlux) {
       setProfileSelected(idx);
-      // let newlux = values.lux - profiles[idx - 1].starlux;
+      // let newlux = values.lux - profiles[idx].starlux;
       setValues({
         ...values,
         profile: idx,
@@ -230,7 +296,6 @@ function MemberMypage() {
     } else {
       alert("탈퇴를 취소하셨습니다.");
     }
-    // navigate("/member/signup");
   };
 
   // modal 관리
@@ -259,17 +324,18 @@ function MemberMypage() {
           <Subtitle className="mypage-wisdom">
             {selectWisdom.wisdom} -{selectWisdom.writer}
           </Subtitle>
-          <div className="mypage-profile">
+          <MypageProfile className="mypage-profile">
             {values.profile && (
               <img
-                src={profiles[values.profile - 1].starImageUrl}
+                src={profiles[values.profile].starImageUrl}
                 alt="profile"
                 style={{ height: "90px" }}
               />
             )}
             <GoPencil onClick={changeProfileHandler} color="white" />
-          </div>
-          <div
+          </MypageProfile>
+          <MyUpdate
+            flipped
             className={`mypage-update ${flipped ? "active" : ""}`}
             onClick={flipHandler}
           >
@@ -406,7 +472,7 @@ function MemberMypage() {
                 </Button>
               </div>
             </div>
-          </div>
+          </MyUpdate>
         </div>
       </Wrapper>
       <Modal
@@ -421,7 +487,8 @@ function MemberMypage() {
           </Typography>
           <Typography className="modal-body" id="modal-modal-description">
             {profiles.map((star) => (
-              <div
+              <ModalImg
+                selected
                 className={
                   profileSelected === star.starId
                     ? "modal-img selected"
@@ -434,7 +501,7 @@ function MemberMypage() {
               >
                 <img src={star.starImageUrl} alt={star.starName} />
                 <div>{star.starlux} lux</div>
-              </div>
+              </ModalImg>
             ))}
           </Typography>
         </Box>
