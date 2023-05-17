@@ -32,7 +32,7 @@ import Medium from "@component/text/Medium";
 import VolumeButton from "@component/VolumeButton";
 
 function App() {
-  const [backgroundAudio, setBackgroundAudio] = useState(new Audio(music));
+  const [backgroundAudio] = useState(new Audio(music));
   const [audioToggle, setAudioToggle] = useState(true);
 
   const audioPlay = () => {
@@ -62,7 +62,7 @@ function App() {
           </Medium>
         </VolumeButton>
       ) : (
-        <VolumeButton onClick={audioPlay}>
+        <VolumeButton onClick={audioPlay} style={{ height: "9%" }}>
           <Medium>
             <IoMdVolumeOff />
           </Medium>

@@ -11,8 +11,8 @@ import {
 } from "@features/tarotSlice";
 import TarotCardArr from "@assets/TarotCardArr";
 import TarotCard from "@component/tarot/TarotCard";
-import SmallMedium from "@component/text/SmallMedium";
 import Medium from "@component/text/Medium";
+import FlipCardSound from "@assets/Flip_card.mp3";
 
 let tarotCardArr = TarotCardArr;
 
@@ -29,8 +29,9 @@ const TarotDeck = () => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectedCardsSeq, setSelectedCardsSeq] = useState([]);
   const [currentCard, setCurrentCard] = useState([]);
-
+  const [flipCardSound] = useState(new Audio(FlipCardSound));
   const handleCardClick = (card) => {
+    flipCardSound.play();
     let selectedCard = document.querySelector("#card" + card.id);
     if (selectedCard.classList.contains("selected-tarocard")) {
       return;
