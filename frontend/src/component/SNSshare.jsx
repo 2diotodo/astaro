@@ -1,10 +1,8 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import '@css/modal.css';
 import styled from "styled-components";
 
 import {
-  InstapaperShareButton,
-  InstapaperIcon,
 	FacebookShareButton,
 	FacebookIcon,
 	TwitterIcon,
@@ -39,10 +37,6 @@ export function Modal(props)  {
 		});
 	};
 
-
-
-
-
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? 'openModal modal' : 'modal'}>
@@ -64,24 +58,16 @@ export function Modal(props)  {
               <TwitterShareButton url="https://astaro.co.kr/todaytaro">
                 <TwitterIcon size={48} round={true} borderRadius={24}></TwitterIcon>
               </TwitterShareButton>
-              <InstapaperShareButton url="https://astaro.co.kr/todaytaro">
-                <InstapaperIcon size={48} round={true} borderRadius={24}></InstapaperIcon>
-              </InstapaperShareButton>
               <KakaoShareButton onClick={handleKakaoButton}>
                 <KakaoIcon src={kakaoLogo}></KakaoIcon>
               </KakaoShareButton>
             </GridContainer>
           </FlexContainer>
           </main>
-          {/* <footer>
-            <button className="close" onClick={close}>
-              close
-            </button>
-          </footer> */}
         </section>
       ) : null}
     </div>
-  );
+  ); 
 };
 
 const Word = styled.div`

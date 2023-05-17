@@ -11,7 +11,6 @@ import * as PropTypes from "prop-types";
 import ColContainer from "@component/layout/ColContainer";
 import Medium from "@component/text/Medium";
 import Small from "@component/text/Small";
-// import { saveAs } from "file-saver";
 
 function UpDowncontainer(props) {
   return null;
@@ -44,22 +43,7 @@ export function TodayResult() {
       .catch(() => {});
   }, []);
 
-  // const captureScreenshot = () => {
-  //   html2canvas(document.getElementById("todayresultcard"),{    useCORS: true,
-  //     allowTaint: true}).then((canvas) => {
-      
-  //     canvas.toBlob((blob) => {
-  //       if (blob) {
-  //         const url = URL.createObjectURL(blob);
-  //         const link = document.createElement("a");
-  //         link.href = url;
-  //         link.download = "todayresult.png";
-  //         link.click();
-  //         URL.revokeObjectURL(url);
-  //       }
-  //     });
-  //   });
-  // };
+
   const captureScreenshot = () =>{
     html2canvas(document.getElementById("todayresultcard"), {
       logging: true, letterRendering: 1,
@@ -71,31 +55,15 @@ export function TodayResult() {
       downloadLink.download = "filename.png";
       downloadLink.href = canvas.toDataURL();
       downloadLink.click();
-    });   
-        // saveAs(canvas.toDataURL('image/jpg'), 'asd.jpg')
+    });
   }; 
-    
-    
-  
-  // const saveAs = (uri, filename) => {
-  //   let link = document.createElement('a')
-  //   if(typeof link.download == 'string'){
-  //     link.href = uri;
-  //     link.download = filename;
-  //     document.body.appendChild(link)
-  //     link.click()
-  //     document.body.removeChild(link)
-  //   } else {
-  //     window.open(uri)
-  //   }
-  // }
 
   return (
     <ColContainer style={{position:"relative", top:0, width:"100%", height:"100%"}}>
       <ColContainer
         width="80%"
         justify="start"
-        height="100%"
+        height="83%"
         style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
         id="todayresultcard"
         >
@@ -111,7 +79,7 @@ export function TodayResult() {
             />
         </TodayMainCard>
         <Medium style={{ margin: "4vh 0" }}>{result.cardName}</Medium>
-        <Small style={{ marginBottom: "2vh" }}>{result.content}</Small>
+        <Small style={{ marginBottom: "2vh", fontSize:'19px' }}>{result.content}</Small>
         <RowContainer style={{ margin: "2vh 0" }}>
           <TodayTarotCard>
             상성이 좋은 카드
