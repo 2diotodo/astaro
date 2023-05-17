@@ -4,6 +4,7 @@ import sys
 import random
 import os
 import math
+import uuid
 from collections import deque
 
 import boto3
@@ -15,15 +16,10 @@ sys.setrecursionlimit(100000)
 
 
 def create_sand_art_video(image_url):
-    image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/img-I6KZ7yUtChZGQgNneK0RFKkS.png"
-    fourcc = cv2.VideoWriter_fourcc(*'h264')
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
 
-    # 이미지 파일 경로 설정
-    # current_directory = os.path.dirname(os.path.realpath(__file__))
-    # image_path = os.path.join(
-    #     current_directory, "static", "images", "fable7.jpg")
 
     # 웹 이미지를 메모리로 로드
     with urllib.request.urlopen(image_url) as url:
@@ -41,10 +37,10 @@ def create_sand_art_video(image_url):
     gray = cv2.cvtColor(blurred_src, cv2.COLOR_BGR2GRAY)
 
     # 히스토그램 평활화 적용
-    equalized_gray = cv2.equalizeHist(gray)
+    # equalized_gray = cv2.equalizeHist(gray)
 
     # 전역 이진화 적용
-    ret, binary = cv2.threshold(equalized_gray, 128, 255, cv2.THRESH_BINARY)
+    ret, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
 
     def initial_sand_color():
         r = random.randint(120, 180)
@@ -78,11 +74,11 @@ def create_sand_art_video(image_url):
 
     visited = np.zeros_like(binary, dtype=bool)
 
-    video_path = "drawing_process.mp4"
+    video_path = str(uuid.uuid1()) + ".mp4"
 
     # VideoWriter 객체 생성
     video = cv2.VideoWriter(video_path, fourcc,
-                            fps, (width, height), isColor=True)
+                            fps, (width, height), True)
 
     def bfs(i, j, step):
         queue = deque([(i, j)])
@@ -170,7 +166,7 @@ def create_sand_art_video(image_url):
 
     # 비디오 객체 닫기
     video.release()
-
+    os.system(f"ffmpeg -i {video_path} -vcodec libx264 h264_{video_path}")
     return video_path
 
 

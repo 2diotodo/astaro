@@ -52,7 +52,7 @@ public class TaroResult {
 
     private LocalDate createdAt;
 
-    @ColumnDefault("0")
+    @ColumnDefault("1")
     private boolean isPublic;
 
 }

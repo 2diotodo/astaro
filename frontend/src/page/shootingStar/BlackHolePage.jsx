@@ -29,8 +29,8 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    width: 100vh;
-    height: 100%;
+    width: 100%;
+    height: 60vh;
     position: absolute;
     z-index: 5;
     animation: ${rotate} ${props => props.sendClicked ? '5s' : '30s'} linear infinite;
@@ -50,7 +50,7 @@ const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 5;
-  animation: ${props => props.sendClicked ? css`${disappear} 3s ease-in-out forwards` : 'none'};
+  animation: ${props => props.sendClicked ? css`${disappear} 5s ease-in-out forwards, ${rotate} 5s linear infinite` : 'none'};
 `;
 
 const SendButton = styled.button`
@@ -109,7 +109,7 @@ const disappear = keyframes`
   }
   100% {
     opacity: 0;
-    transform: scale(0.1);
+    transform: scale(0);
   }
 `;
 

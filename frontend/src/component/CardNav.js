@@ -98,7 +98,7 @@ const CardNav = (props) => {
       navigate(url);
     } else {
       alert("로그인이 필요한 기능입니다.");
-      navigate("/member/login");
+      navigate("/login");
     }
   };
 
@@ -126,7 +126,7 @@ const CardNav = (props) => {
     {
       text: "[ 마이 페이지 ]",
       src: Taro_front1,
-      navigate: "/member/mypage",
+      navigate: "/mypage",
     },
   ];
 

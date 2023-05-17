@@ -168,14 +168,14 @@ export function Main() {
         <LoginContainer>
           <Button
             onClick={() => {
-              navigate("/member/login");
+              navigate("/login");
             }}
           >
             로그인
           </Button>
           <Button
             onClick={() => {
-              navigate("/member/signup");
+              navigate("/signup");
             }}
           >
             회원가입

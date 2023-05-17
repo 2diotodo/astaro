@@ -2,7 +2,7 @@ package com.a604.taroservice.service;
 
 import com.a604.taroservice.data.CardInfo;
 import com.a604.taroservice.data.TaroContent;
-import com.a604.taroservice.dto.TodayTaroDto;
+import com.a604.taroservice.data.dto.TodayTaroDto;
 import com.a604.taroservice.repository.CardInfoRepository;
 import com.a604.taroservice.repository.TaroContentRepository;
 import lombok.RequiredArgsConstructor;

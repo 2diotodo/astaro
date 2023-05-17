@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Background } from "@component/common/Background";
 import Header from "@component/common/Header";
@@ -68,9 +68,9 @@ function App() {
             <Route path="/result" element={<TarotResult />} />
             <Route path="/todaytaro" element={<TodayTaro />} />
             <Route path="/tarot/story" element={<TarotStory />} />
-            <Route path="/member/login" element={<MemberLogin />} />
-            <Route path="/member/signup" element={<MemberSignup />} />
-            <Route path="/member/mypage" element={<MemberMypage />} />
+            <Route path="/login" element={<MemberLogin />} />
+            <Route path="/signup" element={<MemberSignup />} />
+            <Route path="/mypage" element={<MemberMypage />} />
             <Route path="/message/message-list" element={<MessageListPage />} />
             <Route path="/star/chat/:id" element={<ChatPage />} />
             <Route path="/star" element={<StarPage />} />
