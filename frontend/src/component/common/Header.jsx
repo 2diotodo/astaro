@@ -2,17 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { GiStarSwirl } from "react-icons/gi";
-import {
-  MdOutlineChatBubbleOutline,
-  MdOutlineMarkChatUnread,
-} from "react-icons/md";
-import {IoMdVolumeHigh} from "react-icons/io";
 import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import Medium from "@component/text/Medium";
 import "@css/headers.css";
-import GapW from "@component/layout/GapW";
 
 function Header() {
   const navState = useSelector((state) => state.navBars);
@@ -32,14 +26,6 @@ function Header() {
   // url 정보 받아오는 hook
   const location = useLocation();
 
-  // 읽지않은 채팅여부확인
-  const [unread, setUnread] = useState(false);
-
-  // unread 채팅알람기능 -구현 필요
-  const UnreadCheck = () => {
-    console.log("chat Alarm");
-  };
-
   // 해당 페이지로 이동 선언
   const navigateToMain = () => {
     navigate("/home");
@@ -47,26 +33,25 @@ function Header() {
 
   useEffect(() => {
     dispatch(isLoginCheck(isLogin));
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     dispatch(toggleNavBar(false));
   }, [dispatch, location.pathname, navigate]);
 
-  // 채팅목록으로 이동-변경필요
-  const moveToMessageList = () => {
-    navigate("/message/message-list");
-  };
   // toggle로 로그인상태관리
   const toggleNavHandler = () => {
     dispatch(toggleNavBar(!navState.toggle));
+  };
+
+  const closeHandler = () => {
+    dispatch(toggleNavBar(false));
   };
 
   return (
     <>
       {location.pathname === "/home" || location.pathname === "/" ? null : (
         <div className="common-header">
-          {/* <AudioPlayer /> */}
           <div className="header-nav">
             <div
               className={`nav-logo ${
@@ -76,43 +61,23 @@ function Header() {
               onKeyDown={navigateToMain}
               style={{ color: "white" }}
             >
-              <Medium
-                style={{ fontWeight: "bold" }}
-              >
-                Astaro
-              </Medium>
+              <Medium style={{ fontWeight: "bold" }}>Astaro</Medium>
             </div>
             <div
               className={`navbar-wrapper ${navState.toggle ? "open" : "close"}`}
+              onClick={closeHandler}
             >
               <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
             </div>
-            <div style={{position:"absolute", right:"2vw"}}>
-            {isLogin ? (
-              unread ? (
-                <MdOutlineMarkChatUnread
-                  onClick={moveToMessageList}
-                  color="white"
-                  size="30px"
-                />
-              ) : (
-                <MdOutlineChatBubbleOutline
-                  onClick={moveToMessageList}
-                  color="white"
-                  size="30px"
-                />
-              )
-            ) : (
-              ""
-            )}
-            <GiStarSwirl
-              onClick={toggleNavHandler}
-              className={`cursor-pointer ${
-                navState.toggle ? "open" : "close"
-              } ${location.pathname === "/" ? "hidden" : " "}`}
-              color="white"
-              size="30px"
-            />
+            <div style={{ position: "absolute", right: "2vw" }}>
+              <GiStarSwirl
+                onClick={toggleNavHandler}
+                className={`cursor-pointer ${
+                  navState.toggle ? "open" : "close"
+                } ${location.pathname === "/" ? "hidden" : " "}`}
+                color="white"
+                size="30px"
+              />
             </div>
           </div>
         </div>
