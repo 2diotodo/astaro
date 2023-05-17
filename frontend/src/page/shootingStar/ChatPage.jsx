@@ -5,12 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
   setSelectedChatRoom,
-  setMessages,
   fetchMessages,
   sendMessage
-  // addMessage,
 } from "../../features/shootingStarSlice/chatSlice";
-// import { Background } from "@component/common/Background";
 import MessageInput from "../../component/shootingStar/MessageInput";
 
 
@@ -18,16 +15,21 @@ const MessageSeparator = styled.hr`
   margin: 0;
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  width: 100%; // 구분선의 너비를 100%로 설정
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   position: absolute;
 `;
+
 const Title = styled.h1`
   color: white;
+  flex-shrink: 0;
+  font-size: 1.5rem;
 `;
 
 const Message = styled.li`
@@ -40,21 +42,22 @@ const Message = styled.li`
   max-width: 100%;
   min-height: 4rem;
   word-wrap: break-word;
-  display: inline-block; // 인라인 블록 요소로 변경
-  white-space: pre-wrap; // 줄바꿈 처리
+  display: inline-block;
+  white-space: pre-wrap;
 `;
 
 const MessageLeft = styled(Message)`
   text-align: left;
   background-color: rgba(255, 255, 255, 0);
-  align-self: flex-start; // 왼쪽 정렬을 위한 스타일 추가
+  align-self: flex-start;
 `;
 
 const MessageRight = styled(Message)`
-  text-align: left;
+  text-align: right;
   background-color: rgba(255, 255, 255, 0);
-  align-self: flex-start; // 오른쪽 정렬을 위한 스타일 추가
+  align-self: flex-end;
 `;
+
 
 const MessageList = styled.ul`
   list-style-type: none;
@@ -62,32 +65,28 @@ const MessageList = styled.ul`
   margin: 0;
   overflow-y: auto;
   display: flex;
-  flex-direction: column; // 메시지 목록을 위한 새로운 스타일 추가
+  flex-direction: column;
 `;
+
 const ChatWindow = styled.div`
   background-color: rgba(255, 255, 255, 0.2);
   padding: 15px;
-  height: 80%;
+  flex-grow: 1;
   overflow-y: auto;
 `;
 
 const MessageLabel = styled.p`
   font-size: 0.5rem;
-  color: white;
+  color: ${props => props.sender == loggedInMemberSeq ? 'rgba(215, 252, 254, 1)' : 'rgba(248, 254, 215, 1)'}; // 조건부 스타일링
   margin-bottom: 2px;
   margin-top: 0;
 `;
 
 const MessageInputWrapper = styled.div`
-  position: fixed;
-  bottom: 1rem;
-  left: 0;
-  right: 0;
-  padding: 0 15px;
   background-color: rgba(0, 0, 0, 0.6);
+  flex-shrink: 0;
 `;
 
-// 임시 가 데이터
 const loggedInMemberSeq = `${localStorage.getItem("seq")}`;
 
 const ChatPage = () => {
@@ -139,7 +138,7 @@ const ChatPage = () => {
               return (
                 <React.Fragment key={message.seq}>
                   <MessageComponent>
-                    <MessageLabel>{messageLabel}</MessageLabel>
+                    <MessageLabel sender={message.senderSeq}>{messageLabel}</MessageLabel>
                     {message.filteredContent}
                   </MessageComponent>
                   <MessageSeparator />
