@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   border-radius: 9px;
 
   height: 90%;
-  aspect-ratio: 7/13;
+  aspect-ratio: 1/1;
 
   background-image: url(${(props) => props.image});
   background-position: center;
@@ -133,11 +133,9 @@ const CardNav = (props) => {
   return (
     <Wrapper
       key={props.activeCard}
-      image={cardSrc[props.activeCard].src}
+      image="https://i.pinimg.com/564x/80/0f/92/800f926cab9522ea8aef47dc00853c75.jpg"
       onClick={() => clickCardBtn(cardSrc[props.activeCard].navigate)}
     >
-      <GiWindHole color="white"></GiWindHole>
-
       <Title>{cardSrc[props.activeCard].text}</Title>
     </Wrapper>
   );

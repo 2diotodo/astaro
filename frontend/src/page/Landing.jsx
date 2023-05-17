@@ -252,6 +252,15 @@ const Landing = (props) => {
             <ContentTitle>
               <Text delay={0.2}>"무엇이든</Text>
               <Text delay={0.4}>들어줄게!"</Text>
+              <Text delay={0.6}>들어줄게!"</Text>
+              <Text delay={0.8}>들어줄게!"</Text>
+              <Text delay={1.0}>들어줄게!"</Text>
+              <Text delay={1.2}>들어줄게!"</Text>
+              <Text delay={1.4}>들어줄게!"</Text>
+              <Text delay={1.6}>들어줄게!"</Text>
+              <Text delay={1.8}>들어줄게!"</Text>
+              <Text delay={2.0}>들어줄게!"</Text>
+              <Text delay={2.2}>들어줄게!"</Text>
             </ContentTitle>
           </Container>
         ) : null}

@@ -47,7 +47,7 @@ export function TodayResult() {
   // const captureScreenshot = () => {
   //   html2canvas(document.getElementById("todayresultcard"),{    useCORS: true,
   //     allowTaint: true}).then((canvas) => {
-      
+
   //     canvas.toBlob((blob) => {
   //       if (blob) {
   //         const url = URL.createObjectURL(blob);
@@ -60,23 +60,22 @@ export function TodayResult() {
   //     });
   //   });
   // };
-  const captureScreenshot = () =>{
+  const captureScreenshot = () => {
     html2canvas(document.getElementById("todayresultcard"), {
-      logging: true, letterRendering: 1,
-      backgroundColor:'black',
+      logging: true,
+      letterRendering: 1,
+      backgroundColor: "black",
       allowTaint: false,
       useCORS: true,
-    }).then(function(canvas) {
+    }).then(function (canvas) {
       const downloadLink = document.createElement("a");
       downloadLink.download = "filename.png";
       downloadLink.href = canvas.toDataURL();
       downloadLink.click();
-    });   
-        // saveAs(canvas.toDataURL('image/jpg'), 'asd.jpg')
-  }; 
-    
-    
-  
+    });
+    // saveAs(canvas.toDataURL('image/jpg'), 'asd.jpg')
+  };
+
   // const saveAs = (uri, filename) => {
   //   let link = document.createElement('a')
   //   if(typeof link.download == 'string'){
@@ -91,14 +90,22 @@ export function TodayResult() {
   // }
 
   return (
-    <ColContainer style={{position:"relative", top:0, width:"100%", height:"100%"}}>
+    <ColContainer
+      style={{ position: "relative", top: 0, width: "100%", height: "100%" }}
+    >
       <ColContainer
         width="80%"
         justify="start"
         height="100%"
-        style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
+        style={{
+          top: "0",
+          position: "absolute",
+          paddingTop: "2vh",
+          backgroundColor: "rgba(0,0,0,0.1)",
+          maxWidth: "600px",
+        }}
         id="todayresultcard"
-        >
+      >
         <TodayMainCard>
           <img
             src={result.mainImageUrl}
@@ -108,7 +115,7 @@ export function TodayResult() {
               position: "relative",
               zIndex: 2,
             }}
-            />
+          />
         </TodayMainCard>
         <Medium style={{ margin: "4vh 0" }}>{result.cardName}</Medium>
         <Small style={{ marginBottom: "2vh" }}>{result.content}</Small>
@@ -132,13 +139,13 @@ export function TodayResult() {
       <RowContainer
         width="100%"
         style={{
-          maxWidth:"600px",
+          maxWidth: "600px",
           justifyContent: "space-evenly",
           position: "absolute",
-          bottom: "1vh"
+          bottom: "1vh",
         }}
-        >
-      {/* <div
+      >
+        {/* <div
         width="100%"
         style={{
           display:'flex',
@@ -153,7 +160,7 @@ export function TodayResult() {
           height:"auto",
         }}
         > */}
-        <Button onClick={() => navigate("/")} >홈으로</Button>
+        <Button onClick={() => navigate("/home")}>홈으로</Button>
         <Button onClick={openModal}>SNS공유</Button>
         <Modal open={modalOpen} close={closeModal} />
       </RowContainer>

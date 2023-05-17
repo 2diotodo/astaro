@@ -6,13 +6,11 @@ import {
   MdOutlineChatBubbleOutline,
   MdOutlineMarkChatUnread,
 } from "react-icons/md";
-import {IoMdVolumeHigh} from "react-icons/io";
 import Navbar from "@component/common/Navbar";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { toggleNavBar } from "@features/commonSlice/navSlice";
 import Medium from "@component/text/Medium";
 import "@css/headers.css";
-import GapW from "@component/layout/GapW";
 
 function Header() {
   const navState = useSelector((state) => state.navBars);
@@ -76,43 +74,39 @@ function Header() {
               onKeyDown={navigateToMain}
               style={{ color: "white" }}
             >
-              <Medium
-                style={{ fontWeight: "bold" }}
-              >
-                Astaro
-              </Medium>
+              <Medium style={{ fontWeight: "bold" }}>Astaro</Medium>
             </div>
             <div
               className={`navbar-wrapper ${navState.toggle ? "open" : "close"}`}
             >
               <Navbar setIsLogin={setIsLogin} isLoginState={isLoginState} />
             </div>
-            <div style={{position:"absolute", right:"2vw"}}>
-            {isLogin ? (
-              unread ? (
-                <MdOutlineMarkChatUnread
-                  onClick={moveToMessageList}
-                  color="white"
-                  size="30px"
-                />
+            <div style={{ position: "absolute", right: "2vw" }}>
+              {isLogin ? (
+                unread ? (
+                  <MdOutlineMarkChatUnread
+                    onClick={moveToMessageList}
+                    color="white"
+                    size="30px"
+                  />
+                ) : (
+                  <MdOutlineChatBubbleOutline
+                    onClick={moveToMessageList}
+                    color="white"
+                    size="30px"
+                  />
+                )
               ) : (
-                <MdOutlineChatBubbleOutline
-                  onClick={moveToMessageList}
-                  color="white"
-                  size="30px"
-                />
-              )
-            ) : (
-              ""
-            )}
-            <GiStarSwirl
-              onClick={toggleNavHandler}
-              className={`cursor-pointer ${
-                navState.toggle ? "open" : "close"
-              } ${location.pathname === "/" ? "hidden" : " "}`}
-              color="white"
-              size="30px"
-            />
+                ""
+              )}
+              <GiStarSwirl
+                onClick={toggleNavHandler}
+                className={`cursor-pointer ${
+                  navState.toggle ? "open" : "close"
+                } ${location.pathname === "/" ? "hidden" : " "}`}
+                color="white"
+                size="30px"
+              />
             </div>
           </div>
         </div>
