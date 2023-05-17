@@ -1,5 +1,10 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { Background } from "@component/common/Background";
 import Header from "@component/common/Header";
 import Body from "./component/common/Body";
@@ -18,7 +23,8 @@ import TaroStoryPage from "@page/shootingStar/TaroStoryPage";
 import BlackHolePage from "@page/shootingStar/BlackHolePage";
 import TarotTest from "@page/tarot/TarotTest";
 import Landing from "./page/Landing";
-import music2 from "@assets/A_Quiet_Thought-Wayne_Jones.mp3";
+import music from "@assets/A_Quiet_Thought-Wayne_Jones.mp3";
+import music2 from "@assets/cinematic_documentary_light.mp3";
 import "./App.css";
 import TarotStory from "@page/tarot/TarotStory";
 import { IoMdVolumeHigh, IoMdVolumeOff } from "react-icons/io";
@@ -26,7 +32,7 @@ import Medium from "@component/text/Medium";
 import VolumeButton from "@component/VolumeButton";
 
 function App() {
-  const [backgroundAudio] = useState(new Audio(music2));
+  const [backgroundAudio, setBackgroundAudio] = useState(new Audio(music));
   const [audioToggle, setAudioToggle] = useState(true);
 
   const audioPlay = () => {
@@ -50,7 +56,7 @@ function App() {
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
       {audioToggle ? (
-        <VolumeButton onClick={audioPause}>
+        <VolumeButton onClick={audioPause} style={{ height: "9%" }}>
           <Medium>
             <IoMdVolumeHigh />
           </Medium>
