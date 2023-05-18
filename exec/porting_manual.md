@@ -420,6 +420,11 @@ server {
 
 ## nginx
 ```
+upstream lb{
+   server http://localhost:8000
+   server http://k8a6041.p.ssafy.io:8000
+}
+
 server {
     if ($host = k8a604.p.ssafy.io) {
         return 301 https://astaro.co.kr;
@@ -452,7 +457,7 @@ server {
    server_name www.astaro.co.kr astaro.co.kr;
 
     location /api/ {
-        proxy_pass http://localhost:8000/;
+        proxy_pass http://lb;
         proxy_http_version 1.1;
         proxy_connect_timeout 300;
         proxy_send_timeout 300;
