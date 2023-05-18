@@ -10,7 +10,8 @@ import Small from "@component/text/Small";
 import GapH from "@component/layout/GapH";
 import { TodayResult } from "@page/tarot/TodayResult";
 import TodayTarotFade from "@component/tarot/TodayTarotFade";
-import pororong from "@assets/pororong.mp3";
+import sound_effect from "@assets/soundeffect.mp3";
+
 
 export default function TodayTaro() {
   const elements = [];
@@ -42,7 +43,7 @@ export default function TodayTaro() {
 
   const swiperRef = useRef(null);
 
-  const [soundeffect] = useState(new Audio(pororong));
+  const [soundeffect] = useState(new Audio(sound_effect));
   const song = () => {
     soundeffect.play();
   }

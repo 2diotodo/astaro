@@ -74,7 +74,6 @@ def create_sand_art_video(image_url):
             visited[i, j] = True
             output[i, j] = random_sand_color(previous_color)
             previous_color = output[i, j]
-
             ran_show = 1000
             if ((i * j) % (ran_show)) == 0:
                 video.write(cv2.GaussianBlur(output, (3, 3), 0))  # 현재 프레임 저장
