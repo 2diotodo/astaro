@@ -37,3 +37,34 @@
   width: 200px;
   height: 370px;
 }
+
+
+.tarot-category-swiper {
+  margin:auto;
+  width: 50%;
+  max-width: 400px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 15px;
+}
+
+.tarot-category-swiper > .swiper-wrapper > .swiper-slide-active > div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 30px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.tarot-category-swiper > .swiper-wrapper > .swiper-slide-prev,
+.tarot-category-swiper > .swiper-wrapper > .swiper-slide-next{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.tarot-category-swiper > .swiper-pagination > .swiper-pagination-bullet {
+  display: none !important;
+}

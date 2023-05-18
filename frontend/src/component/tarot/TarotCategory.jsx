@@ -1,17 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import RowContainer from "@component/layout/RowContainer";
-import Button from "@component/Button";
 import GapH from "@component/layout/GapH";
-import { setStateCategory } from "@features/tarotSlice";
 import UpDownContainer from "@component/layout/UpDownContainer";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import Small from "@component/text/Small";
 
 function TarotCategory() {
-  const dispatch = useDispatch();
-  const handleCategory = (event) => {
-    dispatch(setStateCategory(event.target.innerText));
-  };
-
   return (
     <UpDownContainer width="100%">
       <div
@@ -24,25 +18,36 @@ function TarotCategory() {
         무엇을 고민하고 있나요?
       </div>
       <GapH height="50px" />
-      <RowContainer style={{ justifyContent: "space-evenly" }}>
-        <Button onClick={handleCategory}>결혼</Button>
-        <Button onClick={handleCategory}>연애</Button>
-      </RowContainer>
-      <GapH height="2vh" />
-      <RowContainer style={{ justifyContent: "space-evenly" }}>
-        <Button onClick={handleCategory}>학업</Button>
-        <Button onClick={handleCategory}>취직</Button>
-      </RowContainer>
-      <GapH height="2vh" />
-      <RowContainer style={{ justifyContent: "space-evenly" }}>
-        <Button onClick={handleCategory}>이직</Button>
-        <Button onClick={handleCategory}>사업</Button>
-      </RowContainer>
-      <GapH height="2vh" />
-      <RowContainer style={{ justifyContent: "space-evenly" }}>
-        <Button onClick={handleCategory}>금전</Button>
-        <Button onClick={handleCategory}>건강</Button>
-      </RowContainer>
+      <Swiper
+        direction={"vertical"}
+        slidesPerView={3}
+        centeredSlides={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className="tarot-category-swiper"
+        style={{ height: "20vh" }}
+      >
+        <SwiperSlide>
+          <Small>연애</Small>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Small>결혼</Small>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Small>취직</Small>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Small>사업</Small>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Small>금전</Small>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Small>건강</Small>
+        </SwiperSlide>
+      </Swiper>
     </UpDownContainer>
   );
 }

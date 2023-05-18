@@ -7,7 +7,7 @@ const VolumeButton = styled.button.attrs((props) => ({}))`
   color: ${(props) => props.color || "white"};
   border: ${(props) => props.border || "none"};
   cursor: pointer;
-  z-index: 1;
+  z-index: 1000;
   position: absolute;
   left: 0;
   top: 0;
