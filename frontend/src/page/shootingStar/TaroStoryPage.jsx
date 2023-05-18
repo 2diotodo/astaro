@@ -27,6 +27,7 @@ const StoryVideo = styled.video`
 `;
 
 const Content = styled.div`
+  margin-top: 15px;
   width: 80%;
   height: 100%;
   color: white;
@@ -45,7 +46,6 @@ const Container = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: black;
   perspective: 100em;
 `;
 
@@ -112,7 +112,7 @@ const TaroStoryPage = () => {
         setTaroResult(prevState => {
           const newTaroResult = [...prevState, data.payload];
           videoFrontRef.current.src = newTaroResult[currentSlide]?.videoUrl;
-          // setStoryFront(taroResult[currentSlide]?.story);
+          setStoryFront(taroResult[currentSlide]?.story);
           return newTaroResult;
         });
         // setTaroResult(prevState => [...prevState, data.payload]);
@@ -128,7 +128,7 @@ const TaroStoryPage = () => {
 
   useEffect(() => {
     if (currentSlide % 4 === 0) {
-      // videoFrontRef.current.src = taroResult[currentSlide]?.videoUrl;
+      videoFrontRef.current.src = taroResult[currentSlide]?.videoUrl;
       setStoryFront(taroResult[currentSlide]?.story);
       if (currentSlide !== 0) {
         videoLeftRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
@@ -140,8 +140,8 @@ const TaroStoryPage = () => {
       setStoryBack('');
     }
     else if (currentSlide % 4 === 1) {
-      // videoRightRef.current.src = taroResult[currentSlide]?.videoUrl;
-      // setStoryRight(taroResult[currentSlide]?.story);
+      videoRightRef.current.src = taroResult[currentSlide]?.videoUrl;
+      setStoryRight(taroResult[currentSlide]?.story);
       if (currentSlide !== 0) {
         videoFrontRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
         setStoryFront(taroResult[currentSlide-1]?.story);
@@ -162,8 +162,8 @@ const TaroStoryPage = () => {
       videoFrontRef.current.src = '';
       setStoryFront('');
     } else if (currentSlide % 4 === 3) {
-      // videoLeftRef.current.src = taroResult[currentSlide]?.videoUrl;
-      // setStoryLeft(taroResult[currentSlide]?.story);
+      videoLeftRef.current.src = taroResult[currentSlide]?.videoUrl;
+      setStoryLeft(taroResult[currentSlide]?.story);
       if (currentSlide !== 0) {
         videoBackRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
         setStoryBack(taroResult[currentSlide - 1]?.story);
