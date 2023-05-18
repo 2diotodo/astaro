@@ -50,7 +50,7 @@ function Header() {
 
   return (
     <>
-      {location.pathname === "/home" || location.pathname === "/" ? null : (
+      {location.pathname === "/" ? null : (
         <div className="common-header">
           <div className="header-nav">
             <div

@@ -1,70 +1,204 @@
-# Getting Started with Create React App
+# 🌠 Astaro - 고민을 들어주는 타로상담 서비스
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### [☆ Astaro 소개영상](https://youtu.be/6wQdfKWgYaI)
 
-## Available Scripts
+<br />
+## ⏳ 프로젝트 요약
 
-In the project directory, you can run:
+2학기 자율프로젝트
+<br />
+개발기간: 2023.04.10 ~ 2023.05.18(6주)
+<br />
+<br />
+member-service: 권영진(PM),류제엽
+<br />
+taro-service: 박균탁, 박성민
+<br />
+board-service: 김정민, 손승환
 
-### `npm start`
+</br>
+</br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 기술 스택
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">
+<img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white">
+<br/>
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white">
+<br/>
+<img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white">
+<img src="https://img.shields.io/badge/opencv-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white">
+<br/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+<img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+<img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+<img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white">
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
 
-### `npm test`
+<br/>
+<br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🎬 배경
 
-### `npm run build`
+_-누구나 고민을 안고 살아가지 않나요?-_
+gif
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔍 개요
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+_-고민을 들어드리고 덜어드립니다-_
+<br /><br />
+Astaro는 우주(Astro)와 타로(tarot)의 합성어입니다. 우주의 빛나는 별과 같은 존재인 당신의 말못할 고민을 들어주고자 합니다.
+<br /><br />
+Astaro는 AI를 이용한 온라인 타로점 서비스입니다. 고민 내용과 주제를 입력하면 카드를 뽑게되고 AI가 결과를 분석하여 그에 맞는 이미지와 스토리를 제공합니다.
+</br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ⭐ 주요기능
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br />
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 타로카드 뽑기
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 고민 카테고리와 내용입력을 통해 카드를 뽑게 됩니다.
+- 뽑은 카드의 의미를 고민에 맞추어 해석해줍니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  <br />
 
-## Learn More
+### AI를 이용한 스토리와 이미지 생성
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- chatGPT API에서 뽑은 카드의 의미를 담아 스토리를 생성합니다.
+- chatGPT API로 생성한 스토리에서 키워드를 추출하고, <br />
+  DALL-E API에서 그에 맞는 이미지를 생성합니다.
+- 생성된 이미지는 샌드아트형태의 영상으로 스토리와 함께 확인할 수 있습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  <br />
 
-### Code Splitting
+### 별똥별
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 타로 결과를 다른 사람들과 공유할 수 있습니다.
+- 다른 사람들의 결과를 랜덤하게 확인할 수 있습니다.
+- 유사한 고민, 원하는 결과를 가진 다른 사람에게 채팅을 신청할 수 있습니다.
+  <br />
 
-### Analyzing the Bundle Size
+## 🛠 주요기술
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+**BackEnd**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- IntelliJ IDE
+- Spring Boot
+- Spring Data JPA
+- Spring Security
+- Swagger
+- mySQL
 
-### Advanced Configuration
+**FrontEnd**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Visual Studio Code IDE 1.74.3
+- React 18.0
+- Styled Component
+- Node.js 18.13.0
 
-### Deployment
+**Design**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Figma
 
-### `npm run build` fails to minify
+**CI/CD**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- AWS EC2
+- MobaXterm
+- Nginx
+
+## 📔 프로젝트 파일구조
+
+---
+
+### Back
+
+```
+
+```
+
+### Front
+
+```
+
+```
+
+## 🔈 협업 툴
+
+---
+
+- Git
+- Notion
+- JIRA
+- MatterMost
+
+---
+
+## 🎀 프로젝트 결과물
+
+- [포팅메뉴얼]()
+- [중간발표자료]()
+- [최종발표자료]()
+
+## 🌟 Astaro 서비스 화면
+
+---
+
+### 메인화면
+
+- 서비스 개요를 소개합니다.
+  <br />
+  gif
+  <br />
+
+### 오늘의 타로
+
+- 설명설명
+- 설명설명
+  <br/>
+  gif
+  <br/>
+
+### 고민타로
+
+- 설명설명
+  <br />
+  gif
+  <br />
+
+### 별똥별
+
+- 설명
+  <br />
+  gif
+  <br />
+
+### 블랙홀
+
+- 설명
+  <br />
+  gif
+  <br />
+
+## 시스템 구성
+
+png
+
+## ERD
+
+png
+<br />
+
+<img width="80%" src="#" />
