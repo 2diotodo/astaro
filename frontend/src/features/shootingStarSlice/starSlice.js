@@ -12,19 +12,15 @@ const baseURL = `${process.env.REACT_APP_BACKEND_URL}/board-service/`;
 const token = `${localStorage.getItem("access-token")}`;
 
 // 비동기 요청
-export const fetchTaroResult = createAsyncThunk(
-  "star/fetchTaroResult",
-  async (category) => {
-    console.log(category)
-    const url = `${baseURL}api/v1/star?category=${category}`;
-    const response = await axios({
-      headers: { Authorization: `Bearer ${token}` },
-      method: "GET",
-      url: url,
-    });
-    return response.data;
-  }
-);
+export const fetchTaroResult = createAsyncThunk("star/fetchTaroResult", async (category) => {
+  const url = `${baseURL}api/v1/star?category=${category}`;
+  const response = await axios({
+    headers: { Authorization: `Bearer ${token}` },
+    method: "GET",
+    url: url,
+  });
+  return response.data;
+});
 
 const starSlice = createSlice({
   name: "star",
