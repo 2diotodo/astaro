@@ -52,7 +52,7 @@ export function TodayResult() {
       useCORS: true,
     }).then(function(canvas) {
       const downloadLink = document.createElement("a");
-      downloadLink.download = "filename.png";
+      downloadLink.download = "Horoscope.png";
       downloadLink.href = canvas.toDataURL();
       downloadLink.click();
     });
@@ -63,7 +63,7 @@ export function TodayResult() {
       <ColContainer
         width="80%"
         justify="start"
-        height="83%"
+        height="85%"
         style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
         id="todayresultcard"
         >
@@ -106,21 +106,6 @@ export function TodayResult() {
           bottom: "1vh"
         }}
         >
-      {/* <div
-        width="100%"
-        style={{
-          display:'flex',
-          position: "relative",
-          justifyContent: "space-evenly",
-          gap:"0",
-          position:"static",
-          alignItems:"center",
-          border : "none",
-          borderRadius: "0",
-          backgroundColor: "transaprent",
-          height:"auto",
-        }}
-        > */}
         <Button onClick={() => navigate("/")} >홈으로</Button>
         <Button onClick={openModal}>SNS공유</Button>
         <Modal open={modalOpen} close={closeModal} />
