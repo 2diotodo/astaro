@@ -21,10 +21,11 @@ const Rotate = keyframes`
     transform: rotateY(-180deg);
   }
   25% {
-    opacity:0.5;
+    opacity:1;
   }
   50% {
     opacity:0;
+    background-image: url(${Taro_back});
     transform: rotateY(-90deg);
   }
   100% {
@@ -97,12 +98,8 @@ const Card = styled.div`
   height: 55%;
   aspect-ratio: 1/1;
 
-  background-image: url(${(props) => props.image});
-  background-position: center;
-  background-size: cover;
-
   border: 2px solid white;
-  opacity: 0;
+  opacity: 1;
   z-index: 1;
 
   border-radius: 50%;
@@ -110,6 +107,10 @@ const Card = styled.div`
     0 0 70px white;
 
   animation: ${Rotate} 1.2s linear forwards;
+
+  background-image: url(${(props) => props.image});
+  background-position: center;
+  background-size: cover;
 `;
 
 const Circle = styled.div`
@@ -130,7 +131,7 @@ const Circle = styled.div`
 `;
 
 // Component 정의
-const CardNav = (props) => {
+const CardNav = () => {
   const navigate = useNavigate();
   const [touchedX, setTochedX] = useState(0);
   const [touchedY, setTochedY] = useState(0);
