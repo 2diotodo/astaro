@@ -56,6 +56,8 @@ const ShootingStarsContainer = styled.div`
     transform: translateX(50%) rotateZ(-45deg);
   }
 
+  animation-play-state: ${(props) => (props.paused ? "paused" : "running")};
+
   @keyframes tail {
     0% {
       width: 30px;
@@ -70,13 +72,13 @@ const ShootingStarsContainer = styled.div`
 
   @keyframes shining {
     0% {
-      width: 30px;
+      width: 20px;
     }
     50% {
       width: 30px;
     }
     100% {
-      width: 30px;
+      width: 20px;
     }
   }
 
@@ -98,14 +100,16 @@ const ShootingStars = () => {
 
   useEffect(() => {
     const createStars = () => {
-      return Array.from({ length: 30 }, (_, i) => {
+      return Array.from({ length: 60 }, (_, i) => {
         const top = Math.floor(Math.random() * 90);
-        const left = Math.floor(Math.random() * 100);
+        const left = Math.floor(Math.random() * 50);
         const delay = 0
         const duration = getRandomDuration();
 
         return (
           <div
+            onMouseOver={(e) => e.currentTarget.style.animationPlayState = 'paused'}
+            onMouseOut={(e) => e.currentTarget.style.animationPlayState = 'running'}
             onClick={handleStarClick}
             key={i}
             className="shooting_star"
