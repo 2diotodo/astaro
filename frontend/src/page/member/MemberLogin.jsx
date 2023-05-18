@@ -43,7 +43,7 @@ function MemberLogin() {
     await dispatch(login(logins)).then((response) => {
       if (!response.error) {
         dispatch(isLoginCheck(true));
-        navigate("/");
+        navigate("/home");
       } else {
         console.log(response);
         alert(response.payload.message);

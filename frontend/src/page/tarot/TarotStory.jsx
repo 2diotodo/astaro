@@ -35,7 +35,7 @@ function TarotStory() {
       <RowContainer>
       <Button onClick={goToHome}>홈으로</Button>
         <GapW width={"30px"}/>
-        <Button onclick={goToShootingStar} width={"150px"}>별똥별로 보내기</Button>
+        <Button onClick={goToShootingStar} width={"150px"}>별똥별로 보내기</Button>
       </RowContainer>
     </ColContainer>
     </UpDownContainer>
