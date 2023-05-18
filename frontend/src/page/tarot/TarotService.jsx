@@ -40,6 +40,27 @@ function TarotService() {
   const [shufflingCardSound] = useState(new Audio(ShufflingSound));
   const [spreadingCardSound] = useState(new Audio(SpreadingSound));
   const sendToGpt = () => {
+    if(localStorage.getItem("seq") === "7"){
+      dispatch(setStateMessage(message));
+      slideFromTarotToLoading();
+      axiosInstance.post(`${process.env.REACT_APP_BACKEND_URL}/taro-service/tarot/test`,
+        {memberSeq: localStorage.getItem("seq"),
+          category: category,
+        contentInput: message.message,
+        cardSeqList: cardSeqList.toString(),
+        contentList: null,
+        imgUrl: null,
+        videoUrl: null,
+        story: null,}).then((res)=>{
+          console.log(res);
+          const results = res.data.contentList.split("$");
+          setTarotResult(results);
+          dispatch(setStateResults(results));
+          dispatch(setStateStory(res.data.story));
+          dispatch(setStateVideoUrl(res.data.videoUrl));
+      })
+      return
+    }
     dispatch(setStateMessage(message));
     slideFromTarotToLoading();
     const config = {
@@ -92,7 +113,6 @@ function TarotService() {
           setTarotResult(jsonRes.해석);
           dispatch(setStateResults(jsonRes.해석));
           dispatch(setStateStory(jsonRes.동화.trim()));
-          console.log(jsonRes);
         });
 
       const reqSummaryData = {
@@ -153,7 +173,6 @@ function TarotService() {
         )
         .then((res) => {
           dispatch(setStateVideoUrl(res.data.videoUrl));
-          console.log(res);
         });
     }
 

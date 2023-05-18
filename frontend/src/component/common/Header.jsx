@@ -9,22 +9,21 @@ import Medium from "@component/text/Medium";
 import "@css/headers.css";
 
 function Header() {
-  const navState = useSelector((state) => state.navBars);
-  const dispatch = useDispatch();
-
-  // 로그인 여부 확인
-  const [isLogin, setIsLogin] = useState(() => {
-    const token = localStorage.getItem("access-token");
-    return !!token;
-  });
-
   // 로그인상태 가져오기
   const isLoginState = useSelector((state) => state.loginCheck);
+  const navState = useSelector((state) => state.navBars);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   // url 정보 받아오는 hook
   const location = useLocation();
+
+  // 로그인 여부 확인
+  const token = localStorage.getItem("access-token");
+  const [isLogin, setIsLogin] = useState(() => {
+    return !!token;
+  });
 
   // 해당 페이지로 이동 선언
   const navigateToMain = () => {
@@ -32,8 +31,9 @@ function Header() {
   };
 
   useEffect(() => {
+    setIsLogin(!!token);
     dispatch(isLoginCheck(isLogin));
-  }, [navigate]);
+  }, [navigate, token]);
 
   useEffect(() => {
     dispatch(toggleNavBar(false));

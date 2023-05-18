@@ -16,16 +16,16 @@ sys.setrecursionlimit(100000)
 
 def create_sand_art_video(image_url):
     global previous_color
-    previous_color = (79, 158, 207)
-    image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/f746df39-49c9-4486-be62-c56a1dd4bddb.png"
+    previous_color = (100, 30, 0)
+    # image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/ab5e3b69-18ba-49db-9d2b-2bcad4c3345b.png"
     fourcc = cv2.VideoWriter_fourcc(*'h264')
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
 
     # 이미지 파일 경로 설정
-    # current_directory = os.path.dirname(os.path.realpath(__file__))
-    # image_path = os.path.join(
-    #     current_directory, "static", "images", "fable7.jpg")
+    current_directory = os.path.dirname(os.path.realpath(__file__))
+    image_path = os.path.join(
+        current_directory, "static", "images", "fable7.jpg")
 
     # 웹 이미지를 메모리로 로드
     with urllib.request.urlopen(image_url) as url:
@@ -48,36 +48,24 @@ def create_sand_art_video(image_url):
     # 전역 이진화 적용
     ret, binary = cv2.threshold(gray, 230, 255, cv2.THRESH_BINARY)
 
-    # def initial_sand_color():
-    #     r = random.randint(120, 180)
-    #     g = random.randint(60, 120)
-    #     b = random.randint(20, 80)
-
-    #     return (b, g, r)
-
     def initial_sand_color():
-        r = random.randint(120, 150)
-        g = random.randint(70, 100)
-        b = random.randint(20, 50)
+        # r = random.randint(210, 240)
+        # g = random.randint(180, 210)
+        # b = random.randint(100, 130)
+        r = random.randint(220, 250)
+        g = random.randint(190, 220)
+        b = random.randint(110, 140)
 
         return (b, g, r)
-
-    # def random_sand_color(intensity):
-    #     r = random.randint(0, 100)
-    #     g = random.randint(0 + intensity * 10, 30 + intensity * 10)
-    #     b = random.randint(0 + intensity * 10, 30 + intensity * 10)
-
-    #     return (b, g, r)
 
     def random_sand_color(previous_color):
         r = previous_color[2] + random.randint(-1, 1)
         g = previous_color[1] + random.randint(-1, 1)
         b = previous_color[0] + random.randint(-1, 1)
 
-        # Keep the color in the valid range.
-        r = min(max(r, 220), 230)
-        g = min(max(g, 190), 200)
-        b = min(max(b, 110), 120)
+        r = min(max(r, 60), 70)
+        g = min(max(g, 20), 30)
+        b = min(max(b, 0), 10)
 
         return (b, g, r)
 
@@ -113,17 +101,13 @@ def create_sand_art_video(image_url):
             visited[i, j] = True
             output[i, j] = random_sand_color(previous_color)
             previous_color = output[i, j]
-            # for a in range(3):
-            #     for b in range(3):
-            #         if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
-            #             output[i + a, j +
-            #                    b] = random_sand_color(3 - (a*b//3) % 3)
 
-            ran_show = int(random.randrange(3000, 5000))
+            # ran_show = int(random.randrange(500, 1000))
+            ran_show = 1000
 
             if ((i * j) % (ran_show)) == 0:
                 video.write(cv2.GaussianBlur(output, (3, 3), 0))  # 현재 프레임 저장
-                cv2.waitKey(1)
+                # cv2.waitKey(1)
 
             random.shuffle(directions)
             # step = random.randrange(1, 3)
@@ -144,18 +128,12 @@ def create_sand_art_video(image_url):
         visited[i, j] = True
         output[i, j] = random_sand_color(previous_color)
         previous_color = output[i, j]
-        # flag = 0
-        # for a in range(3):
-        #     for b in range(3):
-        #         # flag = random.randrange(1, 4)
-        #         if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
-        #             output[i + a, j + b] = random_sand_color(3 - (a*b//5) % 3)
 
-        ran_show = int(random.randrange(1000, 3000))
+        ran_show = 1000
 
         if ((i * j) % (ran_show)) == 0:
             video.write(cv2.GaussianBlur(output, (3, 3), 0))  # 현재 프레임 저장
-            cv2.waitKey(1)
+            # cv2.waitKey(1)
 
         if depth >= max_recursion_depth:
             return

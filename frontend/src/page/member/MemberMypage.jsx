@@ -52,14 +52,12 @@ const Title = styled.div`
   color: white;
   position: relative;
   font-size: 40px;
-  font-family: "Nanum Myeongjo", monospace;
   margin-top: 10%;
 `;
 const Subtitle = styled.div`
   position: relative;
   color: white;
   font-size: 15px;
-  font-family: "Nanum Myeongjo", monospace;
   margin: 5% 5% 5% 5%;
 `;
 
@@ -76,21 +74,9 @@ const Button = styled.button`
   right: 10%;
 `;
 const MypageProfile = styled.div`
-  position: absolute;
+  position: relative;
   content: "";
-  top: -5%;
-  left: -5%;
-  height: 110%;
-  width: 110%;
-  border-radius: 50%;
-  opacity: 0.5;
-  filter: blur(60px);
-  &:after {
-    animation: ${backglow1} 15s ease infinite;
-  }
-  &:before {
-    animation: ${backglow1} 15s ease infinite;
-  }
+  height: 100%;
 `;
 const MyUpdate = styled.div`
   background-color: transparent;
@@ -102,7 +88,6 @@ const MyUpdate = styled.div`
   perspective: 1000px;
   pointer-events: auto;
   position: relative;
-  transform: ${({ flipped }) => (flipped ? "rotateY(-180deg)" : "")};
 `;
 
 // modal style - mui
@@ -177,15 +162,16 @@ function MemberMypage() {
   const [profileSelected, setProfileSelected] = useState(0);
 
   const profileSelectHandler = (idx) => {
-    if (values.lux >= profiles[idx].starlux) {
-      setProfileSelected(idx);
-      // let newlux = values.lux - profiles[idx].starlux;
-      setValues({
-        ...values,
-        profile: idx,
-        // lux: newlux,
-      });
-    }
+    console.log("idx", idx);
+    // if (values.lux >= profiles[idx].starlux) {
+    setProfileSelected(idx);
+    // let newlux = values.lux - profiles[idx].starlux;
+    setValues({
+      ...values,
+      profile: idx,
+      // lux: newlux,
+    });
+    // }
   };
   const navigate = useNavigate();
 
@@ -274,7 +260,7 @@ function MemberMypage() {
     }
   }, [userinfo]);
 
-  useEffect(() => {}, [profileSelected]);
+  useEffect(() => {}, []);
 
   // 입력값이 변경될때 마다 검증한다.
   useEffect(() => {
@@ -308,7 +294,7 @@ function MemberMypage() {
       profile: profileSelected,
     }));
     dispatch(profileUpdate(values));
-    setProfileSelected(0);
+    setProfileSelected(values.profile);
   };
   return (
     <>
@@ -335,33 +321,10 @@ function MemberMypage() {
             <GoPencil onClick={changeProfileHandler} color="white" />
           </MypageProfile>
           <MyUpdate
-            flipped
             className={`mypage-update ${flipped ? "active" : ""}`}
             onClick={flipHandler}
           >
             <div className="mypage-update-inner">
-              <div className="mypage-front">
-                <div className="mypage-board">
-                  <div className="board-box">
-                    <div className="board-name">지난타로</div>
-                    <div className="board-value" style={{ width: "53%" }}>
-                      13
-                    </div>
-                  </div>
-                  <div className="board-box">
-                    <div className="board-name">내 별똥별</div>
-                    <div className="board-value" style={{ width: "53%" }}>
-                      5
-                    </div>
-                  </div>
-                  <div className="board-box">
-                    <div className="board-name">대화 목록</div>
-                    <div className="board-value" style={{ width: "53%" }}>
-                      4
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className="mypage-back">
                 <div className="mypage-area">
                   <form className="update-form" onSubmit={updateSubmitHandler}>
@@ -381,7 +344,7 @@ function MemberMypage() {
                       />
                     </div>
                     <div className="input-box">
-                      <div className="input-name">별명</div>
+                      {/* <div className="input-name">별명</div> */}
                       <Input
                         type="text"
                         name="nickname"
@@ -393,13 +356,9 @@ function MemberMypage() {
                         textIndent={"0px"}
                         style={{ fontSize: "15px" }}
                       />
-                      {/* 닉네임 오류메시지를 출력한다 */}
-                      {touched.nickname && errors.nickname && (
-                        <span>{errors.nickname}</span>
-                      )}
                     </div>
                     <div className="input-box">
-                      <div className="input-name">이메일</div>
+                      {/* <div className="input-name">이메일</div> */}
                       <Input
                         type="email"
                         name="email"
@@ -414,7 +373,7 @@ function MemberMypage() {
                       />
                     </div>
                     <div className="input-box">
-                      <div className="input-name">비밀번호</div>
+                      {/* <div className="input-name">비밀번호</div> */}
                       <Input
                         type="password"
                         name="password"
@@ -426,10 +385,6 @@ function MemberMypage() {
                         textIndent={"0px"}
                         style={{ fontSize: "15px" }}
                       />
-                      {/* 비밀번호 오류메시지를 출력한다 */}
-                      {touched.password && errors.password && (
-                        <span>{errors.password}</span>
-                      )}
                     </div>
                     <div className="input-box">
                       <div className="input-name"></div>
@@ -483,7 +438,7 @@ function MemberMypage() {
         <Box className="modal-box" sx={boxStyle}>
           <Typography className="modal-header">
             <span onClick={handleClose}>프로필 바꾸기</span>
-            <span onClick={handleClose}>&times;</span>
+            {/* <span onClick={handleClose}>&times;</span> */}
           </Typography>
           <Typography className="modal-body" id="modal-modal-description">
             {profiles.map((star) => (
@@ -500,7 +455,7 @@ function MemberMypage() {
                 value={star.starName}
               >
                 <img src={star.starImageUrl} alt={star.starName} />
-                <div>{star.starlux} lux</div>
+                {/* <div>{star.starlux} lux</div> */}
               </ModalImg>
             ))}
           </Typography>
