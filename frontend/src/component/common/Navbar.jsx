@@ -3,6 +3,7 @@ import { toggleNavBar } from "@features/commonSlice/navSlice";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const HeaderFont = styled.div`
   margin-top: 20%;
