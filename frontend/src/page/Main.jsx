@@ -75,6 +75,7 @@ const NavContainer = styled.div`
   align-items: center;
 
   width: 100%;
+  max-width: 800px;
   height: 60%;
   margin-top: 15%;
   opacity: 0;
@@ -96,22 +97,6 @@ const Wrapper = styled.div`
 export function Main() {
   const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState(0);
-
-  const clickLeftArrowBtn = () => {
-    if (activeCard === 0) {
-      setActiveCard(4);
-    } else {
-      setActiveCard(activeCard - 1);
-    }
-  };
-
-  const clickRightArrowBtn = () => {
-    if (activeCard === 4) {
-      setActiveCard(0);
-    } else {
-      setActiveCard(activeCard + 1);
-    }
-  };
 
   return (
     <>
