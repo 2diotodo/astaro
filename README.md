@@ -39,6 +39,7 @@ board-service: 김정민, 손승환
 <img src="https://img.shields.io/badge/Spring Cloud-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
 <img src="https://img.shields.io/badge/JPA-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
 <img src="https://img.shields.io/badge/JWT-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
+<br />
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=Flask&logoColor=white">
@@ -135,13 +136,204 @@ Astaro는 AI를 이용한 온라인 타로점 서비스입니다. 고민 내용�
 ---
 
 <details>
+<summary>
 
 ### Back
 
+</summary>
+
 ```
+BE
+├─board-service
+│  ├─gradle
+│  └─src
+│      ├─main
+│      │  ├─java
+│      │  │  └─com
+│      │  │      └─a604
+│      │  │          └─boardservice
+│      │  │              ├─config
+│      │  │              ├─controller
+│      │  │              ├─dto
+│      │  │              ├─entity
+│      │  │              ├─repository
+│      │  │              ├─service
+│      │  │              └─util
+│      │  └─resources
+│      └─test
+├─eureka-server
+│  ├─build
+│  │  ├─classes
+│  │  │  └─java
+│  │  │      └─main
+│  │  │          └─com
+│  │  │              └─a604
+│  │  │                  └─eurekaserver
+│  │  ├─generated
+│  │  │  └─sources
+│  │  │      ├─annotationProcessor
+│  │  │      │  └─java
+│  │  │      │      └─main
+│  │  │      └─headers
+│  │  │          └─java
+│  │  │              └─main
+│  │  ├─resources
+│  │  │  └─main
+│  │  └─tmp
+│  │      └─compileJava
+│  ├─gradle
+│  └─src
+│      ├─main
+│      │  ├─java
+│      │  │  └─com
+│      │  │      └─a604
+│      │  │          └─eurekaserver
+│      │  └─resources
+│      └─test
+│          └─java
+│              └─com
+│                  └─a604
+│                      └─eurekaserver
+├─gateway-server
+│  ├─build
+│  │  ├─classes
+│  │  │  └─java
+│  │  │      └─main
+│  │  │          └─com
+│  │  │              └─a604
+│  │  │                  └─gatewayserver
+│  │  │                      ├─filter
+│  │  │                      └─util
+│  │  ├─generated
+│  │  │  └─sources
+│  │  │      ├─annotationProcessor
+│  │  │      │  └─java
+│  │  │      │      └─main
+│  │  │      └─headers
+│  │  │          └─java
+│  │  │              └─main
+│  │  ├─resources
+│  │  │  └─main
+│  │  └─tmp
+│  │      └─compileJava
+│  │          └─compileTransaction
+│  │              ├─annotation-output
+│  │              ├─compile-output
+│  │              │  └─com
+│  │              │      └─a604
+│  │              │          └─gatewayserver
+│  │              │              ├─filter
+│  │              │              └─util
+│  │              ├─header-output
+│  │              └─stash-dir
+│  ├─gradle
+│  └─src
+│      ├─main
+│      │  ├─java
+│      │  │  └─com
+│      │  │      └─a604
+│      │  │          └─gatewayserver
+│      │  │              ├─filter
+│      │  │              └─util
+│      │  └─resources
+│      └─test
+│          └─java
+│              └─com
+│                  └─a604
+│                      └─gatewayserver
+├─member-service
+│  ├─build
+│  │  ├─classes
+│  │  │  └─java
+│  │  │      └─main
+│  │  │          └─com
+│  │  │              └─a604
+│  │  │                  └─memberservice
+│  │  │                      ├─config
+│  │  │                      ├─controller
+│  │  │                      ├─dto
+│  │  │                      │  ├─request
+│  │  │                      │  └─response
+│  │  │                      ├─entity
+│  │  │                      ├─repository
+│  │  │                      ├─service
+│  │  │                      │  └─impl
+│  │  │                      └─util
+│  │  ├─generated
+│  │  │  └─sources
+│  │  │      ├─annotationProcessor
+│  │  │      │  └─java
+│  │  │      │      └─main
+│  │  │      └─headers
+│  │  │          └─java
+│  │  │              └─main
+│  │  ├─resources
+│  │  │  └─main
+│  │  └─tmp
+│  │      └─compileJava
+│  │          └─compileTransaction
+│  │              ├─annotation-output
+│  │              ├─compile-output
+│  │              │  └─com
+│  │              │      └─a604
+│  │              │          └─memberservice
+│  │              │              ├─config
+│  │              │              ├─controller
+│  │              │              ├─dto
+│  │              │              │  ├─request
+│  │              │              │  └─response
+│  │              │              ├─entity
+│  │              │              ├─repository
+│  │              │              ├─service
+│  │              │              │  └─impl
+│  │              │              └─util
+│  │              ├─header-output
+│  │              └─stash-dir
+│  ├─gradle
+│  └─src
+│      ├─main
+│      │  ├─java
+│      │  │  └─com
+│      │  │      └─a604
+│      │  │          └─memberservice
+│      │  │              ├─config
+│      │  │              ├─controller
+│      │  │              ├─dto
+│      │  │              │  ├─request
+│      │  │              │  └─response
+│      │  │              ├─entity
+│      │  │              ├─repository
+│      │  │              ├─service
+│      │  │              │  └─impl
+│      │  │              └─util
+│      │  └─resources
+│      └─test
+├─sandart-service
+│  ├─static
+│  │  └─images
+│  └─__pycache__
+└─taro-service
+    ├─gradle
+    │  └─wrapper
+    └─src
+        ├─main
+        │  ├─java
+        │  │  └─com
+        │  │      └─a604
+        │  │          └─taroservice
+        │  │              ├─config
+        │  │              ├─controller
+        │  │              ├─data
+        │  │              │  └─dto
+        │  │              ├─repository
+        │  │              └─service
+        │  └─resources
+        └─test
 
 
 ```
+
+</details>
 
 <details>
 
@@ -150,6 +342,7 @@ Astaro는 AI를 이용한 온라인 타로점 서비스입니다. 고민 내용�
 ### Front
 
 </summary>
+
 ```
 FE
 ├─node_modules
@@ -206,49 +399,61 @@ FE
 
 ### 메인화면
 
-- 서비스 개요를 소개합니다.
+- 주요기능을 확인할 수 있습니다.
   <br />
-  gif
+  <img src="./docs/gif/메인.gif">
   <br />
 
-### 오늘의 타로
+### 오늘의 운세
 
-- 설명설명
-- 설명설명
+- 로그인없이 간단하게 운세를 볼 수 있습니다.
+- 결과창 공유를 통해 화면 캡쳐와 url 공유가 가능합니다.
   <br/>
-  gif
+  <img src="./docs/gif/오늘의운세.gif">
   <br/>
 
 ### 고민타로
 
-- 설명설명
+- 카테고리를 선택하고 고민을 입력하세요.
   <br />
-  gif
+  <img src="./docs/gif/타로1.gif">
+  <br />
+  <br />
+- 카드를 선택하면 로딩을 거쳐 의미를 확인할 수 있습니다.
+  <br />
+  <img src="./docs/gif/타로2.gif">
+  <img src="./docs/gif/타로5.gif">
+  <br />
+- 스토리와 함께 이미지가 생성되는 과정을 영상으로 제공합니다.
+  <br />
+  <img src="./docs/gif/타로6.gif">
+  <br />
   <br />
 
 ### 별똥별
 
-- 설명
+- 카테고리별로 쏟아지는 별을 통해 다른 사람의 스토리를 볼 수 있습니다.
+- 스토리 확인 후 마음에 드는 결과를 보고 메세지를 보낼 수 있습니다.
+- 메세지는 F-word Filter를 통해 불건전한 문자를 걸러냅니다.
   <br />
-  gif
+  <img src="./docs/gif/별똥별.gif">
+  <br />
   <br />
 
 ### 블랙홀
 
-- 설명
+- 고민을 덜어내는 것만으로도 해소가 가능합니다.
+- 고민을 속 시원하게 털어보세요.
   <br />
-  gif
+  <img src="./docs/gif/블랙홀.gif">
   <br />
 
 ## 시스템 구성
 
-png
+<img width="80%" src="./docs/architecture.png" />
 
 ## ERD
 
 <img width="80%" src="./docs/erd_cloud.png" />
 
 <br />
-
-<img width="80%" src="#" />
-```
