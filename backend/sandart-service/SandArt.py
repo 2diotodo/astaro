@@ -17,7 +17,7 @@ sys.setrecursionlimit(100000)
 def create_sand_art_video(image_url):
     global previous_color
     previous_color = (79, 158, 207)
-    image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/f746df39-49c9-4486-be62-c56a1dd4bddb.png"
+    # image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/f746df39-49c9-4486-be62-c56a1dd4bddb.png"
     fourcc = cv2.VideoWriter_fourcc(*'h264')
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
