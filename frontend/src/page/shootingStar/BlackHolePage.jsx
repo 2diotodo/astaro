@@ -17,8 +17,8 @@ const rotate = keyframes`
 `;
 
 const Container = styled.div`
-  height: 90vh;
-  width: 100%;
+  height: 80vh;
+  width: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,10 +29,10 @@ const Container = styled.div`
     content: '';
     background-image: url('/img/blackhole.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     width: 100%;
-    height: 60vh;
+    height: 80vh;
     position: absolute;
     z-index: 5;
     animation: ${rotate} ${props => props.sendClicked ? '5s' : '30s'} linear infinite;
@@ -88,8 +88,8 @@ const SendButtonContainer = styled.div`
   width: 100%;
   height: 10%;
 	margin-right: 5rem;
-  position: absolute;  // Position absolute
-  bottom: 0;          // Stick to the bottom
+  position: absolute;
+  bottom: 0;
 `;
 
 const AudioButton = styled.button`
@@ -108,11 +108,11 @@ const Visualizer = styled.div`
   width: 100%;
   height: 20%;
   background: rgba(255, 255, 255, 0);
-  display: ${props => props.recording ? 'flex' : 'none'};  // Only display when recording
+  display: ${props => props.recording ? 'flex' : 'none'};
   align-items: center;
   justify-content: center;
-  position: absolute;  // Position absolute
-  bottom: 3rem;          // Stick to the bottom
+  position: absolute;
+  bottom: 3rem;
 `;
 
 const Unvisualizer = styled.div`
@@ -134,8 +134,7 @@ const BlackHolePage = () => {
       setValue(prevValue => prevValue + " " + result);
     },
   });
-  
-  const { transcript, listening } = useRecognition1();
+
   const visualizerRef = useRef(null);
   const canvasRef = useRef(null);
   const audioContextRef = useRef(null);
@@ -146,9 +145,7 @@ const BlackHolePage = () => {
   
 
   const handleSendClick = () => {
-    // 녹음을 중지합니다.
     setRecording(false);
-    
     setSendClicked(true);
     setModalOpen(true);
     setFlag(true);
@@ -220,7 +217,7 @@ const BlackHolePage = () => {
   }, [recording]);
 
   const handleRecognitionToggle = () => {
-    // 녹음을 시작하거나 중지합니다.
+
   setRecording(!recording);
     
   if (isListening) {
@@ -237,33 +234,35 @@ const BlackHolePage = () => {
   const [flag, setFlag] = useState(false);
 
   return (
-    <Container sendClicked={sendClicked}>
-      <Title>블랙홀</Title>
-      {isModalOpen && <BlackHoleModal delay={1.8} />}
-      <InputContainer sendClicked={sendClicked}>
-        <BlackHoleInput flag={flag} value={value}/>
-      </InputContainer>
-      {recording ? (
-          <Visualizer recording={recording} ref={visualizerRef}>
-            <canvas ref={canvasRef} width="400" height="200" />
-          </Visualizer>
-        ) : (
-            <Unvisualizer></Unvisualizer>
-        )}
-      <SendButtonContainer>
-        {/* {recording ? () : ()} */}
-      <AudioButton recording={recording} onClick={handleRecognitionToggle}>
-        <AiOutlineAudio />
-        <SendText>녹음</SendText>
-      </AudioButton>
-      <SendButton onClick={handleSendClick}>
-        <AiOutlineSend />
-        <SendText>
-          전송
-        </SendText>
-      </SendButton>
-      </SendButtonContainer>
-    </Container>
+    <>
+      <Container sendClicked={sendClicked}>
+        <Title>블랙홀</Title>
+        {isModalOpen && <BlackHoleModal delay={1.8} />}
+        <InputContainer sendClicked={sendClicked}>
+          <BlackHoleInput flag={flag} value={value}/>
+        </InputContainer>
+        {recording ? (
+            <Visualizer recording={recording} ref={visualizerRef}>
+              <canvas ref={canvasRef} width="800" height="200" />
+            </Visualizer>
+          ) : (
+              <Unvisualizer></Unvisualizer>
+          )}
+      </Container>
+        <SendButtonContainer>
+          {/* {recording ? () : ()} */}
+          <AudioButton recording={recording} onClick={handleRecognitionToggle}>
+            <AiOutlineAudio />
+            <SendText>녹음</SendText>
+          </AudioButton>
+          <SendButton onClick={handleSendClick}>
+            <AiOutlineSend />
+            <SendText>
+              전송
+            </SendText>
+          </SendButton>
+        </SendButtonContainer>
+    </>
   );
 };
 
