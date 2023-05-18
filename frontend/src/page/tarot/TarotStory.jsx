@@ -8,6 +8,7 @@ import Button from "@component/Button";
 import UpDownContainer from "@component/layout/UpDownContainer";
 import RowContainer from "@component/layout/RowContainer";
 import GapW from "@component/layout/GapW";
+import TodayTarotFade from "@component/tarot/TodayTarotFade";
 
 function TarotStory() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function TarotStory() {
   }
   return (
     <UpDownContainer style={{position:"relative", overflowY:"scroll", width:"100%"}}>
+      <TodayTarotFade/>
     <ColContainer style={{position:"absolute", top:0}}>
       <video controls width="80%" autoPlay>
         <source src={videoUrl} type="video/mp4" />

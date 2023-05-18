@@ -4,6 +4,7 @@ import sys
 import random
 import os
 import math
+import uuid
 from collections import deque
 
 import boto3
@@ -16,75 +17,38 @@ sys.setrecursionlimit(100000)
 
 def create_sand_art_video(image_url):
     global previous_color
-    previous_color = (79, 158, 207)
-    # image_url = "https://astaro.s3.ap-northeast-2.amazonaws.com/f746df39-49c9-4486-be62-c56a1dd4bddb.png"
-    fourcc = cv2.VideoWriter_fourcc(*'h264')
+    previous_color = (100, 30, 0)
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     fps = 30  # 비디오의 프레임 수
     isColor = True  # 컬러 비디오인 경우 True, 그렇지 않으면 False
 
-    # 이미지 파일 경로 설정
-    # current_directory = os.path.dirname(os.path.realpath(__file__))
-    # image_path = os.path.join(
-    #     current_directory, "static", "images", "fable7.jpg")
-
-    # 웹 이미지를 메모리로 로드
     with urllib.request.urlopen(image_url) as url:
         img_array = np.array(bytearray(url.read()), dtype=np.uint8)
         src = cv2.imdecode(img_array, -1)
 
-    # 이미지 불러오기
-    # src = cv2.imread(image_path)
+    gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY))
 
-    # Gaussian blur 적용
-    # blurred_src = cv2.GaussianBlur(src, (3, 3), 300)
-
-    # blurred_src = cv2.bilateralFilter(src, 9, 75, 75)
-
-    gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-
-    # 히스토그램 평활화 적용
-    # equalized_gray = cv2.equalizeHist(gray)
-
-    # 전역 이진화 적용
     ret, binary = cv2.threshold(gray, 230, 255, cv2.THRESH_BINARY)
 
-    # def initial_sand_color():
-    #     r = random.randint(120, 180)
-    #     g = random.randint(60, 120)
-    #     b = random.randint(20, 80)
-
-    #     return (b, g, r)
-
     def initial_sand_color():
-        r = random.randint(120, 150)
-        g = random.randint(70, 100)
-        b = random.randint(20, 50)
-
+        r = random.randint(220, 250)
+        g = random.randint(190, 220)
+        b = random.randint(110, 140)
         return (b, g, r)
-
-    # def random_sand_color(intensity):
-    #     r = random.randint(0, 100)
-    #     g = random.randint(0 + intensity * 10, 30 + intensity * 10)
-    #     b = random.randint(0 + intensity * 10, 30 + intensity * 10)
-
-    #     return (b, g, r)
 
     def random_sand_color(previous_color):
         r = previous_color[2] + random.randint(-1, 1)
         g = previous_color[1] + random.randint(-1, 1)
         b = previous_color[0] + random.randint(-1, 1)
 
-        # Keep the color in the valid range.
-        r = min(max(r, 220), 230)
-        g = min(max(g, 190), 200)
-        b = min(max(b, 110), 120)
-
+        r = min(max(r, 60), 70)
+        g = min(max(g, 20), 30)
+        b = min(max(b, 0), 10)
         return (b, g, r)
 
     output = np.zeros((*binary.shape, 3), dtype=np.uint8)
 
     height, width = binary.shape
-    # height, width = 1280, 720
 
     for i in range(height):
         for j in range(width):
@@ -92,7 +56,7 @@ def create_sand_art_video(image_url):
 
     visited = np.zeros_like(binary, dtype=bool)
 
-    video_path = "drawing_process.mp4"
+    video_path = str(uuid.uuid1()) + ".mp4"
 
     # VideoWriter 객체 생성
     video = cv2.VideoWriter(video_path, fourcc,
@@ -103,32 +67,20 @@ def create_sand_art_video(image_url):
         queue = deque([(i, j)])
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1),
                       (1, 1), (-1, -1), (1, -1), (-1, 1)]
-
         while queue:
             i, j = queue.popleft()
-
             if i < 0 or i >= height or j < 0 or j >= width or visited[i, j] or binary[i, j] != 0:
                 continue
-
             visited[i, j] = True
             output[i, j] = random_sand_color(previous_color)
             previous_color = output[i, j]
-            # for a in range(3):
-            #     for b in range(3):
-            #         if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
-            #             output[i + a, j +
-            #                    b] = random_sand_color(3 - (a*b//3) % 3)
 
-            ran_show = int(random.randrange(3000, 5000))
-
+            ran_show = 1000
             if ((i * j) % (ran_show)) == 0:
                 video.write(cv2.GaussianBlur(output, (3, 3), 0))  # 현재 프레임 저장
-                cv2.waitKey(1)
 
             random.shuffle(directions)
-            # step = random.randrange(1, 3)
             step = 1
-
             for dx, dy in directions:
                 ni, nj = i + dx * step, j + dy * step
                 if random.random() < 0.5:
@@ -144,23 +96,14 @@ def create_sand_art_video(image_url):
         visited[i, j] = True
         output[i, j] = random_sand_color(previous_color)
         previous_color = output[i, j]
-        # flag = 0
-        # for a in range(3):
-        #     for b in range(3):
-        #         # flag = random.randrange(1, 4)
-        #         if i + a >= 0 and j + b >= 0 and i + a < height and j + b < width:
-        #             output[i + a, j + b] = random_sand_color(3 - (a*b//5) % 3)
 
-        ran_show = int(random.randrange(1000, 3000))
+        ran_show = 1000
 
         if ((i * j) % (ran_show)) == 0:
             video.write(cv2.GaussianBlur(output, (3, 3), 0))  # 현재 프레임 저장
-            cv2.waitKey(1)
 
         if depth >= max_recursion_depth:
             return
-
-        # step = random.randrange(1, 5)
 
         offsets = list(range(-2 * step, 3 * step, step))
         random.shuffle(offsets)
@@ -181,14 +124,12 @@ def create_sand_art_video(image_url):
                 else:
                     dfs(start_i, start_j, step, max_recursion_depth=10000)
 
-    # 부드러운 선을 위해 가우시안 블러 적용
-    # output = cv2.GaussianBlur(output, (3, 3), 0)
-
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     # 비디오 객체 닫기
     video.release()
+    os.system(f"ffmpeg -i {video_path} -vcodec libx264 h264_{video_path}")
 
     return video_path
 
