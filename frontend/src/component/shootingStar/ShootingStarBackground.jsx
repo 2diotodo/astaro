@@ -8,8 +8,8 @@ import { fetchTaroResult } from "@/features/shootingStarSlice/starSlice";
 const shootingTime = "1000ms";
 
 const getRandomDuration = () => {
-  const minDuration = 6000; // 최소 지속 시간(ms)
-  const maxDuration = 20000; // 최대 지속 시간(ms)
+  const minDuration = 5000;
+  const maxDuration = 20000;
   return Math.floor(
     Math.random() * (maxDuration - minDuration + 1) + minDuration
   );
@@ -19,7 +19,6 @@ const ShootingStarsContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  // shooting star 각도
   transform: rotateZ(30deg);
   z-index: 5;
 
@@ -33,7 +32,7 @@ const ShootingStarsContainer = styled.div`
       rgba(255, 255, 255, 0)
     );
     filter: drop-shadow(0 0 6px lightyellow);
-    animation: tail linear infinite, shooting linear infinite; // 여기서 'shootingTime' 변수를 제거했습니다.
+    animation: tail linear infinite, shooting linear infinite;
   }
 
   .shooting_star::before,
@@ -99,10 +98,10 @@ const ShootingStars = () => {
 
   useEffect(() => {
     const createStars = () => {
-      return Array.from({ length: 20 }, (_, i) => {
-        const top = Math.floor(Math.random() * 100);
+      return Array.from({ length: 30 }, (_, i) => {
+        const top = Math.floor(Math.random() * 90);
         const left = Math.floor(Math.random() * 100);
-        const delay = Math.floor(Math.random() * 10000);
+        const delay = 0
         const duration = getRandomDuration();
 
         return (
@@ -122,17 +121,9 @@ const ShootingStars = () => {
     };
 
     setStars(createStars());
-    const interval = setInterval(() => {
-      setStars(createStars());
-    }, 15000);
-
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   const handleStarClick = async () => {
-    // const memberSeq = 1; // 실제 사용자 ID로 교체해야 함
     try {
       const taroResultAction = dispatch(fetchTaroResult());
       const taroResultDto = taroResultAction.payload;
