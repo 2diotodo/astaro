@@ -119,7 +119,7 @@ Astaro는 AI를 이용한 온라인 타로점 서비스입니다. 고민 내용�
 - Visual Studio Code IDE 1.74.3
 - React 18.0
 - Styled Component
-- Node.js 18.13.0
+- Node.js 18.15.0
 
 **Design**
 
@@ -401,7 +401,7 @@ FE
 
 - 주요기능을 확인할 수 있습니다.
   <br />
-  <img src="./docs/gif/메인.gif">
+  ![메인](docs/gif/메인.gif)
   <br />
 
 ### 오늘의 운세
@@ -409,24 +409,24 @@ FE
 - 로그인없이 간단하게 운세를 볼 수 있습니다.
 - 결과창 공유를 통해 화면 캡쳐와 url 공유가 가능합니다.
   <br/>
-  <img src="./docs/gif/오늘의운세.gif">
+  ![오늘의운세](docs/gif/오늘의운세.gif)
   <br/>
 
 ### 고민타로
 
 - 카테고리를 선택하고 고민을 입력하세요.
   <br />
-  <img src="./docs/gif/타로1.gif">
+  ![타로1](docs/gif/타로1.gif)
   <br />
   <br />
 - 카드를 선택하면 로딩을 거쳐 의미를 확인할 수 있습니다.
   <br />
-  <img src="./docs/gif/타로2.gif">
-  <img src="./docs/gif/타로5.gif">
+  ![타로1](docs/gif/타로2.gif)
+  ![타로1](docs/gif/타로5.gif)
   <br />
 - 스토리와 함께 이미지가 생성되는 과정을 영상으로 제공합니다.
   <br />
-  <img src="./docs/gif/타로6.gif">
+  ![타로6](docs/gif/타로6.gif)
   <br />
   <br />
 
@@ -436,7 +436,7 @@ FE
 - 스토리 확인 후 마음에 드는 결과를 보고 메세지를 보낼 수 있습니다.
 - 메세지는 F-word Filter를 통해 불건전한 문자를 걸러냅니다.
   <br />
-  <img src="./docs/gif/별똥별.gif">
+  ![별똥별](docs/gif/별똥별.gif)
   <br />
   <br />
 
@@ -445,12 +445,12 @@ FE
 - 고민을 덜어내는 것만으로도 해소가 가능합니다.
 - 고민을 속 시원하게 털어보세요.
   <br />
-  <img src="./docs/gif/블랙홀.gif">
+  ![블랙홀](./docs/gif/블랙홀.gif)
   <br />
 
 ## 시스템 구성
 
-<img width="80%" src="./docs/architecture.png" />
+<img width="80%" src="./docs/architecture.PNG" />
 
 ## ERD
 
