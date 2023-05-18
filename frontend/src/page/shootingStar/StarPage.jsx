@@ -114,12 +114,12 @@ const StarPage = () => {
         i
       </ShowMessageButton>
       {showMessage && !isTypingDone && (
-        <TypingMessage avgTypingDelay={200} onTypingDone={() => setTimeout(() => setIsTypingDone(true), 3000)}>
+        <TypingMessage avgTypingDelay={50} onTypingDone={() => setTimeout(() => setIsTypingDone(true), 3000)}>
           쏟아지는 별똥별을 잡아 다른 이의 고민을 확인하세요
         </TypingMessage>
       )}
       <StyledSwiper
-        spaceBetween={50}
+        spaceBetween={100}
         slidesPerView={1}
         onSlideChange={(swiper) => handleSwiperChange(swiper.activeIndex)}
         pagination={{

@@ -4,6 +4,7 @@ import BlackHoleInput from '@/component/shootingStar/BlackHoleInput';
 import { AiOutlineSend, AiOutlineAudio } from "react-icons/ai";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { css } from 'styled-components';
+import BlackHoleModal from '@/component/shootingStar/BlackHoleModal';
 
 const rotate = keyframes`
   0% {
@@ -122,6 +123,13 @@ const BlackHolePage = () => {
   const analyserRef = useRef(null);
   const bufferLengthRef = useRef(null);
 
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleSendClick = () => {
+    setSendClicked(true);
+    setModalOpen(true);  // 모달을 여는 함수를 호출합니다.
+  };
+
   useEffect(() => {
     if (!canvasRef.current) return;
   
@@ -144,7 +152,7 @@ const BlackHolePage = () => {
       canvasCtx.strokeStyle = getRandomRGB();
       canvasCtx.beginPath();
   
-      const sliceWidth = (canvas.width * 1) / bufferLengthRef.current;
+      const sliceWidth = (canvas.width * 0.6) / bufferLengthRef.current;
       let x = 0;
   
       for (let i = 0; i < bufferLengthRef.current; i++) {
@@ -212,6 +220,7 @@ const BlackHolePage = () => {
   return (
     <Container sendClicked={sendClicked}>
       <Title>블랙홀</Title>
+      {isModalOpen && <BlackHoleModal delay={2.5} />}
       <InputContainer sendClicked={sendClicked}>
         {recording ? (
           <Visualizer ref={visualizerRef}>
@@ -225,7 +234,7 @@ const BlackHolePage = () => {
         <AudioButton recording={recording} onClick={toggleRecording}>
           <AiOutlineAudio />
         </AudioButton>
-        <SendButton onClick={() => setSendClicked(true)}>
+        <SendButton onClick={handleSendClick}>
           <AiOutlineSend />
           <SendText>Send</SendText>
         </SendButton>
