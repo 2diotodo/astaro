@@ -36,10 +36,10 @@ const ModalContainer = styled.div`
 const SubTitle = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
-  margin-bottom: 1rem;
+  margin: 1rem;
   width: 80%;
 
   & > span {
@@ -53,6 +53,7 @@ const SubTitle = styled.div`
 
 const DelayedButton = styled(Button)`
 	opacity: 0;
+  maring-bottom: 0;
   animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards;
 `;
 
@@ -83,17 +84,20 @@ const BlackHoleModal = ({ delay }) => {
   return ReactDOM.createPortal(
     <ModalContainer>
     	<SubTitle>
-        <Text delay={1}>이제</Text>
-        <Text delay={2}>모든 </Text>
-        <Text delay={3}>고민은 </Text>
-        <Text delay={4}>사라져씀</Text>
+        <Text delay={1}>많이 힘들었구나</Text>
       </SubTitle>
 			<SubTitle>
-        <Text delay={5}>집에</Text>
-        <Text delay={6}>가서</Text>
-        <Text delay={7}>잠이나</Text>
-        <Text delay={8}>주무셔요</Text>
+        <Text delay={3}>하지만 그 어떠한 상황도</Text>
     	</SubTitle>
+      <SubTitle>
+        <Text delay={5}>영원히 지속 되지는 않아</Text>
+      </SubTitle>
+      <SubTitle>
+        <Text delay={7}>이제 이 고민은 영원히 날아갔어</Text>
+      </SubTitle>
+      <SubTitle>
+        <Text delay={9}>내가 항상 응원하고 있을게</Text>
+      </SubTitle>
 			<SubTitle>
 				<DelayedButton delay={9} onClick={goToHome} style={{position:"relative"}}>홈으로 가기</DelayedButton>
 			</SubTitle>
