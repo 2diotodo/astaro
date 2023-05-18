@@ -3,7 +3,7 @@ import axios from "@utils/axiosInstance";
 
 const initialState = {
   stars: [],
-  category: "연애",
+  category: "결혼",
 };
 
 // const baseURL = "http://localhost:8000/board-service/";
@@ -15,6 +15,7 @@ const token = `${localStorage.getItem("access-token")}`;
 export const fetchTaroResult = createAsyncThunk(
   "star/fetchTaroResult",
   async (category) => {
+    console.log(category)
     const url = `${baseURL}api/v1/star?category=${category}`;
     const response = await axios({
       headers: { Authorization: `Bearer ${token}` },
