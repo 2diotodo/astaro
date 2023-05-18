@@ -1,0 +1,81 @@
+version: '3'
+services:
+  eureka-server:
+    build:
+      context: ./backend/eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - 8761:8761
+    networks:
+      - msa-network
+      
+  gateway-server:
+    build:
+      context: ./backend/gateway-server
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - eureka-server  
+    networks:
+      - msa-network
+    environment:
+      EUREKA_SERVICE_URL: http://eureka-service:8761/eureka/
+      
+  member-service:
+    build:
+      context: ./backend/member-service
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    depends_on:
+      - eureka-server
+    networks:
+      - msa-network
+    environment:
+      EUREKA_SERVICE_URL: http://eureka-service:8761/eureka/
+      
+  board-service:
+    build:
+      context: ./backend/board-service
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    depends_on:
+      - eureka-server
+    networks:
+      - msa-network
+    environment:
+      EUREKA_SERVICE_URL: http://eureka-service:8761/eureka/
+      
+  taro-service:
+    build:
+      context: ./backend/taro-service
+      dockerfile: Dockerfile
+    ports:
+      - 8083:8083
+    depends_on:
+      - eureka-server
+    networks:
+      - msa-network
+    environment:
+      EUREKA_SERVICE_URL: http://eureka-service:8761/eureka/
+      
+  sandart-service:
+    build:
+      context: ./backend/sandart-service
+      dockerfile: Dockerfile
+    ports:
+      - 8500:8500
+    networks:
+      - msa-network
+      
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+
+networks:
+  msa-network:
