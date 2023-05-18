@@ -85,8 +85,8 @@ const ShowMessageButton = styled.button`
 const StarPage = () => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [shootingStarsKey, setShootingStarsKey] = useState(0);
-  const [isTypingDone, setIsTypingDone] = useState(true);
-  const [showMessage, setShowMessage] = useState(false);
+  const [isTypingDone, setIsTypingDone] = useState(false);
+  const [showMessage, setShowMessage] = useState(true);
   const dispatch = useDispatch();
   const categories = ["결혼", "연애", "학업", "취직", "이직", "사업", "금전", "건강"];
 
@@ -115,7 +115,7 @@ const StarPage = () => {
       </ShowMessageButton>
       {showMessage && !isTypingDone && (
         <TypingMessage avgTypingDelay={200} onTypingDone={() => setTimeout(() => setIsTypingDone(true), 3000)}>
-          쏟아지는 별똥별을 잡아 다른 사람의 스토리를 확인하세요
+          쏟아지는 별똥별을 잡아 다른 이의 고민을 확인하세요
         </TypingMessage>
       )}
       <StyledSwiper
