@@ -46,27 +46,30 @@ export function TodayResult() {
 
   const captureScreenshot = () =>{
     html2canvas(document.getElementById("todayresultcard"), {
-      logging: true, letterRendering: 1,
-      backgroundColor:'black',
+      logging: true,
+      letterRendering: 1,
+      backgroundColor: "black",
       allowTaint: false,
       useCORS: true,
-    }).then(function(canvas) {
+    }).then(function (canvas) {
       const downloadLink = document.createElement("a");
-      downloadLink.download = "filename.png";
+      downloadLink.download = "Horoscope.png";
       downloadLink.href = canvas.toDataURL();
       downloadLink.click();
     });
   }; 
 
   return (
-    <ColContainer style={{position:"relative", top:0, width:"100%", height:"100%"}}>
+    <ColContainer
+      style={{ position: "relative", top: 0, width: "100%", height: "100%" }}
+    >
       <ColContainer
         width="80%"
         justify="start"
-        height="83%"
+        height="85%"
         style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
         id="todayresultcard"
-        >
+      >
         <TodayMainCard>
           <img
             src={result.mainImageUrl}
@@ -76,7 +79,7 @@ export function TodayResult() {
               position: "relative",
               zIndex: 2,
             }}
-            />
+          />
         </TodayMainCard>
         <Medium style={{ margin: "4vh 0" }}>{result.cardName}</Medium>
         <Small style={{ marginBottom: "2vh", fontSize:'19px' }}>{result.content}</Small>
@@ -100,27 +103,12 @@ export function TodayResult() {
       <RowContainer
         width="100%"
         style={{
-          maxWidth:"600px",
+          maxWidth: "600px",
           justifyContent: "space-evenly",
           position: "absolute",
-          bottom: "1vh"
+          bottom: "1vh",
         }}
         >
-      {/* <div
-        width="100%"
-        style={{
-          display:'flex',
-          position: "relative",
-          justifyContent: "space-evenly",
-          gap:"0",
-          position:"static",
-          alignItems:"center",
-          border : "none",
-          borderRadius: "0",
-          backgroundColor: "transaprent",
-          height:"auto",
-        }}
-        > */}
         <Button onClick={() => navigate("/")} >홈으로</Button>
         <Button onClick={openModal}>SNS공유</Button>
         <Modal open={modalOpen} close={closeModal} />

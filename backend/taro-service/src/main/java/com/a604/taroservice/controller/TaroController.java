@@ -56,7 +56,7 @@ public class TaroController {
         int[] cards = new int[]{Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), Integer.parseInt(arr[2])};
         String contentList = "\"" + ls[cards[0]-1] + "\"$\"" + ls[cards[1]-1] + "\"$\"" + ls[cards[2] -1] + "\"$\"" + "종합적으로 보았을 때, 당신은 현재 취직에 대한 걱정이 많은 만큼 내면의 지혜와 강인함으로 이 시기를 이겨낼 필요가 있음을 시사합니다. 당신 스스로의 능력을 믿고 취직을 위해 묵묵히 능력을 정진하다보면, 좋은 결과가 있을 것입니다.\"";
         String story = "옛날 옛적 어느 작은 마을에 한 남자가 살고 있었습니다. 그는 취직에 대한 큰 고민을 하고 있었어요. 매일 아침 해가 뜨기 전에 남자는 일어나서 마을 돌아다니며 기회를 찾았어요. 그는 많은 회사에 이력서를 보내고 면접에 참석하기 위해 최선을 다했어요. 하지만 쉽지 않았어요. 거절과 실패의 순간들이 찾아왔지만, 남자는 흔들리지 않았어요. 그리고 어느 날, 기적이 일어났어요. 한 회사에서 남자의 열정과 노력을 알아봤고 취직 제안을 받았어요. 남자는 눈물을 흘리며 기뻐했어요. 그의 꿈이 이루어질 때의 행복한 순간이었어요.";
-        TaroResultDto respdto = new TaroResultDto(testseq, "취직", dto.getContentInput(), dto.getCardSeqList(), contentList, "https://astaro.s3.ap-northeast-2.amazonaws.com/f746df39-49c9-4486-be62-c56a1dd4bddb.png", "https://astaro.s3.ap-northeast-2.amazonaws.com/0348ff24-f38a-11ed-ae41-0242ac110044.mp4", story);
+        TaroResultDto respdto = new TaroResultDto(testseq, "취직", dto.getContentInput(), dto.getCardSeqList(), contentList, "https://astaro.s3.ap-northeast-2.amazonaws.com/f746df39-49c9-4486-be62-c56a1dd4bddb.png", "https://astaro.s3.ap-northeast-2.amazonaws.com/384d0180-f53c-11ed-8616-0242ac110008.mp4", story);
         Thread.sleep(10000);
         return new ResponseEntity<>(respdto, HttpStatus.OK);
     }

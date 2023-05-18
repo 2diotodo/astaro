@@ -36,18 +36,13 @@ function App() {
   const [audioToggle, setAudioToggle] = useState(true);
 
   const audioPlay = () => {
+    backgroundAudio.loop = true;
     backgroundAudio.play();
     setAudioToggle(true);
   };
 
-  const setScreenSize = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  };
-
-  window.addEventListener("resize", () => setScreenSize);
-
   const audioPause = () => {
+    backgroundAudio.loop = false;
     backgroundAudio.pause();
     setAudioToggle(false);
   };
@@ -56,7 +51,7 @@ function App() {
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
       {audioToggle ? (
-        <VolumeButton onClick={audioPause} style={{ height: "9%" }}>
+        <VolumeButton onClick={audioPause} style={{ height: "15px", padding: "2vh 0"}}>
           <Medium>
             <IoMdVolumeHigh />
           </Medium>

@@ -28,6 +28,7 @@ import GoToNextButton from "@component/GoToNextButton";
 import ShufflingSound from "@assets/Shuffling_card_sound.mp3";
 import SpreadingSound from "@assets/Spreading_card_sound.wav";
 function TarotService() {
+  axiosInstance.get(`${process.env.REACT_APP_BACKEND_URL}/member-service/member/`)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");

@@ -19,6 +19,11 @@ public class MemberRestController {
 
     private final MemberService memberService;
 
+    @GetMapping("/")
+    public ResponseEntity<?> validate(){
+        return null;
+    }
+
     // 회원 정보 조회
     @GetMapping("/users")
     public ResponseEntity<Map<String, Object>> getUser(HttpServletRequest request) {

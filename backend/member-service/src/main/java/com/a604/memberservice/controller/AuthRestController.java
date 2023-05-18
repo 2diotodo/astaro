@@ -3,6 +3,7 @@ package com.a604.memberservice.controller;
 import com.a604.memberservice.dto.request.LoginRequestDto;
 import com.a604.memberservice.dto.request.SignUpRequestDto;
 import com.a604.memberservice.service.AuthService;
+import feign.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

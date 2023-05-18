@@ -2,6 +2,9 @@ import { useState } from "react";
 import cards from "@constants/carddata.json";
 import tarot_back from "@assets/img/taro_back_.png";
 import "@css/flipgame.css";
+import Button from "@component/Button";
+import Medium from "@component/text/Medium";
+import GapH from "@component/layout/GapH";
 
 const Card = ({ id, name, flipped, matched, clicked }) => {
   return (
@@ -125,13 +128,11 @@ function FlipGame() {
     return (
       <div className="game-result-centered">
         {/* <h1>{savedTime !== null ? formatElapsedTime(savedTime) : ""}</h1> */}
-        <h1>10 lux 획득!</h1>
-        <button className="restart-button" onClick={restartGame}>
+        <Medium>10 lux 획득!</Medium>
+        <GapH height="10vh"/>
+        <Button className="restart-button" onClick={restartGame}>
           한번 더?
-        </button>
-        <button className="ranking-button" onClick={restartGame}>
-          랭킹 보기
-        </button>
+        </Button>
       </div>
     );
   };

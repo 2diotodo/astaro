@@ -1,5 +1,6 @@
 // Library Import
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 // Icons or Component Import
@@ -38,8 +39,8 @@ const TitleContainer = styled.div`
   justify-content: end;
   align-items: center;
 
-  width: 95%;
-  height: 20%;
+  width: 100%;
+  height: 30%;
 `;
 // transform: translateY(125%);
 // animation: ${Slide} 0.6s 1.8s linear forwards;
@@ -69,51 +70,23 @@ const TextStyle = styled.span`
 
 const NavContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
-  justify-content: space-around;
 
-  width: 95%;
-  height: 50%;
+  width: 100%;
+  height: 60%;
+  margin-top: 15%;
   opacity: 0;
 
   background-color: transparent;
   animation: ${FadeIn} 1s 1s linear forwards;
 `;
 
-const LoginContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 95%;
-  height: 10%;
-
-  opacity: 0;
-
-  background-color: transparent;
-  animation: ${FadeIn} 1s 1.1s linear forwards;
-`;
-
-const Button = styled.button`
-  width: 50%;
-  height: 40%;
-
-  border: 2px;
-  border-radius: 24px;
-
-  font-size: 16px;
-
-  color: white;
-  border-color: white;
-  background-color: transparent;
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: center;
 
   width: 100%;
@@ -121,6 +94,7 @@ const Wrapper = styled.div`
 `;
 
 export function Main() {
+  const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState(0);
 
   const clickLeftArrowBtn = () => {
@@ -151,22 +125,8 @@ export function Main() {
           </Title>
         </TitleContainer>
         <NavContainer>
-          <div>
-            <MdArrowLeft onClick={clickLeftArrowBtn} color="white" size={60} />
-          </div>
-          <CardNav activeCard={activeCard}></CardNav>
-          <div>
-            <MdArrowRight
-              onClick={clickRightArrowBtn}
-              color="white"
-              size={60}
-            />
-          </div>
+          <CardNav></CardNav>
         </NavContainer>
-        <LoginContainer>
-          <Button>로그인</Button>
-          <Button>회원가입</Button>
-        </LoginContainer>
       </Wrapper>
     </>
   );

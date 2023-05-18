@@ -4,17 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 // Icons or Component Import
-import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import { HiChevronDown } from "react-icons/hi";
 import GapH from "@component/layout/GapH";
-
-const Scale = keyframes`
-  from {
-    transform: scale(0.94);
-  }
-  to {
-    transform: scale(1);
-  }
-`;
 
 const FadeIn = keyframes`
   from {
@@ -45,16 +36,13 @@ const Shadow = keyframes`
   0% {
     box-shadow: 0 0 0 white;
   }
-  60%{
-    box-shadow: 0 0 0 white;
-  }
-  80% {
+  50% {
     box-shadow: 0 0 20px white;
   }
   100% {
     box-shadow: 0 0 0 white;
   }
-`
+`;
 
 const Wrapper = styled.div`
   position: fixed;
@@ -79,23 +67,6 @@ const Container = styled.div`
   transform: scale(0.94);
   width: 90%;
   height: 90%;
-
-  animation: ${Scale} 1 linear forwards;
-`;
-
-const UpArrow = styled.div`
-  position: absolute;
-  top: 3%;
-  left: 45%;
-  z-index: 1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 10%;
-  aspect-ratio: 1/1;
-  animation: ${Blink} 2s linear infinite;
 `;
 
 const DownArrow = styled.div`
@@ -133,7 +104,7 @@ const Title = styled.div`
 const SubTitle = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
   margin-bottom: 10px;
@@ -149,7 +120,29 @@ const SubTitle = styled.div`
   }
 `;
 
+const ContentTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 10px;
+  width: 80%;
+  max-width: 300px;
+
+  & > span {
+    opacity: 0;
+    filter: blur(4);
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
+`;
+
 const Text = styled.span`
+  margin-left: 3px;
+  margin-right: 3px;
+
   animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards;
 `;
 
@@ -167,7 +160,7 @@ const Button = styled.button`
   height: 30px;
   font-family: "TAEBAEKmilkyway";
   animation: ${FadeIn} 2.5s ${(props) => props.delay}s linear forwards,
-              ${Shadow} 1.5s 2s linear infinite;
+    ${Shadow} 2s 3.5s linear infinite;
 `;
 
 const Landing = (props) => {
@@ -176,32 +169,22 @@ const Landing = (props) => {
   const [touchedX, setTochedX] = useState(0);
   const [touchedY, setTochedY] = useState(0);
 
-  const handleUpBtn = () => {
-    setActivePage(activePage - 1);
-  };
   const handleDownBtn = () => {
     setActivePage(activePage + 1);
   };
 
   const onTouchStart = (e) => {
-    
     setTochedX(e.changedTouches[0].screenX);
     setTochedY(e.changedTouches[0].screenY);
-  }
+  };
 
   const onTouchEnd = (e) => {
     const distanceX = touchedX - e.changedTouches[0].screenX;
     const distanceY = touchedY - e.changedTouches[0].screenY;
     const vector = Math.abs(distanceY / distanceX);
-
-    console.log(e)
-    console.log(distanceX);
-    console.log(distanceY);
-    console.log(vector);
-
-    if(distanceY > 30 && vector >2) setActivePage(activePage - 1);
-    else if ( distanceY < -30 && vector > 2) setActivePage(activePage + 1);
-  }
+    if (distanceY > 30 && vector > 2) setActivePage(activePage - 1);
+    else if (distanceY < -30 && vector > 2) setActivePage(activePage + 1);
+  };
 
   const handleOnWheel = (e) => {
     if (e.deltaY <= -100) {
@@ -213,29 +196,26 @@ const Landing = (props) => {
 
   return (
     <>
-      <Wrapper onWheel={handleOnWheel} onTouchEnd={onTouchEnd} onTouchStart={onTouchStart}>
-        {/* 위로 가는 버튼 */}
-        {activePage === 0 ? null : (
-          <UpArrow onClick={handleUpBtn}>
-            <HiChevronUp color="white" size={40}></HiChevronUp>
-          </UpArrow>
-        )}
-
+      <Wrapper
+        onWheel={handleOnWheel}
+        onTouchEnd={onTouchEnd}
+        onTouchStart={onTouchStart}
+      >
         {/* 내용물 : 0번 */}
         {activePage === 0 ? (
           <Container>
             <SubTitle>
-              <Text delay={0.1}>오늘도</Text>
-              <Text delay={0.2}>별처럼</Text>
-              <Text delay={0.3}>빛나는</Text>
-              <Text delay={0.4}>당신에게</Text>
+              <Text delay={0.2}>오늘도</Text>
+              <Text delay={0.4}>별처럼</Text>
+              <Text delay={0.6}>빛나는</Text>
+              <Text delay={0.8}>당신에게</Text>
             </SubTitle>
             <Title>
-              <Text delay={0.5}>Astaro</Text>
+              <Text delay={1}>Astaro</Text>
             </Title>
-            <GapH height="10vh"/>
+            <GapH height="10vh" />
             <Button
-              delay={0.6}
+              delay={1}
               onClick={() => {
                 props.audio();
                 navigate("/home");
@@ -247,19 +227,63 @@ const Landing = (props) => {
         ) : null}
 
         {/* 내용물 : 1번 */}
-        {activePage === 1 ? <Container></Container> : null}
+        {activePage === 1 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 2번 */}
-        {activePage === 2 ? <Container></Container> : null}
+        {activePage === 2 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 3번 */}
-        {activePage === 3 ? <Container></Container> : null}
+        {activePage === 3 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+              <Text delay={0.6}>들어줄게!"</Text>
+              <Text delay={0.8}>들어줄게!"</Text>
+              <Text delay={1.0}>들어줄게!"</Text>
+              <Text delay={1.2}>들어줄게!"</Text>
+              <Text delay={1.4}>들어줄게!"</Text>
+              <Text delay={1.6}>들어줄게!"</Text>
+              <Text delay={1.8}>들어줄게!"</Text>
+              <Text delay={2.0}>들어줄게!"</Text>
+              <Text delay={2.2}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 4번 */}
-        {activePage === 4 ? <Container></Container> : null}
+        {activePage === 4 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 내용물 : 5번 */}
-        {activePage === 5 ? <Container></Container> : null}
+        {activePage === 5 ? (
+          <Container>
+            <ContentTitle>
+              <Text delay={0.2}>"무엇이든</Text>
+              <Text delay={0.4}>들어줄게!"</Text>
+            </ContentTitle>
+          </Container>
+        ) : null}
 
         {/* 아래로 가는 버튼 */}
         {activePage === 5 ? null : (
