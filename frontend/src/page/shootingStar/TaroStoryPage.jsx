@@ -12,7 +12,7 @@ const TaroStory = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 75%;
+  height: 120%;
   overflow: hidden;
 `;
 
@@ -108,7 +108,7 @@ const TaroStoryPage = () => {
     if (flag === 0) {
       setFlag(1);
       dispatch(fetchTaroResult(category)).then((data) => {
-        console.log(data.payload);
+        console.log(data.payload);  
         setTaroResult(prevState => {
           const newTaroResult = [...prevState, data.payload];
           videoFrontRef.current.src = newTaroResult[currentSlide]?.videoUrl;
