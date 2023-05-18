@@ -11,6 +11,7 @@ import GapH from "@component/layout/GapH";
 import { TodayResult } from "@page/tarot/TodayResult";
 import TodayTarotFade from "@component/tarot/TodayTarotFade";
 import sound_effect from "@assets/soundeffect.mp3";
+import UpDownContainer from "@component/layout/UpDownContainer";
 
 
 export default function TodayTaro() {
@@ -49,7 +50,7 @@ export default function TodayTaro() {
   }
 
   return (
-    <>
+    <UpDownContainer width="100%" >
       {fade ? <TodayTarotFade /> : <></>}
       {resultFlag ? (
         <TodayResult />
@@ -81,7 +82,7 @@ export default function TodayTaro() {
           <GapH height="15vh" />
         </>
       )}
-    </>
+    </UpDownContainer>
   );
 }
 

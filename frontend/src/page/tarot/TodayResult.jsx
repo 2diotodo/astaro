@@ -60,14 +60,16 @@ export function TodayResult() {
   }; 
 
   return (
+    <>
     <ColContainer
-      style={{ position: "relative", top: 0, width: "100%", height: "100%" }}
+      justify="start"
+      style={{ position: "relative", width: "100%", height: "inherit", overflowY:"scroll" }}
     >
       <ColContainer
         width="80%"
         justify="start"
-        height="85%"
-        style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
+        height="100%"
+        style={{ top: "20px", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
         id="todayresultcard"
       >
         <TodayMainCard>
@@ -82,38 +84,38 @@ export function TodayResult() {
           />
         </TodayMainCard>
         <Medium style={{ margin: "4vh 0" }}>{result.cardName}</Medium>
-        <Small style={{ marginBottom: "2vh", fontSize:'19px' }}>{result.content}</Small>
-        <RowContainer style={{ margin: "2vh 0" }}>
+        <Small style={{ marginBottom: "2vh", fontSize:'18px' }}>{result.content}</Small>
+        <RowContainer style={{ margin: "2vh 0" }} height="inherit" align="start">
           <TodayTarotCard>
             상성이 좋은 카드
             <div className="today-subcard">
-              <img src={result.goodImageUrl} alt="" width="50%" />
+              <img src={result.goodImageUrl} alt="" width="50vh" />
             </div>
             {result.goodCardName}
           </TodayTarotCard>
           <TodayTarotCard>
             상성이 나쁜 카드
             <div className="today-subcard">
-              <img src={result.badImageUrl} alt="" width="50%" />
+              <img src={result.badImageUrl} alt="" width="50vh" />
             </div>
             {result.badCardName}
           </TodayTarotCard>
         </RowContainer>
       </ColContainer>
+    </ColContainer>
       <RowContainer
         width="100%"
         style={{
           maxWidth: "600px",
           justifyContent: "space-evenly",
-          position: "absolute",
-          bottom: "1vh",
+          position: "relative",
         }}
         >
-        <Button onClick={() => navigate("/")} >홈으로</Button>
-        <Button onClick={openModal}>SNS공유</Button>
+        <Button height="20px" onClick={() => navigate("/")} >홈으로</Button>
+        <Button height="20px" onClick={openModal}>SNS공유</Button>
         <Modal open={modalOpen} close={closeModal} />
       </RowContainer>
-    </ColContainer>
+    </>
   );
 }
 
@@ -153,6 +155,7 @@ const TodayTarotCard = styled.div`
   font-family: TAEBAEKmilkyway;
   text-align: center;
   font-size: 14px;
+  height: 10vh;
   color: white;
   & > .today-subcard > img {
     max-width: 120px;
