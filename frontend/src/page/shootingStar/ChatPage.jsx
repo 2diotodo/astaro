@@ -58,7 +58,6 @@ const MessageRight = styled(Message)`
   align-self: flex-end;
 `;
 
-
 const MessageList = styled.ul`
   list-style-type: none;
   padding: 0;
