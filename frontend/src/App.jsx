@@ -56,7 +56,7 @@ function App() {
     <div className="App">
       <Background style={{ position: "relative", zIndex: -100 }} />
       {audioToggle ? (
-        <VolumeButton onClick={audioPause} style={{ height: "9%" }}>
+        <VolumeButton onClick={audioPause} style={{ height: "15px", padding: "2vh 0"}}>
           <Medium>
             <IoMdVolumeHigh />
           </Medium>

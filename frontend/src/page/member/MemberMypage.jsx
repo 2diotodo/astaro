@@ -46,6 +46,8 @@ const Wrapper = styled.div`
   height: 80%;
   width: 100%;
   position: absolute;
+  display: flex;
+  justify-content: center;
 `;
 
 const Title = styled.div`
@@ -58,7 +60,9 @@ const Subtitle = styled.div`
   position: relative;
   color: white;
   font-size: 15px;
-  margin: 5% 5% 5% 5%;
+  line-height: 1.5em;
+  max-width: 500px;
+  margin: 5%;
 `;
 
 const Button = styled.button`
@@ -67,17 +71,21 @@ const Button = styled.button`
   padding: 5px 20px;
   margin: 2%;
   border: 1px solid white;
+  border-radius: 15px;
   background-color: rgba(0, 0, 0, 0);
   color: white;
   font-size: 15px;
+  font-family: "TAEBAEKmilkyway";
   float: right;
   right: 10%;
 `;
+
 const MypageProfile = styled.div`
   position: relative;
   content: "";
-  height: 100%;
+  height: auto;
 `;
+
 const MyUpdate = styled.div`
   background-color: transparent;
   width: 320px;
@@ -308,7 +316,7 @@ function MemberMypage() {
           )}
 
           <Subtitle className="mypage-wisdom">
-            {selectWisdom.wisdom} -{selectWisdom.writer}
+            {selectWisdom.wisdom}<br/><br/>-{selectWisdom.writer}
           </Subtitle>
           <MypageProfile className="mypage-profile">
             {values.profile && (
@@ -413,9 +421,11 @@ function MemberMypage() {
                 <Button
                   type="button"
                   onClick={resignHandler}
+                  className="resign-button"
                   style={{
                     width: "40px",
                     fontSize: "10px",
+                    marginTop: "9%",
                     border: "none",
                     color: "gray",
                     position: "relative",
@@ -423,7 +433,7 @@ function MemberMypage() {
                     left: "10px",
                   }}
                 >
-                  <div className="resign-button">탈퇴하기</div>
+                  탈퇴하기
                 </Button>
               </div>
             </div>
