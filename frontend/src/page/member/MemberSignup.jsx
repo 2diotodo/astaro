@@ -141,16 +141,16 @@ function MemberSignup() {
     }
   };
 
-  useEffect(() => {
-    if (passwordConfirm !== "") {
-      setTimeout(() => {
-        if (password === passwordConfirm) {
-          setValidatePw(true);
-          setMessage("사용하실 닉네임을 입력해주세요.");
-        }
-      }, 500);
-    }
-  }, [password, passwordConfirm]);
+  // useEffect(() => {
+  //   if (passwordConfirm !== "") {
+  //     setTimeout(() => {
+  //       if (password === passwordConfirm) {
+  //         setValidatePw(true);
+  //         setMessage("사용하실 닉네임을 입력해주세요.");
+  //       }
+  //     }, 500);
+  //   }
+  // }, [password, passwordConfirm]);
 
   const handleChangeEm = (e) => {
     setEmail(e.target.value);
@@ -172,6 +172,13 @@ function MemberSignup() {
         setValidateId(true);
       }
     });
+  };
+  const handleClickPw = () => {
+    if (password === passwordConfirm) {
+      alert("사용가능한 비밀번호입니다.");
+      setValidatePw(true);
+      setMessage("사용하실 닉네임을 입력해주세요.");
+    }
   };
   const handleClickNn = () => {
     dispatch(duplicateNn(nickname)).then((response) => {
@@ -269,7 +276,7 @@ function MemberSignup() {
                 type="password"
               />
               <MdCheckCircleOutline
-                onClick={handleClickId}
+                onClick={handleClickPw}
                 color={validatePw ? "green" : "white"}
                 size={30}
               />

@@ -36,18 +36,13 @@ function App() {
   const [audioToggle, setAudioToggle] = useState(true);
 
   const audioPlay = () => {
+    backgroundAudio.loop = true;
     backgroundAudio.play();
     setAudioToggle(true);
   };
 
-  const setScreenSize = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  };
-
-  window.addEventListener("resize", () => setScreenSize);
-
   const audioPause = () => {
+    backgroundAudio.loop = false;
     backgroundAudio.pause();
     setAudioToggle(false);
   };
