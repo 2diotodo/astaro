@@ -108,19 +108,9 @@ const TaroStoryPage = () => {
     if (flag === 0) {
       setFlag(1);
       dispatch(fetchTaroResult(category)).then((data) => {
-        console.log(data.payload);  
-        setTaroResult(prevState => {
-          const newTaroResult = [...prevState, data.payload];
-          videoFrontRef.current.src = newTaroResult[currentSlide]?.videoUrl;
-          setStoryFront(taroResult[currentSlide]?.story);
-          return newTaroResult;
-        });
-        // setTaroResult(prevState => [...prevState, data.payload]);
-        // videoFrontRef.current.src = taroResult[currentSlide]?.videoUrl;
-        // setStoryFront(taroResult[currentSlide]?.story);
+        setTaroResult(prevState => [...prevState, data.payload]);
       });
       dispatch(fetchTaroResult(category)).then((data) => {
-        console.log(data.payload);
         setTaroResult(prevState => [...prevState, data.payload]);
       });
     }
@@ -130,53 +120,20 @@ const TaroStoryPage = () => {
     if (currentSlide % 4 === 0) {
       videoFrontRef.current.src = taroResult[currentSlide]?.videoUrl;
       setStoryFront(taroResult[currentSlide]?.story);
-      if (currentSlide !== 0) {
-        videoLeftRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
-        setStoryLeft(taroResult[currentSlide - 1]?.story);
-      }
-      videoRightRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
-      setStoryRight(taroResult[currentSlide + 1]?.story);
-      videoBackRef.current.src = '';
-      setStoryBack('');
     }
     else if (currentSlide % 4 === 1) {
       videoRightRef.current.src = taroResult[currentSlide]?.videoUrl;
       setStoryRight(taroResult[currentSlide]?.story);
-      if (currentSlide !== 0) {
-        videoFrontRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
-        setStoryFront(taroResult[currentSlide-1]?.story);
-      }
-      videoBackRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
-      setStoryBack(taroResult[currentSlide + 1]?.story);
-      videoLeftRef.current.src = '';
-      setStoryLeft('');
     } else if (currentSlide % 4 === 2) {
-      // videoBackRef.current.src = taroResult[currentSlide]?.videUrl;
-      // setStoryBack(taroResult[currentSlide]?.story);
-      if (currentSlide !== 0) {
-        videoRightRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
-        setStoryRight(taroResult[currentSlide - 1]?.story);
-      }
-      videoLeftRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
-      setStoryLeft(taroResult[currentSlide + 1]?.story);
-      videoFrontRef.current.src = '';
-      setStoryFront('');
+      videoBackRef.current.src = taroResult[currentSlide]?.videoUrl;
+      setStoryBack(taroResult[currentSlide]?.story);
     } else if (currentSlide % 4 === 3) {
       videoLeftRef.current.src = taroResult[currentSlide]?.videoUrl;
       setStoryLeft(taroResult[currentSlide]?.story);
-      if (currentSlide !== 0) {
-        videoBackRef.current.src = taroResult[currentSlide - 1]?.videoUrl;
-        setStoryBack(taroResult[currentSlide - 1]?.story);
-      }
-      videoFrontRef.current.src = taroResult[currentSlide + 1]?.videoUrl;
-      setStoryFront(taroResult[currentSlide + 1]?.story);
-      videoRightRef.current.src = '';
-      setStoryRight('');
     }
   }, [taroResult, currentSlide]);
 
   const handleSendMessage = (message) => {
-    console.log(taroResult[currentSlide].seq);
     dispatch(
       sendMessage({
         messageListSeq: 0,
@@ -198,7 +155,6 @@ const TaroStoryPage = () => {
     
     const currentTouchX = event.touches[0].clientX;
     const diffX = TouchX - currentTouchX;
-    console.log(diffX);
     if (Math.abs(diffX) > 10) {
       if (diffX > 0) {
         setNextSlide(currentSlide + 1);
@@ -214,7 +170,6 @@ const TaroStoryPage = () => {
   const handleTouchEnd = () => {
     if (taroResult.length === nextSlide+1) {
       dispatch(fetchTaroResult(category)).then((data) => {
-        console.log(data.payload);
         setTaroResult(prevState => [...prevState, data.payload]);
       });
     }
@@ -225,9 +180,14 @@ const TaroStoryPage = () => {
   };
 
   const handleVideoEnded = async () => {
-    // await setNextSlide(currentSlide + 1);
-    // handleTouchEnd();
-  }
+    if (taroResult.length === currentSlide+2) {
+      dispatch(fetchTaroResult(category)).then((data) => {
+        setTaroResult(prevState => [...prevState, data.payload]);
+      });
+    }
+    setCurrentSlide(currentSlide+1);
+  };
+
   return (
       <Container onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
         <Carousel n={currentSlide}>
