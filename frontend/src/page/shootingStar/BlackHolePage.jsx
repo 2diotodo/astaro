@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import BlackHoleInput from '@/component/shootingStar/BlackHoleInput';
 import { AiOutlineSend, AiOutlineAudio } from "react-icons/ai";
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import SpeechRecognition, { useSpeechRecognition as useRecognition1 } from 'react-speech-recognition';
+import { useSpeechRecognition } from 'react-speech-kit';
 import { css } from 'styled-components';
 
 const rotate = keyframes`
@@ -39,18 +40,21 @@ const Container = styled.div`
 
 const Title = styled.h1`
   color: white;
-  margin-bottom: 1rem;
+  width: 100%;
+  height: 20%;
+  // margin-bottom: 1rem;
   z-index: 5;
 `;
 
 const InputContainer = styled.div`
   width: 100%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 5;
-  animation: ${props => props.sendClicked ? css`${disappear} 5s ease-in-out forwards, ${rotate} 5s linear infinite` : 'none'};
+  animation: ${props => props.sendClicked ? css`${disappear} 5s ease-in-out forwards, ${rotate} 3s linear infinite` : 'none'};
 `;
 
 const SendButton = styled.button`
@@ -65,7 +69,6 @@ const SendButton = styled.button`
   z-index: 5;
 `;
 
-
 const SendText = styled.span`
   margin-left: 0.5rem;
   font-size: 1rem;
@@ -75,6 +78,7 @@ const SendButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  height: 20%;
 	margin-right: 5rem;
 `;
 
@@ -91,8 +95,8 @@ const AudioButton = styled.button`
 `;
 
 const Visualizer = styled.div`
-  // width: 80vw;
-  // height: 30vh;
+  width: 100%;
+  height: 20%;
   background: rgba(255, 255, 255, 0);
   // border-radius: 5px;
   display: flex;
@@ -102,20 +106,38 @@ const Visualizer = styled.div`
   // color: #ffffff;
 `;
 
+const Unvisualizer = styled.div`
+  width: 100%;
+  height: 28%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const disappear = keyframes`
   0% {
-    opacity: 1;
-    transform: scale(1);
+    // opacity: 1;
+    // transform: scale(1);
+    // font-size: 1.5rem;
   }
   100% {
-    opacity: 0;
-    transform: scale(0);
+    // opacity: 0;
+    // transform: scale(0.5);
+    // font-size: 0.5rem;
   }
 `;
 
 const BlackHolePage = () => {
+  const [value, setValue] = useState("여기에 고민을 털어주세요...");
   const [recording, setRecording] = useState(false);
-  const { transcript, listening } = useSpeechRecognition();
+  const [isListening, setIsListening] = useState(false);
+  const { listen, stop } = useSpeechRecognition({
+    onResult: (result) => {
+      setValue(prevValue => prevValue + " " + result);
+    },
+  });
+  
+  const { transcript, listening } = useRecognition1();
   const visualizerRef = useRef(null);
   const canvasRef = useRef(null);
   const audioContextRef = useRef(null);
@@ -127,43 +149,42 @@ const BlackHolePage = () => {
   
     const drawWave = () => {
       if (!analyserRef.current || !canvasRef.current) return;
-  
+    
       const canvas = canvasRef.current;
       const canvasCtx = canvas.getContext('2d');
       const dataArray = new Uint8Array(bufferLengthRef.current);
-  
-      requestAnimationFrame(drawWave);
+    
       analyserRef.current.getByteTimeDomainData(dataArray);
-  
+    
       canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 투명 배경
       canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
       canvasCtx.lineWidth = 3;
-
-      const getRandomRGB = () => `rgb(${Math.random() * (100- 80) + 80}, ${Math.random() * (100- 80) + 80}, ${Math.random() * (255 - 200) + 200})`;
-
+    
+      const getRandomRGB = () => 'rgba(255, 255, 255, 0.8)';
+    
       canvasCtx.strokeStyle = getRandomRGB();
       canvasCtx.beginPath();
-  
+    
       const sliceWidth = (canvas.width * 1) / bufferLengthRef.current;
       let x = 0;
-  
+    
       for (let i = 0; i < bufferLengthRef.current; i++) {
         const v = dataArray[i] / 128.0;
         const y = v * canvas.height / 2;
-  
+    
         if (i === 0) {
           canvasCtx.moveTo(x, y);
         } else {
           canvasCtx.lineTo(x, y);
         }
-  
+    
         x += sliceWidth;
       }
-  
+    
       canvasCtx.lineTo(canvas.width, canvas.height);
       canvasCtx.stroke();
-
-      setTimeout(drawWave, 2000)
+    
+      requestAnimationFrame(drawWave);
     };
   
     if (recording) {
@@ -207,29 +228,53 @@ const BlackHolePage = () => {
     }
   };
 
+
+  const handleRecognitionToggle = () => {
+    if (recording) {
+      setRecording(false);
+    } else {
+      setRecording(true);
+    }
+    
+    if (isListening) {
+      setIsListening(false);
+      stop();
+    } else {
+      setValue('');
+      setIsListening(true);
+      listen({ interimResults: false });
+    }
+  };
+  
   const [sendClicked, setSendClicked] = useState(false);
+  const [flag, setFlag] = useState(false);
+  
+  const sendMessage = (event) => {
+    setSendClicked(true);
+    setFlag(true);
+  };
 
   return (
     <Container sendClicked={sendClicked}>
       <Title>블랙홀</Title>
       <InputContainer sendClicked={sendClicked}>
-        {recording ? (
+        <BlackHoleInput flag={flag} value={value} placeholder="여기에 고민을 털어주세요..." />
+      </InputContainer>
+      {recording ? (
           <Visualizer ref={visualizerRef}>
-            <canvas ref={canvasRef} width="800" height="200" />
+            <canvas ref={canvasRef} width="400" height="200" />
           </Visualizer>
         ) : (
-          <BlackHoleInput value={transcript} placeholder="여기에 고민을 적어주세요..." />
+            <Unvisualizer></Unvisualizer>
         )}
-      </InputContainer>
       <SendButtonContainer>
-        <AudioButton recording={recording} onClick={toggleRecording}>
+        <AudioButton recording={recording} onClick={handleRecognitionToggle}>
           <AiOutlineAudio />
         </AudioButton>
-        <SendButton onClick={() => setSendClicked(true)}>
+        <SendButton onClick={() => sendMessage()}>
           <AiOutlineSend />
           <SendText>Send</SendText>
         </SendButton>
-
       </SendButtonContainer>
     </Container>
   );
