@@ -35,7 +35,6 @@ public class TaroResultService {
 
 
     public TaroResultDto saveTaroResult(TaroResultDto dto) throws IOException {
-        System.out.println("saveTaroResult");
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

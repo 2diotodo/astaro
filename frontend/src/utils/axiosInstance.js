@@ -42,8 +42,10 @@ axiosInstance.interceptors.response.use(
           const accessToken = res.data.accessToken;
           const seq = res.data.seq;
           localStorage.setItem('access-token', accessToken);
+          console.log(accessToken);
           localStorage.setItem('seq', seq);
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+          console.log(originalRequest);
           return axios(originalRequest);
       });
     }
