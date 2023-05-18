@@ -8,6 +8,7 @@ import Button from "@component/Button";
 import UpDownContainer from "@component/layout/UpDownContainer";
 import RowContainer from "@component/layout/RowContainer";
 import GapW from "@component/layout/GapW";
+import TodayTarotFade from "@component/tarot/TodayTarotFade";
 
 function TarotStory() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function TarotStory() {
   }
   return (
     <UpDownContainer style={{position:"relative", overflowY:"scroll", width:"100%"}}>
+      <TodayTarotFade/>
     <ColContainer style={{position:"absolute", top:0}}>
       <video controls width="80%" autoPlay>
         <source src={videoUrl} type="video/mp4" />
@@ -35,7 +37,7 @@ function TarotStory() {
       <RowContainer>
       <Button onClick={goToHome}>홈으로</Button>
         <GapW width={"30px"}/>
-        <Button onclick={goToShootingStar} width={"150px"}>별똥별로 보내기</Button>
+        <Button onClick={goToShootingStar} width={"150px"}>별똥별로 보내기</Button>
       </RowContainer>
     </ColContainer>
     </UpDownContainer>

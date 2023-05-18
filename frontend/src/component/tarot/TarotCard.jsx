@@ -14,8 +14,21 @@ const Panel = styled.div`
     cursor: pointer;
     box-shadow: 0 0 10px 5px #c8c8c8;
   }
+  &:visited {
+    animation: zoomIn forwards 2s;
+  }
   max-width: 120px;
   max-height: 222px;
+  @keyframes zoomIn {
+    0% {
+    }
+    50% {
+      transform: scale(2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
 
 const TarotCardFrontImage = styled.img`
@@ -60,7 +73,7 @@ function TarotCard({ card, selected, onClick, className, style }) {
         className="tarot-back"
         style={{
           position: "relative",
-          zIndex: 50,
+          zIndex: 2,
           backfaceVisibility: "hidden",
         }}
       />

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router";
 import wisdoms from "@constants/wisdom.json";
 import profiles from "@constants/profile.json";
@@ -15,6 +15,33 @@ import {
 } from "@features/memberUpdateSlice";
 import { isLoginCheck } from "@features/commonSlice/loginSlice";
 
+const backglow1 = keyframes`
+0% {
+  transform: translate(10%, 10%) scale(1);
+  opacity: 0.5;
+}
+
+25% {
+  transform: translate(-10%, 10%) scale(0.8);
+  opacity: 0.5;
+}
+
+50% {
+  transform: translate(-10%, -10%) scale(1.2);
+  opacity: 0.8;
+}
+
+75% {
+  transform: translate(10%, -10%) scale(1.1);
+  opacity: 0.2;
+}
+
+100% {
+  transform: translate(10%, 10%) scale(1);
+  opacity: 0.5;
+}
+`;
+
 const Wrapper = styled.div`
   height: 80%;
   width: 100%;
@@ -25,14 +52,12 @@ const Title = styled.div`
   color: white;
   position: relative;
   font-size: 40px;
-  font-family: "Nanum Myeongjo", monospace;
   margin-top: 10%;
 `;
 const Subtitle = styled.div`
   position: relative;
   color: white;
   font-size: 15px;
-  font-family: "Nanum Myeongjo", monospace;
   margin: 5% 5% 5% 5%;
 `;
 
@@ -47,6 +72,22 @@ const Button = styled.button`
   font-size: 15px;
   float: right;
   right: 10%;
+`;
+const MypageProfile = styled.div`
+  position: relative;
+  content: "";
+  height: 100%;
+`;
+const MyUpdate = styled.div`
+  background-color: transparent;
+  width: 320px;
+  height: 200px;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 5%;
+  perspective: 1000px;
+  pointer-events: auto;
+  position: relative;
 `;
 
 // modal style - mui
@@ -65,6 +106,16 @@ const boxStyle = {
   p: 4,
 };
 
+const ModalImg = styled.div`
+  text-align: center;
+  margin: 5% 5% 0 5%;
+  opacity: 0.3;
+  img {
+    height: 90px;
+  }
+  opacity: ${({ selected }) => (selected ? "1" : "0.3")};
+`;
+
 function MemberMypage() {
   const dispatch = useDispatch();
   const userinfo = useSelector((state) => state.memberUpdate);
@@ -77,7 +128,7 @@ function MemberMypage() {
     password: "",
     passwordConfirm: "",
     nickname: "",
-    profile: 1,
+    profile: 0,
     email: "",
     lux: 0,
     heal: 0,
@@ -111,15 +162,16 @@ function MemberMypage() {
   const [profileSelected, setProfileSelected] = useState(0);
 
   const profileSelectHandler = (idx) => {
-    if (values.lux >= profiles[idx - 1].starlux) {
-      setProfileSelected(idx);
-      // let newlux = values.lux - profiles[idx - 1].starlux;
-      setValues({
-        ...values,
-        profile: idx,
-        // lux: newlux,
-      });
-    }
+    console.log("idx", idx);
+    // if (values.lux >= profiles[idx].starlux) {
+    setProfileSelected(idx);
+    // let newlux = values.lux - profiles[idx].starlux;
+    setValues({
+      ...values,
+      profile: idx,
+      // lux: newlux,
+    });
+    // }
   };
   const navigate = useNavigate();
 
@@ -208,7 +260,7 @@ function MemberMypage() {
     }
   }, [userinfo]);
 
-  useEffect(() => {}, [profileSelected]);
+  useEffect(() => {}, []);
 
   // 입력값이 변경될때 마다 검증한다.
   useEffect(() => {
@@ -230,7 +282,6 @@ function MemberMypage() {
     } else {
       alert("탈퇴를 취소하셨습니다.");
     }
-    // navigate("/member/signup");
   };
 
   // modal 관리
@@ -243,7 +294,7 @@ function MemberMypage() {
       profile: profileSelected,
     }));
     dispatch(profileUpdate(values));
-    setProfileSelected(0);
+    setProfileSelected(values.profile);
   };
   return (
     <>
@@ -259,43 +310,21 @@ function MemberMypage() {
           <Subtitle className="mypage-wisdom">
             {selectWisdom.wisdom} -{selectWisdom.writer}
           </Subtitle>
-          <div className="mypage-profile">
+          <MypageProfile className="mypage-profile">
             {values.profile && (
               <img
-                src={profiles[values.profile - 1].starImageUrl}
+                src={profiles[values.profile].starImageUrl}
                 alt="profile"
                 style={{ height: "90px" }}
               />
             )}
             <GoPencil onClick={changeProfileHandler} color="white" />
-          </div>
-          <div
+          </MypageProfile>
+          <MyUpdate
             className={`mypage-update ${flipped ? "active" : ""}`}
             onClick={flipHandler}
           >
             <div className="mypage-update-inner">
-              <div className="mypage-front">
-                <div className="mypage-board">
-                  <div className="board-box">
-                    <div className="board-name">지난타로</div>
-                    <div className="board-value" style={{ width: "53%" }}>
-                      13
-                    </div>
-                  </div>
-                  <div className="board-box">
-                    <div className="board-name">내 별똥별</div>
-                    <div className="board-value" style={{ width: "53%" }}>
-                      5
-                    </div>
-                  </div>
-                  <div className="board-box">
-                    <div className="board-name">대화 목록</div>
-                    <div className="board-value" style={{ width: "53%" }}>
-                      4
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className="mypage-back">
                 <div className="mypage-area">
                   <form className="update-form" onSubmit={updateSubmitHandler}>
@@ -315,7 +344,7 @@ function MemberMypage() {
                       />
                     </div>
                     <div className="input-box">
-                      <div className="input-name">별명</div>
+                      {/* <div className="input-name">별명</div> */}
                       <Input
                         type="text"
                         name="nickname"
@@ -327,13 +356,9 @@ function MemberMypage() {
                         textIndent={"0px"}
                         style={{ fontSize: "15px" }}
                       />
-                      {/* 닉네임 오류메시지를 출력한다 */}
-                      {touched.nickname && errors.nickname && (
-                        <span>{errors.nickname}</span>
-                      )}
                     </div>
                     <div className="input-box">
-                      <div className="input-name">이메일</div>
+                      {/* <div className="input-name">이메일</div> */}
                       <Input
                         type="email"
                         name="email"
@@ -348,7 +373,7 @@ function MemberMypage() {
                       />
                     </div>
                     <div className="input-box">
-                      <div className="input-name">비밀번호</div>
+                      {/* <div className="input-name">비밀번호</div> */}
                       <Input
                         type="password"
                         name="password"
@@ -360,10 +385,6 @@ function MemberMypage() {
                         textIndent={"0px"}
                         style={{ fontSize: "15px" }}
                       />
-                      {/* 비밀번호 오류메시지를 출력한다 */}
-                      {touched.password && errors.password && (
-                        <span>{errors.password}</span>
-                      )}
                     </div>
                     <div className="input-box">
                       <div className="input-name"></div>
@@ -406,7 +427,7 @@ function MemberMypage() {
                 </Button>
               </div>
             </div>
-          </div>
+          </MyUpdate>
         </div>
       </Wrapper>
       <Modal
@@ -417,11 +438,12 @@ function MemberMypage() {
         <Box className="modal-box" sx={boxStyle}>
           <Typography className="modal-header">
             <span onClick={handleClose}>프로필 바꾸기</span>
-            <span onClick={handleClose}>&times;</span>
+            {/* <span onClick={handleClose}>&times;</span> */}
           </Typography>
           <Typography className="modal-body" id="modal-modal-description">
             {profiles.map((star) => (
-              <div
+              <ModalImg
+                selected
                 className={
                   profileSelected === star.starId
                     ? "modal-img selected"
@@ -433,8 +455,8 @@ function MemberMypage() {
                 value={star.starName}
               >
                 <img src={star.starImageUrl} alt={star.starName} />
-                <div>{star.starlux} lux</div>
-              </div>
+                {/* <div>{star.starlux} lux</div> */}
+              </ModalImg>
             ))}
           </Typography>
         </Box>

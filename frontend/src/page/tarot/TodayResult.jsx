@@ -11,7 +11,6 @@ import * as PropTypes from "prop-types";
 import ColContainer from "@component/layout/ColContainer";
 import Medium from "@component/text/Medium";
 import Small from "@component/text/Small";
-// import { saveAs } from "file-saver";
 
 function UpDowncontainer(props) {
   return null;
@@ -44,23 +43,8 @@ export function TodayResult() {
       .catch(() => {});
   }, []);
 
-  // const captureScreenshot = () => {
-  //   html2canvas(document.getElementById("todayresultcard"),{    useCORS: true,
-  //     allowTaint: true}).then((canvas) => {
 
-  //     canvas.toBlob((blob) => {
-  //       if (blob) {
-  //         const url = URL.createObjectURL(blob);
-  //         const link = document.createElement("a");
-  //         link.href = url;
-  //         link.download = "todayresult.png";
-  //         link.click();
-  //         URL.revokeObjectURL(url);
-  //       }
-  //     });
-  //   });
-  // };
-  const captureScreenshot = () => {
+  const captureScreenshot = () =>{
     html2canvas(document.getElementById("todayresultcard"), {
       logging: true,
       letterRendering: 1,
@@ -69,25 +53,11 @@ export function TodayResult() {
       useCORS: true,
     }).then(function (canvas) {
       const downloadLink = document.createElement("a");
-      downloadLink.download = "filename.png";
+      downloadLink.download = "Horoscope.png";
       downloadLink.href = canvas.toDataURL();
       downloadLink.click();
     });
-    // saveAs(canvas.toDataURL('image/jpg'), 'asd.jpg')
-  };
-
-  // const saveAs = (uri, filename) => {
-  //   let link = document.createElement('a')
-  //   if(typeof link.download == 'string'){
-  //     link.href = uri;
-  //     link.download = filename;
-  //     document.body.appendChild(link)
-  //     link.click()
-  //     document.body.removeChild(link)
-  //   } else {
-  //     window.open(uri)
-  //   }
-  // }
+  }; 
 
   return (
     <ColContainer
@@ -96,14 +66,8 @@ export function TodayResult() {
       <ColContainer
         width="80%"
         justify="start"
-        height="100%"
-        style={{
-          top: "0",
-          position: "absolute",
-          paddingTop: "2vh",
-          backgroundColor: "rgba(0,0,0,0.1)",
-          maxWidth: "600px",
-        }}
+        height="85%"
+        style={{ top: "0", position: "absolute", paddingTop: "2vh", backgroundColor:'rgba(0,0,0,0.1)', maxWidth:"600px" }}
         id="todayresultcard"
       >
         <TodayMainCard>
@@ -118,7 +82,7 @@ export function TodayResult() {
           />
         </TodayMainCard>
         <Medium style={{ margin: "4vh 0" }}>{result.cardName}</Medium>
-        <Small style={{ marginBottom: "2vh" }}>{result.content}</Small>
+        <Small style={{ marginBottom: "2vh", fontSize:'19px' }}>{result.content}</Small>
         <RowContainer style={{ margin: "2vh 0" }}>
           <TodayTarotCard>
             상성이 좋은 카드
@@ -144,23 +108,8 @@ export function TodayResult() {
           position: "absolute",
           bottom: "1vh",
         }}
-      >
-        {/* <div
-        width="100%"
-        style={{
-          display:'flex',
-          position: "relative",
-          justifyContent: "space-evenly",
-          gap:"0",
-          position:"static",
-          alignItems:"center",
-          border : "none",
-          borderRadius: "0",
-          backgroundColor: "transaprent",
-          height:"auto",
-        }}
-        > */}
-        <Button onClick={() => navigate("/home")}>홈으로</Button>
+        >
+        <Button onClick={() => navigate("/")} >홈으로</Button>
         <Button onClick={openModal}>SNS공유</Button>
         <Modal open={modalOpen} close={closeModal} />
       </RowContainer>
