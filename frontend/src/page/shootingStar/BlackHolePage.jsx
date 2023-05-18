@@ -5,6 +5,7 @@ import { AiOutlineSend, AiOutlineAudio } from "react-icons/ai";
 import SpeechRecognition, { useSpeechRecognition as useRecognition1 } from 'react-speech-recognition';
 import { useSpeechRecognition } from 'react-speech-kit';
 import { css } from 'styled-components';
+import BlackHoleModal from '@/component/shootingStar/BlackHoleModal';
 
 const rotate = keyframes`
   0% {
@@ -16,8 +17,8 @@ const rotate = keyframes`
 `;
 
 const Container = styled.div`
-  height: 90vh;
-  width: 100%;
+  height: 80vh;
+  width: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,10 +29,10 @@ const Container = styled.div`
     content: '';
     background-image: url('/img/blackhole.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     width: 100%;
-    height: 60vh;
+    height: 80vh;
     position: absolute;
     z-index: 5;
     animation: ${rotate} ${props => props.sendClicked ? '5s' : '30s'} linear infinite;
@@ -44,6 +45,8 @@ const Title = styled.h1`
   height: 20%;
   // margin-bottom: 1rem;
   z-index: 5;
+  position: absolute;  // Position absolute
+  top: 3rem;          // Stick to the bottom
 `;
 
 const InputContainer = styled.div`
@@ -54,8 +57,13 @@ const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 5;
-  animation: ${props => props.sendClicked ? css`${disappear} 5s ease-in-out forwards, ${rotate} 3s linear infinite` : 'none'};
+  top: ${props => props.sendClicked ? '20%' : '50%'};
+  transform: translateY(-50%);
+  animation: ${props => props.sendClicked ? css`5s ease-in-out forwards, ${rotate} 3s linear infinite` : 'none'};
+  position: absolute;  // Position absolute
+  bottom: 0;          // Stick to the bottom
 `;
+
 
 const SendButton = styled.button`
   background: none;
@@ -78,8 +86,10 @@ const SendButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  height: 20%;
+  height: 10%;
 	margin-right: 5rem;
+  position: absolute;
+  bottom: 0;
 `;
 
 const AudioButton = styled.button`
@@ -98,12 +108,11 @@ const Visualizer = styled.div`
   width: 100%;
   height: 20%;
   background: rgba(255, 255, 255, 0);
-  // border-radius: 5px;
-  display: flex;
+  display: ${props => props.recording ? 'flex' : 'none'};
   align-items: center;
   justify-content: center;
-  // font-weight: bold;
-  // color: #ffffff;
+  position: absolute;
+  bottom: 3rem;
 `;
 
 const Unvisualizer = styled.div`
@@ -114,21 +123,10 @@ const Unvisualizer = styled.div`
   justify-content: center;
 `;
 
-const disappear = keyframes`
-  0% {
-    // opacity: 1;
-    // transform: scale(1);
-    // font-size: 1.5rem;
-  }
-  100% {
-    // opacity: 0;
-    // transform: scale(0.5);
-    // font-size: 0.5rem;
-  }
-`;
+
 
 const BlackHolePage = () => {
-  const [value, setValue] = useState("여기에 고민을 털어주세요...");
+  const [value, setValue] = useState("평소 털어 놓지 못한 고민을 털어버리세요");
   const [recording, setRecording] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const { listen, stop } = useSpeechRecognition({
@@ -136,13 +134,22 @@ const BlackHolePage = () => {
       setValue(prevValue => prevValue + " " + result);
     },
   });
-  
-  const { transcript, listening } = useRecognition1();
+
   const visualizerRef = useRef(null);
   const canvasRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const bufferLengthRef = useRef(null);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  
+
+  const handleSendClick = () => {
+    setRecording(false);
+    setSendClicked(true);
+    setModalOpen(true);
+    setFlag(true);
+  };
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -156,7 +163,7 @@ const BlackHolePage = () => {
     
       analyserRef.current.getByteTimeDomainData(dataArray);
     
-      canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 투명 배경
+      canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
       canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
       canvasCtx.lineWidth = 3;
     
@@ -208,75 +215,54 @@ const BlackHolePage = () => {
       }
     }
   }, [recording]);
-      
-
-  const startRecording = () => {
-    setRecording(true);
-    SpeechRecognition.startListening({ continuous: true });
-  };
-  
-  const stopRecording = () => {
-    setRecording(false);
-    SpeechRecognition.stopListening();
-  };
-
-  const toggleRecording = () => {
-    if (listening) {
-      stopRecording();
-    } else {
-      startRecording();
-    }
-  };
-
 
   const handleRecognitionToggle = () => {
-    if (recording) {
-      setRecording(false);
-    } else {
-      setRecording(true);
-    }
+
+  setRecording(!recording);
     
-    if (isListening) {
-      setIsListening(false);
-      stop();
-    } else {
-      setValue('');
-      setIsListening(true);
-      listen({ interimResults: false });
-    }
-  };
+  if (isListening) {
+    setIsListening(false);
+    stop();
+  } else {
+    setValue('');
+    setIsListening(true);
+    listen({ interimResults: false });
+  }
+};
   
   const [sendClicked, setSendClicked] = useState(false);
   const [flag, setFlag] = useState(false);
-  
-  const sendMessage = (event) => {
-    setSendClicked(true);
-    setFlag(true);
-  };
 
   return (
-    <Container sendClicked={sendClicked}>
-      <Title>블랙홀</Title>
-      <InputContainer sendClicked={sendClicked}>
-        <BlackHoleInput flag={flag} value={value} placeholder="여기에 고민을 털어주세요..." />
-      </InputContainer>
-      {recording ? (
-          <Visualizer ref={visualizerRef}>
-            <canvas ref={canvasRef} width="400" height="200" />
-          </Visualizer>
-        ) : (
-            <Unvisualizer></Unvisualizer>
-        )}
-      <SendButtonContainer>
-        <AudioButton recording={recording} onClick={handleRecognitionToggle}>
-          <AiOutlineAudio />
-        </AudioButton>
-        <SendButton onClick={() => sendMessage()}>
-          <AiOutlineSend />
-          <SendText>Send</SendText>
-        </SendButton>
-      </SendButtonContainer>
-    </Container>
+    <>
+      <Container sendClicked={sendClicked}>
+        <Title>블랙홀</Title>
+        {isModalOpen && <BlackHoleModal delay={1.8} />}
+        <InputContainer sendClicked={sendClicked}>
+          <BlackHoleInput flag={flag} value={value}/>
+        </InputContainer>
+        {recording ? (
+            <Visualizer recording={recording} ref={visualizerRef}>
+              <canvas ref={canvasRef} width="800" height="200" />
+            </Visualizer>
+          ) : (
+              <Unvisualizer></Unvisualizer>
+          )}
+      </Container>
+        <SendButtonContainer>
+          {/* {recording ? () : ()} */}
+          <AudioButton recording={recording} onClick={handleRecognitionToggle}>
+            <AiOutlineAudio />
+            <SendText>녹음</SendText>
+          </AudioButton>
+          <SendButton onClick={handleSendClick}>
+            <AiOutlineSend />
+            <SendText>
+              전송
+            </SendText>
+          </SendButton>
+        </SendButtonContainer>
+    </>
   );
 };
 

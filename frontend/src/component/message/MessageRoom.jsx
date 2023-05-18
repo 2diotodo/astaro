@@ -47,10 +47,14 @@ const RoomHeader = styled.div`
   justifyContent: space-between;
 `;
 
+const PopperContainer = styled.div`
+  background-color: rgba(217, 217, 217, 0.9);
+  border-radius: 5px;
+  margin-left: -85px;
+`;
+
 const PopperContent = styled.div`
   color : black;
-  background-color: rgba(217, 217, 217, 0.9);
-  margin-left: -85px;
 `;
 
 const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
@@ -97,12 +101,10 @@ const MessageRoom = ({ messageRoom, setMessageRooms, isOpen, setIsOpen }) => {
           <BsThreeDots onClick={handleClick}></BsThreeDots>
         </RoomHeader>
         <Popper id={id} open={open} anchorEl={anchorEl}>
-          <PopperContent>
-            남은시간 {messageRoom.remainedTime}
-          </PopperContent>
-          <PopperContent onClick={leaveMessageRoom}>
-            채팅방 나가기
-          </PopperContent>
+          <PopperContainer>
+            <PopperContent>남은시간 {messageRoom.remainedTime}</PopperContent>
+            <PopperContent onClick={leaveMessageRoom}>채팅방 나가기</PopperContent>
+          </PopperContainer>
         </Popper>
         <HorizontalLine n={messageRoom.n} />
         <LastMessage onClick={goToRoom}>{messageRoom.lastMessage}</LastMessage>

@@ -84,7 +84,7 @@ function MemberLogin() {
             onChange={handleChange}
             width={"60%"}
             textIndent={"0px"}
-            placeholder="별명을 말해줘"
+            placeholder="아이디를 말해줘"
           />
           <Input
             type="password"
