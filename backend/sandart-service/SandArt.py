@@ -26,7 +26,7 @@ def create_sand_art_video(image_url):
         img_array = np.array(bytearray(url.read()), dtype=np.uint8)
         src = cv2.imdecode(img_array, -1)
 
-    gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY))
+    gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
     ret, binary = cv2.threshold(gray, 230, 255, cv2.THRESH_BINARY)
 
