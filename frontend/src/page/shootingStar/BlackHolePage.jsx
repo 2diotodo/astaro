@@ -251,17 +251,17 @@ const BlackHolePage = () => {
             <Unvisualizer></Unvisualizer>
         )}
       <SendButtonContainer>
-        {recording ? (<SendButton onClick={handleSendClick}>
-          <SendText>
-            <AiOutlineSend />
-          </SendText>
-          <SendText>날려버리기</SendText>
-        </SendButton>) : (<AudioButton recording={recording} onClick={handleRecognitionToggle}>
+        {/* {recording ? () : ()} */}
+      <AudioButton recording={recording} onClick={handleRecognitionToggle}>
         <AiOutlineAudio />
-        <SendText>털어 놓기</SendText>
-      </AudioButton>)}
-        
-        
+        <SendText>녹음</SendText>
+      </AudioButton>
+      <SendButton onClick={handleSendClick}>
+        <AiOutlineSend />
+        <SendText>
+          전송
+        </SendText>
+      </SendButton>
       </SendButtonContainer>
     </Container>
   );
