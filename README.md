@@ -360,8 +360,8 @@ frontend
 - 메세지는 F-word Filter를 통해 불건전한 문자를 걸러냅니다.
   <br />
   <br />
-  <img src="./docs/gif/별똥별채팅.gif" width="260px" alt="blackhole">
-  <img src="./docs/gif/Fword.gif" width="260px" alt="blackhole">
+  <img src="./docs/gif/chat.gif" width="260px" alt="chat">
+  <img src="./docs/gif/Fword.gif" width="260px" alt="Fword">
   <br />
   <br />
 
@@ -371,7 +371,7 @@ frontend
 - 고민을 속 시원하게 털어보세요.
   <br />
   <br />
-  <img src="./docs/gif/블랙홀4.gif" width="260px" alt="blackhole">
+  <img src="./docs/gif/blackhole4.gif" width="260px" alt="blackhole">
   <br />
   <br />
 
