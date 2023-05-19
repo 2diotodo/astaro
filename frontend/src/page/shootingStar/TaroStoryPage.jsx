@@ -188,6 +188,12 @@ const TaroStoryPage = () => {
     setCurrentSlide(currentSlide+1);
   };
 
+  const handleVideoEndedDelayed = async () => {
+    setTimeout(() => {
+      handleVideoEnded();
+    }, 2000);
+  };
+
   return (
       <Container onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
         <Carousel n={currentSlide}>
@@ -198,7 +204,7 @@ const TaroStoryPage = () => {
                 ref={videoFrontRef}
                 muted
                 autoPlay
-                onEnded={handleVideoEnded}
+                onEnded={handleVideoEndedDelayed}
               >
                 <source type="video/mp4" />
               </StoryVideo>
@@ -217,7 +223,7 @@ const TaroStoryPage = () => {
                 ref={videoRightRef}
                 muted
                 autoPlay
-                onEnded={handleVideoEnded}
+                onEnded={handleVideoEndedDelayed}
               >
                 <source type="video/mp4" />
               </StoryVideo>
@@ -236,7 +242,7 @@ const TaroStoryPage = () => {
                 ref={videoBackRef}
                 muted
                 autoPlay
-                onEnded={handleVideoEnded}
+                onEnded={handleVideoEndedDelayed}
               >
                 <source type="video/mp4" />
               </StoryVideo>
@@ -255,7 +261,7 @@ const TaroStoryPage = () => {
                 ref={videoLeftRef}
                 muted
                 autoPlay
-                onEnded={handleVideoEnded}
+                onEnded={handleVideoEndedDelayed}
               >
                 <source type="video/mp4" />
               </StoryVideo>
