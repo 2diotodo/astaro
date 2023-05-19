@@ -50,7 +50,7 @@ const Title = styled.h1`
 `;
 
 const InputContainer = styled.div`
-  width: 100%;
+  width: 50%;
   height: 60%;
   display: flex;
   flex-direction: column;
@@ -63,7 +63,6 @@ const InputContainer = styled.div`
   position: absolute;  // Position absolute
   bottom: 0;          // Stick to the bottom
 `;
-
 
 const SendButton = styled.button`
   background: none;
